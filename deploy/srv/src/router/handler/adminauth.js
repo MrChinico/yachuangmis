@@ -11,17 +11,7 @@ const adminauth = (req,res)=>{
   const actiondata =   req.body;
   const userModel = DBModels.UserModel;
   // userModel.findOne({ username: actiondata.username,adminflag:1 },
-  userModel.findOne({ username: actiondata.username })
-      .populate([
-        {
-          path:'roleid',
-          model: 'role',
-          populate:[
-          {
-            path:'permissions', select:'_id name', model: 'permission'
-          },
-        ]
-      }]).exec((err, user)=> {
+  userModel.findOne({ username: actiondata.username }).lean().exec((err, user)=> {
     if (!!err) {
       res.status(200).json({
         loginsuccess:false,
@@ -44,22 +34,15 @@ const adminauth = (req,res)=>{
         }
         else{
           //普通后台用户
-          const permissions = _.get(user,'roleid.permissions_opt',[]);
-          const findresult = false;
-          if(!findresult){
             res.status(200).json({
               loginsuccess:false,
               err:'用户无权限登录后台'
             });
             return;
-          }
         }
         let token = jwt.sign({
               exp: Math.floor(Date.now() / 1000) +config.loginuserexptime,
               _id:user._id,
-              usertype:adminflag === 1?'admin':'user',
-              groupid:user.groupid,
-              organizationid:user.organizationid,
             },config.secretkey, {});
         res.status(200).json({
           loginsuccess:true,
