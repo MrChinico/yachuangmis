@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
+import { Layout,Button } from 'antd';
 import lodashget from 'lodash.get';
 
 
@@ -14,40 +14,38 @@ class App extends React.Component {
 		componentWillUnmount() {
 
 		}
-
+		onClickEdit = ()=>{
+			const {curpaientinfo} = this.props;
+			this.props.history.push(`/indexdetailedit/${curpaientinfo._id}`);
+		}
   	render() {
 			const {curpaientinfo} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
 	    return (
-	      	<div>
-						<div>
-							<span>新建／编辑创面评估表单</span>
-							<Button onClick={
-								()=>{
-									this.props.history.goBack();
-								}
-							}>返回上页</Button>
-						</div>
-						<div>
-							这里是病人信息
-						</div>
-						<div>
-							这里是评估表单
-						</div>
+	      	<Layout>
+						<div>头部标题栏</div>
+						<span><Button onClick={
+							()=>{
+								this.props.history.goBack();
+							}
+						}>返回首页</Button></span>
+						<span>按照图片显示数据</span>
+						<span>按照图片显示数据</span>
+						<span>按照图片显示数据</span>
+						<span>按照图片显示数据</span>
 						<div>
 							<Button onClick={
 								()=>{
-									this.props.history.goBack();
+									this.onClickEdit();
 								}
-							}>递交评估</Button>
+							}>编辑</Button>
 						</div>
-	      	</div>
+	      	</Layout>
 	    );
   	}
 }
-
 
 const mapStateToProps = ({paientinfo},props) => {
 		const {paientinfos} = paientinfo;
