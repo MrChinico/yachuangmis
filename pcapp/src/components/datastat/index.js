@@ -17,7 +17,7 @@ class App extends React.Component {
 
 		}
 		onClickStatDetail = (type)=>{
-			this.props.history.push('/datastatdetail/${type}');
+			this.props.history.push(`/datastatdetail/${type}`);
 		}
   	render() {
 	    return (
@@ -47,7 +47,7 @@ class App extends React.Component {
 
 // const mapStateToProps = ({paientinfo},props) => {
 // 		const {paientinfos} = paientinfo;
-// 		const id = lodashget(props,'match.params.id');
+// 		const id = lodashget(props,'match.params.pid');
 // 		let curpaientinfo = paientinfos[id];
 //     return {curpaientinfo};
 // }

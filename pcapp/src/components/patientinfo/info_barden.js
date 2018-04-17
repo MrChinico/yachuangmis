@@ -19,6 +19,10 @@ class App extends React.Component {
 			const {curpaientinfo} = this.props;
 			this.props.history.push(`/newbarden/${curpaientinfo._id}/0`);
 		}
+		onClickViewPrint = ()=>{
+			const {curpaientinfo} = this.props;
+			this.props.history.push(`/viewprintrecordbarden/${curpaientinfo._id}`);
+		}
   	render() {
 			const {curpaientinfo} = this.props;
 			if(!curpaientinfo){
@@ -33,7 +37,11 @@ class App extends React.Component {
 									this.onClickNew();
 								}
 							}>新建评估</Button>
-							<Button>打印</Button>
+							<Button onClick={
+								()=>{
+									this.onClickViewPrint();
+								}
+							}>查看&打印</Button>
 						</div>
 						<div>
 							这里是表格

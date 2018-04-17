@@ -13,7 +13,7 @@ class App extends React.Component {
 		}
 
 		onClickSearch = ()=>{
-
+			this.props.history.push(`/searchpaientinfo`);
 		}
 		onClickDatastat = ()=>{
 			this.props.history.replace(`/datastat`);
