@@ -37,7 +37,7 @@ import ShowButton from '../controls/ShowButton';
 
 
 const EvaluatewoundsurfaceEdit = (props) => {
-  return (<Edit title="编辑科室"  {...props} >
+  return (<Edit title="创面评估"  {...props} >
     <SimpleForm>
      <TextField label="科室编号" source="Evaluatewoundsurfaceno"  />
      <TextField label="科室名称" source="Evaluatewoundsurfacename"  />
@@ -64,7 +64,7 @@ const EvaluatewoundsurfaceFilter = (props) => (
 )
 
 const EvaluatewoundsurfaceList = (props) => (
-  <List title="科室管理" filters={<EvaluatewoundsurfaceFilter />} {...props} sort={{field:'Evaluatewoundsurfaceno',order:'DESC'}}>
+  <List title="创面评估" filters={<EvaluatewoundsurfaceFilter />} {...props} sort={{field:'Evaluatewoundsurfaceno',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
       <TextField label="科室编号" source="Evaluatewoundsurfaceno"  />
       <TextField label="科室名称" source="Evaluatewoundsurfacename"  />

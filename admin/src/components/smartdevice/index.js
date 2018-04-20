@@ -37,7 +37,7 @@ import ShowButton from '../controls/ShowButton';
 
 
 const SmartdeviceEdit = (props) => {
-  return (<Edit title="编辑科室"  {...props} >
+  return (<Edit title="智能设备"  {...props} >
     <SimpleForm>
      <TextField label="科室编号" source="Smartdeviceno"  />
      <TextField label="科室名称" source="Smartdevicename"  />
@@ -64,7 +64,7 @@ const SmartdeviceFilter = (props) => (
 )
 
 const SmartdeviceList = (props) => (
-  <List title="科室管理" filters={<SmartdeviceFilter />} {...props} sort={{field:'Smartdeviceno',order:'DESC'}}>
+  <List title="智能设备" filters={<SmartdeviceFilter />} {...props} sort={{field:'Smartdeviceno',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
       <TextField label="科室编号" source="Smartdeviceno"  />
       <TextField label="科室名称" source="Smartdevicename"  />

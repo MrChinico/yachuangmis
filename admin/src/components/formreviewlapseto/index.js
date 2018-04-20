@@ -37,7 +37,7 @@ import ShowButton from '../controls/ShowButton';
 
 
 const FormReviewlapsetoEdit = (props) => {
-  return (<Edit title="编辑科室"  {...props} >
+  return (<Edit title="审阅转归"  {...props} >
     <SimpleForm>
      <TextField label="科室编号" source="FormReviewlapsetono"  />
      <TextField label="科室名称" source="FormReviewlapsetoname"  />
@@ -64,7 +64,7 @@ const FormReviewlapsetoFilter = (props) => (
 )
 
 const FormReviewlapsetoList = (props) => (
-  <List title="科室管理" filters={<FormReviewlapsetoFilter />} {...props} sort={{field:'FormReviewlapsetono',order:'DESC'}}>
+  <List title="审阅转归" filters={<FormReviewlapsetoFilter />} {...props} sort={{field:'FormReviewlapsetono',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
       <TextField label="科室编号" source="FormReviewlapsetono"  />
       <TextField label="科室名称" source="FormReviewlapsetoname"  />

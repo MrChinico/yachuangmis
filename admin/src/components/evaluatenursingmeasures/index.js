@@ -37,7 +37,7 @@ import ShowButton from '../controls/ShowButton';
 
 
 const EvaluatenursingmeasuresEdit = (props) => {
-  return (<Edit title="编辑科室"  {...props} >
+  return (<Edit title="护理措施"  {...props} >
     <SimpleForm>
      <TextField label="科室编号" source="Evaluatenursingmeasuresno"  />
      <TextField label="科室名称" source="Evaluatenursingmeasuresname"  />
@@ -64,7 +64,7 @@ const EvaluatenursingmeasuresFilter = (props) => (
 )
 
 const EvaluatenursingmeasuresList = (props) => (
-  <List title="科室管理" filters={<EvaluatenursingmeasuresFilter />} {...props} sort={{field:'Evaluatenursingmeasuresno',order:'DESC'}}>
+  <List title="护理措施" filters={<EvaluatenursingmeasuresFilter />} {...props} sort={{field:'Evaluatenursingmeasuresno',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
       <TextField label="科室编号" source="Evaluatenursingmeasuresno"  />
       <TextField label="科室名称" source="Evaluatenursingmeasuresname"  />

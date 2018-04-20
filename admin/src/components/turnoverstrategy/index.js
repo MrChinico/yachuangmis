@@ -37,7 +37,7 @@ import ShowButton from '../controls/ShowButton';
 
 
 const TurnoverstrategyEdit = (props) => {
-  return (<Edit title="编辑科室"  {...props} >
+  return (<Edit title="翻身策略"  {...props} >
     <SimpleForm>
      <TextField label="科室编号" source="Turnoverstrategyno"  />
      <TextField label="科室名称" source="Turnoverstrategyname"  />
@@ -64,7 +64,7 @@ const TurnoverstrategyFilter = (props) => (
 )
 
 const TurnoverstrategyList = (props) => (
-  <List title="科室管理" filters={<TurnoverstrategyFilter />} {...props} sort={{field:'Turnoverstrategyno',order:'DESC'}}>
+  <List title="翻身策略" filters={<TurnoverstrategyFilter />} {...props} sort={{field:'Turnoverstrategyno',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
       <TextField label="科室编号" source="Turnoverstrategyno"  />
       <TextField label="科室名称" source="Turnoverstrategyname"  />

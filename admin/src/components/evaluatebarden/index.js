@@ -37,7 +37,7 @@ import ShowButton from '../controls/ShowButton';
 
 
 const EvaluatebardenEdit = (props) => {
-  return (<Edit title="编辑科室"  {...props} >
+  return (<Edit title="Barden评估"  {...props} >
     <SimpleForm>
      <TextField label="科室编号" source="Evaluatebardenno"  />
      <TextField label="科室名称" source="Evaluatebardenname"  />
@@ -64,7 +64,7 @@ const EvaluatebardenFilter = (props) => (
 )
 
 const EvaluatebardenList = (props) => (
-  <List title="科室管理" filters={<EvaluatebardenFilter />} {...props} sort={{field:'Evaluatebardenno',order:'DESC'}}>
+  <List title="Barden评估" filters={<EvaluatebardenFilter />} {...props} sort={{field:'Evaluatebardenno',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
       <TextField label="科室编号" source="Evaluatebardenno"  />
       <TextField label="科室名称" source="Evaluatebardenname"  />
