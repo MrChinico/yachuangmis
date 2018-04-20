@@ -36,11 +36,11 @@ import {ShowActions} from '../controls/createeditactions';
 import ShowButton from '../controls/ShowButton';
 
 
-const ReviewEdit = (props) => {
+const FormReviewlapsetoEdit = (props) => {
   return (<Edit title="编辑科室"  {...props} >
     <SimpleForm>
-     <TextField label="科室编号" source="Reviewno"  />
-     <TextField label="科室名称" source="Reviewname"  />
+     <TextField label="科室编号" source="FormReviewlapsetono"  />
+     <TextField label="科室名称" source="FormReviewlapsetoname"  />
      <SelectInput  label="科室属性"  source="DepProperty" choices={[
          { id: '0', name: '住院科室' },
          { id: '1', name: '病区' },
@@ -51,10 +51,10 @@ const ReviewEdit = (props) => {
   );
 };
 
-const ReviewFilter = (props) => (
+const FormReviewlapsetoFilter = (props) => (
   <Filter {...props}>
-    <TextInput label="科室编号" source="Reviewno_q" />
-    <TextInput label="科室名称" source="Reviewname_q" />
+    <TextInput label="科室编号" source="FormReviewlapsetono_q" />
+    <TextInput label="科室名称" source="FormReviewlapsetoname_q" />
     <SelectInput  label="科室属性"  source="DepProperty" choices={[
         { id: '0', name: '住院科室' },
         { id: '1', name: '病区' },
@@ -63,15 +63,15 @@ const ReviewFilter = (props) => (
   </Filter>
 )
 
-const ReviewList = (props) => (
-  <List title="科室管理" filters={<ReviewFilter />} {...props} sort={{field:'Reviewno',order:'DESC'}}>
+const FormReviewlapsetoList = (props) => (
+  <List title="科室管理" filters={<FormReviewlapsetoFilter />} {...props} sort={{field:'FormReviewlapsetono',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
-      <TextField label="科室编号" source="Reviewno"  />
-      <TextField label="科室名称" source="Reviewname"  />
+      <TextField label="科室编号" source="FormReviewlapsetono"  />
+      <TextField label="科室名称" source="FormReviewlapsetoname"  />
       <TextField label="科室属性" source="DepProperty" />
       <EditButton />
     </Datagrid>
   </List>
 );
 
-export {ReviewList,ReviewEdit};
+export {FormReviewlapsetoList,FormReviewlapsetoEdit};

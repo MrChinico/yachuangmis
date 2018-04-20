@@ -27,8 +27,7 @@ import {PermissionCreate,PermissionList,PermissionEdit} from './components/permi
 import {EvaluatebardenList,EvaluatebardenEdit} from './components/evaluatebarden';
 import {EvaluatenursingmeasuresList,EvaluatenursingmeasuresEdit} from './components/evaluatenursingmeasures';
 import {EvaluatewoundsurfaceList,EvaluatewoundsurfaceEdit} from './components/evaluatewoundsurface';
-import {FormlapsetoList,FormlapsetoEdit} from './components/formlapseto';
-import {ReviewList,ReviewEdit} from './components/review';
+import {FormReviewlapsetoList,FormReviewlapsetoEdit} from './components/formreviewlapseto';
 import {SmartdeviceList,SmartdeviceEdit} from './components/smartdevice';
 import {TurnoverstrategyList,TurnoverstrategyEdit} from './components/turnoverstrategy';
 
@@ -66,6 +65,13 @@ class App extends Component {
                     <Resource name="bed" list={BedList} edit={BedEdit} />,
                     <Resource name="user" list={UserList} edit={UserEdit} create={UserCreate} remove={Delete} />,
                     <Resource name="permission" list={PermissionList} edit={PermissionEdit} create={PermissionCreate}  remove={Delete} />,
+
+                    <Resource name="evaluatebarden" list={EvaluatebardenList} edit={EvaluatebardenEdit} />,
+                    <Resource name="evaluatenursingmeasures" list={EvaluatenursingmeasuresList} edit={EvaluatenursingmeasuresEdit} />,
+                    <Resource name="evaluatewoundsurface" list={EvaluatewoundsurfaceList} edit={EvaluatewoundsurfaceEdit} />,
+                    <Resource name="formreivewlapseto" list={FormReviewlapsetoList} edit={FormReviewlapsetoEdit} />,
+                    <Resource name="turnoverstrategy" list={TurnoverstrategyList} edit={TurnoverstrategyEdit} />,
+                    <Resource name="smartdevice" list={SmartdeviceList} edit={SmartdeviceEdit} />,
                   ];
                 }
             }

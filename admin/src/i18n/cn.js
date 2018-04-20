@@ -25,17 +25,14 @@ export default {
     evaluatewoundsurface:{
       name: '创面评估 |||| 创面评估',
     },
-    formlapseto:{
-      name: '转归表单 |||| 转归表单',
+    formreivewlapseto:{
+      name: '审阅转归 |||| 审阅转归',
     },
     turnoverstrategy:{
       name: '翻身策略 |||| 翻身策略',
     },
     smartdevice:{
       name: '智能设备 |||| 智能设备',
-    },
-    review:{
-      name: '审阅记录 |||| 审阅记录',
     },
     patientinfo:{
       name: '病人管理 |||| 病人管理',

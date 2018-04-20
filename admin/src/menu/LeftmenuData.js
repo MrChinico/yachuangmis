@@ -25,8 +25,8 @@ export default [
         { name: 'evaluatebarden', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'evaluatenursingmeasures', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'evaluatewoundsurface', icon: <OnlineResearchIcon /> ,adminonly:false},
-        { name: 'formlapseto', icon: <OnlineResearchIcon /> ,adminonly:false},
+        { name: 'formreivewlapseto', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'turnoverstrategy', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'smartdevice', icon: <OnlineResearchIcon /> ,adminonly:false},
-        { name: 'review', icon: <OnlineResearchIcon /> ,adminonly:false},
+
 ];
