@@ -16,6 +16,27 @@ export default {
         'save_error':'保存失败'
       }
     },
+    evaluatebarden:{
+      name: 'barden评估 |||| barden评估',
+    },
+    evaluatenursingmeasures:{
+      name: '护理措施 |||| 护理措施',
+    },
+    evaluatewoundsurface:{
+      name: '创面评估 |||| 创面评估',
+    },
+    formlapseto:{
+      name: '转归表单 |||| 转归表单',
+    },
+    turnoverstrategy:{
+      name: '翻身策略 |||| 翻身策略',
+    },
+    smartdevice:{
+      name: '智能设备 |||| 智能设备',
+    },
+    review:{
+      name: '审阅记录 |||| 审阅记录',
+    },
     patientinfo:{
       name: '病人管理 |||| 病人管理',
     },

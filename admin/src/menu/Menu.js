@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { translate,DashboardMenuItem, WithPermission } from 'admin-on-rest';
+import { translate } from 'admin-on-rest';
 import compose from 'recompose/compose';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import SettingsIcon from 'material-ui/svg-icons/action/settings';
-import LabelIcon from 'material-ui/svg-icons/action/label';
-import _ from 'lodash';
-import Icon from 'material-ui/svg-icons/social/person';
+// import SettingsIcon from 'material-ui/svg-icons/action/settings';
+// import LabelIcon from 'material-ui/svg-icons/action/label';
+// import _ from 'lodash';
+// import Icon from 'material-ui/svg-icons/social/person';
 import {
     SEL_MENU,
 } from './action';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
-import { List, ListItem } from 'material-ui/List';
+// import { List, ListItem } from 'material-ui/List';
 import allmenus from './LeftmenuData.js';
 
 const styles = {
@@ -46,6 +46,7 @@ let getallmenus = (translate,onMenuTap)=>{
           containerElement={<Link to={link} />}
           insetChildren={true}
         />);
+        return itemsco;
       });
       return itemsco;
    }
@@ -89,6 +90,7 @@ let getallmenus = (translate,onMenuTap)=>{
                 />);
             }
         }
+        return menuitemsco;
    });
    return menuitemsco;
 }

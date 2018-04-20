@@ -24,6 +24,15 @@ import {PatientinfoList,PatientinfoEdit} from './components/patientinfo/index.js
 import {UserCreate,UserList,UserEdit} from './components/users/index.js';
 import {PermissionCreate,PermissionList,PermissionEdit} from './components/permissions/index.js';
 
+import {EvaluatebardenList,EvaluatebardenEdit} from './components/evaluatebarden';
+import {EvaluatenursingmeasuresList,EvaluatenursingmeasuresEdit} from './components/evaluatenursingmeasures';
+import {EvaluatewoundsurfaceList,EvaluatewoundsurfaceEdit} from './components/evaluatewoundsurface';
+import {FormlapsetoList,FormlapsetoEdit} from './components/formlapseto';
+import {ReviewList,ReviewEdit} from './components/review';
+import {SmartdeviceList,SmartdeviceEdit} from './components/smartdevice';
+import {TurnoverstrategyList,TurnoverstrategyEdit} from './components/turnoverstrategy';
+
+
 import systemconfigreducer from './components/systemconfig/reducer';
 
 class App extends Component {
