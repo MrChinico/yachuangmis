@@ -41,7 +41,9 @@ const BedEdit = (props) => {
     <SimpleForm>
      <TextField label="床位号" source="Bedno" />
      <TextField label="床位名称" source="Bedname"  />
-     <TextField label="科室编号" source="Depatno"  />
+     <ReferenceInput label="所在科室" source="depatid" reference="depat" allowEmpty>
+       <SelectInput optionText="Depatname" />
+     </ReferenceInput>
      <SelectInput  label="床位性质"  source="BedProperty" choices={[
          { id: '0', name: '普通床位' },
          { id: '1', name: '智能设备床位' },
@@ -70,6 +72,9 @@ const BedList = (props) => (
       <TextField label="床位名称" source="Bedname"  />
       <TextField label="科室编号" source="Depatno"  />
       <TextField label="床位性质" source="BedProperty" />
+      <ReferenceField label="所在科室" source="depatid" reference="depat" allowEmpty>
+        <TextField source="Depatname" />
+      </ReferenceField>
       <EditButton />
     </Datagrid>
   </List>

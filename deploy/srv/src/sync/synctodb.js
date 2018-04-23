@@ -3,6 +3,7 @@ const _ = require('lodash');
 const async = require('async');
 const DBModels = require('../db/models.js');
 const debug = require('debug')('appsrv:sync');
+const pwd = require('../util/pwd');
 
 const todb_depat = (list_depat,callbackfn)=>{
     let fnsz = [];
@@ -57,7 +58,17 @@ const todb_staff = (list_staff,depatno2id,callbackfn)=>{
         staff.depatid = depatno2id[staff.Depatno];
       }
       dbModel.findOneAndUpdate({Staffid:staff.Staffid}, {$set:staff},{new: true,upsert:true},(err,result)=>{
-        callbackfn();
+        //设置默认用户名
+        const passwordsalt = pwd.getsalt();
+        pwd.hashPassword(staff.Staffno,passwordsalt,(err,passwordhash)=>{
+          dbModel.findOneAndUpdate({_id:result._id,username:{$exists:false}},{$set:{
+            username:staff.Staffno,
+            passwordsalt,
+            passwordhash
+          }},(err,res)=>{
+            callbackfn();
+          });
+        });//hash password
       });
     });
   });
@@ -76,7 +87,7 @@ const todb_patientinfo = (list_patientinfo,depatno2id,bedno2id,callbackfn)=>{
         patientinfo.depatid = depatno2id[patientinfo.Depatno];
       }
       if(!!bedno2id[patientinfo.Bedno]){
-        patientinfo.bedid = depatno2id[patientinfo.Bedno];
+        patientinfo.bedid = bedno2id[patientinfo.Bedno];
       }
       dbModel.findOneAndUpdate({Patientno:patientinfo.Patientno}, {$set:patientinfo},{new: true,upsert:true},(err,result)=>{
         callbackfn();

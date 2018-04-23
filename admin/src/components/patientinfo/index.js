@@ -48,9 +48,12 @@ const PatientinfoEdit = (props) => {
      <TextField label="出院日期" source="Out_date"  />
      <TextField label="入院诊断" source="In_diagnosis"  />
      <TextField label="在院判别" source="In_out_flag"  />
-     <TextField label="所在科室" source="Depatno"  />
-     <TextField label="床位号" source="Bedno"  />
-
+     <ReferenceInput label="所在科室" source="depatid" reference="depat" allowEmpty>
+       <SelectInput optionText="Depatname" />
+     </ReferenceInput>
+     <ReferenceInput label="所在床位" source="bedid" reference="bed" allowEmpty>
+       <SelectInput optionText="Bedname" />
+     </ReferenceInput>
     </SimpleForm>
   </Edit>
   );
@@ -60,11 +63,6 @@ const PatientinfoFilter = (props) => (
   <Filter {...props}>
     <TextInput label="科室编号" source="Depatno_q" />
     <TextInput label="科室名称" source="Depatname_q" />
-    <SelectInput  label="科室属性"  source="DepProperty" choices={[
-        { id: '0', name: '住院科室' },
-        { id: '1', name: '病区' },
-        { id: '1', name: '门诊科室' },
-    ]} />
   </Filter>
 )
 
@@ -75,6 +73,12 @@ const PatientinfoList = (props) => (
       <TextField label="住院号码" source="Patientno"  />
       <TextField label="病人姓名" source="Patientname"  />
       <TextField label="病人性别" source="Sex"  />
+      <ReferenceField label="所在科室" source="depatid" reference="depat" allowEmpty>
+        <TextField source="Depatname" />
+      </ReferenceField>
+      <ReferenceField label="所在床位" source="bedid" reference="bed" allowEmpty>
+        <TextField source="Bedname" />
+      </ReferenceField>
       <EditButton />
     </Datagrid>
   </List>
