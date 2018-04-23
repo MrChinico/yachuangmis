@@ -7,6 +7,12 @@ const config =  {
     host:process.env.srvredis_host||'api.nuistiot.com',
     port: process.env.srvredis_port|| 6379,
   },
+  hisurl:{
+    url_patientinfo:'http://localhost:8081/v1/getlist_patientinfo',
+    url_depat:'http://localhost:8081/v1/getlist_depat',
+    url_bed:'http://localhost:8081/v1/getlist_bed',
+    url_staff:'http://localhost:8081/v1/getlist_staff',
+  }
   uploaddir:process.env.uploaddir || './',
   uploadurl:'/upload',
   expRequestMinutes:200,//2分钟之内
