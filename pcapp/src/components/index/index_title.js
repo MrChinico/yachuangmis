@@ -28,24 +28,24 @@ class App extends React.Component {
   	render() {
 	    return (
 	      	<Header>
-            <span>头部。。。。</span>
-						<Button onClick={
-							()=>{
-							this.onClickSearch()
-						}}>搜索</Button>
-						<Button onClick={
-							()=>{
-								this.onClickDatastat();
-							}
-						}>数据统计</Button>
-						<Button onClick={
-							()=>{
-							this.onClickReview()
-						}}>申报审阅</Button>
-						<Button onClick={
-							()=>{
-							this.onClickUser()
-						}}>用户信息</Button>
+            <span>病人列表</span>
+					<button onClick={
+						()=>{
+						this.onClickSearch()
+					}}>搜索</button>
+					<button onClick={
+						()=>{
+							this.onClickDatastat();
+						}
+					}>数据统计</button>
+					<button onClick={
+						()=>{
+						this.onClickReview()
+					}}>申报审阅</button>
+					<button onClick={
+						()=>{
+						this.onClickUser()
+					}} className="">用户信息</button>
 	      	</Header>
 	    );
   	}

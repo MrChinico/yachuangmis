@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import lodashmap from 'lodash.map';
 import { Layout } from 'antd';
 import { Pagination,Button } from 'antd';
+import './index.css';
 
 const { Content } = Layout;
 
@@ -12,22 +13,33 @@ const Paientinfo = (props)=>{
 	const {curpaientinfo,onClickDetail,onClickEvalute} = props;
 	const {Patientno,Patientname} = curpaientinfo;
 	return (
-		<div>
-			<span>{Patientno}-{Patientname}</span>
-			<Button type="dashed" onClick={
-				()=>{
-					onClickDetail(curpaientinfo._id)
-				}
-			}>详细</Button>
-			<span>病床:左转45度</span>
-			<span>在床</span>
-			<span>压疮三区A15</span>
-			<Button type="dashed" onClick={
-				()=>{
-					onClickEvalute(curpaientinfo._id)
-				}
-			}>评估</Button>
-		</div>
+			<div className="module-box">
+				<div className="module">
+					<div className="module-top">
+						<h2>{Patientno}<span>{Patientname}</span></h2>
+						<p>
+							<span className="fontSize13">普通压疮</span>
+							<button type="" className="ant-btn-details" onClick={
+								()=>{
+									onClickDetail(curpaientinfo._id)
+								}
+							}>详细</button>
+						</p>
+					</div>
+					<div className="module-bottom">
+						<span>病床:左转45度</span>
+						<p>
+							<span className="state">在床</span>
+							<span>压疮三区A15</span>
+							<button type="" className="ant-btn-assess" onClick={
+								()=>{
+									onClickEvalute(curpaientinfo._id)
+								}
+							}>评估</button>
+						</p>
+					</div>
+				</div>
+			</div>
 	)
 }
 
@@ -51,7 +63,7 @@ class App extends React.Component {
 			const {paientinfolist,paientinfos} = this.props;
 	    return (
 	      	<Content>
-            {
+          				{
 							lodashmap(paientinfolist,(pid)=>{
 								return (<Paientinfo key={pid}
 									curpaientinfo={paientinfos[pid]}
@@ -59,7 +71,9 @@ class App extends React.Component {
 									onClickEvalute={()=>{this.onClickEvalute(pid)}}/>);
 							})
 						}
+						<div className="clearfix"></div>
 						<Pagination defaultCurrent={1} total={50} />
+						
 	      	</Content>
 	    );
   	}
