@@ -34,6 +34,7 @@ let startsrv = ()=>{
   routerindex.startrouter(app);
 
   http.listen(config.listenport, ()=>{
+    console.log(`start server at ${config.listenport}`);
   });
 
   return http;

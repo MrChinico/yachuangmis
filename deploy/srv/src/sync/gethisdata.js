@@ -19,17 +19,17 @@ const gethisdata_patientinfo = (callbackfn)=>{
 }
 
 const gethisdata_bed = (callbackfn)=>{
-  const url = `${config.hisurl.url_patientinfo}`;
+  const url = `${config.hisurl.url_bed}`;
   geturldata(url,callbackfn);
 }
 
 const gethisdata_depat = (callbackfn)=>{
-  const url = `${config.hisurl.url_patientinfo}`;
+  const url = `${config.hisurl.url_depat}`;
   geturldata(url,callbackfn);
 }
 
 const gethisdata_staff = (callbackfn)=>{
-  const url = `${config.hisurl.url_patientinfo}`;
+  const url = `${config.hisurl.url_staff}`;
   geturldata(url,callbackfn);
 }
 
