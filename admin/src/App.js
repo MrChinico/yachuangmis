@@ -20,6 +20,7 @@ import menu from './menu/reducer';
 import {SystemconfigList} from './components/systemconfig/index.js';
 import {BedList,BedEdit} from './components/bed/index.js';
 import {DepatList,DepatEdit} from './components/depat/index.js';
+import {NursingDepatList,NursingDepatEdit,NursingDepatCreate} from './components/nursingdepat/index';
 import {PatientinfoList,PatientinfoEdit} from './components/patientinfo/index.js';
 import {UserCreate,UserList,UserEdit} from './components/users/index.js';
 import {PermissionCreate,PermissionList,PermissionEdit} from './components/permissions/index.js';
@@ -62,6 +63,7 @@ class App extends Component {
                     <Resource name="systemconfig" list={SystemconfigList} />,
                     <Resource name="patientinfo" list={PatientinfoList} edit={PatientinfoEdit} />,
                     <Resource name="depat" list={DepatList} edit={DepatEdit} />,
+                    <Resource name="nursingdepat" list={NursingDepatList} edit={NursingDepatEdit} create={NursingDepatCreate}  remove={Delete}/>,
                     <Resource name="bed" list={BedList} edit={BedEdit} />,
                     <Resource name="user" list={UserList} edit={UserEdit} create={UserCreate} remove={Delete} />,
                     <Resource name="permission" list={PermissionList} edit={PermissionEdit} create={PermissionCreate}  remove={Delete} />,

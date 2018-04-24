@@ -20,9 +20,9 @@ const synctodb = require('./sync');
 
 
 const job=()=>{
-    synctodb(()=>{
-
-    });
+    // synctodb(()=>{
+    //
+    // });
 
     // createadmin();
     dbinit();

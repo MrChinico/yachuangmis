@@ -41,10 +41,16 @@ const DepatEdit = (props) => {
     <SimpleForm>
      <TextField label="科室编号" source="Depatno"  />
      <TextField label="科室名称" source="Depatname"  />
+     <ReferenceInput label="护士长" source="headnurseid" reference="user" allowEmpty>
+       <SelectInput optionText="username" />
+     </ReferenceInput>
+     <ReferenceInput label="护理部" source="nursingdepatid" reference="nursingdepat" allowEmpty>
+       <SelectInput optionText="name" />
+     </ReferenceInput>
      <SelectInput  label="科室属性"  source="DepProperty" choices={[
          { id: '0', name: '住院科室' },
          { id: '1', name: '病区' },
-         { id: '1', name: '门诊科室' },
+         { id: '2', name: '门诊科室' },
      ]} />
     </SimpleForm>
   </Edit>
@@ -58,7 +64,7 @@ const DepatFilter = (props) => (
     <SelectInput  label="科室属性"  source="DepProperty" choices={[
         { id: '0', name: '住院科室' },
         { id: '1', name: '病区' },
-        { id: '1', name: '门诊科室' },
+        { id: '2', name: '门诊科室' },
     ]} />
   </Filter>
 )
@@ -69,6 +75,12 @@ const DepatList = (props) => (
       <TextField label="科室编号" source="Depatno"  />
       <TextField label="科室名称" source="Depatname"  />
       <TextField label="科室属性" source="DepProperty" />
+      <ReferenceField label="护士长" source="headnurseid" reference="user" allowEmpty>
+        <TextField source="username" />
+      </ReferenceField>
+      <ReferenceField label="护理部" source="nursingdepatid" reference="nursingdepat" allowEmpty>
+        <TextField source="name" />
+      </ReferenceField>
       <EditButton />
     </Datagrid>
   </List>

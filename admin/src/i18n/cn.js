@@ -37,6 +37,9 @@ export default {
     patientinfo:{
       name: '病人管理 |||| 病人管理',
     },
+    nursingdepat:{
+      name: '护理部管理 |||| 护理部管理',
+    },
     depat:{
       name: '科室管理 |||| 科室管理',
     },

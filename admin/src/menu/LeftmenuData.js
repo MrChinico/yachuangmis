@@ -18,6 +18,7 @@ import HistoryDeviceIcon from 'material-ui/svg-icons/action/history';//历史节
 export default [
         { name: 'systemconfig', icon: <SystemconfigIcon /> ,adminonly:false},
         { name: 'patientinfo', icon: <ProductIcon /> ,adminonly:false},
+        { name: 'nursingdepat', icon: <ProductIcon /> ,adminonly:false},
         { name: 'depat', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'bed', icon: <DeviceIcon />,adminonly:false },
         { name: 'user', icon: <UserIcon /> ,adminonly:false},
