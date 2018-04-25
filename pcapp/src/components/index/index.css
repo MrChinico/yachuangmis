@@ -130,6 +130,10 @@ h1, h2, h3, h4, h5, h6, p{
 .fontSize18{
     font-size: 18px;
 }
+.m30-0{
+    margin-top:30px !important;
+    margin-bottom:30px !important;
+}
 .clearfix{
     clear: both;
 }
@@ -298,7 +302,7 @@ h1, h2, h3, h4, h5, h6, p{
     width:33.3%;
 }
 .ant-btn-edit{
-    margin: auto;
+    margin:10px auto;
     margin-top:40px;
     width:38%;
     text-align: center;
@@ -322,6 +326,7 @@ h1, h2, h3, h4, h5, h6, p{
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
+    margin:15px 0px;
 }
 .assess-btn-box .assess-btn{
     -webkit-box-flex: 1;
@@ -587,6 +592,139 @@ h1, h2, h3, h4, h5, h6, p{
     font-size: 22px;
     border-bottom: 1px solid #ddd;
 }
+/* 转归与申报 */
+.lapseto span{
+    font-size: 17px;
+    color:#000;
+}
+.lapseto button{
+    color: #fff;
+    background-color: #0084bf !important;
+    border-radius: 15px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+    padding: 0 10px;
+    margin-left: 15px;
+}
+.lapseto button img{
+    width:20px; 
+    height:20px;
+    margin:0px 5px 5px 0px;
+}
+.form-box{
+    width: 94%;
+    margin: 20px auto;
+    color: #333;
+    background: #f9f9f9;
+    border:1px solid #ddd;
+}
+.form-box .patient-info li{
+    padding: 4px !important;
+    line-height: 20px;
+}
+.form-box h1{
+    color:#111;
+    font-size: 20px;
+    text-align: center;
+    line-height:70px;
+}
+.form-box .patient-info {
+    width:100%
+}
+.form-box table tr td input {
+    background: transparent !important;
+    border:transparent !important;
+    border-bottom:1px solid #646464  !important;
+    width:64%;
+    text-align: center;
+}
+.form-box .patient-info td{
+    width:25%;
+    height: 46px;
+    line-height: 46px;
+}
+.form-box .patient-info td.w-50{
+    width:50%;
+}
+.form-box td.w-50 input{
+    width:10%;
+}
+.form-box table tr {
+    padding:0px 15px;
+}
+.form-box form p{
+    color:#111;
+    font-size: 14px;
+    line-height:46px;
+    padding:0px 15px !important;
+}
+
+.form-box .choose-info{
+    width:100%;
+}
+.form-box .choose-info td{
+    width:50%;
+}
+.form-box .choose-info tr{
+    border-top:1px solid #ddd;
+    line-height: 20px;
+}
+.form-box .choose-info tr:nth-child(2n+1){
+    background:#fff;
+}
+.form-box .choose-info tr td{
+    border-right:1px solid #ddd;
+}
+.form-box .choose-info tr td:last-child{
+    border-right:0px;
+}
+.form-box .choose-info tr td{
+    padding:10px 15px;
+}
+.form-box .choose-info .gray{
+    color:#888;
+    font-size: 13px;
+}
+.form-box .choose-info .blue{
+    color:#0084bf;
+    font-size: 14px;
+}
+.form-box .choose-info .gray.title td,.form-box .choose-info .blue.title td{
+    border-right:0px;
+}
+.form-box table tr td span{
+    margin-right:15px;
+}
+.form-box table tr td span input{
+    width:20%;
+}
+.form-box form p{
+    color:#111;
+    font-size: 14px;
+    line-height:46px;
+    padding:0px 15px !important;
+}
+form input[type="radio"], form input[type="checkbox"] {
+    width: 16px !important;
+    height: 16px !important;
+    border: 1px solid #0084bf;
+    vertical-align: sub;
+    display: inline-flex;
+    margin-right: 5px;
+}
+/* 修改input样式 */
+/* form .input-click{
+    width: 16px;
+    height: 16px;
+    background-color: red;
+    display: inline-block;
+    background: url(icon_checkbox.png) no-repeat;
+    background-position-x: 0px;
+    background-position-y: -25px;
+    position: relative;
+    top: 3px;
+} */
 
 
 
