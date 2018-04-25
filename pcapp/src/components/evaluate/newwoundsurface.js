@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Layout,Button } from 'antd';
+import { Layout } from 'antd';
 import lodashget from 'lodash.get';
 import TitleDetail from '../patientinfo/patientinfo_content_title_detail';
-const { Header } = Layout;
+import NewwoundsurfaceForm from './form_newwoundsurface';
 
+const { Header } = Layout;
 class App extends React.Component {
 
 
@@ -15,7 +16,9 @@ class App extends React.Component {
 		componentWillUnmount() {
 
 		}
-
+		onClickSubmit =(values)=>{
+			this.props.history.goBack();
+		}
   	render() {
 			const {curpaientinfo} = this.props;
 			if(!curpaientinfo){
@@ -37,22 +40,9 @@ class App extends React.Component {
 							<div className="clearfix"></div>
 						</h2>
 						<TitleDetail curpaientinfo={curpaientinfo} />
-
-
-						<div>
-							这里是评估表单
-						</div>
-						<div>
-							<Button onClick={
-								()=>{
-									this.props.history.goBack();
-								}
-							}>递交评估</Button>
-						</div>
-
-							</div>
-
-							</div>
+						<NewwoundsurfaceForm onClickSubmit={this.onClickSubmit}/>
+					</div>
+					</div>
 	      	</Layout>
 	    );
   	}

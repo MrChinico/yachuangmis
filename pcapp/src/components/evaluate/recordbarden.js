@@ -14,7 +14,9 @@ class App extends React.Component {
 		componentWillUnmount() {
 
 		}
-
+		onClickSubmit =(values)=>{
+			this.props.history.goBack();
+		}
   	render() {
 			const {curpaientinfo} = this.props;
 			if(!curpaientinfo){
