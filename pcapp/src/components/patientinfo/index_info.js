@@ -8,6 +8,7 @@ import InfoNursingmeasures from './info_nursingmeasures';
 import InfoWoundsurface from './info_woundsurface';
 import InfoSmartdevice from '../smartdevice/patientinfo_smartdevice';
 import InfoLapsetto from '../evaluate/lapseto';
+import TitleDetail from './patientinfo_content_title_detail';
 import './index_details.css';
 
 const { Header } = Layout;
@@ -67,10 +68,7 @@ class App extends React.Component {
 								}><img src="return.png" alt=""/></button>
 								<div className="clearfix"></div>
 							</h2>
-							<ul>
-								<li>病人主键：<span className="on">普通压疮</span></li>
-								<div className="clearfix"></div>
-							</ul>
+							<TitleDetail curpaientinfo={curpaientinfo} />
 							<div className="assess-btn-box">
 								{
 									lodashmap(btnz,(btninfo,index)=>{

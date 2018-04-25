@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Layout,Button } from 'antd';
+import { Layout } from 'antd';
 import lodashget from 'lodash.get';
-
+import TitleDetail from './patientinfo_content_title_detail';
 
 const { Header } = Layout;
 class App extends React.Component {
@@ -39,12 +39,7 @@ class App extends React.Component {
 							}><img src="return.png" alt=""/></button>
 							<div className="clearfix"></div>
 							</h2>
-							<ul>
-								<li>病人主键：普通压疮</li>
-								<li>住院号码：20015</li>
-								<li>住院号码：20015</li>
-								<div className="clearfix"></div>
-							</ul>
+							<TitleDetail curpaientinfo={curpaientinfo} />
 							<div>
 								<button className="ant-btn-edit" onClick={
 									()=>{
