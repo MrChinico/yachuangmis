@@ -1,7 +1,7 @@
 const config =  {
   secretkey:'dabakey',
   listenport:process.env.listenport || 6012,
-  rooturl:process.env.rooturl || 'http://yachuang.i2u.top',
+  rooturl:process.env.rooturl || 'http://yc.i2u.top:6012',
   issmsdebug:process.env.issmsdebug || false,
   srvredis:{
     host:process.env.srvredis_host||'api.nuistiot.com',

@@ -33,7 +33,7 @@ class App extends React.Component {
 			return (
 					<Layout>
 						<Header>
-							<span><img src="index.png" className="icon-index"/>病人列表-张三丰</span>
+							<span><img src="index.png" className="icon-index" alt=""/>病人列表-张三丰</span>
 						</Header>
 						<div className="content-box">
 						<div className="content assess">
@@ -42,7 +42,7 @@ class App extends React.Component {
 									()=>{
 										this.props.history.goBack();
 									}
-								}><img src="return.png" /></button>
+								}><img src="return.png" alt=""/></button>
 								<div className="clearfix"></div>
 							</h2>
 							<ul>
@@ -87,47 +87,21 @@ class App extends React.Component {
 								</div>
 							</div>
 							</div>
-							
-							<div>
-								<div className="record">{this.state.btnindex === 0 && <InfoBarden curpaientinfo={curpaientinfo} />}</div>
-								{this.state.btnindex === 1 && <InfoWoundsurface curpaientinfo={curpaientinfo} />}
-								{this.state.btnindex === 2 && <InfoNursingmeasures curpaientinfo={curpaientinfo} />}
-								{this.state.btnindex === 3 && <InfoLapsetto curpaientinfo={curpaientinfo} />}
-								{this.state.btnindex === 4 && <InfoSmartdevice curpaientinfo={curpaientinfo} />}
-							</div>
 
-							<div className="record-box">
-								<ul>
-									<li>
-										<span>2018/03/12 12:30</span>
-										<span>Barden评分：16分</span>
-										<span>评分护士：王小五</span>
-										<span>详细信息</span>
-									</li>
-									<li>
-										<span>2018/03/12 12:30</span>
-										<span>Barden评分：16分</span>
-										<span>评分护士：王小五</span>
-										<span>详细信息</span>
-									</li>
-									<li>
-										<span>2018/03/12 12:30</span>
-										<span>Barden评分：16分</span>
-										<span>评分护士：王小五</span>
-										<span>详细信息</span>
-									</li>
-								</ul>
-							</div>
 
-							<Pagination defaultCurrent={1} total={50} />
-							<div>
-								<button className="ant-btn-edit blue">查看选中记录</button>
-							</div>
+								<div className="record">
+									{this.state.btnindex === 0 && <InfoBarden curpaientinfo={curpaientinfo} />}
+									{this.state.btnindex === 1 && <InfoWoundsurface curpaientinfo={curpaientinfo} />}
+									{this.state.btnindex === 2 && <InfoNursingmeasures curpaientinfo={curpaientinfo} />}
+									{this.state.btnindex === 3 && <InfoLapsetto curpaientinfo={curpaientinfo} />}
+									{this.state.btnindex === 4 && <InfoSmartdevice curpaientinfo={curpaientinfo} />}
+								</div>
+
 
 						</div>
-						
+
 					</Layout>
-					
+
 			);
   	}
 }

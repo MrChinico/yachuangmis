@@ -3,45 +3,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import lodashmap from 'lodash.map';
 import { Layout } from 'antd';
-import { Pagination,Button } from 'antd';
+import { Pagination } from 'antd';
 import './index.css';
-
+import Paientinfo from './index_patientinfo';
 const { Content } = Layout;
 
-
-const Paientinfo = (props)=>{
-	const {curpaientinfo,onClickDetail,onClickEvalute} = props;
-	const {Patientno,Patientname} = curpaientinfo;
-	return (
-			<div className="module-box">
-				<div className="module">
-					<div className="module-top">
-						<h2>{Patientno}<span>{Patientname}</span></h2>
-						<p>
-							<span className="fontSize13">普通压疮</span>
-							<button type="" className="ant-btn-details" onClick={
-								()=>{
-									onClickDetail(curpaientinfo._id)
-								}
-							}>详细</button>
-						</p>
-					</div>
-					<div className="module-bottom">
-						<span>病床:左转45度</span>
-						<p>
-							<span className="state">在床</span>
-							<span>压疮三区A15</span>
-							<button type="" className="ant-btn-assess" onClick={
-								()=>{
-									onClickEvalute(curpaientinfo._id)
-								}
-							}>评估</button>
-						</p>
-					</div>
-				</div>
-			</div>
-	)
-}
 
 class App extends React.Component {
 
@@ -63,7 +29,7 @@ class App extends React.Component {
 			const {paientinfolist,paientinfos} = this.props;
 	    return (
 	      	<Content>
-          				{
+          	{
 							lodashmap(paientinfolist,(pid)=>{
 								return (<Paientinfo key={pid}
 									curpaientinfo={paientinfos[pid]}
@@ -73,7 +39,7 @@ class App extends React.Component {
 						}
 						<div className="clearfix"></div>
 						<Pagination defaultCurrent={1} total={50} />
-						
+
 	      	</Content>
 	    );
   	}

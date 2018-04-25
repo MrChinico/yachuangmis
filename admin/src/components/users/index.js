@@ -43,6 +43,9 @@ const UserEdit = (props) => {
         <TextField label="用户名" source="username" validate={required} />
         <TextInput label="真实姓名" source="truename"/>
         <TextInput label="备注" source="demo" />
+        <ReferenceInput label="权限" source="permission" reference="permission" allowEmpty>
+          <SelectInput optionText="name" />
+        </ReferenceInput>
         <ReferenceInput label="所在科室" source="depatid" reference="depat" allowEmpty>
           <SelectInput optionText="Depatname" />
         </ReferenceInput>
@@ -73,6 +76,9 @@ const UserList = (props) => (
   <List title="用户管理" filters={<UserFilter />} {...props} sort={{ field: 'created_at', order: 'DESC'}} >
     <Datagrid  bodyOptions={{ showRowHover: true }} rowStyle={rowStyle}>
         <TextField label="用户名" source="username" />
+        <ReferenceField label="权限" source="permission" reference="permission" allowEmpty>
+          <TextField source="name" />
+        </ReferenceField>
         <ReferenceField label="所在科室" source="depatid" reference="depat" allowEmpty>
           <TextField source="Depatname" />
         </ReferenceField>

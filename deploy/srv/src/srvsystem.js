@@ -27,7 +27,7 @@ const job=()=>{
     // createadmin();
     dbinit();
     // startsrv_devpush(config);
-    redis.setSubscribeHandler('deviceiotdata_realtimedata',handlermsg.handlermsg_realtimedata);
+    // redis.setSubscribeHandler('deviceiotdata_realtimedata',handlermsg.handlermsg_realtimedata);
 
 };
 

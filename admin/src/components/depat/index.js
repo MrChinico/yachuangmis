@@ -41,7 +41,7 @@ const DepatEdit = (props) => {
     <SimpleForm>
      <TextField label="科室编号" source="Depatno"  />
      <TextField label="科室名称" source="Depatname"  />
-     <ReferenceInput label="护士长" source="headnurseid" reference="user" allowEmpty>
+     <ReferenceInput label="护士长" source="headnurseid" reference="user" allowEmpty filter={{ permission: '5a03b66e13e7410cd0ef3094' }}>
        <SelectInput optionText="username" />
      </ReferenceInput>
      <ReferenceInput label="护理部" source="nursingdepatid" reference="nursingdepat" allowEmpty>

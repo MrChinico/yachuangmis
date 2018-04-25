@@ -1,5 +1,5 @@
 let islocalhost = false;
-const serverurl = islocalhost?'http://localhost:6012':'http://yachuang.i2u.top';
+const serverurl = islocalhost?'http://localhost:6012':'http://yc.i2u.top:6012';
 
 const serverurlrestful = islocalhost?`${serverurl}/api`:`${serverurl}/api`;
 const wspath = islocalhost?'/socket.io':'/socket.io';

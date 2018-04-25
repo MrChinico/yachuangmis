@@ -40,7 +40,7 @@ const NursingDepatCreate = (props) => {
   return (<Create title="新建护理部"  {...props} >
     <SimpleForm>
      <TextInput label="护理部名字" source="name"  />
-     <ReferenceInput label="负责人" source="nursingdepatuserid" reference="user" allowEmpty>
+     <ReferenceInput label="负责人" source="nursingdepatuserid" reference="user" allowEmpty filter={{ permission: '5a5a1113da6e595af4eb515e' }}>
        <SelectInput optionText="username" />
      </ReferenceInput>
     </SimpleForm>
@@ -53,7 +53,7 @@ const NursingDepatEdit = (props) => {
   return (<Edit title="编辑护理部"  {...props} >
     <SimpleForm>
      <TextInput label="护理部名字" source="name"  />
-     <ReferenceInput label="负责人" source="nursingdepatuserid" reference="user" allowEmpty>
+     <ReferenceInput label="负责人" source="nursingdepatuserid" reference="user" allowEmpty filter={{ permission: '5a5a1113da6e595af4eb515e' }}>
        <SelectInput optionText="username" />
      </ReferenceInput>
     </SimpleForm>
