@@ -4,9 +4,11 @@ import { Layout,Button } from 'antd';
 import lodashget from 'lodash.get';
 
 
+const { Header } = Layout;
 class App extends React.Component {
 
 
+	
 		componentDidMount(){
 
 		}
@@ -25,23 +27,33 @@ class App extends React.Component {
 			}
 	    return (
 	      	<Layout>
-						<div>头部标题栏</div>
-						<span><Button onClick={
-							()=>{
-								this.props.history.goBack();
-							}
-						}>返回首页</Button></span>
-						<span>按照图片显示数据</span>
-						<span>按照图片显示数据</span>
-						<span>按照图片显示数据</span>
-						<span>按照图片显示数据</span>
-						<div>
-							<Button onClick={
+					<Header>
+						<span><img src="index.png" className="icon-index"/>病人列表-张三丰详情信息</span>
+					</Header>
+					<div className="content-box">
+						<div className="content">
+							<h2>21206<span>张三丰</span><button className="return" onClick={
 								()=>{
-									this.onClickEdit();
+									this.props.history.goBack();
 								}
-							}>编辑</Button>
+							}><img src="return.png" /></button>
+							<div className="clearfix"></div>
+							</h2>
+							<ul>
+								<li>病人主键：普通压疮</li>
+								<li>住院号码：20015</li>
+								<li>住院号码：20015</li>
+								<div className="clearfix"></div>
+							</ul>
+							<div>
+								<button className="ant-btn-edit" onClick={
+									()=>{
+										this.onClickEdit();
+									}
+								}>编辑信息</button>
+							</div>
 						</div>
+					</div>
 	      	</Layout>
 	    );
   	}

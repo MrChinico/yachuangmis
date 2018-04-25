@@ -22,24 +22,42 @@ class App extends React.Component {
   	render() {
 	    return (
 	      	<Layout>
-						<IndexHead />
-						<div>数据统计</div>
-						<span><Button onClick={
-							()=>{
-								this.props.history.replace('/');
-							}
-						}>返回上页</Button></span>
-						<div>
-							<span onClick={()=>{
-								this.onClickStatDetail(0);
-							}}>统计图1</span>
-							<span onClick={()=>{
-								this.onClickStatDetail(1);
-							}}>统计图2</span>
-							<span onClick={()=>{
-								this.onClickStatDetail(2);
-							}}>统计图3</span>
+					<IndexHead />
+					<div className="content-box">
+						<div className="content assess">
+							<h2 className="none-border">
+								<button className="return" onClick={
+									()=>{
+										this.props.history.replace('/');
+									}
+								}><img src="return.png" /></button>
+								<div className="clearfix"></div>
+							</h2>
 						</div>
+						
+						<div className="datastat-chart">
+							<div className="chart chart-one" onClick={()=>{
+								this.onClickStatDetail(0);
+							}}><h1>统计图1<span className="fontSize14">%</span></h1>
+								<p className="num">2301人</p>
+								<img src="chart01.png" />
+								<p className="total-num">某某发生率<br/>总人数：45123人</p>
+							</div>
+							<div className="chart chart-two" onClick={()=>{
+								this.onClickStatDetail(1);
+							}}><h1>统计图2<span className="fontSize14">%</span></h1>
+								<p className="num">2301人</p>
+								<img src="chart02.png" />
+								<p className="total-num">某某发生率<br/>总人数：45123人</p></div>
+							<div className="chart chart-three" onClick={()=>{
+								this.onClickStatDetail(2);
+							}}><h1>统计图3<span className="fontSize14">%</span></h1>
+								<p className="num">2301人</p>
+								<img src="chart03.png" />
+								<p className="total-num">某某发生率<br/>总人数：45123人</p></div>
+						</div>
+					</div>
+					
 	      	</Layout>
 	    );
   	}

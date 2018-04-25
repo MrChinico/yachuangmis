@@ -26,38 +26,43 @@ class App extends React.Component {
 			}
 	    return (
 	      	<div>
-						<div>
-							<span>XX智能床</span>
-							<span>电源</span>
-							<span>通讯</span>
-							<span>病人</span>
-							<span>状态</span>
+					<div className="device-info">
+						<span className="device-name">XX智能床</span>
+						<span>电源：<font>正常</font></span>
+						<span>通讯：<font>正常</font></span>
+						<span>病人：<font>在床</font></span>
+						<span>状态：<font className="warn-color">每五分钟后左右循环</font></span>
+					</div>
+					<div className="device-tittle">
+						翻身卡标题
+					</div>
+					<div className="device-content">
+						<div className="device-indicator">
+							<div><img src="device-indi01.png" /><p>120分钟45度单边循环左翻</p></div>
+							<div><img src="device-indi02.png" /><p>120分钟45度单边循环右翻</p></div>
+							<div><img src="device-indi03.png" /><p>120分钟45度左右循环翻</p></div>
+							<div><img src="device-indi04.png" /><p>120分钟30度左右循环翻</p></div>
+							<div><img src="device-indi05.png" /><p>30分钟45度左右循环翻</p></div>
+							<div><img src="device-indi06.png" /><p>30分钟60度左右循环翻</p></div>
+							<div><img src="device-indi07.png" /><p>60分钟30度左右循环翻</p></div>
+							<div><img src="device-indi08.png" /><p>60分钟45度左右循环翻</p></div>
+							<div className="clearfix"></div>
 						</div>
-						<div>
-							翻身卡标题
+						<div className="device-button">
+							<div><img src="run-time.png" /><p>5分钟45度左右循环自检</p></div>
+							<div onClick={
+								()=>{
+									this.onClickTurnover();
+								}
+							}><img src="custom.png" /><p>自定义翻身</p></div>
+							<div><img src="reset.png" /><p>复位</p></div>
+							<div><img src="on-off.png" /><p>关OFF</p></div>
+							<div className="clearfix"></div>
 						</div>
-						<div>
-							<Button>120分钟45度单边循环左翻</Button>
-							<Button>120分钟45度单边循环右翻</Button>
-							<Button>120分钟45度左右循环翻</Button>
-							<Button>120分钟30度左右循环翻</Button>
-							<Button>30分钟45度左右循环翻</Button>
-							<Button>30分钟60度左右循环翻</Button>
-							<Button>60分钟30度左右循环翻</Button>
-							<Button>60分钟45度左右循环翻</Button>
+						<div className="clearfix"></div>
 					</div>
 					<div>
-						<Button>5分钟45度左右循环自检</Button>
-						<Button onClick={
-							()=>{
-								this.onClickTurnover();
-							}
-						}>自定义翻身</Button>
-						<Button>复位</Button>
-						<Button>关OFF</Button>
 					</div>
-						<div>
-						</div>
 	      	</div>
 	    );
   	}

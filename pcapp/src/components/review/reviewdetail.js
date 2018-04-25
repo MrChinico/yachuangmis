@@ -5,7 +5,7 @@ import { Layout,Button } from 'antd';
 import IndexHead from '../index/index_title';
 import lodashget from 'lodash.get';
 
-
+const { Header } = Layout;
 class App extends React.Component {
 
 
