@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
+import { Layout,Button } from 'antd';
 import lodashget from 'lodash.get';
-
+import TitleDetail from '../patientinfo/patientinfo_content_title_detail';
+const { Header } = Layout;
 
 class App extends React.Component {
 
@@ -21,18 +22,23 @@ class App extends React.Component {
 				return <div>无病人信息</div>
 			}
 	    return (
-	      	<div>
-						<div>
-							<span>新建／编辑创面评估表单</span>
-							<Button onClick={
+				<Layout>
+					<Header>
+						<span><img src="index.png" className="icon-index" alt=""/>新建／编辑创面评估表单</span>
+					</Header>
+					<div className="content-box">
+					<div className="content assess">
+						<h2>21206<span>张三丰</span>
+							<button className="return" onClick={
 								()=>{
 									this.props.history.goBack();
 								}
-							}>返回上页</Button>
-						</div>
-						<div>
-							这里是病人信息
-						</div>
+							}><img src="return.png" alt=""/></button>
+							<div className="clearfix"></div>
+						</h2>
+						<TitleDetail curpaientinfo={curpaientinfo} />
+
+
 						<div>
 							这里是评估表单
 						</div>
@@ -43,7 +49,11 @@ class App extends React.Component {
 								}
 							}>递交评估</Button>
 						</div>
-	      	</div>
+
+							</div>
+
+							</div>
+	      	</Layout>
 	    );
   	}
 }
