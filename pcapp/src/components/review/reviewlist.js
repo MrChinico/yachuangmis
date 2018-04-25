@@ -50,11 +50,6 @@ class App extends React.Component {
 									}>编辑信息</button>
 								</div>
 							</div>
-
-
-
-
-
 							<div>
 								这里是表格
 								<span><Button onClick={
