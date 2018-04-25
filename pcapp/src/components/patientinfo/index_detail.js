@@ -8,7 +8,7 @@ const { Header } = Layout;
 class App extends React.Component {
 
 
-	
+
 		componentDidMount(){
 
 		}
@@ -28,7 +28,7 @@ class App extends React.Component {
 	    return (
 	      	<Layout>
 					<Header>
-						<span><img src="index.png" className="icon-index"/>病人列表-张三丰详情信息</span>
+						<span><img src="index.png" className="icon-index" alt=""/>病人列表-张三丰详情信息</span>
 					</Header>
 					<div className="content-box">
 						<div className="content">
@@ -36,7 +36,7 @@ class App extends React.Component {
 								()=>{
 									this.props.history.goBack();
 								}
-							}><img src="return.png" /></button>
+							}><img src="return.png" alt=""/></button>
 							<div className="clearfix"></div>
 							</h2>
 							<ul>

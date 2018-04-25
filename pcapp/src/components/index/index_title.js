@@ -28,7 +28,7 @@ class App extends React.Component {
   	render() {
 	    return (
 	      	<Header>
-           			<span><img src="index.png" className="icon-index"/>病人列表</span>
+           			<span><img src="index.png" className="icon-index"  alt=""/>病人列表</span>
 					<button onClick={
 						()=>{
 						this.onClickSearch()

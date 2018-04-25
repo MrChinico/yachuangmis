@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Layout,Button,Pagination } from 'antd';
+import { Layout,Button } from 'antd';
 import lodashget from 'lodash.get';
+import lodashmap from 'lodash.map';
 import InfoBarden from './info_barden';
 import InfoNursingmeasures from './info_nursingmeasures';
 import InfoWoundsurface from './info_woundsurface';
@@ -30,6 +31,27 @@ class App extends React.Component {
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
+			const {btnindex} = this.state;
+			let btnz = [];
+			const btnisenabled = [true,true,true,true,true];
+			const btntitle = ['Barden评估','创面评估','护理措施','转归与申报','翻身治疗']
+			for(let i = 0 ;i < 5 ; i++){
+				if(i === btnindex){
+					btnz.push({
+						clsname:'on',
+						title:btntitle[i],
+						isenabled:btnisenabled[i]
+					});
+				}
+				else{
+					btnz.push({
+						clsname:'off',
+						title:btntitle[i],
+						isenabled:btnisenabled[i]
+					});
+				}
+			}
+
 			return (
 					<Layout>
 						<Header>
@@ -50,44 +72,21 @@ class App extends React.Component {
 								<div className="clearfix"></div>
 							</ul>
 							<div className="assess-btn-box">
-								<div className="assess-btn">
-								<Button className="on" onClick={
-									()=>{
-										this.setState({btnindex:0});
-									}
-								}>Barden评估</Button>
-								</div>
-								<div className="assess-btn">
-								<Button onClick={
-									()=>{
-										this.setState({btnindex:1});
-									}
-								}>创面评估</Button>
-								</div>
-								<div className="assess-btn">
-								<Button onClick={
-									()=>{
-										this.setState({btnindex:2});
-									}
-								}>护理措施</Button>
-								</div>
-								<div className="assess-btn">
-								<Button onClick={
-									()=>{
-										this.setState({btnindex:3});
-									}
-								}>转归与申报</Button>
-								</div>
-								<div className="assess-btn">
-								<Button onClick={
-									()=>{
-										this.setState({btnindex:4});
-									}
-								}>翻身治疗</Button>
-								</div>
+								{
+									lodashmap(btnz,(btninfo,index)=>{
+										return (<div className="assess-btn" key={index}>
+										<Button className={btninfo.clsname} onClick={
+											()=>{
+												if(btninfo.isenabled){
+													this.setState({btnindex:index});
+												}
+											}
+										}>{btninfo.title}</Button>
+										</div>)
+									})
+								}
 							</div>
 							</div>
-
 
 								<div className="record">
 									{this.state.btnindex === 0 && <InfoBarden curpaientinfo={curpaientinfo} />}

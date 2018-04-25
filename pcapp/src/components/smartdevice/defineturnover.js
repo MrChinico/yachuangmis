@@ -23,7 +23,7 @@ class App extends React.Component {
 	    return (
 	      	<Layout>
 					<Header>
-						<span><img src="index.png" className="icon-index"/>病人列表-张三丰详情信息</span>
+						<span><img src="index.png" className="icon-index" alt=""/>病人列表-张三丰详情信息</span>
 					</Header>
 					<div class="content-box">
 						<div class="content assess">
@@ -32,7 +32,7 @@ class App extends React.Component {
 										()=>{
 											this.props.history.goBack();
 										}
-									}><img src="return.png" /></Button></span>
+									}><img src="return.png" alt=""/></Button></span>
 							<div class="clearfix"></div>
 							</h2>
 						</div>
@@ -67,10 +67,10 @@ class App extends React.Component {
 									</div>
 								</div>
 							</div>
-							
+
 							<div className="define-result">
 								<p>
-									左翻45°60分钟<img src="arrow-right.png" />左翻45°60分钟
+									左翻45°60分钟<img src="arrow-right.png" alt=""/>左翻45°60分钟
 								</p>
 							</div>
 							<div className="define-sum">
@@ -79,7 +79,7 @@ class App extends React.Component {
 								</p>
 								<p>您输入的结果循环6次</p>
 							</div>
-							
+
 						</div>
 						<div>
 							<button  className="ant-btn-edit blue" onClick={

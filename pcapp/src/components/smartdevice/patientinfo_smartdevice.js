@@ -38,25 +38,25 @@ class App extends React.Component {
 					</div>
 					<div className="device-content">
 						<div className="device-indicator">
-							<div><img src="device-indi01.png" /><p>120分钟45度单边循环左翻</p></div>
-							<div><img src="device-indi02.png" /><p>120分钟45度单边循环右翻</p></div>
-							<div><img src="device-indi03.png" /><p>120分钟45度左右循环翻</p></div>
-							<div><img src="device-indi04.png" /><p>120分钟30度左右循环翻</p></div>
-							<div><img src="device-indi05.png" /><p>30分钟45度左右循环翻</p></div>
-							<div><img src="device-indi06.png" /><p>30分钟60度左右循环翻</p></div>
-							<div><img src="device-indi07.png" /><p>60分钟30度左右循环翻</p></div>
-							<div><img src="device-indi08.png" /><p>60分钟45度左右循环翻</p></div>
+							<div><img src="device-indi01.png" alt=""/><p>120分钟45度单边循环左翻</p></div>
+							<div><img src="device-indi02.png" alt=""/><p>120分钟45度单边循环右翻</p></div>
+							<div><img src="device-indi03.png" alt=""/><p>120分钟45度左右循环翻</p></div>
+							<div><img src="device-indi04.png" alt=""/><p>120分钟30度左右循环翻</p></div>
+							<div><img src="device-indi05.png" alt=""/><p>30分钟45度左右循环翻</p></div>
+							<div><img src="device-indi06.png" alt=""/><p>30分钟60度左右循环翻</p></div>
+							<div><img src="device-indi07.png" alt=""/><p>60分钟30度左右循环翻</p></div>
+							<div><img src="device-indi08.png" alt=""/><p>60分钟45度左右循环翻</p></div>
 							<div className="clearfix"></div>
 						</div>
 						<div className="device-button">
-							<div><img src="run-time.png" /><p>5分钟45度左右循环自检</p></div>
+							<div><img src="run-time.png" alt=""/><p>5分钟45度左右循环自检</p></div>
 							<div onClick={
 								()=>{
 									this.onClickTurnover();
 								}
-							}><img src="custom.png" /><p>自定义翻身</p></div>
-							<div><img src="reset.png" /><p>复位</p></div>
-							<div><img src="on-off.png" /><p>关OFF</p></div>
+							}><img src="custom.png" alt=""/><p>自定义翻身</p></div>
+							<div><img src="reset.png" alt=""/><p>复位</p></div>
+							<div><img src="on-off.png" alt=""/><p>关OFF</p></div>
 							<div className="clearfix"></div>
 						</div>
 						<div className="clearfix"></div>

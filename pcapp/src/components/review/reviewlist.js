@@ -33,7 +33,7 @@ class App extends React.Component {
 										()=>{
 											this.props.history.replace('/');
 										}
-									}><img src="return.png" /></button>
+									}><img src="return.png" alt=""/></button>
 									<div className="clearfix"></div>
 								</h2>
 								<ul>
@@ -54,7 +54,7 @@ class App extends React.Component {
 
 
 
-							
+
 							<div>
 								这里是表格
 								<span><Button onClick={

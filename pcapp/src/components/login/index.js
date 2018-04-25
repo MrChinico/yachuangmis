@@ -64,7 +64,7 @@ class PageForm extends React.Component {
         				<p className="i"></p>
         			</div>
 					<div className="li">
-						<img alt="" src={Img1} />
+						<img alt="" src={Img1}/>
 						<Field
 								name="username"
 								id="username"
