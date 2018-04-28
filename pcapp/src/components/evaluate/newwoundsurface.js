@@ -17,6 +17,7 @@ class App extends React.Component {
 
 		}
 		onClickSubmit =(values)=>{
+			console.log(values);
 			this.props.history.goBack();
 		}
   	render() {
