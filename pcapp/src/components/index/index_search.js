@@ -21,15 +21,37 @@ class App extends React.Component {
 						<Header>
 							<span><img src="index.png" className="icon-index" alt=""/>病人列表-张三丰</span>
 						</Header>
-						<span><Button onClick={
-							()=>{
-								this.props.history.goBack();
-							}
-						}>返回上页</Button></span>
-						<div>
-							这里有一个“张三”的搜索记录，共N条记录的那个样式
+						<div className="index-box">
+							<div className="index-content assess">
+								<h2 className="bbm-green">“张三”的搜索结果，共2条记录！
+									<button className="return" onClick={
+									()=>{
+										this.props.history.goBack();
+									}
+								}><img src="return.png" alt="" /></button>
+									<div className="clearfix">
+								</div>
+								</h2>
+								
+								{/* <div className="modify-password" style="display:none">
+									<h1>您好，张三！<img src="close-white.png" /><div className="clearfix"></div></h1>
+									<p><span>旧&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</span><input type="text" /></p>
+									<p><span>新&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</span><input type="text" /></p>
+									<p><span>新密码确认：</span><input type="text" /></p>
+									<div class="modify">
+										<button class="ant-btn-edit">确认修改</button>
+									</div>
+								</div> */}
+								
+								<div className="modify-password">
+									<h1>您好，张三！<img src="close-white.png" /><div className="clearfix"></div></h1>
+									<p><span className="bbm">修改密码</span></p>
+									<p><span className="bbm">退出账号</span></p>
+								</div>
+								<Patientinfolist />
+							</div>
 						</div>
-						<Patientinfolist />
+						
 	      	</Layout>
 	    );
   	}

@@ -40,6 +40,65 @@ class App extends React.Component {
 							}><img src="return.png" alt=""/></button>
 							<div className="clearfix"></div>
 						</h2>
+						<div className="wound-surface">
+							<h3>压疮风险评估表</h3>
+							<div className="wound-surface-form">
+								<table>
+									<tr>
+										<td className="black font-weight">项目</td>
+										<td>1分</td>
+										<td>2分</td>
+										<td>3分</td>
+										<td>4分</td>
+									</tr>
+									<tr>
+										<td className="black font-weight">感觉</td>
+										<td>完全受限</td>
+										<td className="blue">-非常受限-</td>
+										<td>轻度受限</td>
+										<td>未受损害</td>
+									</tr>
+									<tr>
+										<td className="black font-weight">潮湿</td>
+										<td>完全受限</td>
+										<td className="blue">-非常受限-</td>
+										<td>轻度受限</td>
+										<td>未受损害</td>
+									</tr>
+									<tr>
+										<td className="black font-weight">活动力</td>
+										<td>完全受限</td>
+										<td className="blue">-非常受限-</td>
+										<td>轻度受限</td>
+										<td>未受损害</td>
+									</tr>
+									<tr>
+										<td className="black font-weight">移动力</td>
+										<td>完全受限</td>
+										<td className="blue">-非常受限-</td>
+										<td>轻度受限</td>
+										<td>未受损害</td>
+									</tr>
+									<tr>
+										<td className="black font-weight">营养</td>
+										<td>完全受限</td>
+										<td className="blue">-非常受限-</td>
+										<td>轻度受限</td>
+										<td>未受损害</td>
+									</tr>
+									<tr>
+										<td className="black font-weight">摩擦力和剪切力</td>
+										<td>完全受限</td>
+										<td className="blue">-非常受限-</td>
+										<td colspan="2">无明显问题</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div className="mt40 text-center">
+							<p class="black fontSize18">得分：<span className="blue">16分</span></p>
+							<p class="blue fontSize14">轻度危险！</p>
+						</div>
 						<TitleDetail curpaientinfo={curpaientinfo} />
 						<NewbardenForm onClickSubmit={this.onClickSubmit}/>
 

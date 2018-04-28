@@ -25,6 +25,12 @@
 } */
 
 /* 首页 */
+.ant-layout-content {
+    -ms-flex: auto;
+    flex: auto;
+    padding-left: 10px;
+    background: #fff;
+}
 .module-box{
     width: 25%;
     float: left;
@@ -38,7 +44,7 @@
     float: right;
 }
 .module-box:nth-child(4n+1){
-    padding: 10px 10px 0px 10px;
+    padding: 10px 10px 0px 0px;
 }
 .module-top,.moduleTop h2,.moduleTop h2 span{
     color:#fff;

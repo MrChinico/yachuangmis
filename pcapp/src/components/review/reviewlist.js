@@ -24,24 +24,76 @@ class App extends React.Component {
 	    return (
 	      	<Layout>
 						<IndexHead />
-						<div>审阅列表</div>
 
 						<div className="content-box">
 							<div className="content">
-								<h2>21206<span>张三丰</span>
+								<h4>21206<span>张三丰</span>
 									<button className="return" onClick={
 										()=>{
 											this.props.history.replace('/');
 										}
 									}><img src="return.png" alt=""/></button>
 									<div className="clearfix"></div>
-								</h2>
-								<ul>
-									<li>病人主键：普通压疮</li>
-									<li>住院号码：20015</li>
-									<li>住院号码：20015</li>
-									<div className="clearfix"></div>
-								</ul>
+								</h4>
+								<form>
+									<table width="100%" border="0" className="declare-review-list">
+										<tr className="top">
+											<td><div align="center">序号</div></td>
+											<td><div align="center">姓名</div></td>
+											<td><div align="center">住院号</div></td>
+											<td><div align="center">科室</div></td>
+											<td><div align="center">入院时间</div></td>
+											<td><div align="center">床号</div></td>
+											<td><div align="center">申请护士</div></td>
+											<td><div align="center">护士审阅</div></td>
+											<td><div align="center">护理部审阅</div></td>
+										</tr>
+										<tr>
+											<td><div align="center">0001</div></td>
+											<td><div align="center">张三丰</div></td>
+											<td><div align="center">20250</div></td>
+											<td><div align="center">皮肤科</div></td>
+											<td><div align="center">2018/04/12-15:20</div></td>
+											<td><div align="center">压疮病区A15智能床</div></td>
+											<td><div align="center">杜拉拉</div></td>
+											<td><div align="center">无无无-已审</div></td>
+											<td><div align="center">待审</div></td>
+										</tr>
+										<tr>
+											<td><div align="center">0001</div></td>
+											<td><div align="center">张三丰</div></td>
+											<td><div align="center">20250</div></td>
+											<td><div align="center">皮肤科</div></td>
+											<td><div align="center">2018/04/12-15:20</div></td>
+											<td><div align="center">压疮病区A15智能床</div></td>
+											<td><div align="center">杜拉拉</div></td>
+											<td><div align="center">无无无-已审</div></td>
+											<td><div align="center">待审</div></td>
+										</tr>
+										<tr>
+											<td><div align="center">0001</div></td>
+											<td><div align="center">张三丰</div></td>
+											<td><div align="center">20250</div></td>
+											<td><div align="center">皮肤科</div></td>
+											<td><div align="center">2018/04/12-15:20</div></td>
+											<td><div align="center">压疮病区A15智能床</div></td>
+											<td><div align="center">杜拉拉</div></td>
+											<td><div align="center">无无无-已审</div></td>
+											<td><div align="center">待审</div></td>
+										</tr>
+										<tr>
+											<td><div align="center">0001</div></td>
+											<td><div align="center">张三丰</div></td>
+											<td><div align="center">20250</div></td>
+											<td><div align="center">皮肤科</div></td>
+											<td><div align="center">2018/04/12-15:20</div></td>
+											<td><div align="center">压疮病区A15智能床</div></td>
+											<td><div align="center">杜拉拉</div></td>
+											<td><div align="center">无无无-已审</div></td>
+											<td><div align="center">待审</div></td>
+										</tr>
+									</table>
+								</form>
 								<div>
 									<button className="ant-btn-edit" onClick={
 										()=>{

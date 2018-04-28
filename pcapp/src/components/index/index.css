@@ -118,6 +118,21 @@ h1, h2, h3, h4, h5, h6, p{
     margin:0px !important;
     padding:0px !important;
 }
+.text-center{
+    text-align: center !important;
+}
+.mt40{
+    margin-top:40px !important;
+}
+.bbm-green{
+    border-bottom: 1px solid #008c7a !important;
+}
+.p0{
+    padding:0px !important;
+}
+.no-bbm{
+    border-bottom:0px !important;
+}
 .fontSize13{
     font-size: 13px;
 }
@@ -130,9 +145,29 @@ h1, h2, h3, h4, h5, h6, p{
 .fontSize18{
     font-size: 18px;
 }
+.font-weight{
+    font-weight: 700;
+}
+.black{
+    color:#000 !important;
+}
+.blue{
+    color:#0084bf !important;
+}
+.green{
+    color:#008c7a !important;
+}
+.white{
+    color:#fff !important;
+}
 .m30-0{
     margin-top:30px !important;
     margin-bottom:30px !important;
+}
+input{
+    border:0px !important;
+    background-color: transparent !important;
+    border-bottom:1px solid #676767 !important;
 }
 .clearfix{
     clear: both;
@@ -189,6 +224,12 @@ h1, h2, h3, h4, h5, h6, p{
     background-color: #f39800 !important;
 }
 /* 首页 */
+.ant-layout-content {
+    -ms-flex: auto;
+    flex: auto;
+    padding-left: 5px;
+    background: #fff;
+}
 .module-box{
     width: 25%;
     float: left;
@@ -202,7 +243,7 @@ h1, h2, h3, h4, h5, h6, p{
     float: right;
 }
 .module-box:nth-child(4n+1){
-    padding: 10px 10px 0px 10px;
+    padding: 10px 10px 0px 0px;
 }
 .module-top,.moduleTop h2,.moduleTop h2 span{
     color:#fff;
@@ -314,12 +355,13 @@ h1, h2, h3, h4, h5, h6, p{
     border-radius: 30px;
 }
 .ant-btn-edit.blue{
+    color:#fff !important;
     margin-top:10px;
     background: #0084bf !important;
 }
 .ant-btn-edit.gray{
     margin-top:10px;
-    color: #555;
+    color: #555 !important;
     background: #bbb !important;
 }
 .assess-btn-box{
@@ -613,7 +655,7 @@ h1, h2, h3, h4, h5, h6, p{
     margin:0px 5px 5px 0px;
 }
 .form-box{
-    width: 94%;
+    width: 100%;
     margin: 20px auto;
     color: #333;
     background: #f9f9f9;
@@ -643,6 +685,7 @@ h1, h2, h3, h4, h5, h6, p{
     width:25%;
     height: 46px;
     line-height: 46px;
+    font-size: 14px;
 }
 .form-box .patient-info td.w-50{
     width:50%;
@@ -659,7 +702,6 @@ h1, h2, h3, h4, h5, h6, p{
     line-height:46px;
     padding:0px 15px !important;
 }
-
 .form-box .choose-info{
     width:100%;
 }
@@ -681,6 +723,7 @@ h1, h2, h3, h4, h5, h6, p{
 }
 .form-box .choose-info tr td{
     padding:10px 15px;
+    font-size: 14px;
 }
 .form-box .choose-info .gray{
     color:#888;
@@ -713,6 +756,7 @@ form input[type="radio"], form input[type="checkbox"] {
     display: inline-flex;
     margin-right: 5px;
 }
+
 /* 修改input样式 */
 /* form .input-click{
     width: 16px;
@@ -725,7 +769,246 @@ form input[type="radio"], form input[type="checkbox"] {
     position: relative;
     top: 3px;
 } */
-
-
+/* 新增创面评估 */
+.content h3{
+    color:#0084bf;
+    font-size: 20px;
+    font-weight: 400;
+    padding:8px 10px !important;
+}
+.content h4{
+    color:#111;
+    font-size: 22px;
+    font-weight: 400;
+    padding:8px 10px !important;
+}
+.content h4 button{
+    float: right;
+    width: 24px;
+    height: 24px;
+    margin-top:3px;
+}
+.content h4 img{
+    width: 24px;
+    height: 24px;
+}
+.wound-surface{
+    padding:15px 0px;
+}
+.wound-surface-form table{
+    width: 100%;
+} 
+.wound-surface-form table tr input{
+    width:24%;
+    border:0px !important;
+    background-color: transparent !important;
+    border-bottom:1px solid #676767 !important;
+} 
+.wound-surface-form table tr td{
+    text-align: center;
+    padding: 10px 0px;
+    line-height: 20px;
+    font-size: 12px;
+} 
+.wound-surface-form tr:nth-child(2n+1) {
+    background: #f9f9f9;
+}
+.wound-surface-form tr:nth-child(2n+2) {
+    background: #fff;
+}
+.wound-surface .add-btn {
+    margin-top:40px;
+    color: #0084bf;
+    background-color: #e4f3f1 !important;
+    border-radius: 15px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 13px;
+    padding:0px 5px;
+}
+.wound-surface .add-btn img{
+    width: 20px;
+    height: 20px;
+    margin: 0px 5px 6px 0px;
+}
+/* 打印表单 */
+.printing-title{
+    color: #111;
+    font-size: 20px;
+    padding:10px !important;
+}
+.printing-title .ant-btn{
+    color: #fff;
+    background-color: #0084bf !important;
+    border-radius: 15px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+    padding: 0 10px;
+    margin-left: 15px;
+}
+.printing-title button.return{
+    float: right;
+}
+.printing-title button img{
+    width:20px; 
+    height:20px;
+    margin:0px 5px 5px 0px;
+}
+.form-box .white-bg{
+    background-color: #fff;
+}
+.form-box table{
+    width:100%;
+}
+.form-box table.nursing-record td{
+    padding: 9px 10px;
+    border: 1px solid #ddd;
+    border-left: 0px;
+    border-bottom: 0px;
+}
+.form-box table.nursing-record tr td:last-child{
+    border-right: 0px;
+}
+.nursing-record tr td.white-bg{
+    background-color:#fff; 
+    text-align: left;   
+}
+.nursing-record tr:nth-child(2n){
+background-color:#f9f9f9;
+}
+.nursing-record.white-bg .date{
+    background-color:#e4f3f1;    
+}
+.nursing-record.white-bg .date img{
+    width:10px;
+    height: 10px;
+    margin-right: 10px;   
+    margin-bottom: 4px;
+}
+.nursing-record.white-bg .date img.right{
+    margin-right: 0px;   
+    margin-left: 10px;   
+}
+/* 创面评估记录查看 */
+.wound-surface-record{
+    border:1px solid #ddd;
+    background: #f9f9f9;
+}
+.wound-surface-record tr{
+    border-bottom:1px solid #ddd;
+}
+.wound-surface-record tr.no-bbm{
+    border-bottom:0px;
+}
+.wound-surface-record tr td{
+    padding:10px 5px;
+    font-size: 13px;
+    color:#464646;
+}
+/* 申报审阅病人列表 */
+.declare-review-list{
+    border:1px solid #ddd;
+}
+.declare-review-list tr{
+    border-bottom:1px solid #ddd;
+}
+.declare-review-list tr td{
+    padding:10px 0px;
+    color:#333;
+    font-size: 13px;
+}
+.declare-review-list tr:nth-child(2n+1){
+    background: #f9f9f9;
+}
+.declare-review-list tr.top{
+    color:#111;
+    font-size: 14px;
+    font-weight: 700;
+    background: #eee;
+}
+/* 搜索弹框 搜索-病人列表 */
+.modify-password{
+    position: fixed;
+    width:28%;
+    left:36%;
+    top:30%;
+    background: #fff;
+    box-shadow:1px 6px 10px rgba(0,0,0,0.2);
+    text-align: center;
+    border-radius: 5px;
+    padding-bottom:40px;
+}
+@media screen and (max-width: 768px) {
+    .modify-password{
+        width:40%;
+        left:30%;
+        top:33%;
+        box-shadow: 1px 4px 4px rgba(0,0,0,0.2);
+    }
+}
+.modify-password h1{
+    padding:10px 20px 10px 40px !important;
+    font-size: 20px;
+    color:#fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background:#008c7a;
+    margin-bottom: 20px !important;
+}
+.modify-password h1 img{
+    width:20px;
+    height:20px;
+    float: right;
+    margin: 6px 0px 0px 0px;
+}
+.modify-password p{
+    padding:12px 10% !important;
+}
+.modify-password p span{
+    width:30%;
+}
+.modify-password p input{
+    width:50%;
+    text-align: center;
+}
+.modify .ant-btn-edit {
+    margin: 20px auto;
+    width: 60%;
+}
+.index-content{
+    margin: 0px;
+    padding: 5px 0px;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.index-content h2.bbm-green{
+    padding: 10px 0px !important;
+    margin:5px 20px !important;
+}
+.index-content h2{
+    border-bottom: 0px;
+    padding: 0px !important;
+}
+.index-box{
+    margin: 0px;
+    padding: 0px 0px 30px 0px;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.index-content h2 img {
+    width: 24px;
+    height: 24px;
+}
+.index-content h2 button {
+    float: right;
+    width: 24px;
+    height: 24px;
+    margin-top: 3px;
+}
+.modify-password .bbm{
+    border-bottom:1px solid #ddd;
+    padding:10px;
+}
 
 
