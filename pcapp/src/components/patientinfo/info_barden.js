@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-// import { Button } from 'antd';
-import { Pagination } from 'antd';
-// import lodashget from 'lodash.get';
 import ContentTitleBar from './patientinfo_content_titlebar';
-
+import PTable from './table';
 class App extends React.Component {
 
 
@@ -24,40 +21,28 @@ class App extends React.Component {
 			const {curpaientinfo} = this.props;
 			this.props.history.push(`/viewprintrecordbarden/${curpaientinfo._id}`);
 		}
+		onClickEdit =(record)=>{
+
+		}
   	render() {
 			const {curpaientinfo} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
+			let allrecords = [];
+			for(let i = 0 ;i <  58; i ++){
+				allrecords.push({
+					createtime:`2018-05-01 10:00:${i}`,
+					creator:`user${i}`,
+					score:`${i}`
+				});
+			}
+			const fieldnames = ['createtime','creator','score'];
 	    return (
 	      	<div>
 						<ContentTitleBar title="Barden评估记录" titleNew="新建评估" titleView="查看&打印"
 							onClickNew={this.onClickNew} onClickViewPrint={this.onClickViewPrint} />
-						<div className="record-box">
-							<ul>
-								<li>
-									<span>2018/03/12 12:30</span>
-									<span>Barden评分：16分</span>
-									<span>评分护士：王小五</span>
-									<span>详细信息</span>
-								</li>
-								<li>
-									<span>2018/03/12 12:30</span>
-									<span>Barden评分：16分</span>
-									<span>评分护士：王小五</span>
-									<span>详细信息</span>
-								</li>
-								<li>
-									<span>2018/03/12 12:30</span>
-									<span>Barden评分：16分</span>
-									<span>评分护士：王小五</span>
-									<span>详细信息</span>
-								</li>
-							</ul>
-						</div>
-
-						<Pagination defaultCurrent={1} total={50} />
-
+						<PTable allrecords={allrecords} fieldnames={fieldnames} onClickEdit={this.onClickEdit} />
 	      	</div>
 	    );
   	}
