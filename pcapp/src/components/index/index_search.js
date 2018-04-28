@@ -38,8 +38,8 @@ class App extends React.Component {
 									<p><span>旧&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</span><input type="text" /></p>
 									<p><span>新&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</span><input type="text" /></p>
 									<p><span>新密码确认：</span><input type="text" /></p>
-									<div class="modify">
-										<button class="ant-btn-edit">确认修改</button>
+									<div className="modify">
+										<button className="ant-btn-edit">确认修改</button>
 									</div>
 								</div> */}
 								

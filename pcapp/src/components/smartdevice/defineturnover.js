@@ -25,15 +25,15 @@ class App extends React.Component {
 					<Header>
 						<span><img src="index.png" className="icon-index" alt=""/>病人列表-张三丰详情信息</span>
 					</Header>
-					<div class="content-box">
-						<div class="content assess">
+					<div className="content-box">
+						<div className="content assess">
 							<h2>自定义翻身
 							<span className="return"><Button onClick={
 										()=>{
 											this.props.history.goBack();
 										}
 									}><img src="return.png" alt=""/></Button></span>
-							<div class="clearfix"></div>
+							<div className="clearfix"></div>
 							</h2>
 						</div>
 

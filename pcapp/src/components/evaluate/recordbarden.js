@@ -15,6 +15,7 @@ class App extends React.Component {
 
 		}
 		onClickSubmit =(values)=>{
+			console.log(values);
 			this.props.history.goBack();
 		}
   	render() {
@@ -29,7 +30,7 @@ class App extends React.Component {
 					</Header>
 					<div className="content-box">
 					<div className="content assess">
-						<h1 class="printing-title">Barden压疮评估记录查看
+						<h1 className="printing-title">Barden压疮评估记录查看
 							<button className="ant-btn">
 								<img src="printing.png" alt="" />打印报表
 							</button>
@@ -41,19 +42,19 @@ class App extends React.Component {
 							<div className="clearfix"></div>
 						</h1>
 						<form>
-								<div class="form-box">
+								<div className="form-box">
 									<h1>某某医院压疮危险因素评估表</h1>
-									<table class="patient-info">
+									<table className="patient-info">
 										<tbody>
-											<tr class="elastic">
+											<tr className="elastic">
 												<td>姓名：<input type="text"/></td>
 												<td>性别：<input type="text"/></td>
 												<td>年龄：<input type="text"/></td>
 												<td>住院号：<input type="text"/></td>
 											</tr>
-											<tr class="elastic">
+											<tr className="elastic">
 												<td>科室：<input type="text"/></td>
-												<td class="w-50">入院日期：
+												<td className="w-50">入院日期：
 													<input type="text" />年
 													<input type="text" />月
 													<input type="text" />日
@@ -243,7 +244,7 @@ class App extends React.Component {
                                         <td align="center"></td>
                                       </tr>
                                       <tr>
-                                        <td rowspan="4" className="white-bg">摩擦力和剪切力</td> 
+                                        <td rowspan="4" className="white-bg">摩擦力和剪切力</td>
                                         <td align="center">无明显问题</td>
                                         <td align="center">3</td>
                                         <td align="center"></td>

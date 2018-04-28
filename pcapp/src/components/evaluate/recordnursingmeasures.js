@@ -27,7 +27,7 @@ class App extends React.Component {
 					</Header>
 					<div className="content-box">
 						<div className="content assess">
-							<h1 class="printing-title">压疮护理措施记录查看
+							<h1 className="printing-title">压疮护理措施记录查看
 								<button className="ant-btn">
 									<img src="printing.png" alt="" />打印报表
 								</button>
@@ -39,19 +39,19 @@ class App extends React.Component {
 								<div className="clearfix"></div>
 							</h1>
 							<form>
-								<div class="form-box">
+								<div className="form-box">
 									<h1>某某市某某医院压疮护理措施表</h1>
-									<table class="patient-info">
+									<table className="patient-info">
 										<tbody>
-											<tr class="elastic">
+											<tr className="elastic">
 												<td>姓名：<input type="text"/></td>
 												<td>性别：<input type="text"/></td>
 												<td>年龄：<input type="text"/></td>
 												<td>住院号：<input type="text"/></td>
 											</tr>
-											<tr class="elastic">
+											<tr className="elastic">
 												<td>科室：<input type="text"/></td>
-												<td class="w-50">入院日期：
+												<td className="w-50">入院日期：
 													<input type="text" />年
 													<input type="text" />月
 													<input type="text" />日
