@@ -1,42 +1,135 @@
 import React from 'react';
-import { Field, reduxForm, Form  } from 'redux-form';
+import {Fields, Field,FieldArray, reduxForm, Form  } from 'redux-form';
 import { connect } from 'react-redux';
+import lodashmap from 'lodash.map';
+import lodashget from 'lodash.get';
+import lodashset from 'lodash.set';
+import {getdefaultnursingmeasures} from '../../util';
+
+/*
+nursingmeasures:[
+{
+  groupname:'全 身 治 疗',
+  options:[
+  {
+    name:'积极治疗原发病',
+    checked:false,
+  },
+  {
+    name:'增加营养',
+    checked:false,
+  },
+  ]
+}
+]
+*/
+
+//
+// const renderO = (props)=>{
+//   const {input:{value:options,onChange}} = props;
+//   const onChangeOne = (indexo,checked)=>{
+//     let newvg = [...options];
+//     lodashset(newvg[indexo],`checked`,checked);
+//     console.log(`options[${indexo}]->${checked}`)
+//     onChange(newvg);
+//   }
+//
+//   let szOpt = [];
+//   lodashmap(options,(vo,indexo)=>{
+//     if(vo.checked){
+//       szOpt.push(<td key={`${indexo}`} className="blue" onClick={
+//         ()=>{
+//           onChangeOne(indexo,false);
+//         }
+//       }>{vo.name}</td>);
+//     }
+//     else{
+//       szOpt.push(<td key={`${indexo}`} onClick={
+//         ()=>{
+//           onChangeOne(indexo,true);
+//         }
+//       }>{vo.name}</td>);
+//     }
+//   });
+//
+//
+//
+//   return szOpt;
+// }
+
+const renderOptionname = (props)=>{
+  console.log(props)
+  const {input:{value:vo,onChange}} = props;
+  const onChangeOne = (checked)=>{
+    onChange({
+      name:vo.name,
+      checked
+    });
+  }
+  if(vo.checked){
+    return (<td className="blue" onClick={
+      ()=>{
+        onChangeOne(false);
+      }
+    }>{vo.name}</td>);
+  }
+  return (<td onClick={
+    ()=>{
+      onChangeOne(true);
+    }
+  }>{vo.name}</td>);
+}
+
+const renderGroupname = (props)=>{
+  const {input:{value:groupname}} = props;
+  return <span>{groupname}</span>
+}
+
+
+const renderSubFields_Options = (vg, indexg, fields) => {
+  return <Field component={renderOptionname} name={vg} key={indexg}/>
+}
+
+const renderOptions = (props)=>{
+  const {fields} = props;
+  return fields.map(renderSubFields_Options);
+}
+
+const renderSubFields_Item = (vg, indexg, fields) => {
+  return (
+    <tr key={indexg}>
+    <td className="black font-weight"> <Field name={`${vg}.groupname`} component={renderGroupname} /></td>
+       <FieldArray name={`${vg}.options`} component={renderOptions}/>
+    </tr>);
+
+}
+
+const renderCZ = (props)=>{
+  const {fields} = props;
+  return (
+    <table>
+      <tbody>
+      {
+        fields.map(renderSubFields_Item)
+      }
+    </tbody>
+  </table>
+  );
+}
 
 
 class PageForm extends React.Component {
   render() {
-    const { handleSubmit,onClickSubmit,pristine,submitting } = this.props;
+    const { handleSubmit,onClickSubmit, } = this.props;
     return (
       <Form
           onSubmit={handleSubmit(onClickSubmit)}
           >
             <div className="wound-surface">
               <div className="wound-surface-form">
-                <table>
-                  <tr>
-                    <td className="black font-weight">全面治疗</td>
-                    <td className="blue">-积极治疗原发病-</td>
-                    <td>-增加营养-</td>
-                    <td>-三期-</td>
-                    <td>四期</td>
-                    <td>可疑深部组织损伤</td>
-                    <td colspan="2">不能分期</td>
-                  </tr>
-                  <tr>
-                    <td className="black font-weight">体位与活动</td>
-                    <td>-建立翻身卡-</td>
-                    <td className="blue">-定期翻身-</td>
-                  </tr>
-                  <tr>
-                    <td className="black font-weight">皮肤护理</td>
-                    <td>（左）<span className="blue">耳廓（右）</span></td>
-                    <td>（左）耳廓（右）</td>
-                    <td>鼻梁</td>
-                    <td>棘突</td>
-                    <td>（左）肩峰（右）</td>
-                    <td colspan="2">（左）肩胛部（右）</td>
-                  </tr>
-                </table>
+                <FieldArray
+                    name="nursingmeasures"
+                    component={renderCZ} />
               </div>
             </div>
             <div className="mt40">
@@ -48,7 +141,8 @@ class PageForm extends React.Component {
 
 
     PageForm = reduxForm({
-        form: 'NewnursingmeasuresForm'
+        form: 'NewnursingmeasuresForm',
+        initialValues:getdefaultnursingmeasures()
     })(PageForm);
 
     export default PageForm;

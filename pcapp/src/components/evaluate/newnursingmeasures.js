@@ -19,6 +19,7 @@ class App extends React.Component {
 
 		}
 		onClickSubmit =(values)=>{
+			console.log(values);
 			this.props.history.goBack();
 		}
   	render() {
@@ -41,7 +42,7 @@ class App extends React.Component {
 							}><img src="return.png" alt=""/></button>
 							<div className="clearfix"></div>
 						</h2>
-						
+
 						<TitleDetail curpaientinfo={curpaientinfo} />
 						<NewnursingmeasuresForm onClickSubmit={this.onClickSubmit}/>
 						</div>
