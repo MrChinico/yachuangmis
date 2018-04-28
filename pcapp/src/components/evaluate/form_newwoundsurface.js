@@ -297,7 +297,6 @@ const renderBW = (props)=>{
 
 const Woundsurfaces = (props)=>{
   const {wf,index,onClickRemove} = props;
-  console.log(wf);//evaluateWoundsurfaces[0]
   return (
       <div className="wound-surface">
         <h4><span>创面{index+1}</span>
@@ -368,7 +367,6 @@ const renderWoundsurfaces = ({ fields, meta: { touched, error, submitFailed } })
   const onClickRemove =(index)=>{
     fields.remove(index);
   }
-  console.log(fields);
 
   return (
     <div>

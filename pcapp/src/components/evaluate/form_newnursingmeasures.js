@@ -24,41 +24,7 @@ nursingmeasures:[
 ]
 */
 
-//
-// const renderO = (props)=>{
-//   const {input:{value:options,onChange}} = props;
-//   const onChangeOne = (indexo,checked)=>{
-//     let newvg = [...options];
-//     lodashset(newvg[indexo],`checked`,checked);
-//     console.log(`options[${indexo}]->${checked}`)
-//     onChange(newvg);
-//   }
-//
-//   let szOpt = [];
-//   lodashmap(options,(vo,indexo)=>{
-//     if(vo.checked){
-//       szOpt.push(<td key={`${indexo}`} className="blue" onClick={
-//         ()=>{
-//           onChangeOne(indexo,false);
-//         }
-//       }>{vo.name}</td>);
-//     }
-//     else{
-//       szOpt.push(<td key={`${indexo}`} onClick={
-//         ()=>{
-//           onChangeOne(indexo,true);
-//         }
-//       }>{vo.name}</td>);
-//     }
-//   });
-//
-//
-//
-//   return szOpt;
-// }
-
 const renderOptionname = (props)=>{
-  console.log(props)
   const {input:{value:vo,onChange}} = props;
   const onChangeOne = (checked)=>{
     onChange({
