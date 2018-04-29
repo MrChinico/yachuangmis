@@ -5,3 +5,5 @@ export * from './md.js';
 export * from './jpush';
 export * from './userlogin';
 export * from './evaluatebarden';
+export * from './evaluatenursingmeasures';
+export * from './evaluatewoundsurface';

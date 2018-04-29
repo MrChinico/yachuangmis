@@ -25,22 +25,20 @@ class App extends React.Component {
 			this.props.history.push(`/viewprintrecordnursingmeasures/${curpaientinfo._id}`);
 		}
 		onClickEdit =(record)=>{
-
+			const {curpaientinfo} = this.props;
+			this.props.history.push(`/newnursingmeasures/${curpaientinfo._id}/${record._id}`);
 		}
   	render() {
-			const {curpaientinfo} = this.props;
+			const {curpaientinfo,evaluatenursingmeasureslist,evaluatenursingmeasuress} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
 			let allrecords = [];
-			for(let i = 0 ;i <  458; i ++){
-				allrecords.push({
-					createtime:`2018-05-01 10:00:${i}`,
-					creator:`user${i}`,
-					score:`${i}`
-				});
+			for(let i = 0 ;i <  evaluatenursingmeasureslist.length; i ++){
+				const record = evaluatenursingmeasuress[evaluatenursingmeasureslist[i]];
+				allrecords.push(record);
 			}
-			const fieldnames = ['createtime','creator','score'];
+			const fieldnames = ['created_at','usercreatorid','score'];
 	    return (
 	      	<div>
 						<ContentTitleBar title="护理措施记录" titleNew="新建护理" titleView="查看&打印"
@@ -51,6 +49,9 @@ class App extends React.Component {
 	    );
   	}
 }
-
+const mapStateToProps = ({evaluatenursingmeasures},props) => {
+		const {evaluatenursingmeasureslist,evaluatenursingmeasuress} = evaluatenursingmeasures;
+    return {evaluatenursingmeasureslist,evaluatenursingmeasuress};
+}
 App = withRouter(App);
-export default connect()(App);
+export default connect(mapStateToProps)(App);

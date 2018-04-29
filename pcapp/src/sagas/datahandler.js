@@ -31,7 +31,25 @@ import {
     editevaluatebarden_result,
 
     getevaluatebardenlist_request,
-    getevaluatebardenlist_result
+    getevaluatebardenlist_result,
+
+    createevaluatenursingmeasures_request,
+    createevaluatenursingmeasures_result,
+
+    editevaluatenursingmeasures_request,
+    editevaluatenursingmeasures_result,
+
+    getevaluatenursingmeasureslist_request,
+    getevaluatenursingmeasureslist_result,
+
+    createevaluatewoundsurface_request,
+    createevaluatewoundsurface_result,
+
+    editevaluatewoundsurface_request,
+    editevaluatewoundsurface_result,
+
+    getevaluatewoundsurfacelist_request,
+    getevaluatewoundsurfacelist_result
 
   } from '../actions';
 
@@ -44,6 +62,14 @@ let recvmessagetoresultpair = {
   'createevaluatebarden_result':createevaluatebarden_result,
   'editevaluatebarden_result':editevaluatebarden_result,
   'getevaluatebardenlist_result':getevaluatebardenlist_result,
+
+  'createevaluatenursingmeasures_result':createevaluatenursingmeasures_result,
+  'editevaluatenursingmeasures_result':editevaluatenursingmeasures_result,
+  'getevaluatenursingmeasureslist_result':getevaluatenursingmeasureslist_result,
+
+  'createevaluatewoundsurface_result':createevaluatewoundsurface_result,
+  'editevaluatewoundsurface_result':editevaluatewoundsurface_result,
+  'getevaluatewoundsurfacelist_result':getevaluatewoundsurfacelist_result,
 
   'page_getpatientinfolist_result':page_getpatientinfolist_result,
   'getpatientinfolist_result':getpatientinfolist_result,
@@ -76,7 +102,16 @@ let sendmessagefnsz = {
 
   'createevaluatebarden':`${createevaluatebarden_request}`,
   'editevaluatebarden':`${editevaluatebarden_request}`,
-  'getevaluatebardenlist':`${getevaluatebardenlist_request}`
+  'getevaluatebardenlist':`${getevaluatebardenlist_request}`,
+
+  'createevaluatenursingmeasures':`${createevaluatenursingmeasures_request}`,
+  'editevaluatenursingmeasures':`${editevaluatenursingmeasures_request}`,
+  'getevaluatenursingmeasureslist':`${getevaluatenursingmeasureslist_request}`,
+
+  'createevaluatewoundsurface':`${createevaluatewoundsurface_request}`,
+  'editevaluatewoundsurface':`${editevaluatewoundsurface_request}`,
+  'getevaluatewoundsurfacelist':`${getevaluatewoundsurfacelist_request}`,
+
 };
 
 //验证发送接口

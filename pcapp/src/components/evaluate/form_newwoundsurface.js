@@ -1,6 +1,6 @@
 import React from 'react';
 import { FieldArray,Field, reduxForm, Form  } from 'redux-form';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import lodashmap from 'lodash.map';
 import lodashget from 'lodash.get';
 
@@ -397,12 +397,20 @@ class PageForm extends React.Component {
         }
     }
 
-
-    PageForm = reduxForm({
-        form: 'NewwoundsurfaceForm',
-        initialValues:{
-          evaluateWoundsurfaces:[]
-        }
+const RetForm = ({formname,formvalues,...rest})=> {
+    const FormWrap = reduxForm({
+        form: formname,
+        initialValues: formvalues
     })(PageForm);
 
-    export default PageForm;
+    return <FormWrap {...rest} />
+}
+export default RetForm;
+    // PageForm = reduxForm({
+    //     form: 'NewwoundsurfaceForm',
+    //     initialValues:{
+    //       evaluateWoundsurfaces:[]
+    //     }
+    // })(PageForm);
+    //
+    // export default PageForm;

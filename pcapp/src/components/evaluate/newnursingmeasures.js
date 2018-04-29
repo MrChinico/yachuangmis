@@ -4,7 +4,8 @@ import { Layout } from 'antd';
 import lodashget from 'lodash.get';
 import TitleDetail from '../patientinfo/patientinfo_content_title_detail';
 import NewnursingmeasuresForm from './form_newnursingmeasures';
-
+import {createevaluatenursingmeasures_request,editevaluatenursingmeasures_request} from '../../actions';
+import {getdefaultnursingmeasures} from '../../util';
 const { Header } = Layout;
 
 
@@ -19,22 +20,39 @@ class App extends React.Component {
 
 		}
 		onClickSubmit =(values)=>{
+			const {curpaientinfo,isnew,curevaluatenursingmeasures} = this.props;
+			if(isnew){
+				values.userpatientid = curpaientinfo._id;
+				this.props.dispatch(createevaluatenursingmeasures_request(values));
+			}
+			else{
+				let newcurevaluatenursingmeasures = {...curevaluatenursingmeasures,...values};
+				this.props.dispatch(editevaluatenursingmeasures_request(newcurevaluatenursingmeasures));
+			}
+
+
 			console.log(values);
 			this.props.history.goBack();
 		}
   	render() {
-			const {curpaientinfo} = this.props;
+			const {curpaientinfo,isnew,curevaluatenursingmeasures} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
+			let formname = 'NewNursingmeasuresForm';
+			let formvalues = getdefaultnursingmeasures();
+			if(!isnew){
+				formvalues = curevaluatenursingmeasures;
+			}
+			const title = isnew?'新建':'编辑';
 	    return (
 				<Layout>
 					<Header>
-						<span><img src="index.png" className="icon-index" alt=""/>新建／编辑护理措施表单</span>
+						<span><img src="index.png" className="icon-index" alt=""/>{title}护理措施表单</span>
 					</Header>
 					<div className="content-box">
 					<div className="content assess">
-						<h2>21206<span>张三丰</span>
+						<h2>{lodashget(curpaientinfo,'Patientno','')}<span>{lodashget(curpaientinfo,'Patientname','')}</span>
 							<button className="return" onClick={
 								()=>{
 									this.props.history.goBack();
@@ -44,7 +62,9 @@ class App extends React.Component {
 						</h2>
 
 						<TitleDetail curpaientinfo={curpaientinfo} />
-						<NewnursingmeasuresForm onClickSubmit={this.onClickSubmit}/>
+						<NewnursingmeasuresForm onClickSubmit={this.onClickSubmit}
+							formname={formname}
+							formvalues={formvalues}/>
 						</div>
 					</div>
 	      	</Layout>
@@ -52,11 +72,21 @@ class App extends React.Component {
   	}
 }
 
-
-const mapStateToProps = ({paientinfo},props) => {
+const mapStateToProps = ({paientinfo,evaluatenursingmeasures},props) => {
 		const {paientinfos} = paientinfo;
 		const id = lodashget(props,'match.params.pid');
+		const bardenid = lodashget(props,'match.params.id');
+		let isnew = bardenid === '0';
 		let curpaientinfo = paientinfos[id];
-    return {curpaientinfo};
+		if(isnew){
+			return {curpaientinfo,isnew};
+		}
+		const {evaluatenursingmeasuress} = evaluatenursingmeasures;
+		const curevaluatenursingmeasures = evaluatenursingmeasuress[bardenid];
+		if(!curevaluatenursingmeasures){
+			isnew = true;
+		}
+		return {curpaientinfo,isnew,curevaluatenursingmeasures};
 }
+
 export default connect(mapStateToProps)(App);

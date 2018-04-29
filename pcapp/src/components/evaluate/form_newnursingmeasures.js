@@ -1,10 +1,10 @@
 import React from 'react';
-import {Fields, Field,FieldArray, reduxForm, Form  } from 'redux-form';
-import { connect } from 'react-redux';
-import lodashmap from 'lodash.map';
-import lodashget from 'lodash.get';
-import lodashset from 'lodash.set';
-import {getdefaultnursingmeasures} from '../../util';
+import { Field,FieldArray, reduxForm, Form  } from 'redux-form';
+// import { connect } from 'react-redux';
+// import lodashmap from 'lodash.map';
+// import lodashget from 'lodash.get';
+// import lodashset from 'lodash.set';
+
 
 /*
 nursingmeasures:[
@@ -105,10 +105,19 @@ class PageForm extends React.Component {
         }
     }
 
-
-    PageForm = reduxForm({
-        form: 'NewnursingmeasuresForm',
-        initialValues:getdefaultnursingmeasures()
+const RetForm = ({formname,formvalues,...rest})=> {
+    const FormWrap = reduxForm({
+        form: formname,
+        initialValues: formvalues
     })(PageForm);
 
-    export default PageForm;
+    return <FormWrap {...rest} />
+}
+export default RetForm;
+    //
+    // PageForm = reduxForm({
+    //     form: 'NewnursingmeasuresForm',
+    //     initialValues:getdefaultnursingmeasures()
+    // })(PageForm);
+    //
+    // export default PageForm;

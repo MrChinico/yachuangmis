@@ -9,7 +9,11 @@ import InfoWoundsurface from './info_woundsurface';
 import InfoSmartdevice from '../smartdevice/patientinfo_smartdevice';
 import InfoLapsetto from '../evaluate/lapseto';
 import TitleDetail from './patientinfo_content_title_detail';
+
 import {getevaluatebardenlist_request} from '../../actions';
+import {getevaluatenursingmeasureslist_request} from '../../actions';
+import {getevaluatewoundsurfacelist_request} from '../../actions';
+
 import './index_details.css';
 
 const { Header } = Layout;
@@ -21,7 +25,10 @@ class App extends React.Component {
 				};
 		}
 		componentDidMount(){
-			this.props.dispatch(getevaluatebardenlist_request({}));
+			const {curpaientinfo} = this.props;
+			this.props.dispatch(getevaluatebardenlist_request({query:{userpatientid:curpaientinfo._id}}));
+			this.props.dispatch(getevaluatenursingmeasureslist_request({query:{userpatientid:curpaientinfo._id}}));
+			this.props.dispatch(getevaluatewoundsurfacelist_request({query:{userpatientid:curpaientinfo._id}}));
 		}
 
 		componentWillUnmount() {

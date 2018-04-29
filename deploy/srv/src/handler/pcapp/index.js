@@ -4,6 +4,8 @@ const userlogin = require('../common/userlogin');
 const patientinfo = require('../common/patientinfo.js');
 const depat = require('../common/depat.js');
 const evaluatebarden = require('../common/evaluatebarden.js');
+const evaluatenursingmeasures = require('../common/evaluatenursingmeasures.js');
+const evaluatewoundsurface = require('../common/evaluatewoundsurface.js');
 const debugapp = require('debug')('appsrv:app:index');
 
 const actiondatahandler = {
@@ -15,6 +17,12 @@ const actiondatahandler = {
   'createevaluatebarden':evaluatebarden.createevaluatebarden,
   'editevaluatebarden':evaluatebarden.editevaluatebarden,
   'getevaluatebardenlist':evaluatebarden.getevaluatebardenlist,
+  'createevaluatenursingmeasures':evaluatenursingmeasures.createevaluatenursingmeasures,
+  'editevaluatenursingmeasures':evaluatenursingmeasures.editevaluatenursingmeasures,
+  'getevaluatenursingmeasureslist':evaluatenursingmeasures.getevaluatenursingmeasureslist,
+  'createevaluatewoundsurface':evaluatewoundsurface.createevaluatewoundsurface,
+  'editevaluatewoundsurface':evaluatewoundsurface.editevaluatewoundsurface,
+  'getevaluatewoundsurfacelist':evaluatewoundsurface.getevaluatewoundsurfacelist,
 };
 
 const authhandler = {
