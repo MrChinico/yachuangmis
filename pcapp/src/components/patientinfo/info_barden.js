@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ContentTitleBar from './patientinfo_content_titlebar';
 import PTable from './table';
+
+
+
 class App extends React.Component {
 
 
@@ -25,19 +28,16 @@ class App extends React.Component {
 
 		}
   	render() {
-			const {curpaientinfo} = this.props;
+			const {curpaientinfo,evaluatebardenlist,evaluatebardens} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
 			let allrecords = [];
-			for(let i = 0 ;i <  58; i ++){
-				allrecords.push({
-					createtime:`2018-05-01 10:00:${i}`,
-					creator:`user${i}`,
-					score:`${i}`
-				});
+			for(let i = 0 ;i <  evaluatebardenlist.length; i ++){
+				const record = evaluatebardens[evaluatebardenlist[i]];
+				allrecords.push(record);
 			}
-			const fieldnames = ['createtime','creator','score'];
+			const fieldnames = ['created_at','usercreatorid','score'];
 	    return (
 	      	<div>
 						<ContentTitleBar title="Barden评估记录" titleNew="新建评估" titleView="查看&打印"
@@ -48,5 +48,9 @@ class App extends React.Component {
   	}
 }
 
+const mapStateToProps = ({evaluatebarden},props) => {
+		const {evaluatebardenlist,evaluatebardens} = evaluatebarden;
+    return {evaluatebardenlist,evaluatebardens};
+}
 App = withRouter(App);
-export default connect()(App);
+export default connect(mapStateToProps)(App);

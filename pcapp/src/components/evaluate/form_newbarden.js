@@ -7,8 +7,6 @@ import {getbardenstring} from '../../util/index';
 
 
 
-
-
 /*
 score_sensoryperception:{ type: Number, default: -1 },//感知
 score_moisture:{ type: Number, default: -1 },//潮湿

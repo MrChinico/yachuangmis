@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Layout,Button } from 'antd';
+import { Layout } from 'antd';
 import lodashget from 'lodash.get';
 import TitleDetail from '../patientinfo/patientinfo_content_title_detail';
 import NewbardenForm from './form_newbarden';
+import {createevaluatebarden_request} from '../../actions';
+
 
 const { Header } = Layout;
 
@@ -19,6 +21,9 @@ class App extends React.Component {
 		}
 		onClickSubmit =(values)=>{
 			console.log(values);
+			const {curpaientinfo} = this.props;
+			values.userpatientid = curpaientinfo._id;
+			this.props.dispatch(createevaluatebarden_request(values));
 			this.props.history.goBack();
 		}
   	render() {

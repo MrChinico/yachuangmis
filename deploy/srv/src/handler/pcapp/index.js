@@ -3,7 +3,7 @@ const systemconfig = require('../common/systemconfig');
 const userlogin = require('../common/userlogin');
 const patientinfo = require('../common/patientinfo.js');
 const depat = require('../common/depat.js');
-
+const evaluatebarden = require('../common/evaluatebarden.js');
 const debugapp = require('debug')('appsrv:app:index');
 
 const actiondatahandler = {
@@ -11,7 +11,10 @@ const actiondatahandler = {
   'loginwithtoken':userlogin.loginwithtoken,
   'logout':userlogin.logout,
   'login':userlogin.loginuser,
-  'page_getpatientinfolist_request':patientinfo.page_getpatientinfolist_request,
+  'page_getpatientinfolist':patientinfo.page_getpatientinfolist,
+  'createevaluatebarden':evaluatebarden.createevaluatebarden,
+  'editevaluatebarden':evaluatebarden.editevaluatebarden,
+  'getevaluatebardenlist':evaluatebarden.getevaluatebardenlist,
 };
 
 const authhandler = {

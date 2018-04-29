@@ -70,7 +70,7 @@ exports.getpatientinfolist = (actiondata,ctx,callback)=>{
 
 }
 
-exports.page_getpatientinfolist_request =  (actiondata,ctx,callback)=>{
+exports.page_getpatientinfolist =  (actiondata,ctx,callback)=>{
   const dbModel = DBModels.PatientinfoModel;
 
   actiondata.options = actiondata.options || {};

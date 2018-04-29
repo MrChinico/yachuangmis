@@ -9,6 +9,7 @@ import InfoWoundsurface from './info_woundsurface';
 import InfoSmartdevice from '../smartdevice/patientinfo_smartdevice';
 import InfoLapsetto from '../evaluate/lapseto';
 import TitleDetail from './patientinfo_content_title_detail';
+import {getevaluatebardenlist_request} from '../../actions';
 import './index_details.css';
 
 const { Header } = Layout;
@@ -20,11 +21,15 @@ class App extends React.Component {
 				};
 		}
 		componentDidMount(){
-
+			this.props.dispatch(getevaluatebardenlist_request({}));
 		}
 
 		componentWillUnmount() {
 
+		}
+
+		changePage = (index)=>{
+			this.setState({btnindex:index});
 		}
 
   	render() {
@@ -76,7 +81,7 @@ class App extends React.Component {
 										<Button className={btninfo.clsname} onClick={
 											()=>{
 												if(btninfo.isenabled){
-													this.setState({btnindex:index});
+													this.changePage(index);
 												}
 											}
 										}>{btninfo.title}</Button>

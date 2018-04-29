@@ -24,6 +24,15 @@ import {
     getdepatlist_request,
     getdepatlist_result,
 
+    createevaluatebarden_request,
+    createevaluatebarden_result,
+
+    editevaluatebarden_request,
+    editevaluatebarden_result,
+
+    getevaluatebardenlist_request,
+    getevaluatebardenlist_result
+
   } from '../actions';
 
 import {
@@ -32,6 +41,10 @@ import {
 } from './pagination';
 //接收的对应关系
 let recvmessagetoresultpair = {
+  'createevaluatebarden_result':createevaluatebarden_result,
+  'editevaluatebarden_result':editevaluatebarden_result,
+  'getevaluatebardenlist_result':getevaluatebardenlist_result,
+
   'page_getpatientinfolist_result':page_getpatientinfolist_result,
   'getpatientinfolist_result':getpatientinfolist_result,
   'getdepatlist_result':getdepatlist_result,
@@ -59,7 +72,11 @@ let sendmessagefnsz = {
   'getsystemconfig':`${getsystemconfig_request}`,
 
   'saveusersettings':`${saveusersettings_request}`,
-  'page_getpatientinfolist_request':`${page_getpatientinfolist_request}`
+  'page_getpatientinfolist':`${page_getpatientinfolist_request}`,
+
+  'createevaluatebarden':`${createevaluatebarden_request}`,
+  'editevaluatebarden':`${editevaluatebarden_request}`,
+  'getevaluatebardenlist':`${getevaluatebardenlist_request}`
 };
 
 //验证发送接口
