@@ -1,4 +1,4 @@
-let islocalhost = false;
+let islocalhost = true;
 const serverurl = islocalhost?'http://localhost:6012':'http://yc.i2u.top:6012';
 
 const serverurlrestful = islocalhost?`${serverurl}/api`:`${serverurl}/api`;

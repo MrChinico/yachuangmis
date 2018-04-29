@@ -1,4 +1,5 @@
-module.exports= [
+const _  = require('lodash');
+const jsonData=  [
   {
       "Staffno": "ST001",
       "Staffid":"001",
@@ -18,3 +19,16 @@ module.exports= [
       "Depatno":"DT001"
   },
 ]
+
+const getData = ()=>{
+  let jsonz = [];
+  for(let i = 0;i < 100; i++){
+    let json = _.clone(jsonData[0]);
+    json["Staffno"] = `T00${i}`;
+    json["Staffid"] = `No500${i}`;
+    json["Depatno"] = i%2 === 0?"DT001":"DT002";
+    jsonz.push(json);
+  }
+  return jsonz;
+}
+module.exports= getData;

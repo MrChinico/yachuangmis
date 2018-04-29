@@ -1,9 +1,10 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
-// const _ = require('lodash');
+const debug = require('debug')('appsrv:sync');
 const config = require('../config');
 
 const geturldata = (url,callbackfn)=>{
+  debug(`geturldata-->${url}`)
   fetch(url).then((res)=>{
     return res.json();
   }).then((json)=> {

@@ -24,11 +24,15 @@ import {
     getdepatlist_request,
     getdepatlist_result,
 
-
   } from '../actions';
 
+import {
+  page_getpatientinfolist_request,
+  page_getpatientinfolist_result
+} from './pagination';
 //接收的对应关系
 let recvmessagetoresultpair = {
+  'page_getpatientinfolist_result':page_getpatientinfolist_result,
   'getpatientinfolist_result':getpatientinfolist_result,
   'getdepatlist_result':getdepatlist_result,
 
@@ -55,6 +59,7 @@ let sendmessagefnsz = {
   'getsystemconfig':`${getsystemconfig_request}`,
 
   'saveusersettings':`${saveusersettings_request}`,
+  'page_getpatientinfolist_request':`${page_getpatientinfolist_request}`
 };
 
 //验证发送接口

@@ -1,4 +1,4 @@
-module.exports= [
+const jsonData= [
   {
       "Depatno": "DT001",
       "Depatname":"科室一"
@@ -8,3 +8,8 @@ module.exports= [
       "Depatname":"科室二"
   },
 ]
+
+const getData = ()=>{
+  return jsonData;
+}
+module.exports= getData;

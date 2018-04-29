@@ -1,19 +1,20 @@
 import { fork } from 'redux-saga/effects';
 import {wsflow} from './api.ws.js';
-// import {createsagacallbackflow} from './pagination';
+import {createsagacallbackflow} from './pagination';
 
 import {wsrecvsagaflow} from './wsrecvsaga';
-import {jpushflow} from './jpushflow';
+// import {jpushflow} from './jpushflow';
 
 import {socketflow} from './socketflow';
 import {uiflow} from './ui';
-import config from '../env/config.js';
+// import config from '../env/config.js';
 
 export default function* rootSaga() {
   try{
-    if(config.softmode === 'app'){
-      yield fork(jpushflow);
-    }
+    // if(config.softmode === 'app'){
+    //   yield fork(jpushflow);
+    // }
+    yield fork(createsagacallbackflow);
 
     yield fork(wsflow);
     yield fork(socketflow);

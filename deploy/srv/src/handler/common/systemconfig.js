@@ -10,7 +10,7 @@ exports.getsystemconfig = (actiondata,ctx,callbackfn)=>{
             callbackfn({
               cmd:'getsystemconfig_result',
               payload:{
-                bannerproducturls:_.get(systemconfig,'bannerproducturls',[])
+                Hospitalname:_.get(systemconfig,'Hospitalname','')
               }
             });
         }

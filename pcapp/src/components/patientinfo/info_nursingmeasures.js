@@ -24,6 +24,9 @@ class App extends React.Component {
 			const {curpaientinfo} = this.props;
 			this.props.history.push(`/viewprintrecordnursingmeasures/${curpaientinfo._id}`);
 		}
+		onClickEdit =(record)=>{
+
+		}
   	render() {
 			const {curpaientinfo} = this.props;
 			if(!curpaientinfo){

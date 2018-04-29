@@ -14,7 +14,7 @@ exports.getpatientinfolist = (actiondata,ctx,callback)=>{
 
   actiondata.options = actiondata.options || {};
   actiondata.options.lean = true;
-  payloadata.options.populate = [
+  actiondata.options.populate = [
     {
       path:'bedid', model: 'bed'
     },
@@ -68,4 +68,41 @@ exports.getpatientinfolist = (actiondata,ctx,callback)=>{
   //   }
   // });
 
+}
+
+exports.page_getpatientinfolist_request =  (actiondata,ctx,callback)=>{
+  const dbModel = DBModels.PatientinfoModel;
+
+  actiondata.options = actiondata.options || {};
+  actiondata.options.lean = true;
+  actiondata.options.populate = [
+    {
+      path:'bedid', model: 'bed'
+    },
+    {
+      path:'depatid',model:'depat'
+    }
+  ];
+  // getdepatlistids(ctx,(depatlistids)=>{
+    const query = {};
+    dbModel.paginate(query,actiondata.options,(err,result)=>{
+      if(!err){
+        let docs = [];
+        _.map(result.docs,(record)=>{
+          docs.push(record);
+        });
+
+        callback({
+          cmd:'page_getpatientinfolist_result',
+          payload:{result}
+        });
+      }
+      else{
+        callback({
+          cmd:'common_err',
+          payload:{errmsg:err.message,type:'page_getpatientinfolist_result'}
+        });
+      }
+    });
+  // });
 }

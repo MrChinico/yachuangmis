@@ -11,6 +11,7 @@ const actiondatahandler = {
   'loginwithtoken':userlogin.loginwithtoken,
   'logout':userlogin.logout,
   'login':userlogin.loginuser,
+  'page_getpatientinfolist_request':patientinfo.page_getpatientinfolist_request,
 };
 
 const authhandler = {
@@ -22,7 +23,7 @@ const authhandler = {
 module.exports = (socket,actiondata,ctx)=>{
   debugapp(`${actiondata.cmd},actiondata:${JSON.stringify(actiondata.data)},ctx==>${JSON.stringify(ctx)}`);
   try{
-      if(ctx.usertype !== 'app'){
+      if(ctx.usertype !== 'pcapp'){
         debugapp("不是正确的客户端--->" + actiondata.cmd);
         socket.emit('common_err',{errmsg:'无效的app客户端'});
         return;
