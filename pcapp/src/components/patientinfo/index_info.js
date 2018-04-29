@@ -61,11 +61,11 @@ class App extends React.Component {
 			return (
 					<Layout>
 						<Header>
-							<span><img src="index.png" className="icon-index" alt=""/>病人列表-张三丰</span>
+							<span><img src="index.png" className="icon-index" alt=""/>病人评估</span>
 						</Header>
 						<div className="content-box">
 						<div className="content assess">
-							<h2>21206<span>张三丰</span>
+							<h2>{lodashget(curpaientinfo,'Patientno','')}<span>{lodashget(curpaientinfo,'Patientname','')}</span>
 								<button className="return" onClick={
 									()=>{
 										this.props.history.goBack();

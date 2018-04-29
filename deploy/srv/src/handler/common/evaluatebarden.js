@@ -55,7 +55,7 @@ exports.getevaluatebardenlist = (actiondata,ctx,callback)=>{
   dbModel.find(actiondata.query).lean().exec((err,list)=>{
     if(!err && !!list){
       callback({
-        cmd:'editevaluatebarden_result',
+        cmd:'getevaluatebardenlist_result',
         payload:{list}
       });
     }

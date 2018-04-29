@@ -246,17 +246,12 @@ class PageForm extends React.Component {
     }
 
 
-    PageForm = reduxForm({
-        form: 'NewbardenForm',
-        initialValues:{
-          score_sensoryperception:0,//感知
-          score_moisture:0,//潮湿
-          score_activity:0,//活动能力
-          score_mobility:0,//移动能力
-          score_nutrition:0,//营养
-          score_friction:0,//摩擦力/剪切力
-          score:0,
-        },
+const RetForm = ({formname,formvalues,...rest})=> {
+    const FormWrap = reduxForm({
+        form: formname,
+        initialValues: formvalues
     })(PageForm);
 
-    export default PageForm;
+    return <FormWrap {...rest} />
+}
+export default RetForm;
