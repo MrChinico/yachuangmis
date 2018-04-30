@@ -129,7 +129,6 @@ class App extends React.Component {
        }
      }
 
-
 		// onClickDetail = (pid)=>{
 		// 	this.props.history.push(`/indexdetail/${pid}`);
 		// }
@@ -155,16 +154,10 @@ class App extends React.Component {
 							pageSize={this.state.pagination.pageSize}
 							onChange={this.onChangePagination}
 						/>
-
 	      	</Content>
 	    );
   	}
 }
 
 
-// const mapStateToProps = ({paientinfo}) => {
-// 		const {paientinfolist,paientinfos} = paientinfo;
-//     return {paientinfolist,paientinfos};
-// }
-App = withRouter(App);
-export default connect()(App);
+export default connect(null, null, null, { withRef: true })(App);

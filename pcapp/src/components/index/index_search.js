@@ -2,11 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Layout } from 'antd';
 import Patientinfolist from './index_patientinfolist';
+import { Input } from 'antd'
+// import lodashget from 'lodash.get';
+const Search = Input.Search;
 const { Header } = Layout;
 
 class App extends React.Component {
 
-
+		constructor(props) {
+			super(props);
+			this.state = {
+				query:{},
+				searchtxt:''
+			}
+		}
 		componentDidMount(){
 
 		}
@@ -15,15 +24,48 @@ class App extends React.Component {
 
 		}
 
+		onSearch = (value)=>{
+			// value => console.log(value)
+			this.setState({
+				searchtxt:value,
+				query:{
+					'Patientname_q':value
+				}
+			});
+
+			window.setTimeout(()=>{
+				console.log(this.refs);
+				// const refhande = lodashget(this,``)
+				const h1 = this.refs.plistsearch;
+				if(!!h1){
+					const h2 = h1.refs.refpaientinfo.getWrappedInstance();
+					if(!!h2){
+						h2.onRefresh();
+					}
+				}
+			},0);
+		}
+
   	render() {
+			const showtext = this.state.searchtxt === ''?'所有病人记录':`${this.state.searchtxt}的搜索结果`;
 	    return (
 	      	<Layout>
 						<Header>
-							<span><img src="index.png" className="icon-index" alt=""/>病人列表-张三丰</span>
+							<span><img src="index.png" className="icon-index" alt=""/>病人搜索</span>
+							<span>
+								<Search
+									 placeholder="输入病人姓名"
+									 onSearch={(value)=>{
+										 this.onSearch(value);
+									 }}
+									 enterButton
+								 />
+							</span>
 						</Header>
 						<div className="index-box">
 							<div className="index-content assess">
-								<h2 className="bbm-green">“张三”的搜索结果，共2条记录！
+								<h2 className="bbm-green">
+									{showtext}
 									<button className="return" onClick={
 									()=>{
 										this.props.history.goBack();
@@ -32,23 +74,8 @@ class App extends React.Component {
 									<div className="clearfix">
 								</div>
 								</h2>
-
-								 {/* <div className="modify-password" >
-									<h1>您好，张三！<img src="close-white.png" alt=""/><div className="clearfix"></div></h1>
-									<p><span>旧&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</span><input type="text" /></p>
-									<p><span>新&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</span><input type="text" /></p>
-									<p><span>新密码确认：</span><input type="text" /></p>
-									<div className="modify">
-										<button className="ant-btn-edit">确认修改</button>
-									</div>
-								</div> */}
-
-								{/*<div className="modify-password" style="display:none">
-									<h1>您好，张三！<img src="close-white.png" /><div className="clearfix"></div></h1>
-									<p><span className="bbm">修改密码</span></p>
-									<p><span className="bbm">退出账号</span></p>
-								</div>*/}
-								<Patientinfolist query={{}}/>
+								<Patientinfolist query={this.state.query}
+									ref='plistsearch'/>
 							</div>
 						</div>
 

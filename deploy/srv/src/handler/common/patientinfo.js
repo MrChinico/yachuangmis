@@ -84,7 +84,20 @@ exports.page_getpatientinfolist =  (actiondata,ctx,callback)=>{
     }
   ];
   // getdepatlistids(ctx,(depatlistids)=>{
-    const query = {};
+    let querypre = actiondata.query;
+    let query = {};
+    _.map(querypre,(value,key)=>{
+      let keysz = key.split('_');
+      if(keysz.length === 2){
+        if(keysz[1]=== 'q'){
+          query[keysz[0]] = new RegExp(value,'ig');
+        }
+      }
+      else{
+        query[key] = value;
+      }
+    });
+    debug(`搜索条件:${JSON.stringify(query)}`);
     dbModel.paginate(query,actiondata.options,(err,result)=>{
       if(!err){
         let docs = [];
