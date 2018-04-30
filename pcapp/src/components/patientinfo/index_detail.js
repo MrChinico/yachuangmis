@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Layout } from 'antd';
 import lodashget from 'lodash.get';
 import TitleDetail from './patientinfo_content_title_detail';
-
+import './index_details.css';
 const { Header } = Layout;
 class App extends React.Component {
 

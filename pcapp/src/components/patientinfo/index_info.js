@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Layout,Button } from 'antd';
+import { Layout } from 'antd';
 import lodashget from 'lodash.get';
 import lodashmap from 'lodash.map';
 import InfoBarden from './info_barden';
@@ -9,12 +9,17 @@ import InfoWoundsurface from './info_woundsurface';
 import InfoSmartdevice from '../smartdevice/patientinfo_smartdevice';
 import InfoLapsetto from '../evaluate/lapseto';
 import TitleDetail from './patientinfo_content_title_detail';
-
+// import styled from 'styled-components';
 import {getevaluatebardenlist_request} from '../../actions';
 import {getevaluatenursingmeasureslist_request} from '../../actions';
 import {getevaluatewoundsurfacelist_request} from '../../actions';
 
-import './index_details.css';
+import { Tabs } from 'antd';
+import './index_info.css';
+
+const TabPane = Tabs.TabPane;
+
+
 
 const { Header } = Layout;
 let defaultbtnkey = 'btnbd';
@@ -54,31 +59,36 @@ class App extends React.Component {
 					btnkey:'btnbd',
 					title:'Barden评估',
 					visible:true,
-					enabled:true
+					enabled:true,
+					Co:<InfoBarden curpaientinfo={curpaientinfo} />
 				},
 				{
 					btnkey:'btnws',
 					title:'创面评估',
 					visible:true,
-					enabled:true
+					enabled:true,
+					Co:<InfoWoundsurface curpaientinfo={curpaientinfo} />
 				},
 				{
 					btnkey:'btnnm',
 					title:'护理措施',
 					visible:true,
-					enabled:true
+					enabled:true,
+					Co:<InfoNursingmeasures curpaientinfo={curpaientinfo} />
 				},
 				{
 					btnkey:'btnls',
 					title:'转归与申报',
 					visible:true,
-					enabled:true
+					enabled:true,
+					Co:<InfoLapsetto curpaientinfo={curpaientinfo} />
 				},
 				{
 					btnkey:'btnto',
 					title:'翻身治疗',
 					visible:true,
-					enabled:true
+					enabled:true,
+					Co:<InfoSmartdevice curpaientinfo={curpaientinfo} />
 				},
 
 			];
@@ -91,6 +101,7 @@ class App extends React.Component {
 						title:btninfo['title'],
 						enabled:btninfo['enabled'],
 						visible:btninfo['visible'],
+						Co:btninfo['Co']
 					});
 				}
 				else{
@@ -100,6 +111,7 @@ class App extends React.Component {
 						title:btninfo['title'],
 						enabled:btninfo['enabled'],
 						visible:btninfo['visible'],
+						Co:btninfo['Co']
 					});
 				}
 			});
@@ -129,31 +141,24 @@ class App extends React.Component {
 								<div className="clearfix"></div>
 							</h2>
 							<TitleDetail curpaientinfo={curpaientinfo} />
-							<div className="assess-btn-box">
+							</div>
+							<div className="tabcontent">
+								<Tabs onChange={this.changePage} type="card">
 								{
 									lodashmap(btnz,(btninfo,index)=>{
 										if(btninfo.visible){
-											return (<div className="assess-btn" key={index}>
-											<Button className={btninfo.clsname} onClick={
-												()=>{
-													if(btninfo.enabled){
-														this.changePage(btninfo.btnkey);
-													}
-												}
-											}>{btninfo.title}</Button>
-											</div>)
+											return (
+												<TabPane tab={btninfo.title} key={btninfo.btnkey}>
+														 <div className="record">
+															 {btninfo.Co}
+														 </div>
+												</TabPane>);
 										}
 									})
 								}
+								</Tabs>
 							</div>
-							</div>
-								<div className="record">
-									{this.state.btnkey === 'btnbd' && <InfoBarden curpaientinfo={curpaientinfo} />}
-									{this.state.btnkey === 'btnws' && <InfoWoundsurface curpaientinfo={curpaientinfo} />}
-									{this.state.btnkey === 'btnnm' && <InfoNursingmeasures curpaientinfo={curpaientinfo} />}
-									{this.state.btnkey === 'btnls' && <InfoLapsetto curpaientinfo={curpaientinfo} />}
-									{this.state.btnkey === 'btnto' && <InfoSmartdevice curpaientinfo={curpaientinfo} />}
-								</div>
+
 						</div>
 
 					</Layout>

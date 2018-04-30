@@ -22,7 +22,7 @@ import Review from './review/reviewlist';
 import ReviewDetail from './review/reviewdetail';
 import SearchPaientinfo from './index/index_search';
 // import Login from './login';
-import 'antd/dist/antd.css';
+import './antd.css';
 import {requireAuthentication} from './requireauthentication';
 
 

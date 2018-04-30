@@ -364,7 +364,7 @@ input{
     color: #555 !important;
     background: #bbb !important;
 }
-.assess-btn-box{
+/*.assess-btn-box{
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -388,7 +388,8 @@ input{
 }
 .assess-btn-box .assess-btn button.on{
     background-color: #009B86 !important;
-}
+}*/
+
 .record{
     color:#000;
     font-size: 17px;
