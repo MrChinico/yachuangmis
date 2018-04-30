@@ -43,7 +43,6 @@ class App extends React.Component {
 		}
 
 		changePage = (btnkey)=>{
-			this.setState({btnkey});
 			defaultbtnkey = btnkey;
 		}
 
@@ -52,7 +51,6 @@ class App extends React.Component {
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
-			const {btnkey} = this.state;
 			let btnz = [];
 			const btninfoz = [
 				{
@@ -94,26 +92,13 @@ class App extends React.Component {
 			];
 
 			lodashmap(btninfoz,(btninfo)=>{
-				if(btninfo['btnkey']=== btnkey){
 					btnz.push({
-						clsname:'on',
 						btnkey:btninfo['btnkey'],
 						title:btninfo['title'],
 						enabled:btninfo['enabled'],
 						visible:btninfo['visible'],
 						Co:btninfo['Co']
 					});
-				}
-				else{
-					btnz.push({
-						clsname:'off',
-						btnkey:btninfo['btnkey'],
-						title:btninfo['title'],
-						enabled:btninfo['enabled'],
-						visible:btninfo['visible'],
-						Co:btninfo['Co']
-					});
-				}
 			});
 
 			if(!curpaientinfo.firstevaluatebardenid){
@@ -143,7 +128,7 @@ class App extends React.Component {
 							<TitleDetail curpaientinfo={curpaientinfo} />
 							</div>
 							<div className="tabcontent">
-								<Tabs onChange={this.changePage} type="card">
+								<Tabs onChange={this.changePage} type="card" defaultActiveKey={defaultbtnkey}>
 								{
 									lodashmap(btnz,(btninfo,index)=>{
 										if(btninfo.visible){
