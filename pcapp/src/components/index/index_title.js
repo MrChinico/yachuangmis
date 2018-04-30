@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Layout,Button } from 'antd';
+import { Layout } from 'antd';
+import {set_uiapp} from '../../actions';
+
 const { Header } = Layout;
 class App extends React.Component {
 		componentDidMount(){
@@ -22,7 +24,7 @@ class App extends React.Component {
 			this.props.history.replace(`/review`);
 		}
 		onClickUser = ()=>{
-
+			this.props.dispatch(set_uiapp({ispopuserinfo:true}));
 		}
 
   	render() {

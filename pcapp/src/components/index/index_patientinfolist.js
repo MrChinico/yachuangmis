@@ -34,7 +34,8 @@ class App extends React.Component {
       return item;
     }
   	render() {
-      return (<AsyncTable
+      return (
+        <AsyncTable
           onClickDetail = {this.onClickDetail}
           onClickEvalute = {this.onClickEvalute}
           listtypeid = 'antdtablealarmdetail'
@@ -42,7 +43,7 @@ class App extends React.Component {
           ref='antdtablealarmdetail'
           onItemConvert={this.onItemConvert.bind(this)}
           pagenumber={16}
-          query={{}}
+          query={this.props.query}
           sort={{DataTime: -1}}
           queryfun={(payload)=>{
             return callthen(page_getpatientinfolist_request,page_getpatientinfolist_result,payload);

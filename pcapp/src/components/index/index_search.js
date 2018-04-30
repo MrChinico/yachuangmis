@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Layout,Button } from 'antd';
+import { Layout } from 'antd';
 import Patientinfolist from './index_patientinfolist';
 const { Header } = Layout;
 
@@ -32,9 +32,9 @@ class App extends React.Component {
 									<div className="clearfix">
 								</div>
 								</h2>
-								
-								{/* <div className="modify-password" style="display:none">
-									<h1>您好，张三！<img src="close-white.png" /><div className="clearfix"></div></h1>
+
+								 {/* <div className="modify-password" >
+									<h1>您好，张三！<img src="close-white.png" alt=""/><div className="clearfix"></div></h1>
 									<p><span>旧&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</span><input type="text" /></p>
 									<p><span>新&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</span><input type="text" /></p>
 									<p><span>新密码确认：</span><input type="text" /></p>
@@ -42,16 +42,16 @@ class App extends React.Component {
 										<button className="ant-btn-edit">确认修改</button>
 									</div>
 								</div> */}
-								
-								<div className="modify-password">
+
+								{/*<div className="modify-password" style="display:none">
 									<h1>您好，张三！<img src="close-white.png" /><div className="clearfix"></div></h1>
 									<p><span className="bbm">修改密码</span></p>
 									<p><span className="bbm">退出账号</span></p>
-								</div>
-								<Patientinfolist />
+								</div>*/}
+								<Patientinfolist query={{}}/>
 							</div>
 						</div>
-						
+
 	      	</Layout>
 	    );
   	}

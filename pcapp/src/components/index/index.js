@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Layout } from 'antd';
 import HeadTitle from './index_title';
 import Patientinfolist from './index_patientinfolist';
+import Changepwd from "../popdialog/pwd.js";
+import Usercenter from "../popdialog/usercenter.js";
 class App extends React.Component {
 
 	// constructor(props) {
@@ -18,28 +20,19 @@ class App extends React.Component {
 		}
 
   	render() {
+			const {ispopuserinfo,ispoppwd} = this.props;
 	    return (
 	      	<Layout>
 						<HeadTitle />
-						<Patientinfolist />
+						<Patientinfolist query={{}}/>
+						{ispopuserinfo  && <Usercenter /> }
+						{ispoppwd && <Changepwd />}
 	      	</Layout>
 	    );
   	}
 }
 
-// const mapStateToProps = ({app:{ispopuserinfo,ispoppwd,ispopcare,ispopcaresel_single_index,mapstyle},
-// 	device:{devicelist,devices,devicetype},
-// 	userlogin:{usersettings,loginsuccess}}) => {
-// 		let curdevice;
-// 		let curdeviceid = lodashget(usersettings,'indexdeviceid');
-// 		if(!!curdeviceid){
-// 			curdevice = devices[curdeviceid];
-// 		}
-// 		if(!curdevice){
-// 			if(devicelist.length > 0){
-// 				curdevice = devices[devicelist[0]];
-// 			}
-// 		}
-//     return {ispopuserinfo,ispoppwd,ispopcare,ispopcaresel_single_index,curdevice,loginsuccess,devices,usersettings,mapstyle,devicetype};
-// }
-export default connect()(App);
+const mapStateToProps = ({app:{ispopuserinfo,ispoppwd}}) => {
+    return {ispopuserinfo,ispoppwd};
+}
+export default connect(mapStateToProps)(App);
