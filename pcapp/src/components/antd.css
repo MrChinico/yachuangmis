@@ -6418,9 +6418,9 @@ span.ant-radio + * {
   line-height: 38px;
 }
 .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
-  background: #fff;
+  background: #009B86;
   border-color: #e8e8e8;
-  color: #1890ff;
+  color: #fff;
   padding-bottom: 1px;
 }
 .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-inactive {
