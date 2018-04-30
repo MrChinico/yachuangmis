@@ -24,7 +24,8 @@ class App extends React.Component {
 	    return (
 	      	<Layout>
 						<HeadTitle />
-						<Patientinfolist query={{}}/>
+						<Patientinfolist query={{}}
+						history={this.props.history}/>
 						{ispopuserinfo  && <Usercenter /> }
 						{ispoppwd && <Changepwd />}
 	      	</Layout>

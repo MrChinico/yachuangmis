@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import lodashmap from 'lodash.map';
 import lodashget from 'lodash.get';
 import { Layout } from 'antd';
