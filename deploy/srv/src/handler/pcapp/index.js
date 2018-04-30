@@ -14,6 +14,7 @@ const actiondatahandler = {
   'logout':userlogin.logout,
   'login':userlogin.loginuser,
   'page_getpatientinfolist':patientinfo.page_getpatientinfolist,
+  'editpatientinfo':patientinfo.editpatientinfo,
   'createevaluatebarden':evaluatebarden.createevaluatebarden,
   'editevaluatebarden':evaluatebarden.editevaluatebarden,
   'getevaluatebardenlist':evaluatebarden.getevaluatebardenlist,

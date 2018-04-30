@@ -49,7 +49,10 @@ import {
     editevaluatewoundsurface_result,
 
     getevaluatewoundsurfacelist_request,
-    getevaluatewoundsurfacelist_result
+    getevaluatewoundsurfacelist_result,
+
+    editpatientinfo_request,
+    editpatientinfo_result
 
   } from '../actions';
 
@@ -71,6 +74,7 @@ let recvmessagetoresultpair = {
   'editevaluatewoundsurface_result':editevaluatewoundsurface_result,
   'getevaluatewoundsurfacelist_result':getevaluatewoundsurfacelist_result,
 
+  'editpatientinfo_result':editpatientinfo_result,
   'page_getpatientinfolist_result':page_getpatientinfolist_result,
   'getpatientinfolist_result':getpatientinfolist_result,
   'getdepatlist_result':getdepatlist_result,
@@ -99,7 +103,7 @@ let sendmessagefnsz = {
 
   'saveusersettings':`${saveusersettings_request}`,
   'page_getpatientinfolist':`${page_getpatientinfolist_request}`,
-
+  'editpatientinfo':`${editpatientinfo_request}`,
   'createevaluatebarden':`${createevaluatebarden_request}`,
   'editevaluatebarden':`${editevaluatebarden_request}`,
   'getevaluatebardenlist':`${getevaluatebardenlist_request}`,

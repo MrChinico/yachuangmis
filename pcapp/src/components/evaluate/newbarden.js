@@ -29,7 +29,7 @@ class App extends React.Component {
 				this.props.dispatch(editevaluatebarden_request(newcurevaluatebarden));
 			}
 
-			this.props.history.goBack();//后面放到saga中
+			// this.props.history.goBack();//后面放到saga中
 		}
   	render() {
 			const {curpaientinfo,isnew,curevaluatebarden} = this.props;

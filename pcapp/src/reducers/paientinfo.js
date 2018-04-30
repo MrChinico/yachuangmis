@@ -1,9 +1,13 @@
 import { createReducer } from 'redux-act';
 import {
+  editpatientinfo_result,
   getpatientinfolist_result,
  } from '../actions';
 import lodashmap from 'lodash.map';
-import {page_getpatientinfolist_result} from '../sagas/pagination';
+import {
+
+  page_getpatientinfolist_result
+} from '../sagas/pagination';
 // let paientinfolist = [];
 // let paientinfos = {};
 //
@@ -39,6 +43,11 @@ const initial = {
 };
 
 const paientinfo = createReducer({
+  [editpatientinfo_result]:(state,payload)=>{
+     let paientinfos = {...state.paientinfos};
+      paientinfos[payload._id] = payload;
+      return {...state,paientinfos};
+  },
   [page_getpatientinfolist_result]:(state,payload)=>{
       const {result} = payload;
       const paientinfolist = [];

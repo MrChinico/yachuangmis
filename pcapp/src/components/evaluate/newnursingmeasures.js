@@ -32,7 +32,7 @@ class App extends React.Component {
 
 
 			console.log(values);
-			this.props.history.goBack();
+			// this.props.history.goBack();
 		}
   	render() {
 			const {curpaientinfo,isnew,curevaluatenursingmeasures} = this.props;

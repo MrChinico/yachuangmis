@@ -17,26 +17,29 @@ import {getevaluatewoundsurfacelist_request} from '../../actions';
 import './index_details.css';
 
 const { Header } = Layout;
+let defaultbtnkey = 'btnbd';
 class App extends React.Component {
 		constructor(props) {
 				super(props);
 				this.state = {
-						btnindex : 0
+						btnkey : defaultbtnkey
 				};
 		}
 		componentDidMount(){
 			const {curpaientinfo} = this.props;
-			this.props.dispatch(getevaluatebardenlist_request({query:{userpatientid:curpaientinfo._id}}));
-			this.props.dispatch(getevaluatenursingmeasureslist_request({query:{userpatientid:curpaientinfo._id}}));
-			this.props.dispatch(getevaluatewoundsurfacelist_request({query:{userpatientid:curpaientinfo._id}}));
+			if(!!curpaientinfo){
+				this.props.dispatch(getevaluatebardenlist_request({query:{userpatientid:curpaientinfo._id}}));
+				this.props.dispatch(getevaluatenursingmeasureslist_request({query:{userpatientid:curpaientinfo._id}}));
+				this.props.dispatch(getevaluatewoundsurfacelist_request({query:{userpatientid:curpaientinfo._id}}));
+			}
 		}
 
 		componentWillUnmount() {
-
 		}
 
-		changePage = (index)=>{
-			this.setState({btnindex:index});
+		changePage = (btnkey)=>{
+			this.setState({btnkey});
+			defaultbtnkey = btnkey;
 		}
 
   	render() {
@@ -44,27 +47,71 @@ class App extends React.Component {
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
-			const {btnindex} = this.state;
+			const {btnkey} = this.state;
 			let btnz = [];
-			const btnisenabled = [true,true,true,true,true];
-			const btntitle = ['Barden评估','创面评估','护理措施','转归与申报','翻身治疗']
-			for(let i = 0 ;i < 5 ; i++){
-				if(i === btnindex){
+			const btninfoz = [
+				{
+					btnkey:'btnbd',
+					title:'Barden评估',
+					visible:true,
+					enabled:true
+				},
+				{
+					btnkey:'btnws',
+					title:'创面评估',
+					visible:true,
+					enabled:true
+				},
+				{
+					btnkey:'btnnm',
+					title:'护理措施',
+					visible:true,
+					enabled:true
+				},
+				{
+					btnkey:'btnls',
+					title:'转归与申报',
+					visible:true,
+					enabled:true
+				},
+				{
+					btnkey:'btnto',
+					title:'翻身治疗',
+					visible:true,
+					enabled:true
+				},
+
+			];
+
+			lodashmap(btninfoz,(btninfo)=>{
+				if(btninfo['btnkey']=== btnkey){
 					btnz.push({
 						clsname:'on',
-						title:btntitle[i],
-						isenabled:btnisenabled[i]
+						btnkey:btninfo['btnkey'],
+						title:btninfo['title'],
+						enabled:btninfo['enabled'],
+						visible:btninfo['visible'],
 					});
 				}
 				else{
 					btnz.push({
 						clsname:'off',
-						title:btntitle[i],
-						isenabled:btnisenabled[i]
+						btnkey:btninfo['btnkey'],
+						title:btninfo['title'],
+						enabled:btninfo['enabled'],
+						visible:btninfo['visible'],
 					});
 				}
-			}
+			});
 
+			if(!curpaientinfo.firstevaluatebardenid){
+				//没有首次评估,仅显示第一个按钮
+				lodashmap(btnz,(info,index)=>{
+					if(index > 0){
+						info.visible = false;
+					}
+				})
+			}
 			return (
 					<Layout>
 						<Header>
@@ -75,6 +122,7 @@ class App extends React.Component {
 							<h2>{lodashget(curpaientinfo,'Patientno','')}<span>{lodashget(curpaientinfo,'Patientname','')}</span>
 								<button className="return" onClick={
 									()=>{
+										defaultbtnkey = 'btnbd';
 										this.props.history.goBack();
 									}
 								}><img src="return.png" alt=""/></button>
@@ -84,29 +132,28 @@ class App extends React.Component {
 							<div className="assess-btn-box">
 								{
 									lodashmap(btnz,(btninfo,index)=>{
-										return (<div className="assess-btn" key={index}>
-										<Button className={btninfo.clsname} onClick={
-											()=>{
-												if(btninfo.isenabled){
-													this.changePage(index);
+										if(btninfo.visible){
+											return (<div className="assess-btn" key={index}>
+											<Button className={btninfo.clsname} onClick={
+												()=>{
+													if(btninfo.enabled){
+														this.changePage(btninfo.btnkey);
+													}
 												}
-											}
-										}>{btninfo.title}</Button>
-										</div>)
+											}>{btninfo.title}</Button>
+											</div>)
+										}
 									})
 								}
 							</div>
 							</div>
-
 								<div className="record">
-									{this.state.btnindex === 0 && <InfoBarden curpaientinfo={curpaientinfo} />}
-									{this.state.btnindex === 1 && <InfoWoundsurface curpaientinfo={curpaientinfo} />}
-									{this.state.btnindex === 2 && <InfoNursingmeasures curpaientinfo={curpaientinfo} />}
-									{this.state.btnindex === 3 && <InfoLapsetto curpaientinfo={curpaientinfo} />}
-									{this.state.btnindex === 4 && <InfoSmartdevice curpaientinfo={curpaientinfo} />}
+									{this.state.btnkey === 'btnbd' && <InfoBarden curpaientinfo={curpaientinfo} />}
+									{this.state.btnkey === 'btnws' && <InfoWoundsurface curpaientinfo={curpaientinfo} />}
+									{this.state.btnkey === 'btnnm' && <InfoNursingmeasures curpaientinfo={curpaientinfo} />}
+									{this.state.btnkey === 'btnls' && <InfoLapsetto curpaientinfo={curpaientinfo} />}
+									{this.state.btnkey === 'btnto' && <InfoSmartdevice curpaientinfo={curpaientinfo} />}
 								</div>
-
-
 						</div>
 
 					</Layout>
