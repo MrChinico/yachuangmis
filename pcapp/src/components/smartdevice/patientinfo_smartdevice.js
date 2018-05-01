@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button } from 'antd';
-import lodashget from 'lodash.get';
+// import { Button } from 'antd';
+// import lodashget from 'lodash.get';
 
 
 class App extends React.Component {
@@ -20,8 +20,8 @@ class App extends React.Component {
 			this.props.history.push(`/defineturnover/${curpaientinfo._id}/${curpaientinfo.bid}`)
 		}
   	render() {
-			const {curpaientinfo} = this.props;
-			if(!curpaientinfo){
+			const {curpaientinfo,cursmartdevice} = this.props;
+			if(!curpaientinfo || !cursmartdevice){
 				return <div>无病人信息</div>
 			}
 	    return (

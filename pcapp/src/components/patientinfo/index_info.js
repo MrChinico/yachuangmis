@@ -47,7 +47,7 @@ class App extends React.Component {
 		}
 
   	render() {
-			const {curpaientinfo} = this.props;
+			const {curpaientinfo,cursmartdevice} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -86,7 +86,7 @@ class App extends React.Component {
 					title:'翻身治疗',
 					visible:true,
 					enabled:true,
-					Co:<InfoSmartdevice curpaientinfo={curpaientinfo} />
+					Co:<InfoSmartdevice curpaientinfo={curpaientinfo} cursmartdevice={cursmartdevice} />
 				},
 
 			];
@@ -129,6 +129,12 @@ class App extends React.Component {
 					}
 				});
 			}
+
+			if(!cursmartdevice){
+				btnz[btnz.length - 1].visible = false;
+			}
+
+
 			return (
 					<Layout>
 						<Header>
@@ -173,9 +179,17 @@ class App extends React.Component {
 }
 
 const mapStateToProps = ({db},props) => {
-		const {paientinfos} = db;
+		const {paientinfos,beds,smartdevices} = db;
 		const id = lodashget(props,'match.params.pid');
 		let curpaientinfo = paientinfos[id];
-    return {curpaientinfo};
+		let cursmartdevice;
+		if(!!curpaientinfo){
+			const curbed = beds[curpaientinfo.bedid];
+			if(!!curbed){
+				const smartdeviceid = curbed.smartdeviceid;
+				cursmartdevice = smartdevices[smartdeviceid];
+			}
+		}
+    return {curpaientinfo,cursmartdevice};
 }
 export default connect(mapStateToProps)(App);

@@ -20,7 +20,7 @@ import {
   getevaluatewoundsurfacelist_result
 } from '../actions';
 import { goBack  } from 'react-router-redux';
-import lodashmap from 'lodash.map';
+// import lodashmap from 'lodash.map';
 import {
   normalizr_paientinfo,
   normalizr_evaluatebarden,
@@ -88,7 +88,7 @@ export function* wsrecvsagabizflow() {
 
       if(i === 0 ||  i === 2 || i === 4){
         const paientinfo = yield select((state)=>{
-          const {paientinfos} = state.paientinfo;
+          const {paientinfos} = state.db;
           return paientinfos[payload.userpatientid];
         });
         if(!!paientinfo){

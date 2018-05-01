@@ -31,12 +31,14 @@ class App extends React.Component {
 
 		renderTableRecord = (record)=>{
 			const {users} = this.props;
-
-			return [
-				<span key={0}>{lodashget(record,'created_at','')}</span>,
-				<span key={1}>评估护士:{lodashget(users[record.usercreatorid],'username','')}</span>,
-				<span key={3} onClick={()=>{this.onClickEdit(record);}}>详情</span>
-			];
+			if(!!record){
+				return [
+					<span key={0}>{lodashget(record,'created_at','')}</span>,
+					<span key={1}>评估护士:{lodashget(users[record.usercreatorid],'username','')}</span>,
+					<span key={3} onClick={()=>{this.onClickEdit(record);}}>详情</span>
+				];
+			};
+			return [];
 		}
   	render() {
 			const {curpaientinfo,evaluatenursingmeasureslist,evaluatenursingmeasuress} = this.props;
