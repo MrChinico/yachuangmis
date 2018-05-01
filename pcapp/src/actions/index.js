@@ -7,3 +7,4 @@ export * from './userlogin';
 export * from './evaluatebarden';
 export * from './evaluatenursingmeasures';
 export * from './evaluatewoundsurface';
+export * from './smartdevice';

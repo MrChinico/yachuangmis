@@ -6,6 +6,7 @@ const depat = require('../common/depat.js');
 const evaluatebarden = require('../common/evaluatebarden.js');
 const evaluatenursingmeasures = require('../common/evaluatenursingmeasures.js');
 const evaluatewoundsurface = require('../common/evaluatewoundsurface.js');
+const smartdevice = require('../common/smartdevice');
 const debugapp = require('debug')('appsrv:app:index');
 
 const actiondatahandler = {
@@ -25,6 +26,7 @@ const actiondatahandler = {
   'createevaluatewoundsurface':evaluatewoundsurface.createevaluatewoundsurface,
   'editevaluatewoundsurface':evaluatewoundsurface.editevaluatewoundsurface,
   'getevaluatewoundsurfacelist':evaluatewoundsurface.getevaluatewoundsurfacelist,
+  'sendsmartdevicecmd':smartdevice.sendsmartdevicecmd
 };
 
 const authhandler = {

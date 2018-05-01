@@ -52,8 +52,10 @@ import {
     getevaluatewoundsurfacelist_result,
 
     editpatientinfo_request,
-    editpatientinfo_result
+    editpatientinfo_result,
 
+    sendsmartdevicecmd_request,
+    sendsmartdevicecmd_result
   } from '../actions';
 
 import {
@@ -62,6 +64,8 @@ import {
 } from './pagination';
 //接收的对应关系
 let recvmessagetoresultpair = {
+  'sendsmartdevicecmd_result':sendsmartdevicecmd_result,
+
   'createevaluatebarden_result':createevaluatebarden_result,
   'editevaluatebarden_result':editevaluatebarden_result,
   'getevaluatebardenlist_result':getevaluatebardenlist_result,
@@ -100,6 +104,8 @@ let sendmessagefnsz = {
   'login':`${login_request}`,
 
   'getsystemconfig':`${getsystemconfig_request}`,
+
+  'sendsmartdevicecmd':`${sendsmartdevicecmd_request}`,
 
   'saveusersettings':`${saveusersettings_request}`,
   'page_getpatientinfolist':`${page_getpatientinfolist_request}`,

@@ -4,7 +4,7 @@ import {createsagacallbackflow} from './pagination';
 
 import {wsrecvsagaflow} from './wsrecvsaga';
 import {wsrecvsagabizflow} from './wsrecvsaga_biz';
-
+import {wsrecvsagasmartdeviceflow} from './wsrecvsaga_smartdevice';
 import {socketflow} from './socketflow';
 import {uiflow} from './ui';
 // import config from '../env/config.js';
@@ -22,6 +22,7 @@ export default function* rootSaga() {
     yield fork(uiflow);
     yield fork(wsrecvsagaflow);
     yield fork(wsrecvsagabizflow);
+    yield fork(wsrecvsagasmartdeviceflow);
 
   }
   catch(e){
