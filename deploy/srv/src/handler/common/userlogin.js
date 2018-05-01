@@ -98,8 +98,8 @@ exports.saveusersettings = (actiondata,ctx,callback)=>{
 
 
 exports.loginuser = (actiondata,ctx,callback)=>{
-  let oneUser = actiondata;
-  let dbModel = DBModels.UserModel;
+  const oneUser = actiondata;
+  const dbModel = DBModels.UserModel;
   dbModel.findOne({ username: oneUser.username })
     .populate([
       {

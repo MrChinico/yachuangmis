@@ -52,12 +52,5 @@ class App extends React.Component {
   	}
 }
 
-
-// const mapStateToProps = ({paientinfo}) => {
-// 		const {paientinfolist,paientinfos} = paientinfo;
-//     return {paientinfolist,paientinfos};
-// }
-// App = withRouter(App);
-// export default connect(mapStateToProps, null, null, { withRef: true })(App);
 export default App;
 // export default connect(null, null, null, { withRef: true })(App);

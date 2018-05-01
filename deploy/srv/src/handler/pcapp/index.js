@@ -13,6 +13,7 @@ const actiondatahandler = {
   'loginwithtoken':userlogin.loginwithtoken,
   'logout':userlogin.logout,
   'login':userlogin.loginuser,
+  'getpatientinfo':patientinfo.getpatientinfo,
   'page_getpatientinfolist':patientinfo.page_getpatientinfolist,
   'editpatientinfo':patientinfo.editpatientinfo,
   'createevaluatebarden':evaluatebarden.createevaluatebarden,
@@ -27,7 +28,6 @@ const actiondatahandler = {
 };
 
 const authhandler = {
-  'getpatientinfolist':patientinfo.getpatientinfolist,
   'getdepatlist':depat.getdepatlist,
   'changepwd':userlogin.changepwd,
 };

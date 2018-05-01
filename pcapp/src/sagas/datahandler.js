@@ -18,8 +18,8 @@ import {
     saveusersettings_request,
     saveusersettings_result,
 
-    getpatientinfolist_request,
-    getpatientinfolist_result,
+    getpatientinfo_request,
+    getpatientinfo_result,
 
     getdepatlist_request,
     getdepatlist_result,
@@ -76,7 +76,7 @@ let recvmessagetoresultpair = {
 
   'editpatientinfo_result':editpatientinfo_result,
   'page_getpatientinfolist_result':page_getpatientinfolist_result,
-  'getpatientinfolist_result':getpatientinfolist_result,
+  'getpatientinfo_result':getpatientinfo_result,
   'getdepatlist_result':getdepatlist_result,
 
   'saveusersettings_result':saveusersettings_result,
@@ -120,7 +120,7 @@ let sendmessagefnsz = {
 
 //验证发送接口
 let sendmessageauthfnsz = {
-  'getpatientinfolist':`${getpatientinfolist_request}`,
+  'getpatientinfolist':`${getpatientinfo_request}`,
   'getdepatlist':`${getdepatlist_request}`,
   'changepwd':`${changepwd_request}`,
 };

@@ -8,7 +8,7 @@ import {
 
   set_weui,
 
-  getpatientinfolist_request,
+  getpatientinfo_request,
 
   changepwd_result,
   set_uiapp,
@@ -41,7 +41,7 @@ export function* wsrecvsagaflow() {
             if(result.loginsuccess){
               localStorage.setItem(`yc_${config.softmode}_token`,result.token);
 
-              yield put(getpatientinfolist_request({}));
+              yield put(getpatientinfo_request({}));
 
             }
         }

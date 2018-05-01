@@ -26,79 +26,174 @@ exports.editpatientinfo = (actiondata,ctx,callback)=>{
   });
 }
 
-exports.getpatientinfolist = (actiondata,ctx,callback)=>{
-
+exports.getpatientinfo = (actiondata,ctx,callback)=>{
   const dbModel = DBModels.PatientinfoModel;
-
-  actiondata.options = actiondata.options || {};
-  actiondata.options.lean = true;
-  actiondata.options.populate = [
-    {
-      path:'bedid', model: 'bed'
-    },
-    {
-      path:'depatid',model:'depat'
-    }
-  ];
-  getdepatlistids(ctx,(depatlistids)=>{
-    const query = {depatid:{$in:depatlistids}};
-    dbModel.paginate(query,actiondata.options,(err,result)=>{
-      if(!err){
-        let docs = [];
-        _.map(result.docs,(record)=>{
-          docs.push(record);
-        });
-
+  dbModel.findOne({_id: actiondata._id})
+    .populate([
+      {
+        path:'bedid', model: 'bed',
+        populate: [
+          {
+            path: 'smartdeviceid',
+            model: 'smartdevice'
+          }
+        ]
+      },
+      {
+        path:'depatid',model:'depat'
+      },
+      {
+        path:'firstevaluatebardenid', model: 'evaluatebarden',
+        populate: [
+          {
+            path: 'usercreatorid',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_nurse',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_headnurse',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+        ]
+      },
+      {
+        path:'firstevaluatewoundsurfaceid', model: 'evaluatewoundsurface',
+        populate: [
+          {
+            path: 'usercreatorid',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_nurse',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_headnurse',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+        ]
+      },
+      {
+        path:'firstevaluatenursingmeasuresid', model: 'evaluatenursingmeasures',
+        populate: [
+          {
+            path: 'usercreatorid',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_nurse',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_headnurse',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+        ]
+      }
+    ]).lean().exec((err, newrecord)=> {
+      if(!err && !!newrecord){
         callback({
-          cmd:'getpatientinfolist_result',
-          payload:{result}
+          cmd:'getpatientinfo_result',
+          payload:newrecord
         });
       }
       else{
         callback({
           cmd:'common_err',
-          payload:{errmsg:err.message,type:'getpatientinfolist_result'}
+          payload:{errmsg:'获取病人详情失败',type:'getpatientinfo'}
         });
       }
-    });
-  });
-
-  // let query = actiondata.query || {};
-  // const fields = actiondata.fields || {};
-  // const permissionname = _.get(ctx,'permission.name','');
-  // if( permissionname === '普通护士' || permissionname === '护士长'){
-  //    query.Depatno = ctx.Depatno;
-  // }
-  //
-  // const queryexec = deviceModel.find(query).select(fields).lean();
-  // queryexec.exec((err,list)=>{
-  //   if(!err){
-  //     callback({
-  //       cmd:'getpatientinfolist_result',
-  //       payload:{list}
-  //     });
-  //   }
-  //   else{
-  //     callback({
-  //       cmd:'common_err',
-  //       payload:{errmsg:err.message,type:'getpatientinfolist'}
-  //     });
-  //   }
-  // });
-
+   });
 }
 
 exports.page_getpatientinfolist =  (actiondata,ctx,callback)=>{
   const dbModel = DBModels.PatientinfoModel;
-
   actiondata.options = actiondata.options || {};
   actiondata.options.lean = true;
   actiondata.options.populate = [
     {
-      path:'bedid', model: 'bed'
+      path:'bedid', model: 'bed',
+      populate: [
+        {
+          path: 'smartdeviceid',
+          model: 'smartdevice'
+        }
+      ]
     },
     {
       path:'depatid',model:'depat'
+    },
+    {
+      path:'firstevaluatebardenid', model: 'evaluatebarden',
+      populate: [
+        {
+          path: 'usercreatorid',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_nurse',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_headnurse',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+      ]
+    },
+    {
+      path:'firstevaluatewoundsurfaceid', model: 'evaluatewoundsurface',
+      populate: [
+        {
+          path: 'usercreatorid',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_nurse',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_headnurse',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+      ]
+    },
+    {
+      path:'firstevaluatenursingmeasuresid', model: 'evaluatenursingmeasures',
+      populate: [
+        {
+          path: 'usercreatorid',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_nurse',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_headnurse',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+      ]
     }
   ];
   // getdepatlistids(ctx,(depatlistids)=>{

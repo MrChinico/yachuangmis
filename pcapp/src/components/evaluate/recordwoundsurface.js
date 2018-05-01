@@ -251,7 +251,7 @@ class App extends React.Component {
 									</tr>
 									<tr>
 										<td colspan="3" className="white-bg">评估人
-										<input type="text" />										
+										<input type="text" />
 										</td>
 										<td align="center" className="white-bg"></td>
 										<td align="center" className="white-bg"></td>
@@ -269,8 +269,8 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = ({paientinfo},props) => {
-		const {paientinfos} = paientinfo;
+const mapStateToProps = ({db},props) => {
+		const {paientinfos} = db;
 		const id = lodashget(props,'match.params.pid');
 		let curpaientinfo = paientinfos[id];
     return {curpaientinfo};

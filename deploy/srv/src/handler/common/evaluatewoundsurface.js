@@ -55,7 +55,23 @@ exports.editevaluatewoundsurface = (actiondata,ctx,callback)=>{
 exports.getevaluatewoundsurfacelist = (actiondata,ctx,callback)=>{
 
   const dbModel = DBModels.EvaluateWoundsurfaceModel;
-  dbModel.find(actiondata.query).lean().exec((err,list)=>{
+  dbModel.find(actiondata.query).populate([
+    {
+      path: 'usercreatorid',
+      model: 'user',
+      select:'username truename Staffno Staffid Staffname Depatno',
+    },
+    {
+      path: 'signed_nurse',
+      model: 'user',
+      select:'username truename Staffno Staffid Staffname Depatno',
+    },
+    {
+      path: 'signed_headnurse',
+      model: 'user',
+      select:'username truename Staffno Staffid Staffname Depatno',
+    },
+  ]).lean().exec((err,list)=>{
     if(!err && !!list){
       callback({
         cmd:'getevaluatewoundsurfacelist_result',

@@ -53,7 +53,23 @@ exports.editevaluatenursingmeasures = (actiondata,ctx,callback)=>{
 exports.getevaluatenursingmeasureslist = (actiondata,ctx,callback)=>{
 
   const dbModel = DBModels.EvaluateNursingmeasuresModel;
-  dbModel.find(actiondata.query).lean().exec((err,list)=>{
+  dbModel.find(actiondata.query).populate([
+    {
+      path: 'usercreatorid',
+      model: 'user',
+      select:'username truename Staffno Staffid Staffname Depatno',
+    },
+    {
+      path: 'signed_nurse',
+      model: 'user',
+      select:'username truename Staffno Staffid Staffname Depatno',
+    },
+    {
+      path: 'signed_headnurse',
+      model: 'user',
+      select:'username truename Staffno Staffid Staffname Depatno',
+    },
+  ]).lean().exec((err,list)=>{
     if(!err && !!list){
       callback({
         cmd:'getevaluatenursingmeasureslist_result',

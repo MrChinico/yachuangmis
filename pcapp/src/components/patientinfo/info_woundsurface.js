@@ -48,8 +48,9 @@ class App extends React.Component {
 	    );
   	}
 }
-const mapStateToProps = ({evaluatewoundsurface},props) => {
-		const {evaluatewoundsurfacelist,evaluatewoundsurfaces} = evaluatewoundsurface;
+const mapStateToProps = ({evaluatewoundsurface,db},props) => {
+		const {evaluatewoundsurfacelist} = evaluatewoundsurface;
+		const {evaluatewoundsurfaces} = db;
     return {evaluatewoundsurfacelist,evaluatewoundsurfaces};
 }
 App = withRouter(App);

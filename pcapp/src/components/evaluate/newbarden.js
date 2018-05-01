@@ -79,8 +79,8 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = ({paientinfo,evaluatebarden},props) => {
-		const {paientinfos} = paientinfo;
+const mapStateToProps = ({db},props) => {
+		const {paientinfos} = db;
 		const id = lodashget(props,'match.params.pid');
 		const bardenid = lodashget(props,'match.params.id');
 		let isnew = bardenid === '0';
@@ -88,7 +88,7 @@ const mapStateToProps = ({paientinfo,evaluatebarden},props) => {
 		if(isnew){
 			return {curpaientinfo,isnew};
 		}
-		const {evaluatebardens} = evaluatebarden;
+		const {evaluatebardens} = db;
 		const curevaluatebarden = evaluatebardens[bardenid];
 		if(!curevaluatebarden){
 			isnew = true;

@@ -225,8 +225,8 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = ({paientinfo},props) => {
-		const {paientinfos} = paientinfo;
+const mapStateToProps = ({db},props) => {
+		const {paientinfos} = db;
 		const id = lodashget(props,'match.params.pid');
 		let curpaientinfo = paientinfos[id];
     return {curpaientinfo};

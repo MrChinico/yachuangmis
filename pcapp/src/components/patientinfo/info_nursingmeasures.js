@@ -49,8 +49,9 @@ class App extends React.Component {
 	    );
   	}
 }
-const mapStateToProps = ({evaluatenursingmeasures},props) => {
-		const {evaluatenursingmeasureslist,evaluatenursingmeasuress} = evaluatenursingmeasures;
+const mapStateToProps = ({evaluatenursingmeasures,db},props) => {
+		const {evaluatenursingmeasureslist} = evaluatenursingmeasures;
+		const {evaluatenursingmeasuress} = db;
     return {evaluatenursingmeasureslist,evaluatenursingmeasuress};
 }
 App = withRouter(App);

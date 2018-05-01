@@ -70,8 +70,8 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = ({paientinfo,evaluatewoundsurface},props) => {
-		const {paientinfos} = paientinfo;
+const mapStateToProps = ({db},props) => {
+		const {paientinfos} = db;
 		const id = lodashget(props,'match.params.pid');
 		const bardenid = lodashget(props,'match.params.id');
 		let isnew = bardenid === '0';
@@ -79,7 +79,7 @@ const mapStateToProps = ({paientinfo,evaluatewoundsurface},props) => {
 		if(isnew){
 			return {curpaientinfo,isnew};
 		}
-		const {evaluatewoundsurfaces} = evaluatewoundsurface;
+		const {evaluatewoundsurfaces} = db;
 		const curevaluatewoundsurface = evaluatewoundsurfaces[bardenid];
 		if(!curevaluatewoundsurface){
 			isnew = true;

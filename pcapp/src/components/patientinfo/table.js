@@ -41,6 +41,8 @@ class App extends React.Component {
 			lodashmap(paginateCollection.data,(data,index)=>{
 				let lisz = [];
 				lodashmap(fieldnames,(fieldname,index)=>{
+					console.log(data);
+					console.log(fieldname);
 					lisz.push(
 						<span key={index}>{lodashget(data,fieldname,'')}</span>
 					)

@@ -49,8 +49,9 @@ class App extends React.Component {
   	}
 }
 
-const mapStateToProps = ({evaluatebarden},props) => {
-		const {evaluatebardenlist,evaluatebardens} = evaluatebarden;
+const mapStateToProps = ({evaluatebarden,db},props) => {
+		const {evaluatebardenlist} = evaluatebarden;
+		const {evaluatebardens} = db;
     return {evaluatebardenlist,evaluatebardens};
 }
 App = withRouter(App);

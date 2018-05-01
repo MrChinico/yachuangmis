@@ -85,10 +85,5 @@ class App extends React.Component {
   	}
 }
 
-// const mapStateToProps = ({paientinfo},props) => {
-// 		const {paientinfos} = paientinfo;
-// 		const id = lodashget(props,'match.params.pid');
-// 		let curpaientinfo = paientinfos[id];
-//     return {curpaientinfo};
-// }
+
 export default connect()(App);
