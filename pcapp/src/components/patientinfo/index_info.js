@@ -102,12 +102,32 @@ class App extends React.Component {
 			});
 
 			if(!curpaientinfo.firstevaluatebardenid){
-				//没有首次评估,仅显示第一个按钮
+				//没有首次Barden评估,仅显示第一个按钮
 				lodashmap(btnz,(info,index)=>{
 					if(index > 0){
 						info.visible = false;
 					}
 				})
+			}
+
+			if(!curpaientinfo.firstevaluatewoundsurfaceid){
+				//如果病人是高危，则必须填写
+				if(curpaientinfo.Diseaseclassification === '压疮高危'){
+					lodashmap(btnz,(info,index)=>{
+						if(index > 1){
+							info.visible = false;
+						}
+					});
+				}
+			}
+
+			if(!curpaientinfo.firstevaluatenursingmeasuresid){
+				//没有首次护理措施评估,不显示转归申报
+				lodashmap(btnz,(info,index)=>{
+					if(index === 2 || index === 3){
+						info.visible = false;
+					}
+				});
 			}
 			return (
 					<Layout>
