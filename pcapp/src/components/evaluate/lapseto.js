@@ -27,7 +27,7 @@ class App extends React.Component {
 			console.log(values);
 		}
   	render() {
-			const {curpaientinfo} = this.props;
+			const {curpaientinfo,db} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -36,7 +36,7 @@ class App extends React.Component {
 						<ContentTitleBar title="转归与申报记录" titleNew="转归填写" titleView="打印报表"
 							onClickNew={this.onClickNew} onClickViewPrint={this.onClickViewPrint} />
 
-						<PageForm onClickSubmit={this.onClickSubmit}/>
+						<PageForm onClickSubmit={this.onClickSubmit} curpaientinfo={curpaientinfo} db={db}/>
 	      	</div>
 	    );
   	}

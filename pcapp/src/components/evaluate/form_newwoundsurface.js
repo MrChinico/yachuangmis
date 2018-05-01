@@ -119,7 +119,7 @@ const renderFQ = (props)=>{
 }
 
 const renderBW = (props)=>{
-  const {input:{value,onChange},wf} = props;
+  const {input:{value,onChange}} = props;
   const onChangeSel = ({label,value,lr})=>{
     // const fieldname = `${wf}['部位']`;
     // let v = {};

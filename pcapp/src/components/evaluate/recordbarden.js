@@ -25,7 +25,7 @@ class App extends React.Component {
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
-			const momentin = moment(curpaientinfo.In_date);
+
 	    return (
 				<Layout>
 					<Header>
@@ -57,10 +57,10 @@ class App extends React.Component {
                                         <td colspan="4"><div align="center">实际得分（按照评估日期填写）</div></td>
                                       </tr>
                                       <tr className="date">
-                                        <td><div align="center"><img src="arrow-left-green.png" />4月11日</div></td>
+                                        <td><div align="center"><img src="arrow-left-green.png" alt=""/>4月11日</div></td>
                                         <td><div align="center">4月10日</div></td>
                                         <td><div align="center">4月9日</div></td>
-                                        <td><div align="center">4月8日<img src="arrow-right-green.png" className="right" /></div></td>
+                                        <td><div align="center">4月8日<img src="arrow-right-green.png" className="right" alt=""/></div></td>
                                       </tr>
                                       <tr>
                                         <td rowspan="4" className="white-bg">感觉</td>

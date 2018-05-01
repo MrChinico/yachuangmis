@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+// import { connect } from 'react-redux';
+// import { withRouter } from 'react-router-dom';
 // import lodashmap from 'lodash.map';
 // import { Layout } from 'antd';
 // import { Pagination } from 'antd';

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Field, reduxForm, Form  } from 'redux-form';
-import { connect } from 'react-redux';
-
+// import { connect } from 'react-redux';
+import ViewPrintHeader from './viewprint_header';
 
 class PageForm extends React.Component {
   render() {
-    const { handleSubmit,onClickSubmit,pristine,submitting } = this.props;
+    const { handleSubmit,onClickSubmit,curpaientinfo,db } = this.props;
     return (
       <Form
           onSubmit={handleSubmit(onClickSubmit)}
@@ -13,27 +13,8 @@ class PageForm extends React.Component {
             <div className="form-box">
 
     						<h1>某某市某某医院高危压疮申报表</h1>
-    						<table className="patient-info">
-    							<tbody>
-    							<tr className="elastic">
-    								<td>姓名：<input type="text" /></td>
-    								<td>性别：<input type="text" /></td>
-    								<td>年龄：<input type="text" /></td>
-    								<td>住院号：<input type="text" /></td>
-    							</tr>
-    							<tr className="elastic">
-    								<td>科室：<input type="text" /></td>
-    								<td className="w-50">入院日期：
-    									<input type="text" />年
-    									<input type="text" />月
-    									<input type="text" />日
-    									<input type="text" />:<input type="text" />
-    								</td>
-    								<td>床号：<input type="text" /></td>
-    							</tr>
-    							</tbody>
-    						</table>
-
+                <ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
+    						
     						<table className="choose-info">
     							<tbody>
     							<tr>

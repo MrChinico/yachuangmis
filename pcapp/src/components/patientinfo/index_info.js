@@ -47,7 +47,7 @@ class App extends React.Component {
 		}
 
   	render() {
-			const {curpaientinfo,cursmartdevice} = this.props;
+			const {curpaientinfo,cursmartdevice,db} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -79,7 +79,7 @@ class App extends React.Component {
 					title:'转归与申报',
 					visible:true,
 					enabled:true,
-					Co:<InfoLapsetto curpaientinfo={curpaientinfo} />
+					Co:<InfoLapsetto curpaientinfo={curpaientinfo} db={db}/>
 				},
 				{
 					btnkey:'btnto',
@@ -190,6 +190,6 @@ const mapStateToProps = ({db},props) => {
 				cursmartdevice = smartdevices[smartdeviceid];
 			}
 		}
-    return {curpaientinfo,cursmartdevice};
+    return {curpaientinfo,cursmartdevice,db};
 }
 export default connect(mapStateToProps)(App);

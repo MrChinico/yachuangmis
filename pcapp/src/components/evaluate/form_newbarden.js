@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field,Fields, reduxForm, Form  } from 'redux-form';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import lodashmap from 'lodash.map';
 import lodashget from 'lodash.get';
 import {getbardenstring} from '../../util/index';
