@@ -2,17 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Pagination } from 'antd';
 import lodashmap from 'lodash.map';
-import lodashget from 'lodash.get';
 import paginate_array from 'paginate-array';
 
-const pagenumber = 5;
+
 class App extends React.Component {
 
 	constructor(props) {
 			super(props);
 			this.state = {
 					current:1,
-					pageSize:pagenumber,
+					pageSize:props.pagenumber,
 			}
 	}
 		onChangePagination =(page, pageSize)=>{
@@ -33,25 +32,14 @@ class App extends React.Component {
 		// 	this.props.history.push(`/indexdetailedit/${currecord._id}`);
 		// }
   	render() {
-			const {allrecords,fieldnames,onClickEdit} = this.props;
+			const {allrecords,renderTableRecord} = this.props;
 			const {current,pageSize} = this.state;
 			const paginateCollection = paginate_array(allrecords,current,pageSize);
 
 			let ulsz = [];
 			lodashmap(paginateCollection.data,(data,index)=>{
-				let lisz = [];
-				lodashmap(fieldnames,(fieldname,index)=>{
-					console.log(data);
-					console.log(fieldname);
-					lisz.push(
-						<span key={index}>{lodashget(data,fieldname,'')}</span>
-					)
-				});
 				ulsz.push(<li key={index}>
-					{lisz}
-					<span onClick={()=>{
-						onClickEdit(data);
-					}}>详情</span>
+					{renderTableRecord(data)}
 				</li>)
 			});
 
