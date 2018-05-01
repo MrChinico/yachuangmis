@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
+// import { Button } from 'antd';
 import lodashget from 'lodash.get';
 import { Layout } from 'antd';
+import moment from 'moment';
+import ViewPrintHeader from './viewprint_header';
 const { Header } = Layout;
 class App extends React.Component {
 
@@ -19,10 +21,11 @@ class App extends React.Component {
 			this.props.history.goBack();
 		}
   	render() {
-			const {curpaientinfo} = this.props;
+			const {curpaientinfo,db,evaluatebardenlist} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
+			const momentin = moment(curpaientinfo.In_date);
 	    return (
 				<Layout>
 					<Header>
@@ -44,26 +47,7 @@ class App extends React.Component {
 						<form>
 								<div className="form-box">
 									<h1>某某医院压疮危险因素评估表</h1>
-									<table className="patient-info">
-										<tbody>
-											<tr className="elastic">
-												<td>姓名：<input type="text"/></td>
-												<td>性别：<input type="text"/></td>
-												<td>年龄：<input type="text"/></td>
-												<td>住院号：<input type="text"/></td>
-											</tr>
-											<tr className="elastic">
-												<td>科室：<input type="text"/></td>
-												<td className="w-50">入院日期：
-													<input type="text" />年
-													<input type="text" />月
-													<input type="text" />日
-													<input type="text" />:<input type="text" />
-												</td>
-												<td>床号：<input type="text" /></td>
-											</tr>
-										</tbody>
-									</table>
+									<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 
 									<table width="100%" className="nursing-record white-bg">
                                       <tr>
@@ -307,10 +291,11 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = ({db},props) => {
+const mapStateToProps = ({db,evaluatebarden},props) => {
 		const {paientinfos} = db;
+		const {evaluatebardenlist} = evaluatebarden;
 		const id = lodashget(props,'match.params.pid');
 		let curpaientinfo = paientinfos[id];
-    return {curpaientinfo};
+    return {curpaientinfo,db,evaluatebardenlist};
 }
 export default connect(mapStateToProps)(App);

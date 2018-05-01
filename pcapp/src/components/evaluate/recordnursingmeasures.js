@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
+import ViewPrintHeader from './viewprint_header';
 import lodashget from 'lodash.get';
 import { Layout } from 'antd';
 const { Header } = Layout;
@@ -16,7 +16,7 @@ class App extends React.Component {
 		}
 
   	render() {
-			const {curpaientinfo} = this.props;
+			const {curpaientinfo,db} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -41,26 +41,7 @@ class App extends React.Component {
 							<form>
 								<div className="form-box">
 									<h1>某某市某某医院压疮护理措施表</h1>
-									<table className="patient-info">
-										<tbody>
-											<tr className="elastic">
-												<td>姓名：<input type="text"/></td>
-												<td>性别：<input type="text"/></td>
-												<td>年龄：<input type="text"/></td>
-												<td>住院号：<input type="text"/></td>
-											</tr>
-											<tr className="elastic">
-												<td>科室：<input type="text"/></td>
-												<td className="w-50">入院日期：
-													<input type="text" />年
-													<input type="text" />月
-													<input type="text" />日
-													<input type="text" />:<input type="text" />
-												</td>
-												<td>床号：<input type="text" /></td>
-											</tr>
-										</tbody>
-									</table>
+									<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 
 									<table width="100%" className="nursing-record white-bg">
                                       <tr>
@@ -229,6 +210,6 @@ const mapStateToProps = ({db},props) => {
 		const {paientinfos} = db;
 		const id = lodashget(props,'match.params.pid');
 		let curpaientinfo = paientinfos[id];
-    return {curpaientinfo};
+    return {curpaientinfo,db};
 }
 export default connect(mapStateToProps)(App);
