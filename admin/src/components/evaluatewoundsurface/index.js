@@ -39,13 +39,14 @@ import ShowButton from '../controls/ShowButton';
 const EvaluatewoundsurfaceEdit = (props) => {
   return (<Edit title="创面评估"  {...props} >
     <SimpleForm>
-     <TextField label="科室编号" source="Evaluatewoundsurfaceno"  />
-     <TextField label="科室名称" source="Evaluatewoundsurfacename"  />
-     <SelectInput  label="科室属性"  source="DepProperty" choices={[
-         { id: '0', name: '住院科室' },
-         { id: '1', name: '病区' },
-         { id: '1', name: '门诊科室' },
-     ]} />
+      <ReferenceInput label="评估护士" source="usercreatorid" reference="user" allowEmpty>
+      <SelectInput optionText="username" />
+      </ReferenceInput>
+      <ReferenceInput label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
+        <SelectInput optionText="Patientname" />
+      </ReferenceInput>
+      <TextField source="created_at" label="新建时间" />
+      <TextField source="updated_at" label="最后更新" />
     </SimpleForm>
   </Edit>
   );
@@ -53,22 +54,25 @@ const EvaluatewoundsurfaceEdit = (props) => {
 
 const EvaluatewoundsurfaceFilter = (props) => (
   <Filter {...props}>
-    <TextInput label="科室编号" source="Evaluatewoundsurfaceno_q" />
-    <TextInput label="科室名称" source="Evaluatewoundsurfacename_q" />
-    <SelectInput  label="科室属性"  source="DepProperty" choices={[
-        { id: '0', name: '住院科室' },
-        { id: '1', name: '病区' },
-        { id: '1', name: '门诊科室' },
-    ]} />
+    <ReferenceInput label="评估护士" source="usercreatorid" reference="user" allowEmpty>
+      <SelectInput optionText="username" />
+    </ReferenceInput>
+    <ReferenceInput label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
+      <SelectInput optionText="Patientname" />
+    </ReferenceInput>
   </Filter>
 )
 
 const EvaluatewoundsurfaceList = (props) => (
   <List title="创面评估" filters={<EvaluatewoundsurfaceFilter />} {...props} sort={{field:'Evaluatewoundsurfaceno',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
-      <TextField label="科室编号" source="Evaluatewoundsurfaceno"  />
-      <TextField label="科室名称" source="Evaluatewoundsurfacename"  />
-      <TextField label="科室属性" source="DepProperty" />
+      <ReferenceField label="评估护士" source="usercreatorid" reference="user" allowEmpty>
+        <TextField source="username" />
+      </ReferenceField>
+      <ReferenceField label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
+        <TextField source="Patientname" />
+      </ReferenceField>
+      <TextField source="created_at" label="新建时间" />
       <EditButton />
     </Datagrid>
   </List>

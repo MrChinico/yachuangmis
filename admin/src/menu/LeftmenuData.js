@@ -21,6 +21,7 @@ export default [
         { name: 'nursingdepat', icon: <ProductIcon /> ,adminonly:false},
         { name: 'depat', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'bed', icon: <DeviceIcon />,adminonly:false },
+        { name: 'smartdevice', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'user', icon: <UserIcon /> ,adminonly:false},
         { name: 'permission', icon: <PermissionIcon /> ,adminonly:false},
         { name: 'evaluatebarden', icon: <OnlineResearchIcon /> ,adminonly:false},
@@ -28,6 +29,4 @@ export default [
         { name: 'evaluatewoundsurface', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'formreivewlapseto', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'turnoverstrategy', icon: <OnlineResearchIcon /> ,adminonly:false},
-        { name: 'smartdevice', icon: <OnlineResearchIcon /> ,adminonly:false},
-
 ];

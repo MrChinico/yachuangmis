@@ -35,17 +35,88 @@ import _ from 'lodash';
 import {ShowActions} from '../controls/createeditactions';
 import ShowButton from '../controls/ShowButton';
 
+const getstring_status = (status)=>{
+  let showstring = '';
+  if(status === 0){
+    showstring+= '设备初始态';
+  }
+  else if(status === 1){
+    showstring+= '设备运行态';
+  }
+  else{
+    showstring+= '设备停止态';
+  }
+  return showstring;
+}
+
+const getstring_position = (position)=>{
+  let showstring = '';
+  if(position === 'L'){
+    showstring+= '左侧';
+  }
+  else if(position === 'R'){
+    showstring+= '右侧';
+  }
+  else if(position === 'T'){
+    showstring+= '平躺';
+  }
+  return showstring;
+}
+
+const getstring_angle = (angle)=>{
+  let showstring = '';
+  if(angle === 0){
+    showstring += `平躺`;
+  }
+  else{
+    showstring += `${angle}度`;
+  }
+  return showstring;
+}
+
+const getstring_establishstatus = (establishstatus)=>{
+  let showstring = '';
+  if(establishstatus === 0){
+    showstring += `姿态建立中`;
+  }
+  else{
+    showstring += `姿态建立完成并保持`;
+  }
+  return showstring;
+}
+
+
+const DeviceData = (props)=>{
+  const { record,source } = props;
+
+  const value = _.get(record,source);
+  let showstring = '';
+  if(source === 'realtimedata.status'){
+    showstring = getstring_status(value);
+  }
+  else if(source === 'realtimedata.position'){
+    showstring = getstring_position(value);
+  }
+  else if(source === 'realtimedata.angle'){
+    showstring = getstring_angle(value);
+  }
+  else if(source === 'realtimedata.establishstatus'){
+    showstring = getstring_establishstatus(value);
+  }
+  return (<span>{showstring}</span>);
+}
+
 
 const SmartdeviceEdit = (props) => {
   return (<Edit title="智能设备"  {...props} >
     <SimpleForm>
-     <TextField label="科室编号" source="Smartdeviceno"  />
-     <TextField label="科室名称" source="Smartdevicename"  />
-     <SelectInput  label="科室属性"  source="DepProperty" choices={[
-         { id: '0', name: '住院科室' },
-         { id: '1', name: '病区' },
-         { id: '1', name: '门诊科室' },
-     ]} />
+      <TextField label="设备编号" source="deviceid"  />
+      <TextField label="协议版本" source="protocolversion"  />
+      <DeviceData label="设备状态" source="realtimedata.status" addLabel={true}/>
+      <DeviceData label="气垫方位" source="realtimedata.position"  addLabel={true}/>
+      <DeviceData label="气垫角度" source="realtimedata.angle"  addLabel={true}/>
+      <DeviceData label="姿态建立状态" source="realtimedata.establishstatus"  addLabel={true}/>
+      <TextField label="最后更新时间" source="realtimedata.lastupdatetime"  />
     </SimpleForm>
   </Edit>
   );
@@ -53,22 +124,20 @@ const SmartdeviceEdit = (props) => {
 
 const SmartdeviceFilter = (props) => (
   <Filter {...props}>
-    <TextInput label="科室编号" source="Smartdeviceno_q" />
-    <TextInput label="科室名称" source="Smartdevicename_q" />
-    <SelectInput  label="科室属性"  source="DepProperty" choices={[
-        { id: '0', name: '住院科室' },
-        { id: '1', name: '病区' },
-        { id: '1', name: '门诊科室' },
-    ]} />
+    <TextInput label="设备编号" source="deviceid" />
   </Filter>
 )
 
 const SmartdeviceList = (props) => (
   <List title="智能设备" filters={<SmartdeviceFilter />} {...props} sort={{field:'Smartdeviceno',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
-      <TextField label="科室编号" source="Smartdeviceno"  />
-      <TextField label="科室名称" source="Smartdevicename"  />
-      <TextField label="科室属性" source="DepProperty" />
+      <TextField label="设备编号" source="deviceid"  />
+      <TextField label="协议版本" source="protocolversion"  />
+      <DeviceData label="设备状态" source="realtimedata.status" />
+      <DeviceData label="气垫方位" source="realtimedata.position" />
+      <DeviceData label="气垫角度" source="realtimedata.angle" />
+      <DeviceData label="姿态建立状态" source="realtimedata.establishstatus" />
+      <TextField label="最后更新时间" source="realtimedata.lastupdatetime"  />
       <EditButton />
     </Datagrid>
   </List>
