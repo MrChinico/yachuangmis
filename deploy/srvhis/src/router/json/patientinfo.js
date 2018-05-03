@@ -50,13 +50,39 @@ const jsonData=  [
   },
 ]
 
+const cz = ['十','一','二','三','四','五','六','七','八','九','十'];
+const getcz = (index)=>{
+  index = index+1;
+  if(index < 11){
+    return cz[index];
+  }
+  if(index < 99){
+    const index0 = Math.floor(index/10);
+    const index1 = index%10;
+    return cz[index0] + cz[index1];
+  }
+  return `百`;
+}
+
 const getData = ()=>{
   let jsonz = [];
-  for(let i = 0;i < 100; i++){
+  for(let i = 0;i < 50; i++){
     let json = _.clone(jsonData[0]);
+    json['Patientname'] = `王${getcz(i)}`;
+    json["Patientid"] = `100${i}`;
+    json["Depatno"] = `DT001`;
+    json["Patientno"] = `No100${i}`;
+    json["Bedno"] = `BD100${i}`;
+    jsonz.push(json);
+  }
+
+  for(let i = 0;i < 50; i++){
+    let json = _.clone(jsonData[0]);
+    json['Patientname'] = `张${getcz(i)}`;
     json["Patientid"] = `200${i}`;
-    json["Patientno"] = `No500${i}`;
-    json["Bedno"] = `BD500${i}`;
+    json["Depatno"] = `DT002`;
+    json["Patientno"] = `No200${i}`;
+    json["Bedno"] = `BD200${i}`;
     jsonz.push(json);
   }
   return jsonz;

@@ -20,14 +20,14 @@ const synctodb = require('./sync');
 
 
 const job=()=>{
-    // synctodb(()=>{
-    //
-    // });
 
     // createadmin();
     dbinit();
     // startsrv_devpush(config);
     // redis.setSubscribeHandler('deviceiotdata_realtimedata',handlermsg.handlermsg_realtimedata);
+    // synctodb(()=>{
+    //
+    // });
 
 };
 
