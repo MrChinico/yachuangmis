@@ -10,7 +10,7 @@ services:
       - ./dist:/dist
       - ./log:/log
     environment:
-      - MONGO_URL=mongodb://192.168.0.1:27018/yc
+      - MONGO_URL=mongodb://localhost:27018/yc
       - listenport=6012
     network_mode: "host"
     ports:
