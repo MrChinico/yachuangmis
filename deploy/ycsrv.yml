@@ -12,6 +12,7 @@ services:
     environment:
       - MONGO_URL=mongodb://192.168.0.1:27018/yc
       - listenport=6012
+    network_mode: "host"
     ports:
        - "6012:6012"
     expose:
