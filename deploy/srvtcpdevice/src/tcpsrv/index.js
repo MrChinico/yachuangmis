@@ -1,8 +1,8 @@
 const net = require('net');
-const config = require('../../config.js');
+const config = require('../config.js');
 const debug = require('debug')('srvtcp:data')
-const getbuf = require('./protocol');
-const winston = require('../../log/log.js');
+const getbuf = require('./getbuf');
+const winston = require('../log/log.js');
 // const mongoose = require('mongoose');
 
 const magiclen=2;
@@ -36,19 +36,16 @@ const getpureIp = (ip) => {
 starttcpsrv = (settings)=> {
   net.createServer((socket)=> {
       let curid = undefined;
-      let curaddress = {
-        isget:false,
-        provice:'',
-        city:'',
-        county:''
-      };
+
       const remoteip = getpureIp(socket.remoteAddress);
       let fromsock = remoteip + ':' + socket.remotePort;
       debug(`${fromsock}接受一个socket`);
       const ipaddr = getpureIp(remoteip);
 
-      let recvbuf = new Buffer('','binary');
+      const buf_queryid = getbuf.getbuf_query_id();//获取设备ID
+      socket.write(buf_queryid);
 
+      let recvbuf = new Buffer('','binary');
       socket.on("error", (err) =>{
         debug(`发生错误【${curid}】连接关闭`);
         //winston.getlog().error(err.stack);
@@ -66,7 +63,6 @@ starttcpsrv = (settings)=> {
       });
       socket.on('data',(data)=> {
         //下面3行为测试程序！！！
-
           let indatabuf = new Buffer(data,'binary');
           let totalLength = recvbuf.length + indatabuf.length;
           recvbuf = Buffer.concat([recvbuf, indatabuf],totalLength);
@@ -89,23 +85,26 @@ starttcpsrv = (settings)=> {
                       }
                     );
                  }
-                 const cmd = recvbuf[cmdoffset];
+                 const cmd = recvbuf[cmdoffset] & 0x0F;;
 
                  debug(`获取到id:${deviceId},命令号:${cmd},长度:${datalen}`);
                  winston.getlog().info(`获取到id:${deviceId},命令号:${cmd},长度:${datalen}`);
                  let newbuflen = data_headlen + datalen;
                  if(recvbuf.length >= newbuflen){
                        //parse data.
-                       let bodybuf = Buffer.allocUnsafe(datalen);
-                       recvbuf.copy(bodybuf, 0, data_headlen, data_headlen+datalen);
-                       debug(`获取到数据部分:${bodybuf.toString('hex')}`);
-                       debug(`获取到数据部分:${bodybuf.toString('hex')}`);
-                       if(bodybuf.length >= datalen){
-                         getbuf({cmd,recvbuf,bodybuf},(err,newsendbuf)=>{
-                           if(!err && !!newsendbuf){
+                       if(datalen > 0){
+                         let bodybuf = Buffer.allocUnsafe(datalen);
+                         recvbuf.copy(bodybuf, 0, data_headlen, data_headlen+datalen);
+                         debug(`获取到数据部分:${bodybuf.toString('hex')}`);
+                         if(bodybuf.length >= datalen){
 
-                           }
-                         });
+                         }
+                       }
+
+
+                       if(cmd === 0x02){
+                         const buf_querystatus =  getbuf.getbuf_query_status(deviceId);
+                         socket.write(buf_querystatus);
                        }
 
                        //<----------------

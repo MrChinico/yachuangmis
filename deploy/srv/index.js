@@ -1,6 +1,7 @@
 const srvhttp = require('./src/srvhttp.js');
 const srvwebsocket = require('./src/srvws.js');
 const srvsystem = require('./src/srvsystem.js');
+const tcpsrv = require('./src/tcpsrv');
 const config = require('./src/config');
 const mongoose     = require('mongoose');
 
@@ -22,3 +23,4 @@ debugapp(`issmsdebug:${config.issmsdebug},listenport:${config.listenport}`);
 
 srvsystem.job();
 srvwebsocket.startsrv(srvhttp.startsrv());
+tcpsrv.starttcpsrv();

@@ -268,7 +268,7 @@ const TurnoverstrategyModel =mongoose.model('turnoverstrategy',  Turnoverstrateg
 
 //智能设备
 const SmartDeviceSchema = new Schema({
-  deviceid:{type:Number,default:0},
+  deviceid:String,
   protocolversion:String,
   realtimedata:{
     status:Number,

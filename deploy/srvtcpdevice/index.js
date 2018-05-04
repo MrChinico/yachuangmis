@@ -1,5 +1,5 @@
 const config = require('./src/config');
-const tcpsrv = require('./src/handler/tcpsrv');
+const tcpsrv = require('./src/tcpsrv');
 const mongoose     = require('mongoose');
 const debug = require('debug')('srvtcp:app');
 const winston = require('./src/log/log.js');
