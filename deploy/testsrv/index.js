@@ -24,7 +24,7 @@ client.on('data', (data) => {
     client.write(buf);
   }
   if('493702000402' === data.toString('hex')){
-    const bufstr = '493701040482314C1E31';
+    const bufstr = '493702040482314C1E31';
     let buf = Buffer.from(bufstr,'hex');
     client.write(buf);
   }

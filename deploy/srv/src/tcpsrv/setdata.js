@@ -84,11 +84,12 @@ const setdata_devicestatus = (deviceid,bodybuf)=>{
   smartDeviceModel.findOneAndUpdate({deviceid},{
     $set:{realtimedata}
   }, {new: true,upsert:true}).lean().exec(
-    (err, result)=> {
+    (err, smartdevice)=> {
       debug(err);
-      debug(result);
-
-      PubSub.publish(`device.${deviceid}`,realtimedata);
+      debug(smartdevice);
+      if(!err && !!smartdevice){
+        PubSub.publish(`smartdevice.${smartdevice._id}`,smartdevice);
+      }
   });
 }
 

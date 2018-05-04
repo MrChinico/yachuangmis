@@ -7,6 +7,7 @@ const moment = require('moment');
 const tcpsrv = require('../../tcpsrv');
 const getbuf = require('../../tcpsrv/getbuf');
 const debug = require('debug')('appsrv:smartdevice');
+const PubSub = require('pubsub-js');
 
 exports.sendsmartdevicecmd = (actiondata,ctx,callback)=>{
   debug(`actiondata===>${JSON.stringify(actiondata)}`);
@@ -34,4 +35,24 @@ exports.sendsmartdevicecmd = (actiondata,ctx,callback)=>{
     });
   }
 
+}
+
+exports.subscribedevice = (actiondata,ctx,callback)=>{
+  const {smartdeviceid,subscribeflag} = actiondata;
+
+  if(subscribeflag){
+    PubSub.subscribe(`smartdevice.${smartdeviceid}`,ctx.userDeviceSubscriber);
+  }
+  else{
+    PubSub.unsubscribe( ctx.userDeviceSubscriber );
+  }
+
+
+  callback({
+    cmd:'subscribedevice_result',
+    payload:{
+        smartdeviceid,
+        subscribeflag,
+    }
+  });
 }

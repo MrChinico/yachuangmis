@@ -74,15 +74,18 @@ export function* wsrecvsagabizflow() {
 
       //<----
       if(i === 0 || i === 1){//createevaluatebarden_result/editevaluatebarden_result
-        const evaluatebardens = {_id:payload};
+        let evaluatebardens = {};
+        evaluatebardens[payload._id] = payload;
         yield put(set_db({evaluatebardens}));
       }
       if(i === 2 || i === 3){//createevaluatenursingmeasures_result/editevaluatenursingmeasures_result
-        const evaluatenursingmeasuress = {_id:payload};
+        let evaluatenursingmeasuress = {};
+        evaluatenursingmeasuress[payload._id] = payload;
         yield put(set_db({evaluatenursingmeasuress}));
       }
       if(i === 4 || i === 5){//createevaluatewoundsurface_result/editevaluatewoundsurface_result
-        const evaluatewoundsurfaces = {_id:payload};
+        let evaluatewoundsurfaces = {};
+        evaluatewoundsurfaces[payload._id] = payload;
         yield put(set_db({evaluatewoundsurfaces}));
       }
 
@@ -125,13 +128,15 @@ export function* wsrecvsagabizflow() {
 
   yield takeLatest(`${editpatientinfo_result}`,function*(action){
     const {payload} = action;
-    const paientinfos = {_id:payload};
+    let paientinfos = {};
+    paientinfos[payload._id] = payload;
     yield put(set_db({paientinfos}));
   });
 
   yield takeLatest(`${getpatientinfo_result}`,function*(action){
     const {payload} = action;
-    const paientinfos = {_id:payload};
+    let paientinfos = {};
+    paientinfos[payload._id] = payload;
     yield put(set_db({paientinfos}));
   });
 

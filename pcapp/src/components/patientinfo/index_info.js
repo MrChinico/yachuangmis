@@ -13,6 +13,7 @@ import TitleDetail from './patientinfo_content_title_detail';
 import {getevaluatebardenlist_request} from '../../actions';
 import {getevaluatenursingmeasureslist_request} from '../../actions';
 import {getevaluatewoundsurfacelist_request} from '../../actions';
+import {subscribedevice_request} from '../../actions';
 
 import { Tabs } from 'antd';
 import './index_info.css';
@@ -31,15 +32,23 @@ class App extends React.Component {
 				};
 		}
 		componentDidMount(){
-			const {curpaientinfo} = this.props;
+			const {curpaientinfo,cursmartdevice} = this.props;
 			if(!!curpaientinfo){
 				this.props.dispatch(getevaluatebardenlist_request({query:{userpatientid:curpaientinfo._id}}));
 				this.props.dispatch(getevaluatenursingmeasureslist_request({query:{userpatientid:curpaientinfo._id}}));
 				this.props.dispatch(getevaluatewoundsurfacelist_request({query:{userpatientid:curpaientinfo._id}}));
 			}
+
+			if(!!cursmartdevice){
+				this.props.dispatch(subscribedevice_request({smartdeviceid:cursmartdevice._id,subscribeflag:true}));
+			}
 		}
 
 		componentWillUnmount() {
+			const {cursmartdevice} = this.props;
+			if(!!cursmartdevice){
+				this.props.dispatch(subscribedevice_request({smartdeviceid:cursmartdevice._id,subscribeflag:false}));
+			}
 		}
 
 		changePage = (btnkey)=>{

@@ -4,7 +4,7 @@ const debug = require('debug')('appsrv:pushdev')
 
 const pushusermessage = (socket,ctx,DeviceId,data)=>{
   const resultPushDevice = {
-    cmd:'serverpush_device',
+    cmd:'serverpush_devicerealtimedata',
     payload:data
   };
   debug(`pushtoapp:${JSON.stringify(resultPushDevice)}`);
@@ -18,8 +18,8 @@ const usersubfn  = (socket,ctx)=>{
       debug('r-->用户订阅数据:'+data);
 
       let topicsz = msg.split('.');
-      if(topicsz.length === 3){
-        if(topicsz[0] === 'push' && topicsz[1] === 'device'){
+      if(topicsz.length === 2){
+        if(topicsz[0] === 'smartdevice'){
             const DeviceId = topicsz[2];
             pushusermessage(socket,ctx,DeviceId,data);
         }

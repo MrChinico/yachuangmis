@@ -26,7 +26,8 @@ const actiondatahandler = {
   'createevaluatewoundsurface':evaluatewoundsurface.createevaluatewoundsurface,
   'editevaluatewoundsurface':evaluatewoundsurface.editevaluatewoundsurface,
   'getevaluatewoundsurfacelist':evaluatewoundsurface.getevaluatewoundsurfacelist,
-  'sendsmartdevicecmd':smartdevice.sendsmartdevicecmd
+  'sendsmartdevicecmd':smartdevice.sendsmartdevicecmd,
+  'subscribedevice':smartdevice.subscribedevice,
 };
 
 const authhandler = {

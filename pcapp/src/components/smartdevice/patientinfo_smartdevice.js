@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 // import { Button } from 'antd';
-// import lodashget from 'lodash.get';
+import SmartDeviceStatus from './smartdevice_status';
 import {sendsmartdevicecmd_request} from '../../actions';
 
 class App extends React.Component {
@@ -36,13 +36,7 @@ class App extends React.Component {
 			}
 	    return (
 	      	<div>
-					<div className="device-info">
-						<span className="device-name">XX智能床</span>
-						<span>电源：<font>正常</font></span>
-						<span>通讯：<font>正常</font></span>
-						<span>病人：<font>在床</font></span>
-						<span>状态：<font className="warn-color">每五分钟后左右循环</font></span>
-					</div>
+					<SmartDeviceStatus cursmartdevice={cursmartdevice} />
 					<div className="device-tittle">
 						翻身卡标题
 					</div>

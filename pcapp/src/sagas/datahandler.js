@@ -55,7 +55,11 @@ import {
     editpatientinfo_result,
 
     sendsmartdevicecmd_request,
-    sendsmartdevicecmd_result
+    sendsmartdevicecmd_result,
+
+    subscribedevice_request,
+    subscribedevice_result,
+    serverpush_devicerealtimedata,
   } from '../actions';
 
 import {
@@ -64,6 +68,8 @@ import {
 } from './pagination';
 //接收的对应关系
 let recvmessagetoresultpair = {
+  'serverpush_devicerealtimedata':serverpush_devicerealtimedata,
+  'subscribedevice_result':subscribedevice_result,
   'sendsmartdevicecmd_result':sendsmartdevicecmd_result,
 
   'createevaluatebarden_result':createevaluatebarden_result,
@@ -106,6 +112,7 @@ let sendmessagefnsz = {
   'getsystemconfig':`${getsystemconfig_request}`,
 
   'sendsmartdevicecmd':`${sendsmartdevicecmd_request}`,
+  'subscribedevice':`${subscribedevice_request}`,
 
   'saveusersettings':`${saveusersettings_request}`,
   'page_getpatientinfolist':`${page_getpatientinfolist_request}`,

@@ -272,9 +272,13 @@ const SmartDeviceSchema = new Schema({
   protocolversion:String,
   realtimedata:{
     status:Number,
-    position:String,
+    statusstring:String,
+    position:Number,
+    positionstring:String,
     angle:Number,
+    anglestring:String,
     establishstatus:Number,
+    establishstatusstring:String,
     lastupdatetime:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},//更新时间
   }
 }, { strict: false });
