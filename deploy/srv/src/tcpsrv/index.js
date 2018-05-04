@@ -1,7 +1,8 @@
 const net = require('net');
 const config = require('../config.js');
-const debug = require('debug')('srvtcp:data')
+const debug = require('debug')('appsrv:data')
 const getbuf = require('./getbuf');
+const setdata = require('./setdata');
 const winston = require('../log/log.js');
 // const mongoose = require('mongoose');
 
@@ -97,7 +98,9 @@ starttcpsrv = (settings)=> {
                          recvbuf.copy(bodybuf, 0, data_headlen, data_headlen+datalen);
                          debug(`获取到数据部分:${bodybuf.toString('hex')}`);
                          if(bodybuf.length >= datalen){
-
+                           if(cmd === 0x02){
+                             setdata.setdata_devicestatus(deviceId,bodybuf);
+                           }
                          }
                        }
 
