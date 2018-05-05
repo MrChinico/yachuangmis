@@ -1,7 +1,7 @@
 const config =  {
   secretkey:'dabakey',
   listenport:process.env.listenport || 6012,
-  tcpport:process.env.listenport || 50000,
+  tcpport:process.env.tcpport || 50000,
   rooturl:process.env.rooturl || 'http://yc.i2u.top:6012',
   issmsdebug:process.env.issmsdebug || false,
   srvredis:{
