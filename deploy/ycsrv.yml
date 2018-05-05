@@ -14,7 +14,7 @@ services:
       - listenport=6012
       - tcpport=50000
       - admindir=/dist/admin
-      - apppcdir=/dist/apppc
+      - apppcdir=/dist/pcapp
     network_mode: "host"
     ports:
        - "6012:6012"
