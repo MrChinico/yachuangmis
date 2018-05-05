@@ -13,6 +13,8 @@ services:
       - MONGO_URL=mongodb://localhost:27018/yc
       - listenport=6012
       - tcpport=50000
+      - admindir=/dist/admin
+      - apppcdir=/dist/apppc
     network_mode: "host"
     ports:
        - "6012:6012"
