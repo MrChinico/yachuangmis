@@ -17,10 +17,10 @@ let startsrv = ()=>{
   // // console.log("static test:" + logdir);
   // app.use('/log', express.static(logdir));
   //
-  const admindir = path.join(__dirname,config.admindir);
+  const admindir = config.admindir;
   app.use('/admin', express.static(admindir));
 
-  const apppcdir = path.join(__dirname,config.apppcdir);
+  const apppcdir = config.apppcdir;
   app.use('/apppc', express.static(apppcdir));
   //
   const uploaddir = path.join(__dirname,config.uploaddir);
