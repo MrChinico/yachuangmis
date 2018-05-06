@@ -3,8 +3,8 @@
  */
 const dbinit = require('./db/dbinit');
 const config = require('./config');
-const redis = require('./redis/index');
-const handlermsg = require('./handler/redissubscribe');
+// const redis = require('./redis/index');
+// const handlermsg = require('./handler/redissubscribe');
 
 const synctodb = require('./sync');
 

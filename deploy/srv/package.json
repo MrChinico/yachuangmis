@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "DEBUG=* MONGO_URL=mongodb://localhost/yachuang admindir=/Users/wangxiaoqing/Downloads/work/yachuangmis/deploy/dist/admin apppcdir=/Users/wangxiaoqing/Downloads/work/yachuangmis/deploy/dist/pcapp node index"
+    "start": "DEBUG=appsrv:* MONGO_URL=mongodb://localhost/yachuang admindir=/Users/wangxiaoqing/Downloads/work/yachuangmis/deploy/dist/admin apppcdir=/Users/wangxiaoqing/Downloads/work/yachuangmis/deploy/dist/pcapp node index"
   },
   "author": "",
   "license": "ISC",

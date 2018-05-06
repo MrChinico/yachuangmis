@@ -22,8 +22,8 @@ const config =  {
   authexptime:120,//验证码有效期，2分钟
   loginuserexptime:60*60*24*30,//用户登录有效期,30天
   mongodburl:process.env.MONGO_URL || 'mongodb://localhost/yachuang',
-  admindir:process.env.admindir || '/var/db100/yachuangmis/deploy/dist/admin',
-  apppcdir:process.env.apppcdir || '/var/db100/yachuangmis/deploy/dist/apppc',
+  admindir:process.env.admindir || '/Users/wangxiaoqing/Downloads/work/yachuangmis/deploy/dist/admin',//'/var/db100/yachuangmis/deploy/dist/admin',
+  apppcdir:process.env.apppcdir || '/Users/wangxiaoqing/Downloads/work/yachuangmis/deploy/dist/pcapp',//'/var/db100/yachuangmis/deploy/dist/apppc',
 };
 
 
