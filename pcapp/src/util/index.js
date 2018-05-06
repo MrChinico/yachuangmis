@@ -151,3 +151,142 @@ export const getdefaultnursingmeasures = ()=>{
     return v;
 
 }
+
+
+
+export const getpagelist = (currentpage,listall,perpage)=>{
+
+    let istart = currentpage*perpage;
+    if(istart + perpage >= listall.length){
+      istart = listall.length - perpage;
+      if(istart < 0){
+        istart = 0;
+      }
+    }
+    let iend = istart + perpage;
+    if(iend > listall.length){
+      iend = listall.length;
+      if(iend < 0){
+        iend =0;
+      }
+    }
+
+    let retlist = [];
+    for(let i = istart; i < iend ;i++){
+      retlist.push(listall[i]);
+    }
+
+    const isfirst = istart === 0;
+    const islast = iend + perpage >= listall.length;
+
+    return {
+      isfirst,
+      islast,
+      retlist
+    }
+}
+
+export const gettablebradengroups = ()=>{
+    const tablebradengroups = [
+      {
+        labeltitle:"感觉",
+        labelvalue:'score_sensoryperception',
+        labelsz:[{
+          label:'完全限制',
+          value:1
+        },{
+          label:'非常限制',
+          value:2
+        },{
+          label:'轻度受限',
+          value:3
+        },{
+          label:'未受伤害',
+          value:4
+        }]
+      },
+      {
+        labeltitle:"潮湿",
+        labelvalue:'score_moisture',
+        labelsz:[{
+          label:'持久潮湿',
+          value:1
+        },{
+          label:'非常潮湿',
+          value:2
+        },{
+          label:'偶尔潮湿',
+          value:3
+        },{
+          label:'很少潮湿',
+          value:4
+        }]
+      },
+      {
+        labeltitle:"活动力",
+        labelvalue:'score_activity',
+        labelsz:[{
+          label:'卧床不起',
+          value:1
+        },{
+          label:'局限于椅',
+          value:2
+        },{
+          label:'偶尔步行',
+          value:3
+        },{
+          label:'经常步行',
+          value:4
+        }]
+      },
+      {
+        labeltitle:"移动力",
+        labelvalue:'score_mobility',
+        labelsz:[{
+          label:'完全不能',
+          value:1
+        },{
+          label:'严重受限',
+          value:2
+        },{
+          label:'轻度受限',
+          value:3
+        },{
+          label:'不受限',
+          value:4
+        }]
+    },
+    {
+      labeltitle:"营养",
+      labelvalue:'score_nutrition',
+      labelsz:[{
+        label:'非常差',
+        value:1
+      },{
+        label:'可能不足',
+        value:2
+      },{
+        label:'适当',
+        value:3
+      },{
+        label:'良好',
+        value:4
+      }]
+    },
+    {
+      labeltitle:"摩擦力和剪切力",
+      labelvalue:'score_friction',
+      labelsz:[{
+        label:'有问题',
+        value:1
+      },{
+        label:'有潜在问题',
+        value:2
+      },{
+        label:'无明显问题',
+        value:3,
+      }]
+    }
+  ];
+  return tablebradengroups;
+}

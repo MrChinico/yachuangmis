@@ -50,7 +50,7 @@ class App extends React.Component {
 								<div className="form-box">
 									<h1>某某医院压疮危险因素评估表</h1>
 									<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
-									<RecordbardenTableBody evaluatebardenlist={evaluatebardenlist} />
+									<RecordbardenTableBody evaluatebardenlist={evaluatebardenlist} db={db}/>
 								</div>
 							</form>
 					</div>
