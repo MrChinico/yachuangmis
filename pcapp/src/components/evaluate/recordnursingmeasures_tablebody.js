@@ -96,10 +96,13 @@ class RecordNursingMeasuresTableBody extends React.Component {
 
             tabletrlist.push(<tr key={'000'}>
               <td colSpan="2" className="white-bg">其他</td>
-              <td align="center"></td>
-              <td align="center"></td>
-              <td align="center"></td>
-              <td align="center"></td>
+              {
+                lodashmap(retlist,(id,index)=>{
+                  return (
+                    <td key={id} align="center"></td>
+                  )
+                })
+              }
             </tr>);
 
             return (
@@ -107,7 +110,7 @@ class RecordNursingMeasuresTableBody extends React.Component {
                 <tbody>
                                   <tr>
                                     <td colSpan="2" rowSpan="2">请在采取的护理措施项目内打“<font className="blue fontSize18 font-weight">√</font>”</td>
-                                    <td colSpan="4"><div align="center">护理日期</div></td>
+                                    <td colSpan={`${retlist.length}`}><div align="center">护理日期</div></td>
                                   </tr>
                                   <tr className="date">
                                     {
@@ -140,19 +143,25 @@ class RecordNursingMeasuresTableBody extends React.Component {
                                     <td colSpan="2">护士签名
                                       <input type="text" />
                                     </td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
+                                    {
+                                      lodashmap(retlist,(id,index)=>{
+                                        return (
+                                          <td key={id} align="center"></td>
+                                        )
+                                      })
+                                    }
                                    </tr>
                                    <tr>
                                     <td colSpan="2">护士长签名
                                     <input type="text" />
                                    </td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
+                                   {
+                                     lodashmap(retlist,(id,index)=>{
+                                       return (
+                                         <td key={id} align="center"></td>
+                                       )
+                                     })
+                                   }
                                   </tr>
                                   </tbody>
                                 </table>)

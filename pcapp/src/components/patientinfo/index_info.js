@@ -133,7 +133,7 @@ class App extends React.Component {
 			if(!curpaientinfo.firstevaluatenursingmeasuresid){
 				//没有首次护理措施评估,不显示转归申报
 				lodashmap(btnz,(info,index)=>{
-					if(index === 2 || index === 3){
+					if(index === 3){
 						info.visible = false;
 					}
 				});
