@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ViewPrintHeader from './viewprint_header';
+import RecordNursingMeasuresTableBody from './recordnursingmeasures_tablebody.js';
 import lodashget from 'lodash.get';
 import { Layout } from 'antd';
 const { Header } = Layout;
@@ -16,7 +17,7 @@ class App extends React.Component {
 		}
 
   	render() {
-			const {curpaientinfo,db} = this.props;
+			const {curpaientinfo,db,evaluatenursingmeasureslist} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -43,159 +44,7 @@ class App extends React.Component {
 									<h1>某某市某某医院压疮护理措施表</h1>
 									<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 
-									<table width="100%" className="nursing-record white-bg">
-                                      <tr>
-                                        <td colSpan="2" rowSpan="2">请在采取的护理措施项目内打“<font className="blue fontSize18 font-weight">√</font>”</td>
-                                        <td colSpan="4"><div align="center">护理日期</div></td>
-                                      </tr>
-                                      <tr className="date">
-                                        <td><div align="center"><img src="arrow-left-green.png" />4月11日</div></td>
-                                        <td><div align="center">4月10日</div></td>
-                                        <td><div align="center">4月9日</div></td>
-                                        <td><div align="center">4月8日<img src="arrow-right-green.png" className="right" /></div></td>
-                                      </tr>
-                                      <tr>
-                                        <td rowSpan="4" className="white-bg">全身治疗</td>
-                                        <td>1、积极治疗</td>
-                                        <td align="center"><font className="blue fontSize18 font-weight">√</font></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>2、积极治疗</td>
-                                        <td align="center"><font className="blue fontSize18 font-weight">√</font></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>3、积极治疗</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>4、积极治疗</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td rowSpan="3" className="white-bg">体位与活动</td>
-                                        <td>1、积极治疗</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>2、积极治疗</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>3、积极治疗</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td rowSpan="5" className="white-bg">敷料使用</td>
-                                        <td>1</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>2</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>3</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>4</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>5</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td rowSpan="4" className="white-bg">患者家属健康教育</td>
-                                        <td>1</td>
-										<td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>2</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>3</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td>4</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td colSpan="2" className="white-bg">其他</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td colSpan="2">护士签名
-											<input type="text" />
-										</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                      <tr>
-                                        <td colSpan="2">护士长签名
-											<input type="text" />
-										</td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                        <td align="center"></td>
-                                      </tr>
-                                    </table>
+									<RecordNursingMeasuresTableBody db={db} evaluatenursingmeasureslist={evaluatenursingmeasureslist}/>
 								</div>
 							</form>
 						</div>
@@ -206,10 +55,11 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = ({db},props) => {
+const mapStateToProps = ({db,evaluatenursingmeasures},props) => {
 		const {paientinfos} = db;
+		const {evaluatenursingmeasureslist} = evaluatenursingmeasures;
 		const id = lodashget(props,'match.params.pid');
 		let curpaientinfo = paientinfos[id];
-    return {curpaientinfo,db};
+    return {curpaientinfo,db,evaluatenursingmeasureslist};
 }
 export default connect(mapStateToProps)(App);

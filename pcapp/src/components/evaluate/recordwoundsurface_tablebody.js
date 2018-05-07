@@ -50,7 +50,7 @@ class RecordbardenTableBody extends React.Component {
             let tabletrs = [];
 
             tabletrs.push(
-              <tr>
+              <tr key={"1"}>
                 <td rowSpan="9" className="white-bg">创面一</td>
                 <td colSpan="2" align="center">分期</td>
                 <td align="center"></td>
@@ -60,7 +60,7 @@ class RecordbardenTableBody extends React.Component {
               </tr>);
 
             tabletrs.push(
-              <tr>
+              <tr key={"2"}>
                 <td colSpan="2" align="center">部位</td>
                 <td align="center"></td>
                 <td align="center"></td>
@@ -70,7 +70,7 @@ class RecordbardenTableBody extends React.Component {
 
 
               tabletrs.push(
-              <tr>
+              <tr key={"3"}>
                 <td rowSpan="7">创面大小</td>
                 <td align="center">长cm</td>
                 <td align="center"></td>
@@ -80,7 +80,7 @@ class RecordbardenTableBody extends React.Component {
               </tr>);
 
               tabletrs.push(
-              <tr>
+              <tr key={"4"}>
                 <td align="center">宽cm</td>
                 <td align="center"></td>
                 <td align="center"></td>
@@ -89,7 +89,7 @@ class RecordbardenTableBody extends React.Component {
               </tr>);
 
               tabletrs.push(
-              <tr>
+              <tr key={"5"}>
                 <td align="center">深cm</td>
                 <td align="center"></td>
                 <td align="center"></td>
@@ -98,7 +98,7 @@ class RecordbardenTableBody extends React.Component {
               </tr>);
 
               tabletrs.push(
-              <tr>
+              <tr key={"6"}>
                 <td align="center">潜行</td>
                 <td align="center"></td>
                 <td align="center"></td>
@@ -107,7 +107,7 @@ class RecordbardenTableBody extends React.Component {
               </tr>);
 
               tabletrs.push(
-              <tr>
+              <tr key={"7"}>
                 <td align="center">窦道</td>
                 <td align="center"></td>
                 <td align="center"></td>
@@ -116,7 +116,7 @@ class RecordbardenTableBody extends React.Component {
               </tr>);
 
               tabletrs.push(
-              <tr>
+              <tr key={"8"}>
                 <td align="center">颜色</td>
                 <td align="center"></td>
                 <td align="center"></td>
@@ -125,7 +125,7 @@ class RecordbardenTableBody extends React.Component {
               </tr>);
 
             tabletrs.push(
-              <tr>
+              <tr key={"9"}>
                 <td align="center">渗液量</td>
                 <td align="center"></td>
                 <td align="center"></td>
