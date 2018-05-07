@@ -86,7 +86,7 @@ starttcpsrv = (settings)=> {
                       }
                     );
                  }
-                 const cmd = recvbuf[cmdoffset] & 0x0F;;
+                 const cmd = recvbuf[cmdoffset] & 0x0F;
 
                  debug(`获取到id:${deviceId},命令号:${cmd},长度:${datalen}`);
                  winston.getlog().info(`获取到id:${deviceId},命令号:${cmd},长度:${datalen}`);
@@ -105,7 +105,7 @@ starttcpsrv = (settings)=> {
                        }
 
 
-                       if(cmd === 0x02){
+                       if(cmd === 0x03){
                          const buf_querystatus =  getbuf.getbuf_query_status(deviceId);
                          socket.write(buf_querystatus);
                        }

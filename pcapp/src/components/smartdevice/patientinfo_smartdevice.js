@@ -46,7 +46,7 @@ class App extends React.Component {
 									this.onClickSendCmd({
 										angle:45,
 										direct:'L',
-										turnovermode:'A',//‘A’(0x41):单左 45 度循环
+										turnovermode:0x41,//‘A’(0x41):单左 45 度循环
 										turnovertime:120
 									});
 								}
@@ -56,7 +56,7 @@ class App extends React.Component {
 									this.onClickSendCmd({
 										angle:45,
 										direct:'R',
-										turnovermode:'B',//‘B’(0x42):单右 45 度循环
+										turnovermode:0x42,//‘B’(0x42):单右 45 度循环
 										turnovertime:120
 									});
 								}
@@ -66,7 +66,7 @@ class App extends React.Component {
 									this.onClickSendCmd({
 										angle:45,
 										direct:'LR',
-										turnovermode:'D',//‘D’(0x44):双侧 45 度循环
+										turnovermode:0x44,//‘D’(0x44):双侧 45 度循环
 										turnovertime:120
 									});
 								}
@@ -76,7 +76,7 @@ class App extends React.Component {
 									this.onClickSendCmd({
 										angle:30,
 										direct:'LR',
-										turnovermode:'C',//‘C’(0x43):双侧 30 度循环
+										turnovermode:0x43,//‘C’(0x43):双侧 30 度循环
 										turnovertime:120
 									});
 								}
@@ -86,7 +86,7 @@ class App extends React.Component {
 									this.onClickSendCmd({
 										angle:45,
 										direct:'LR',
-										turnovermode:'D',//‘D’(0x44):双侧 45 度循环
+										turnovermode:0x44,//‘D’(0x44):双侧 45 度循环
 										turnovertime:30
 									});
 								}
@@ -96,7 +96,7 @@ class App extends React.Component {
 									this.onClickSendCmd({
 										angle:60,
 										direct:'L',
-										turnovermode:'E',//‘E’(0x45):双侧 60 度循环
+										turnovermode:0x45,//‘E’(0x45):双侧 60 度循环
 										turnovertime:30
 									});
 								}
@@ -106,7 +106,7 @@ class App extends React.Component {
 									this.onClickSendCmd({
 										angle:30,
 										direct:'LR',
-										turnovermode:'C',//‘C’(0x43):双侧 30 度循环
+										turnovermode:0x43,//‘C’(0x43):双侧 30 度循环
 										turnovertime:60
 									});
 								}
@@ -116,7 +116,7 @@ class App extends React.Component {
 									this.onClickSendCmd({
 										angle:45,
 										direct:'L',
-										turnovermode:'D',//‘D’(0x44):双侧 45 度循环
+										turnovermode:0x44,//‘D’(0x44):双侧 45 度循环
 										turnovertime:60
 									});
 								}
@@ -129,7 +129,7 @@ class App extends React.Component {
 									this.onClickSendCmd({
 										angle:45,
 										direct:'L',
-										turnovermode:'K',//‘K’(0x4B):45 度自检
+										turnovermode:0x4B,//‘K’(0x4B):45 度自检
 										turnovertime:5
 									});
 								}
@@ -147,7 +147,7 @@ class App extends React.Component {
 									this.onClickSendCmd({
 										angle:0,
 										direct:'S',
-										turnovermode:'S',//‘S’(0x53):停止
+										turnovermode:0x53,//‘S’(0x53):停止
 										turnovertime:0
 									});
 								}
@@ -157,7 +157,7 @@ class App extends React.Component {
 									this.onClickSendCmd({
 										angle:0,
 										direct:'R',
-										turnovermode:'R',//‘R’(0x52):复位
+										turnovermode:0x52,//‘R’(0x52):复位
 										turnovertime:0
 									});
 								}

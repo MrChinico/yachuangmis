@@ -1,5 +1,5 @@
 const net = require('net');
-const ip = process.env.targetip || '127.0.0.1';//'114.55.89.241';//'114.55.89.241';//'127.0.0.1';//'114.55.89.241';//目标ip
+const ip = process.env.targetip || '127.0.0.1';//'114.55.89.241';//'127.0.0.1';//'114.55.89.241';//'114.55.89.241';//'127.0.0.1';//'114.55.89.241';//目标ip
 const port = 50000;//目标端口
 
 const client = net.connect({port: port,host:ip}, () => {
@@ -19,7 +19,7 @@ client.on('data', (data) => {
   console.log(`接收到数据为${data.toString('hex')}`);
   //client.end();
   if('493700000403' === data.toString('hex')){
-    const bufstr = '493702000482';
+    const bufstr = '493702000483';
     let buf = Buffer.from(bufstr,'hex');
     client.write(buf);
   }

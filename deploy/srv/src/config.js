@@ -4,10 +4,6 @@ const config =  {
   tcpport:process.env.tcpport || 50000,
   rooturl:process.env.rooturl || 'http://yc.i2u.top:6012',
   issmsdebug:process.env.issmsdebug || false,
-  srvredis:{
-    host:process.env.srvredis_host||'api.nuistiot.com',
-    port: process.env.srvredis_port|| 6379,
-  },
   hisurl:{
     url_patientinfo:'http://localhost:8081/v1/getlist_patientinfo',
     url_depat:'http://localhost:8081/v1/getlist_depat',
@@ -21,7 +17,7 @@ const config =  {
   maxDistance:3,
   authexptime:120,//验证码有效期，2分钟
   loginuserexptime:60*60*24*30,//用户登录有效期,30天
-  mongodburl:process.env.MONGO_URL || 'mongodb://localhost/yachuang',
+  mongodburl:process.env.MONGO_URL || 'mongodb://yunqi.com28.cn:27018/yc',
   admindir:process.env.admindir || '/Users/wangxiaoqing/Downloads/work/yachuangmis/deploy/dist/admin',//'/var/db100/yachuangmis/deploy/dist/admin',
   apppcdir:process.env.apppcdir || '/Users/wangxiaoqing/Downloads/work/yachuangmis/deploy/dist/pcapp',//'/var/db100/yachuangmis/deploy/dist/apppc',
 };
