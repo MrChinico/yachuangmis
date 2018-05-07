@@ -51,8 +51,8 @@ class RecordbardenTableBody extends React.Component {
 
             tabletrs.push(
               <tr>
-                <td rowspan="9" className="white-bg">创面一</td>
-                <td colspan="2" align="center">分期</td>
+                <td rowSpan="9" className="white-bg">创面一</td>
+                <td colSpan="2" align="center">分期</td>
                 <td align="center"></td>
                 <td align="center"></td>
                 <td align="center"></td>
@@ -61,7 +61,7 @@ class RecordbardenTableBody extends React.Component {
 
             tabletrs.push(
               <tr>
-                <td colspan="2" align="center">部位</td>
+                <td colSpan="2" align="center">部位</td>
                 <td align="center"></td>
                 <td align="center"></td>
                 <td align="center"></td>
@@ -71,7 +71,7 @@ class RecordbardenTableBody extends React.Component {
 
               tabletrs.push(
               <tr>
-                <td rowspan="7">创面大小</td>
+                <td rowSpan="7">创面大小</td>
                 <td align="center">长cm</td>
                 <td align="center"></td>
                 <td align="center"></td>
@@ -136,10 +136,10 @@ class RecordbardenTableBody extends React.Component {
             return (<table width="100%" className="nursing-record white-bg">
                 <tbody>
                 <tr>
-                  <td colspan="" rowspan="2">创面</td>
-                  <td colspan="" rowspan="2">创面大小</td>
-                  <td colspan="" rowspan="2">项目指标</td>
-                  <td colspan="4"><div align="center">评估日期</div></td>
+                  <td colSpan="" rowSpan="2">创面</td>
+                  <td colSpan="" rowSpan="2">创面大小</td>
+                  <td colSpan="" rowSpan="2">项目指标</td>
+                  <td colSpan="4"><div align="center">评估日期</div></td>
                 </tr>
                 <tr className="date">
                   {
@@ -168,22 +168,22 @@ class RecordbardenTableBody extends React.Component {
                 {tabletrs}
 
                 <tr>
-                  <td rowspan="9" className="white-bg">创面二</td>
-                  <td colspan="2" align="center">分期</td>
+                  <td rowSpan="9" className="white-bg">创面二</td>
+                  <td colSpan="2" align="center">分期</td>
                   <td align="center"></td>
                   <td align="center"></td>
                   <td align="center"></td>
                   <td align="center"></td>
                 </tr>
                 <tr>
-                  <td colspan="2" align="center">部位</td>
+                  <td colSpan="2" align="center">部位</td>
                   <td align="center"></td>
                   <td align="center"></td>
                   <td align="center"></td>
                   <td align="center"></td>
                 </tr>
                 <tr>
-                  <td rowspan="7">创面大小</td>
+                  <td rowSpan="7">创面大小</td>
                   <td align="center">长cm</td>
                   <td align="center"></td>
                   <td align="center"></td>
@@ -233,7 +233,7 @@ class RecordbardenTableBody extends React.Component {
                   <td align="center"></td>
                 </tr>
                 <tr>
-                  <td colspan="3" className="white-bg">评估人
+                  <td colSpan="3" className="white-bg">评估人
                   <input type="text" />
                   </td>
                   <td align="center" className="white-bg"></td>

@@ -14,23 +14,23 @@ const RecordwoundsurfaceTablebodyTitle = (props)=>{
         <td>&nbsp;</td>
       </tr>
       <tr className="no-bbm">
-        <td rowspan="3" className="black font-weight">部位</td>
-        <td colspan="2">1、枕部</td>
-        <td colspan="2">2、耳廓（左/右）</td>
+        <td rowSpan="3" className="black font-weight">部位</td>
+        <td colSpan="2">1、枕部</td>
+        <td colSpan="2">2、耳廓（左/右）</td>
         <td>3、鼻梁</td>
         <td>4、棘突</td>
         <td>5、肩缝（左/右）</td>
       </tr>
       <tr className="no-bbm">
-        <td colspan="2">6、枕部（左/右）</td>
-        <td colspan="2">7、枕部（左/右）</td>
+        <td colSpan="2">6、枕部（左/右）</td>
+        <td colSpan="2">7、枕部（左/右）</td>
         <td>8、枕部（左/右）</td>
         <td>9、枕部（左/右）</td>
         <td>10、枕部</td>
       </tr>
       <tr className="no-bbm">
-        <td colspan="2">11、枕部（左/右）</td>
-        <td colspan="2">12、枕部（左/右）</td>
+        <td colSpan="2">11、枕部（左/右）</td>
+        <td colSpan="2">12、枕部（左/右）</td>
         <td>13、枕部（左/右）</td>
         <td>14、枕部（左/右）</td>
         <td>15、枕部（左/右）</td>

@@ -45,8 +45,8 @@ class App extends React.Component {
 
 									<table width="100%" className="nursing-record white-bg">
                                       <tr>
-                                        <td colspan="2" rowspan="2">请在采取的护理措施项目内打“<font className="blue fontSize18 font-weight">√</font>”</td>
-                                        <td colspan="4"><div align="center">护理日期</div></td>
+                                        <td colSpan="2" rowSpan="2">请在采取的护理措施项目内打“<font className="blue fontSize18 font-weight">√</font>”</td>
+                                        <td colSpan="4"><div align="center">护理日期</div></td>
                                       </tr>
                                       <tr className="date">
                                         <td><div align="center"><img src="arrow-left-green.png" />4月11日</div></td>
@@ -55,7 +55,7 @@ class App extends React.Component {
                                         <td><div align="center">4月8日<img src="arrow-right-green.png" className="right" /></div></td>
                                       </tr>
                                       <tr>
-                                        <td rowspan="4" className="white-bg">全身治疗</td>
+                                        <td rowSpan="4" className="white-bg">全身治疗</td>
                                         <td>1、积极治疗</td>
                                         <td align="center"><font className="blue fontSize18 font-weight">√</font></td>
                                         <td align="center"></td>
@@ -84,7 +84,7 @@ class App extends React.Component {
                                         <td align="center"></td>
                                       </tr>
                                       <tr>
-                                        <td rowspan="3" className="white-bg">体位与活动</td>
+                                        <td rowSpan="3" className="white-bg">体位与活动</td>
                                         <td>1、积极治疗</td>
                                         <td align="center"></td>
                                         <td align="center"></td>
@@ -106,7 +106,7 @@ class App extends React.Component {
                                         <td align="center"></td>
                                       </tr>
                                       <tr>
-                                        <td rowspan="5" className="white-bg">敷料使用</td>
+                                        <td rowSpan="5" className="white-bg">敷料使用</td>
                                         <td>1</td>
                                         <td align="center"></td>
                                         <td align="center"></td>
@@ -142,7 +142,7 @@ class App extends React.Component {
                                         <td align="center"></td>
                                       </tr>
                                       <tr>
-                                        <td rowspan="4" className="white-bg">患者家属健康教育</td>
+                                        <td rowSpan="4" className="white-bg">患者家属健康教育</td>
                                         <td>1</td>
 										<td align="center"></td>
                                         <td align="center"></td>
@@ -171,14 +171,14 @@ class App extends React.Component {
                                         <td align="center"></td>
                                       </tr>
                                       <tr>
-                                        <td colspan="2" className="white-bg">其他</td>
+                                        <td colSpan="2" className="white-bg">其他</td>
                                         <td align="center"></td>
                                         <td align="center"></td>
                                         <td align="center"></td>
                                         <td align="center"></td>
                                       </tr>
                                       <tr>
-                                        <td colspan="2">护士签名
+                                        <td colSpan="2">护士签名
 											<input type="text" />
 										</td>
                                         <td align="center"></td>
@@ -187,7 +187,7 @@ class App extends React.Component {
                                         <td align="center"></td>
                                       </tr>
                                       <tr>
-                                        <td colspan="2">护士长签名
+                                        <td colSpan="2">护士长签名
 											<input type="text" />
 										</td>
                                         <td align="center"></td>
