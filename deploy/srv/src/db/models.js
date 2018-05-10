@@ -218,9 +218,19 @@ const FormReviewLapsetoSchema = new Schema({
   userpatientid:{ type: Schema.Types.ObjectId, ref: 'patientinfo' },//病人ID
   usercreatorid:{ type: Schema.Types.ObjectId, ref: 'user' },//用户ID
 
-  evaluatebardenid:{ type: Schema.Types.ObjectId, ref: 'evaluatebarden' },//evaluatebarden
-  evaluatenursingmeasuresid:{ type: Schema.Types.ObjectId, ref: 'evaluatenursingmeasures' },//evaluatebarden
-  evaluatewoundsurfaceid:{ type: Schema.Types.ObjectId, ref: 'evaluatewoundsurface' },//evaluatebarden
+  evaluatebardenscore:Number,//evaluatebarden
+  preventivesmeasure:[
+    {
+      name:String,
+      checked:{ type: Schema.Types.Boolean,default: false },
+      value:String,
+      options:[
+        name:String,
+        checked:{ type: Schema.Types.Boolean,default: false },
+        value:String
+      ]
+    }
+  ],
   conditions:{
     prerequisites:[
       {

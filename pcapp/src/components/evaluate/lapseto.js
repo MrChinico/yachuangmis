@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import ContentTitleBar from '../patientinfo/patientinfo_content_titlebar';
 
 
-import PageForm from './form_lapseto';
+import PageForm from './form_lapseto_barden';
+import {getdefaultlapseto_barden} from '../../util';
+
 class App extends React.Component {
 
 
@@ -31,12 +33,19 @@ class App extends React.Component {
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
+			let formname = 'NewLapsetoForm';
+			let formvalues = getdefaultlapseto_barden(16);
+			// if(!isnew){
+			// 	formvalues = curevaluatebarden;
+			// }
 	    return (
 	      	<div>
 						<ContentTitleBar title="转归与申报记录" titleNew="转归填写" titleView="打印报表"
 							onClickNew={this.onClickNew} onClickViewPrint={this.onClickViewPrint} />
 
-						<PageForm onClickSubmit={this.onClickSubmit} curpaientinfo={curpaientinfo} db={db}/>
+						<PageForm onClickSubmit={this.onClickSubmit}
+							formname={formname}
+							formvalues={formvalues}/>
 	      	</div>
 	    );
   	}
