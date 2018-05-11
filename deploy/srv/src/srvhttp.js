@@ -26,9 +26,8 @@ let startsrv = ()=>{
   const uploaddir = path.join(__dirname,config.uploaddir);
   app.use(config.uploadurl, express.static(uploaddir));
 
-
-  //console.log('uploadurl:' + config.uploadurl);
-  //console.log('uploaddir:' + uploaddir);
+  let logdir = config.logdir;
+  app.use('/log', express.static(logdir));
 
 
   app.use(bodyParser.json());

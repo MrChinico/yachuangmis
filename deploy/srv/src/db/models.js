@@ -225,9 +225,11 @@ const FormReviewLapsetoSchema = new Schema({
       checked:{ type: Schema.Types.Boolean,default: false },
       value:String,
       options:[
-        name:String,
-        checked:{ type: Schema.Types.Boolean,default: false },
-        value:String
+        {
+          name:String,
+          checked:{ type: Schema.Types.Boolean,default: false },
+          value:String
+        }
       ]
     }
   ],
