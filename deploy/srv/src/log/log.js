@@ -2,6 +2,7 @@ const winston = require('winston');
 const moment = require('moment');
 const path = require('path');
 const config = require('../config.js');
+const debugapp = require('debug')('appsrv:index');
 let logger;
 exports.initLog =  ()=>{
   const filename = "yc";
@@ -13,6 +14,7 @@ exports.initLog =  ()=>{
 
   const logpathwarn = `${config.logdir}/${filename}_warn.log`;
 
+  debugapp(`logpath--->${logpath}`);
 
   // winston.configure({
   //   transports: [

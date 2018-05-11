@@ -9,7 +9,7 @@ const routerindex = require("./router/index.js");
 const upload = require('jquery-file-upload-middleware');
 const uuid = require('uuid');
 const _  = require('lodash');
-
+const debugapp = require('debug')('appsrv:index');
 
 let startsrv = ()=>{
 
@@ -29,6 +29,7 @@ let startsrv = ()=>{
   let logdir = config.logdir;
   app.use('/log', express.static(logdir));
 
+  debugapp(`logdir--->${logdir}`);
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -85,7 +86,7 @@ let startsrv = ()=>{
   http.listen(config.listenport, ()=>{
     //console.log('listening on *:' + config.listenport);
     winston.initLog();
-
+    debugapp(`listen port-->${config.listenport}`)
   });
 
   return http;
