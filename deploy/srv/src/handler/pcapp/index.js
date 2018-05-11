@@ -19,6 +19,7 @@ const actiondatahandler = {
   'page_getpatientinfolist':patientinfo.page_getpatientinfolist,
   'createformreviewlapseto':formreviewlapseto.createformreviewlapseto,
   'editformreviewlapseto':formreviewlapseto.editformreviewlapseto,
+  'page_getformreviewlapsetolist':formreviewlapseto.page_getformreviewlapsetolist,
   'editpatientinfo':patientinfo.editpatientinfo,
   'createevaluatebarden':evaluatebarden.createevaluatebarden,
   'editevaluatebarden':evaluatebarden.editevaluatebarden,

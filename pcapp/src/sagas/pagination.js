@@ -5,6 +5,8 @@ import {delay} from 'redux-saga';
 const synccallreq = createAction('synccallreq');
 export const page_getpatientinfolist_request = createAction('page_getpatientinfolist_request');
 export const page_getpatientinfolist_result = createAction('page_getpatientinfolist_result');
+export const page_getformreviewlapsetolist_request  = createAction('page_getformreviewlapsetolist_request');
+export const page_getformreviewlapsetolist_result  = createAction('page_getformreviewlapsetolist_result');
 
 
 //以下导出放在视图

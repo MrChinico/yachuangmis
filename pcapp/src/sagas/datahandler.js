@@ -54,6 +54,8 @@ import {
     editformreviewlapseto_request,
     editformreviewlapseto_result,
 
+
+
     getevaluatewoundsurfacelist_request,
     getevaluatewoundsurfacelist_result,
 
@@ -70,7 +72,9 @@ import {
 
 import {
   page_getpatientinfolist_request,
-  page_getpatientinfolist_result
+  page_getpatientinfolist_result,
+  page_getformreviewlapsetolist_request,
+  page_getformreviewlapsetolist_result,
 } from './pagination';
 //接收的对应关系
 let recvmessagetoresultpair = {
@@ -78,6 +82,7 @@ let recvmessagetoresultpair = {
   'subscribedevice_result':subscribedevice_result,
   'sendsmartdevicecmd_result':sendsmartdevicecmd_result,
 
+  'page_getformreviewlapsetolist_result':page_getformreviewlapsetolist_result,
   'createformreviewlapseto_result':createformreviewlapseto_result,
   'editformreviewlapseto_result':editformreviewlapseto_result,
 
@@ -140,6 +145,7 @@ let sendmessagefnsz = {
 
   'createformreviewlapseto':`${createformreviewlapseto_request}`,
   'editformreviewlapseto':`${editformreviewlapseto_request}`,
+  'page_getformreviewlapsetolist':`${page_getformreviewlapsetolist_request}`,
 };
 
 //验证发送接口
