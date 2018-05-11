@@ -37,6 +37,8 @@ const PatientinfoSchema = new Schema({
   firstevaluatebardenid:{ type: Schema.Types.ObjectId, ref: 'evaluatebarden' },//首次evaluatebarden评估
   firstevaluatewoundsurfaceid:{ type: Schema.Types.ObjectId, ref: 'evaluatewoundsurface' },//首次创面评估
   firstevaluatenursingmeasuresid:{ type: Schema.Types.ObjectId, ref: 'evaluatenursingmeasures' },//首次护理措施
+  formreviewlapsetoid:{ type: Schema.Types.ObjectId, ref: 'formreviewlapseto' },//转归表单
+
   depatid:{ type: Schema.Types.ObjectId, ref: 'depat' },//科室id
   bedid:{ type: Schema.Types.ObjectId, ref: 'bed' },//病床id
 }, { strict: false });

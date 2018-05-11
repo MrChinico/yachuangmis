@@ -48,6 +48,12 @@ import {
     editevaluatewoundsurface_request,
     editevaluatewoundsurface_result,
 
+    createformreviewlapseto_request,
+    createformreviewlapseto_result,
+
+    editformreviewlapseto_request,
+    editformreviewlapseto_result,
+
     getevaluatewoundsurfacelist_request,
     getevaluatewoundsurfacelist_result,
 
@@ -71,6 +77,9 @@ let recvmessagetoresultpair = {
   'serverpush_devicerealtimedata':serverpush_devicerealtimedata,
   'subscribedevice_result':subscribedevice_result,
   'sendsmartdevicecmd_result':sendsmartdevicecmd_result,
+
+  'createformreviewlapseto_result':createformreviewlapseto_result,
+  'editformreviewlapseto_result':editformreviewlapseto_result,
 
   'createevaluatebarden_result':createevaluatebarden_result,
   'editevaluatebarden_result':editevaluatebarden_result,
@@ -129,6 +138,8 @@ let sendmessagefnsz = {
   'editevaluatewoundsurface':`${editevaluatewoundsurface_request}`,
   'getevaluatewoundsurfacelist':`${getevaluatewoundsurfacelist_request}`,
 
+  'createformreviewlapseto':`${createformreviewlapseto_request}`,
+  'editformreviewlapseto':`${editformreviewlapseto_request}`,
 };
 
 //验证发送接口

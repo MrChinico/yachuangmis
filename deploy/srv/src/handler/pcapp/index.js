@@ -6,6 +6,7 @@ const depat = require('../common/depat.js');
 const evaluatebarden = require('../common/evaluatebarden.js');
 const evaluatenursingmeasures = require('../common/evaluatenursingmeasures.js');
 const evaluatewoundsurface = require('../common/evaluatewoundsurface.js');
+const formreviewlapseto = require('../common/formreviewlapseto.js');
 const smartdevice = require('../common/smartdevice');
 const debugapp = require('debug')('appsrv:app:index');
 
@@ -16,6 +17,8 @@ const actiondatahandler = {
   'login':userlogin.loginuser,
   'getpatientinfo':patientinfo.getpatientinfo,
   'page_getpatientinfolist':patientinfo.page_getpatientinfolist,
+  'createformreviewlapseto':formreviewlapseto.createformreviewlapseto,
+  'editformreviewlapseto':formreviewlapseto.editformreviewlapseto,
   'editpatientinfo':patientinfo.editpatientinfo,
   'createevaluatebarden':evaluatebarden.createevaluatebarden,
   'editevaluatebarden':evaluatebarden.editevaluatebarden,

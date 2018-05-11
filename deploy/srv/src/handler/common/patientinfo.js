@@ -101,6 +101,31 @@ exports.getpatientinfo = (actiondata,ctx,callback)=>{
             select:'username truename Staffno Staffid Staffname Depatno',
           },
         ]
+      },
+      {
+        path:'formreviewlapsetoid', model: 'formreviewlapseto',
+        populate: [
+          {
+            path: 'usercreatorid',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_nurse',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_headnurse',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_nursingdepartment',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+        ]
       }
     ]).lean().exec((err, newrecord)=> {
       if(!err && !!newrecord){
@@ -190,6 +215,31 @@ exports.page_getpatientinfolist =  (actiondata,ctx,callback)=>{
         },
         {
           path: 'signed_headnurse',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+      ]
+    },
+    {
+      path:'formreviewlapsetoid', model: 'formreviewlapseto',
+      populate: [
+        {
+          path: 'usercreatorid',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_nurse',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_headnurse',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_nursingdepartment',
           model: 'user',
           select:'username truename Staffno Staffid Staffname Depatno',
         },

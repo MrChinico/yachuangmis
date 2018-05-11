@@ -7,7 +7,11 @@ import lodashmap from 'lodash.map';
 const renderConditions = (props)=>{
 
     const {input:{value,onChange}} = props;
+    console.log(value);
     const {prerequisites,alternative} = value;
+    if(!prerequisites || !alternative){
+      return [];
+    }
     // let tr_prerequisites = [];
     // let tr_alternative = [];
 
@@ -139,6 +143,7 @@ const renderPreventivesmeasure = (props)=>{
 class PageForm extends React.Component {
   render() {
     const { handleSubmit,onClickSubmit,curpaientinfo,db } = this.props;
+    console.log(this.props);
     return (
       <Form
           onSubmit={handleSubmit(onClickSubmit)}
@@ -171,10 +176,6 @@ class PageForm extends React.Component {
                   <FieldArray
                       name="preventivesmeasure"
                       component={renderPreventivesmeasure} />
-
-
-
-
     							<tr>
     								<td>申报人：<input type="text" /></td>
     								<td className="w-50">申报时间：

@@ -9,6 +9,9 @@ import {
   editevaluatenursingmeasures_result,
   createevaluatewoundsurface_result,
   editevaluatewoundsurface_result,
+  createformreviewlapseto_result,
+  editformreviewlapseto_result,
+
   set_weui,
   set_db,
 
@@ -56,7 +59,14 @@ const popandreturn = [
     req:`${editevaluatewoundsurface_result}`,
     title:`编辑创面评估成功`
   },
-
+  {
+    req:`${createformreviewlapseto_result}`,
+    title:`新建转归表单成功`
+  },
+  {
+    req:`${editformreviewlapseto_result}`,
+    title:`编辑转归表单成功`
+  }
 ]
 
 export function* wsrecvsagabizflow() {
@@ -88,8 +98,13 @@ export function* wsrecvsagabizflow() {
         evaluatewoundsurfaces[payload._id] = payload;
         yield put(set_db({evaluatewoundsurfaces}));
       }
+      if(i === 6 || i === 7){//createformreviewlapseto_result/editformreviewlapseto_result
+        let formreviewlapsetos = {};
+        formreviewlapsetos[payload._id] = payload;
+        yield put(set_db({formreviewlapsetos}));
+      }
 
-      if(i === 0 ||  i === 2 || i === 4){
+      if(i === 0 ||  i === 2 || i === 4 || i === 6){
         const paientinfo = yield select((state)=>{
           const {paientinfos} = state.db;
           return paientinfos[payload.userpatientid];
@@ -113,7 +128,17 @@ export function* wsrecvsagabizflow() {
               firstevaluatewoundsurfaceid:payload._id
             }));
           }
+          if(i === 6 && !paientinfo.formreviewlapsetoid){
+            yield put(editpatientinfo_request({
+              _id:paientinfo._id,
+              formreviewlapsetoid:payload._id
+            }));
+          }
         }
+      }
+
+      if(i === 6 || i === 7){
+        return;
       }
       yield put(goBack());
     });

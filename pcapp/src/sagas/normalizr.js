@@ -45,6 +45,14 @@ const evaluatenursingmeasures =  new schema.Entity('evaluatenursingmeasuress',{
   idAttribute: '_id',
 });
 
+const formreviewlapseto =  new schema.Entity('formreviewlapsetos',{
+  usercreatorid:user,
+  signed_nurse:user,
+  signed_headnurse:user,
+  signed_nursingdepartment:user,
+},{
+  idAttribute: '_id',
+});
 
 const paientinfo = new schema.Entity('paientinfos', {
   bedid:bed,
@@ -52,6 +60,7 @@ const paientinfo = new schema.Entity('paientinfos', {
   firstevaluatebardenid:evaluatebarden,
   firstevaluatewoundsurfaceid:evaluatewoundsurface,
   firstevaluatenursingmeasuresid:evaluatenursingmeasures,
+  formreviewlapsetoid:formreviewlapseto,
 },{idAttribute: '_id'});
 
 const paientinfoListSchma = {docs:[paientinfo]};
@@ -78,9 +87,16 @@ const normalizr_evaluatenursingmeasures = (resultlist)=>{
   return entities;
 }
 
+const formreviewlapsetoListSchma = {list:[formreviewlapseto]};
+const normalizr_formreviewlapseto = (resultlist)=>{
+  const {entities}= normalize(resultlist, formreviewlapsetoListSchma);
+  return entities;
+}
+
 export {
   normalizr_paientinfo,
   normalizr_evaluatebarden,
   normalizr_evaluatewoundsurface,
   normalizr_evaluatenursingmeasures,
+  normalizr_formreviewlapseto
 };

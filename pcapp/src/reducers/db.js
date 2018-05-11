@@ -13,12 +13,13 @@ const initial = {
         evaluatebardens: {},
         evaluatewoundsurfaces: {},
         evaluatenursingmeasuress: {},
+        formreviewlapsetos:{}
     },
 };
 
 const db = createReducer({
   [set_db]:(state,payload)=>{
-      const {paientinfos,smartdevices,beds,depats,users,
+      const {paientinfos,smartdevices,beds,depats,users,formreviewlapsetos,
         evaluatebardens,evaluatewoundsurfaces,evaluatenursingmeasuress}  = payload;
 
       let new_paientinfos = state.paientinfos;
@@ -29,7 +30,7 @@ const db = createReducer({
       let new_evaluatebardens = state.evaluatebardens;
       let new_evaluatewoundsurfaces = state.evaluatewoundsurfaces;
       let new_evaluatenursingmeasuress = state.evaluatenursingmeasuress;
-
+      let new_formreviewlapsetos = state.formreviewlapsetos;
 
       if(!!paientinfos){
         new_paientinfos = {...new_paientinfos,...paientinfos};
@@ -55,10 +56,13 @@ const db = createReducer({
       if(!!evaluatenursingmeasuress){
         new_evaluatenursingmeasuress = {...new_evaluatenursingmeasuress,...evaluatenursingmeasuress};
       }
+      if(!!formreviewlapsetos){
+        new_formreviewlapsetos = {...new_formreviewlapsetos,...formreviewlapsetos};
+      }
       return {...state,
         paientinfos:new_paientinfos,smartdevices:new_smartdevices,beds:new_beds,depats:new_depats,
         users:new_users,evaluatebardens:new_evaluatebardens,evaluatewoundsurfaces:new_evaluatewoundsurfaces,
-        evaluatenursingmeasuress:new_evaluatenursingmeasuress
+        evaluatenursingmeasuress:new_evaluatenursingmeasuress,formreviewlapsetos:new_formreviewlapsetos
       };
   },
 }, initial.db);
