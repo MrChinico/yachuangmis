@@ -10,6 +10,8 @@ services:
       - ./dist:/dist
       - ./log:/log
     environment:
+      - DEBUG=*,-mquery
+      - DEBUG_COLORS=1
       - MONGO_URL=mongodb://localhost:27018/yc
       - listenport=6012
       - tcpport=50000

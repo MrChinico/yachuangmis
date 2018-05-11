@@ -6,15 +6,13 @@ let logger;
 exports.initLog =  ()=>{
   const filename = "yc";
 
-  const logfile = `${config.logdir}/${filename}.log`;
-  const logpath = path.resolve(__dirname,'../', logfile);
+  const logpath = `${config.logdir}/${filename}.log`;
   ////console.log(`logpath==>${logpath}`);
 
-  const logfileerr = `${config.logdir}/${filename}_err.log`;
-  const logpatherr = path.resolve(__dirname,'../', logfileerr);
+  const logpatherr = `${config.logdir}/${filename}_err.log`;
 
-  const logfilewarn = `${config.logdir}/${filename}_warn.log`;
-  const logpathwarn = path.resolve(__dirname,'../', logfilewarn);
+  const logpathwarn = `${config.logdir}/${filename}_warn.log`;
+
 
   // winston.configure({
   //   transports: [
