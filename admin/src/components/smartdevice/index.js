@@ -89,20 +89,20 @@ const getstring_establishstatus = (establishstatus)=>{
 const DeviceData = (props)=>{
   const { record,source } = props;
 
-  const value = _.get(record,source);
-  let showstring = '';
-  if(source === 'realtimedata.status'){
-    showstring = getstring_status(value);
-  }
-  else if(source === 'realtimedata.position'){
-    showstring = getstring_position(value);
-  }
-  else if(source === 'realtimedata.angle'){
-    showstring = getstring_angle(value);
-  }
-  else if(source === 'realtimedata.establishstatus'){
-    showstring = getstring_establishstatus(value);
-  }
+  const showstring = _.get(record,source);
+  // let showstring = '';
+  // if(source === 'realtimedata.status'){
+  //   showstring = getstring_status(value);
+  // }
+  // else if(source === 'realtimedata.position'){
+  //   showstring = getstring_position(value);
+  // }
+  // else if(source === 'realtimedata.angle'){
+  //   showstring = getstring_angle(value);
+  // }
+  // else if(source === 'realtimedata.establishstatus'){
+  //   showstring = getstring_establishstatus(value);
+  // }
   return (<span>{showstring}</span>);
 }
 
@@ -111,11 +111,10 @@ const SmartdeviceEdit = (props) => {
   return (<Edit title="智能设备"  {...props} >
     <SimpleForm>
       <TextField label="设备编号" source="deviceid"  />
-      <TextField label="协议版本" source="protocolversion"  />
-      <DeviceData label="设备状态" source="realtimedata.status" addLabel={true}/>
-      <DeviceData label="气垫方位" source="realtimedata.position"  addLabel={true}/>
-      <DeviceData label="气垫角度" source="realtimedata.angle"  addLabel={true}/>
-      <DeviceData label="姿态建立状态" source="realtimedata.establishstatus"  addLabel={true}/>
+      <DeviceData label="设备状态" source="realtimedata.statusstring" addLabel={true}/>
+      <DeviceData label="气垫方位" source="realtimedata.positionstring"  addLabel={true}/>
+      <DeviceData label="气垫角度" source="realtimedata.anglestring"  addLabel={true}/>
+      <DeviceData label="姿态建立状态" source="realtimedata.establishstatusstring"  addLabel={true}/>
       <TextField label="最后更新时间" source="realtimedata.lastupdatetime"  />
     </SimpleForm>
   </Edit>
@@ -132,11 +131,10 @@ const SmartdeviceList = (props) => (
   <List title="智能设备" filters={<SmartdeviceFilter />} {...props} sort={{field:'Smartdeviceno',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
       <TextField label="设备编号" source="deviceid"  />
-      <TextField label="协议版本" source="protocolversion"  />
-      <DeviceData label="设备状态" source="realtimedata.status" />
-      <DeviceData label="气垫方位" source="realtimedata.position" />
-      <DeviceData label="气垫角度" source="realtimedata.angle" />
-      <DeviceData label="姿态建立状态" source="realtimedata.establishstatus" />
+      <DeviceData label="设备状态" source="realtimedata.statusstring" />
+      <DeviceData label="气垫方位" source="realtimedata.positionstring" />
+      <DeviceData label="气垫角度" source="realtimedata.anglestring" />
+      <DeviceData label="姿态建立状态" source="realtimedata.establishstatusstring" />
       <TextField label="最后更新时间" source="realtimedata.lastupdatetime"  />
       <EditButton />
     </Datagrid>

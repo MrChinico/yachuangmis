@@ -39,13 +39,13 @@ const SystemconfigCreateTitle = ({ record }) => {
        <Create {...props} title={<SystemconfigCreateTitle />} >
        <TabbedForm>
          <FormTab label="系统设置">
-           <TextInput label="医院名字" source="Hospitalname" validate={required} />
+           <TextInput label="医院名字" source="Hospitalname" validate={required} elStyle={{width:'100%'}}/>
          </FormTab>
         <FormTab label="His接口">
-          <TextInput label="病人接口" source="url_patientinfo" validate={required} />
-          <TextInput label="科室接口" source="url_depat" validate={required} />
-          <TextInput label="病床接口" source="url_bed" validate={required} />
-          <TextInput label="员工接口" source="url_staff" validate={required} />
+          <TextInput label="病人接口" source="url_patientinfo" validate={required} elStyle={{width:'100%'}}/>
+          <TextInput label="科室接口" source="url_depat" validate={required} elStyle={{width:'100%'}}/>
+          <TextInput label="病床接口" source="url_bed" validate={required} elStyle={{width:'100%'}}/>
+          <TextInput label="员工接口" source="url_staff" validate={required} elStyle={{width:'100%'}}/>
         </FormTab>
        </TabbedForm>
        </Create>
@@ -55,13 +55,13 @@ const SystemconfigCreateTitle = ({ record }) => {
     <EditPage {...props} title={<SystemconfigTitle />}>
       <TabbedForm>
         <FormTab label="系统设置">
-          <TextInput label="医院名字" source="Hospitalname" validate={required} />
+          <TextInput label="医院名字" source="Hospitalname" validate={required} elStyle={{width:'100%'}}/>
         </FormTab>
         <FormTab label="His接口">
-          <TextInput label="病人接口" source="url_patientinfo" validate={required} />
-          <TextInput label="科室接口" source="url_depat" validate={required} />
-          <TextInput label="病床接口" source="url_bed" validate={required} />
-          <TextInput label="员工接口" source="url_staff" validate={required} />
+          <TextInput label="病人接口" source="url_patientinfo" validate={required} elStyle={{width:'100%'}}/>
+          <TextInput label="科室接口" source="url_depat" validate={required} elStyle={{width:'100%'}}/>
+          <TextInput label="病床接口" source="url_bed" validate={required} elStyle={{width:'100%'}}/>
+          <TextInput label="员工接口" source="url_staff" validate={required} elStyle={{width:'100%'}}/>
         </FormTab>
         </TabbedForm>
     </EditPage>
