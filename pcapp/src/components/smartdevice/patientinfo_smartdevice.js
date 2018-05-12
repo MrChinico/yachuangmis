@@ -137,11 +137,13 @@ class App extends React.Component {
 
 
 
-							<div onClick={
+						 <div onClick={
 								()=>{
 									this.onClickTurnover();
 								}
-							}><img src="custom.png" alt=""/><p>自定义翻身</p></div>
+							}>
+							<img src="custom.png" alt=""/><p>暂不支持</p>
+						</div>
 
 							<div onClick={()=>{
 									this.onClickSendCmd({

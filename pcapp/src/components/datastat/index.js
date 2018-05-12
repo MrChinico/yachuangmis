@@ -38,27 +38,27 @@ class App extends React.Component {
 						<div className="datastat-chart">
 							<div className="chart chart-one" onClick={()=>{
 								this.onClickStatDetail(0);
-							}}><h1>统计图1<span className="fontSize14">%</span></h1>
+							}}><h1>压疮率I<span className="fontSize14">%</span></h1>
 								<p className="num">2301人</p>
 								<img src="chart01.png"  alt=""/>
-								<p className="total-num">某某发生率<br/>总人数：45123人</p>
+								<p className="total-num">统计压疮的发生率<br/>总人数：45123人</p>
 							</div>
 
 							<div className="chart chart-two" onClick={()=>{
 								this.onClickStatDetail(1);
 							}}>
-								<h1>统计图2<span className="fontSize14">%</span></h1>
+								<h1>压疮率II<span className="fontSize14">%</span></h1>
 								<p className="num">2301人</p>
 								<img src="chart02.png"  alt=""/>
-								<p className="total-num">某某发生率<br/>总人数：45123人</p></div>
+								<p className="total-num">高危患者压疮发生率<br/>总人数：45123人</p></div>
 
 							<div className="chart chart-three" onClick={()=>{
 								this.onClickStatDetail(2);
 							}}>
-								<h1>统计图3<span className="fontSize14">%</span></h1>
+								<h1>治愈率<span className="fontSize14">%</span></h1>
 								<p className="num">2301人</p>
 								<img src="chart03.png"  alt=""/>
-								<p className="total-num">某某发生率<br/>总人数：45123人</p></div>
+								<p className="total-num">压疮治愈率<br/>总人数：45123人</p></div>
 						</div>
 					</div>
 
