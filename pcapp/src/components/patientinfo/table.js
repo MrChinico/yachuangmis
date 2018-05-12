@@ -49,7 +49,7 @@ class App extends React.Component {
 					{ulsz}
 				</ul>
 			</div>);
-			if(paginateCollection.totaPages > 0){
+			if(paginateCollection.totaPages > paginateCollection.perPage){
 				retlist.push(<Pagination key={'div1'} defaultCurrent={1}
 					total={paginateCollection.totaPages}
 					current={paginateCollection.currentPage}

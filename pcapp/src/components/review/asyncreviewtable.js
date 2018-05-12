@@ -165,7 +165,7 @@ class App extends React.Component {
 						</tbody>
 					</table>
 					{
-						this.state.pagination.total > 0 && (<Pagination key={'div1'} defaultCurrent={1}
+						this.state.pagination.total > this.state.pagination.pageSize && (<Pagination key={'div1'} defaultCurrent={1}
 							total={this.state.pagination.total}
 							current={this.state.pagination.current}
 							pageSize={this.state.pagination.pageSize}
