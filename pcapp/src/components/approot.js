@@ -22,7 +22,8 @@ import Datastatdetail from './datastat/detaillist';
 import Review from './review/reviewlist';
 import ReviewDetail from './review/reviewdetail';
 import SearchPaientinfo from './index/index_search';
-// import Login from './login';
+
+import Login from './login';
 import './antd.css';
 import {requireAuthentication} from './requireauthentication';
 
@@ -62,7 +63,7 @@ class AppRoot extends React.Component {
                   <Route exact path="/review" component={Review} />
                   <Route exact path="/reviewdetail/:rid" component={ReviewDetail} />
 
-                  {/* <Route exact path="/login" component={Login} /> */}
+                  <Route exact path="/login" component={Login} />
                 </Switch>
               </div>
 

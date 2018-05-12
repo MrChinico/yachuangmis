@@ -124,7 +124,8 @@ exports.loginuser = (actiondata,ctx,callback)=>{
     pwd.hashPassword(oneUser.password, user.passwordsalt, (err, passwordHash)=> {
       if(!err && !!passwordHash){
         if (passwordHash === user.passwordhash) {
-            setloginsuccess(ctx,user,callback);
+          setloginsuccess(ctx,user,callback);
+          return;
         }
       }
       callback({

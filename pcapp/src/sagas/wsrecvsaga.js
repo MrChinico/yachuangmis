@@ -17,7 +17,7 @@ import {
 } from '../actions';
 
 import config from '../env/config.js';
-
+import { replace } from 'react-router-redux';
 
 export function* wsrecvsagaflow() {
 
@@ -40,9 +40,7 @@ export function* wsrecvsagaflow() {
             yield put(login_result(result));
             if(result.loginsuccess){
               localStorage.setItem(`yc_${config.softmode}_token`,result.token);
-
-              yield put(getpatientinfo_request({}));
-
+              // yield put(getpatientinfo_request({}));
             }
         }
 
@@ -68,7 +66,7 @@ export function* wsrecvsagaflow() {
 
 
   yield takeLatest(`${logout_result}`, function*(action) {
-
+    yield put(replace('/login'));
   });
 
 

@@ -6,10 +6,10 @@ import {
   set_weui
 } from '../../actions';
 import "./style.css";
-import LoginBg from "../../img/loginbg.png";
-import Img1 from "../../img/1.png";
-import Img2 from "../../img/2.png";
-import Img3 from "../../img/23.png";
+// import LoginBg from "../../img/loginbg.png";
+// import Img1 from "../../img/1.png";
+// import Img2 from "../../img/2.png";
+// import Img3 from "../../img/23.png";
 // import Header from "../header/page.js";
 
 let resizetimecontent;
@@ -43,7 +43,7 @@ class PageForm extends React.Component {
     }
 
   	render() {
-      const { handleSubmit,onClickLogin,pristine,submitting } = this.props;
+      const { handleSubmit,onClickLogin } = this.props;
     	return (
 				<Form
 						className="loginForm"
@@ -57,14 +57,14 @@ class PageForm extends React.Component {
       				overflow: "hidden"
       			}}
       			>
-        		<img alt="" src={LoginBg} className="loginbg" />
+        		{/* <img alt="" src={LoginBg} className="loginbg" /> */}
         		<div className="loginForm">
         			<div className="tit">
         				<p className="t">XX医院压疮管理系统</p>
         				<p className="i"></p>
         			</div>
 					<div className="li">
-						<img alt="" src={Img1}/>
+						{/* <img alt="" src={Img1}/> */}
 						<Field
 								name="username"
 								id="username"
@@ -74,7 +74,7 @@ class PageForm extends React.Component {
 						/>
 					</div>
 					<div className="li">
-						<img alt="" src={Img2} />
+						{/* <img alt="" src={Img2} /> */}
 						<Field
 								name="password"
 								id="password"
@@ -84,7 +84,7 @@ class PageForm extends React.Component {
 						/>
 					</div>
 					<div className="butn">
-						<button disabled={pristine || submitting}
+						<button
             onClick={handleSubmit(onClickLogin)}>登录</button>
 					</div>
         		</div>
@@ -95,7 +95,11 @@ class PageForm extends React.Component {
 }
 
 PageForm = reduxForm({
-    form: 'LoginPageForm'
+    form: 'LoginPageForm',
+    initialValues:{
+      username:'T002',
+      password:'T002'
+    }
 })(PageForm);
 
 
@@ -134,6 +138,7 @@ export class Page extends React.Component {
             username:values.username,
             password:values.password,
         };
+        console.log(payload);
         //<----验证-----
         let texterr;
         if(!payload.username){
@@ -164,7 +169,7 @@ export class Page extends React.Component {
             this.props.history.goBack();
             }} >
             <span className="leftlnk">
-              <img alt="" src={Img3} />
+              {/* <img alt="" src={Img3} /> */}
             </span>
           </div>
 
