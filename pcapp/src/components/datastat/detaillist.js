@@ -29,8 +29,8 @@ class App extends React.Component {
 	    return (
 	      	<Layout>
 						<IndexHead title={title}/>
-						<div className="content-box">
-							<div className="content assess">
+						<div className="index-box">
+							<div className="index-content assess">
 								<h2 className="bbm-green">
 									{showtext}
 									<button className="return" onClick={
@@ -41,10 +41,10 @@ class App extends React.Component {
 									<div className="clearfix">
 								</div>
 								</h2>
-							</div>
-							<Patientinfolist query={this.state.query}
+								<Patientinfolist query={this.state.query}
 									history={this.props.history}
 									ref='plistsearch'/>
+							</div>
 						</div>
 	      	</Layout>
 	    );

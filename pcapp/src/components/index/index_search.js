@@ -45,7 +45,6 @@ class App extends React.Component {
 				}
 			},0);
 		}
-
   	render() {
 			const showtext = this.state.searchtxt === ''?'所有病人记录':`${this.state.searchtxt}的搜索结果`;
 	    return (
