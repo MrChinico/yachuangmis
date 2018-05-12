@@ -75,6 +75,7 @@ class App extends React.Component {
 								</h2>
 								<Patientinfolist query={this.state.query}
 									history={this.props.history}
+									pagenumber={12}
 									ref='plistsearch'/>
 							</div>
 						</div>

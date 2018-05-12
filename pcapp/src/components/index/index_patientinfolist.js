@@ -42,7 +42,7 @@ class App extends React.Component {
           usecache = {!!g_querysaved}
           ref='refpaientinfo'
           onItemConvert={this.onItemConvert.bind(this)}
-          pagenumber={16}
+          pagenumber={this.props.pagenumber || 16}
           query={this.props.query}
           sort={{DataTime: -1}}
           queryfun={(payload)=>{
