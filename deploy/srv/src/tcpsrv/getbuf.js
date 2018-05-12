@@ -40,14 +40,15 @@ const getbuf_query_status = (idhex)=>{
     return buf;
 }
 
-const getbuf_control = (mode,time)=>{
+const getbuf_control = (idhex,mode,time)=>{
+  const bufid = Buffer.from(idhex,'hex');
   const buf = Buffer.allocUnsafe(data_headlen+2);
   //buf.writeInt8(0xAA, 0);
   buf[0] = 0x49;
   buf[1] = 0x37;
 
-  buf[idoffset] = 0;
-  buf[lengthoffset] = 0;
+  buf[idoffset] = bufid[0];
+  buf[lengthoffset] = 0x02;
   buf[protocoloffset] = 0x04;
   buf[cmdoffset] = 0x01;
 

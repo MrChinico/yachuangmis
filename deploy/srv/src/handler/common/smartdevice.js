@@ -16,8 +16,10 @@ exports.sendsmartdevicecmd = (actiondata,ctx,callback)=>{
   const turnovertime = _.get(actiondata,'cmd.turnovertime','');
   const socket = tcpsrv.getsocketfromid(deviceid);
   if(!!socket){
-    const buf  = getbuf.getbuf_control(turnovermode,turnovertime);
+    const buf  = getbuf.getbuf_control(deviceid,turnovermode,turnovertime);
     socket.write(buf);
+
+    winston.getlog().info(`发送给硬件${deviceid}命令${turnovermode},${turnovertime},数据==>${buf.toString('hex')}`);
     //<--------
     callback({
       cmd:'sendsmartdevicecmd_result',
