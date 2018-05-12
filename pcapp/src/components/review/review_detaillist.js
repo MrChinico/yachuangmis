@@ -16,8 +16,8 @@ class App extends React.Component {
 
 		}
 
-		onClickDetail = (pid)=>{
-			this.props.history.push(`/reviewform/${pid}`);
+		onClickDetail = (pid,id)=>{
+			this.props.history.push(`/newlapseto/${pid}/${id}`);
 		}
 
     onItemConvert(item){

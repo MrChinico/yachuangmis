@@ -9,6 +9,7 @@ import IndexInfo from './patientinfo/index_info';
 import NewBarden from './evaluate/newbarden';
 import NewNursingmeasures from './evaluate/newnursingmeasures';
 import NewWoundsurface from './evaluate/newwoundsurface';
+import NewLapseto from './evaluate/newlapseto';
 
 import ViewPrintRecordBarden from './evaluate/recordbarden';
 import ViewPrintRecordNursingmeasures from './evaluate/recordnursingmeasures';
@@ -47,6 +48,7 @@ class AppRoot extends React.Component {
                   <Route exact path="/newbarden/:pid/:id" component={NewBarden} />
                   <Route exact path="/newnursingmeasures/:pid/:id" component={NewNursingmeasures} />
                   <Route exact path="/newwoundsurface/:pid/:id" component={NewWoundsurface} />
+                  <Route exact path="/newlapseto/:pid/:id" component={NewLapseto} />
 
                   <Route exact path="/viewprintrecordbarden/:pid" component={ViewPrintRecordBarden} />
                   <Route exact path="/viewprintrecordnursingmeasures/:pid" component={ViewPrintRecordNursingmeasures} />

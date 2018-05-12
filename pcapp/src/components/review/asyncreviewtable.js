@@ -159,7 +159,7 @@ class App extends React.Component {
 							lodashmap(this.state.dataSource,(info)=>{
 								return (<ReviewDetailinfo key={info._id}
 									info={info}
-									onClickDetail={()=>{this.props.onClickDetail(info._id)}} />)
+									onClickDetail={this.props.onClickDetail} />)
 							})
 						}
 						</tbody>

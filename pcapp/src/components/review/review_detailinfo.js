@@ -16,7 +16,7 @@ const ReviewDetailInfo = (props)=>{
 			<td><div align="center">无无无-已审</div></td>
 			<td><div align="center"  onClick={
 				()=>{
-					onClickDetail(info._id)
+					onClickDetail(info.userpatientid,info._id);
 				}
 			}>待审</div></td>
 		</tr>
