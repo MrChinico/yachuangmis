@@ -2,11 +2,17 @@ import React from 'react';
 // import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Layout } from 'antd';
+import { Radio } from 'antd';
+
+
 import IndexHead from '../index/index_title';
 import ReviewDetaillist from './review_detaillist';
-
-// import lodashget from 'lodash.get';
 import './reviewlist.css';
+
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
+// import lodashget from 'lodash.get';
+
 
 
 class App extends React.Component {
@@ -28,7 +34,13 @@ class App extends React.Component {
 						<IndexHead title="申报审阅"/>
 						<div className="content-box">
 								<div className="content">
-									<h4>21206<span>张三丰</span>
+										<h4><span>
+											<RadioGroup defaultValue="all" >
+												<RadioButton value="all">全部</RadioButton>
+								        <RadioButton value="reviewed">已申</RadioButton>
+								        <RadioButton value="notreviewed">未申</RadioButton>
+								      </RadioGroup>
+										</span>
 										<button className="return" onClick={
 											()=>{
 												this.props.history.replace('/');

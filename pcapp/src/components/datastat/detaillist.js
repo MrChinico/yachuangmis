@@ -25,18 +25,21 @@ class App extends React.Component {
 
   	render() {
 			const title = "数据统计";
+			const showtext = '压疮发生率 28% 2391人';
 	    return (
 	      	<Layout>
 						<IndexHead title={title}/>
 						<div className="content-box">
 							<div className="content assess">
-								<h2 className="none-border">
+								<h2 className="bbm-green">
+									{showtext}
 									<button className="return" onClick={
-										()=>{
-											this.props.history.replace('/');
-										}
-									}><img src="return.png"  alt=""/></button>
-									<div className="clearfix"></div>
+									()=>{
+										this.props.history.goBack();
+									}
+								}><img src="return.png" alt="" /></button>
+									<div className="clearfix">
+								</div>
 								</h2>
 							</div>
 							<Patientinfolist query={this.state.query}
