@@ -141,11 +141,14 @@ class App extends React.Component {
 	      	<Content>
           	{
 							lodashmap(this.state.dataSource,(curpaientinfo)=>{
-								return (<Paientinfo key={curpaientinfo._id}
-									curpaientinfo={curpaientinfo}
-									onClickDetail={()=>{this.props.onClickDetail(curpaientinfo._id)}}
-									onClickEvalute={()=>{this.props.onClickEvalute(curpaientinfo._id)}}/>);
-							})
+								return (
+									<Paientinfo 
+										db={this.props.db}
+										key={curpaientinfo._id}
+										curpaientinfo={curpaientinfo}
+										onClickDetail={()=>{this.props.onClickDetail(curpaientinfo._id)}}
+										onClickEvalute={()=>{this.props.onClickEvalute(curpaientinfo._id)}}/>);
+								})
 						}
 						<div className="clearfix"></div>
 						{

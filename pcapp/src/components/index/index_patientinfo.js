@@ -1,9 +1,16 @@
 import React from 'react';
-
+import lodashget from 'lodash.get';
 
 const Paientinfo = (props)=>{
 	const {curpaientinfo,onClickDetail,onClickEvalute} = props;
-	const {Patientno,Patientname} = curpaientinfo;
+	const Patientname = lodashget(curpaientinfo,'Patientname','');
+	const Patientno = lodashget(curpaientinfo,'Patientno','');
+	const bedStatusString = lodashget(curpaientinfo,'bedid','') === ''?'离床':'在床';
+	const depatName = lodashget(curpaientinfo,'depatid.Depatname','');
+	const bedName = lodashget(curpaientinfo,'bedid.Bedname','');
+	const smartDeviceString = lodashget(curpaientinfo,'bedid.smartdeviceid.realtimedata.positionstring','') + lodashget(curpaientinfo,'bedid.smartdeviceid.realtimedata.anglestring','');
+	const isInSmartBed = lodashget(curpaientinfo,'bedid.smartdeviceid','')===''?false:true;
+	const stateClassname = bedStatusString==='在床'?'statein':'stateoff';
 	return (
 			<div className="module-box">
 				<div className="module">
@@ -19,10 +26,10 @@ const Paientinfo = (props)=>{
 						</p>
 					</div>
 					<div className="module-bottom">
-						<span>病床:左转45度</span>
+						 <span>病床:{isInSmartBed?smartDeviceString:'普通病床'}</span>
 						<p>
-							<span className="state">在床</span>
-							<span>压疮三区A15</span>
+							<span className={stateClassname}>{bedStatusString}</span>
+							<span>{`${depatName}${bedName}`}</span>
 							<button type="" className="ant-btn-assess" onClick={
 								()=>{
 									onClickEvalute(curpaientinfo._id)

@@ -25,6 +25,7 @@ class App extends React.Component {
 	      	<Layout>
 						<HeadTitle showbtns={true}/>
 						<Patientinfolist query={{}}
+						db={this.props.db}
 						history={this.props.history}/>
 						{ispopuserinfo  && <Usercenter /> }
 						{ispoppwd && <Changepwd />}
@@ -33,7 +34,7 @@ class App extends React.Component {
   	}
 }
 
-const mapStateToProps = ({app:{ispopuserinfo,ispoppwd}}) => {
-    return {ispopuserinfo,ispoppwd};
+const mapStateToProps = ({app:{ispopuserinfo,ispoppwd},db}) => {
+    return {ispopuserinfo,ispoppwd,db};
 }
 export default connect(mapStateToProps)(App);

@@ -43,6 +43,7 @@ class App extends React.Component {
 								</h2>
 								<Patientinfolist query={this.state.query}
 									history={this.props.history}
+									db={this.props.db}
 									pagenumber={12}
 									ref='plistsearch'/>
 							</div>
@@ -52,5 +53,8 @@ class App extends React.Component {
   	}
 }
 
+const mapStateToProps = ({db},props) => {
+    return {db};
+}
 
-export default connect()(App);
+export default connect(mapStateToProps)(App);

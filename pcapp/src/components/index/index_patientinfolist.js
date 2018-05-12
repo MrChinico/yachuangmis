@@ -36,6 +36,7 @@ class App extends React.Component {
   	render() {
       return (
         <AsyncTable
+          db={this.props.db}
           onClickDetail = {this.onClickDetail}
           onClickEvalute = {this.onClickEvalute}
           listtypeid = 'antdtablealarmdetail'

@@ -273,13 +273,20 @@ input{
     padding:7px 10px;
     color:#666;
 }
-.module-bottom .state{
+.module-bottom .statein{
     padding:0px 3px;
     border-radius: 3px;
     color:#fff;
     background-color: #009b87;
     margin-right: 4px;
 }
+.module-bottom .stateoff{
+    padding:0px 3px;
+    border-radius: 3px;
+    color:#bfbfbf;
+    margin-right: 4px;
+}
+
 .ant-btn-assess {
     padding: 0;
     font-size: 14px;
@@ -947,7 +954,7 @@ background-color:#f9f9f9;
     .modify-password{
         width:40%;
         left:30%;
-        top:33%;
+        top:20%;
         box-shadow: 1px 4px 4px rgba(0,0,0,0.2);
     }
 }
