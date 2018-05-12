@@ -39,13 +39,19 @@ import ShowButton from '../controls/ShowButton';
 const FormReviewlapsetoEdit = (props) => {
   return (<Edit title="审阅转归"  {...props} >
     <SimpleForm>
-     <TextField label="科室编号" source="FormReviewlapsetono"  />
-     <TextField label="科室名称" source="FormReviewlapsetoname"  />
-     <SelectInput  label="科室属性"  source="DepProperty" choices={[
-         { id: '0', name: '住院科室' },
-         { id: '1', name: '病区' },
-         { id: '1', name: '门诊科室' },
-     ]} />
+     <TextField label="barden评分" source="evaluatebardenscore"  />
+     <ReferenceField label="评估护士" source="signed_nurse" reference="user" allowEmpty>
+       <TextField source="username" />
+     </ReferenceField>
+     <ReferenceField label="护士长" source="signed_headnurse" reference="user" allowEmpty>
+       <TextField source="username" />
+     </ReferenceField>
+     <ReferenceField label="主管部门" source="signed_nursingdepartment" reference="user" allowEmpty>
+       <TextField source="username" />
+     </ReferenceField>
+     <ReferenceField label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
+       <TextField source="Patientname" />
+     </ReferenceField>
     </SimpleForm>
   </Edit>
   );
@@ -53,22 +59,38 @@ const FormReviewlapsetoEdit = (props) => {
 
 const FormReviewlapsetoFilter = (props) => (
   <Filter {...props}>
-    <TextInput label="科室编号" source="FormReviewlapsetono_q" />
-    <TextInput label="科室名称" source="FormReviewlapsetoname_q" />
-    <SelectInput  label="科室属性"  source="DepProperty" choices={[
-        { id: '0', name: '住院科室' },
-        { id: '1', name: '病区' },
-        { id: '1', name: '门诊科室' },
-    ]} />
+    <ReferenceInput label="评估护士" source="signed_nurse" reference="user" allowEmpty>
+      <SelectInput optionText="username" />
+    </ReferenceInput>
+    <ReferenceInput label="护士长" source="signed_headnurse" reference="user" allowEmpty>
+      <SelectInput optionText="username" />
+    </ReferenceInput>
+    <ReferenceInput label="主管部门" source="signed_nursingdepartment" reference="user" allowEmpty>
+      <SelectInput optionText="username" />
+    </ReferenceInput>
+    <ReferenceInput label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
+      <SelectInput optionText="Patientname" />
+    </ReferenceInput>
   </Filter>
 )
 
 const FormReviewlapsetoList = (props) => (
   <List title="审阅转归" filters={<FormReviewlapsetoFilter />} {...props} sort={{field:'FormReviewlapsetono',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
-      <TextField label="科室编号" source="FormReviewlapsetono"  />
-      <TextField label="科室名称" source="FormReviewlapsetoname"  />
-      <TextField label="科室属性" source="DepProperty" />
+      <TextField label="barden评分" source="evaluatebardenscore"  />
+      <ReferenceField label="评估护士" source="signed_nurse" reference="user" allowEmpty>
+        <TextField source="username" />
+      </ReferenceField>
+      <ReferenceField label="护士长" source="signed_headnurse" reference="user" allowEmpty>
+        <TextField source="username" />
+      </ReferenceField>
+      <ReferenceField label="主管部门" source="signed_nursingdepartment" reference="user" allowEmpty>
+        <TextField source="username" />
+      </ReferenceField>
+      <ReferenceField label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
+        <TextField source="Patientname" />
+      </ReferenceField>
+      <TextField source="created_at" label="新建时间" />
       <EditButton />
     </Datagrid>
   </List>

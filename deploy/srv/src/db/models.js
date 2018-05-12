@@ -219,6 +219,8 @@ const EvaluateWoundsurfaceModel =mongoose.model('evaluatewoundsurface',  Evaluat
 const FormReviewLapsetoSchema = new Schema({
   userpatientid:{ type: Schema.Types.ObjectId, ref: 'patientinfo' },//病人ID
   usercreatorid:{ type: Schema.Types.ObjectId, ref: 'user' },//用户ID
+  created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},//新建时间
+  updated_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},//更新时间
 
   evaluatebardenscore:Number,//evaluatebarden
   preventivesmeasure:[
