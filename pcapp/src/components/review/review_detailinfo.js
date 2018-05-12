@@ -2,36 +2,24 @@ import React from 'react';
 
 
 const ReviewDetailInfo = (props)=>{
-	const {curpaientinfo,onClickDetail,onClickEvalute} = props;
-	const {Patientno,Patientname} = curpaientinfo;
+	const {info,onClickDetail} = props;
+	const {evaluatebardenscore,created_at} = info;
 	return (
-			<div className="module-box">
-				<div className="module">
-					<div className="module-top">
-						<h2>{Patientno}<span>{Patientname}</span></h2>
-						<p>
-							<span className="fontSize13">普通压疮</span>
-							<button type="" className="ant-btn-details" onClick={
-								()=>{
-									onClickDetail(curpaientinfo._id)
-								}
-							}>详细</button>
-						</p>
-					</div>
-					<div className="module-bottom">
-						<span>病床:左转45度</span>
-						<p>
-							<span className="state">在床</span>
-							<span>压疮三区A15</span>
-							<button type="" className="ant-btn-assess" onClick={
-								()=>{
-									onClickEvalute(curpaientinfo._id)
-								}
-							}>评估</button>
-						</p>
-					</div>
-				</div>
-			</div>
+		<tr>
+			<td><div align="center">0001</div></td>
+			<td><div align="center">张三丰</div></td>
+			<td><div align="center">20250</div></td>
+			<td><div align="center">皮肤科</div></td>
+			<td><div align="center">{created_at}</div></td>
+			<td><div align="center">{evaluatebardenscore}</div></td>
+			<td><div align="center">杜拉拉</div></td>
+			<td><div align="center">无无无-已审</div></td>
+			<td><div align="center"  onClick={
+				()=>{
+					onClickDetail(info._id)
+				}
+			}>待审</div></td>
+		</tr>
 	)
 }
 

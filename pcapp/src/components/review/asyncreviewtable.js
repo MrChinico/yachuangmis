@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 // import { withRouter } from 'react-router-dom';
 import lodashmap from 'lodash.map';
 import lodashget from 'lodash.get';
-import { Layout } from 'antd';
+// import { Layout } from 'antd';
 import { Pagination } from 'antd';
 // import './index.css';
 import ReviewDetailinfo from './review_detailinfo';
 import {set_weui} from '../../actions';
 
 
-const { Content } = Layout;
+// const { Content } = Layout;
 // const pagenumber = 5;
 const listtypeiddata = {
 
@@ -135,26 +135,44 @@ class App extends React.Component {
 		// onClickEvalute = (pid)=>{
 		// 	this.props.history.push(`/indexinfo/${pid}`);
 		// }
+
+
   	render() {
 			// const {paientinfolist,paientinfos} = this.props;
 	    return (
-	      	<Content>
-          	{
-							lodashmap(this.state.dataSource,(curpaientinfo)=>{
-								return (<ReviewDetailinfo key={curpaientinfo._id}
-									curpaientinfo={curpaientinfo}
-									onClickDetail={()=>{this.props.onClickDetail(curpaientinfo._id)}}
-									onClickEvalute={()=>{this.props.onClickEvalute(curpaientinfo._id)}}/>);
+				<div className="record">
+					<table width="100%" border="0" className="declare-review-list">
+						<tbody>
+						<tr className="top">
+							<td><div align="center">序号</div></td>
+							<td><div align="center">姓名</div></td>
+							<td><div align="center">住院号</div></td>
+							<td><div align="center">科室</div></td>
+							<td><div align="center">入院时间</div></td>
+							<td><div align="center">床号</div></td>
+							<td><div align="center">申请护士</div></td>
+							<td><div align="center">护士审阅</div></td>
+							<td><div align="center">护理部审阅</div></td>
+						</tr>
+
+						{
+							lodashmap(this.state.dataSource,(info)=>{
+								return (<ReviewDetailinfo key={info._id}
+									info={info}
+									onClickDetail={()=>{this.props.onClickDetail(info._id)}} />)
 							})
 						}
-						<div className="clearfix"></div>
-						<Pagination key={'div1'} defaultCurrent={1}
-							total={this.state.pagination.total}
-							current={this.state.pagination.current}
-							pageSize={this.state.pagination.pageSize}
-							onChange={this.onChangePagination}
-						/>
-	      	</Content>
+						</tbody>
+					</table>
+
+					<Pagination key={'div1'} defaultCurrent={1}
+						total={this.state.pagination.total}
+						current={this.state.pagination.current}
+						pageSize={this.state.pagination.pageSize}
+						onChange={this.onChangePagination}
+					/>
+		</div>
+
 	    );
   	}
 }
