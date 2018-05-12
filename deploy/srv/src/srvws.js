@@ -26,7 +26,7 @@ const startwebsocketsrv = (http)=>{
         ctx.usertype = 'pcapp';
       }
       // //console.log('\npc get message:' + JSON.stringify(payload));
-      winston.getlog().info('ctx:', JSON.stringify(ctx));
+      // winston.getlog().info('ctx:', JSON.stringify(ctx));
       handleuserpcapp(socket,payload,ctx);
     });
 
