@@ -95,9 +95,3 @@
     padding:20px 0px !important;
     background-color: #fff;
 }
-
-.ant-radio-button-wrapper-checked {
-  background: #009B86;
-  border-color: #e8e8e8;
-  color: #fff;
-}

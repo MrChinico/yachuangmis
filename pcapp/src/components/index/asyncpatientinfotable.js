@@ -148,12 +148,15 @@ class App extends React.Component {
 							})
 						}
 						<div className="clearfix"></div>
-						<Pagination key={'div1'} defaultCurrent={1}
-							total={this.state.pagination.total}
-							current={this.state.pagination.current}
-							pageSize={this.state.pagination.pageSize}
-							onChange={this.onChangePagination}
-						/>
+						{
+							this.state.pagination.total>0 &&
+								(<Pagination key={'div1'} defaultCurrent={1}
+														total={this.state.pagination.total}
+														current={this.state.pagination.current}
+														pageSize={this.state.pagination.pageSize}
+														onChange={this.onChangePagination}
+													/>)
+						}
 	      	</Content>
 	    );
   	}

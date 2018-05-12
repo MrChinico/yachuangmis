@@ -6032,9 +6032,9 @@ span.ant-radio + * {
   height: 0;
 }
 .ant-radio-button-wrapper-checked {
-  background: #fff;
-  border-color: #1890ff;
-  color: #1890ff;
+  background: #009B86;
+  border-color: #e8e8e8;
+  color: #fff;
   -webkit-box-shadow: -1px 0 0 0 #1890ff;
           box-shadow: -1px 0 0 0 #1890ff;
   z-index: 1;

@@ -43,26 +43,21 @@ class App extends React.Component {
 				</li>)
 			});
 
-			// {
-			//     currentPage: 1,
-			//     perPage: 10,
-			//     total: 20,
-			//     totalPages: 2,
-			//     data: [...]
-			// }
-	    return [
-					<div className="record-box" key={'div0'}>
-						<ul>
-							{ulsz}
-						</ul>
-					</div>,
-					<Pagination key={'div1'} defaultCurrent={1}
-						total={paginateCollection.totaPages}
-						current={paginateCollection.currentPage}
-					  pageSize={paginateCollection.perPage}
-						onChange={this.onChangePagination}
-					/>
-			];
+		  let retlist = [];
+			retlist.push(<div className="record-box" key={'div0'}>
+				<ul>
+					{ulsz}
+				</ul>
+			</div>);
+			if(paginateCollection.totaPages > 0){
+				retlist.push(<Pagination key={'div1'} defaultCurrent={1}
+					total={paginateCollection.totaPages}
+					current={paginateCollection.currentPage}
+					pageSize={paginateCollection.perPage}
+					onChange={this.onChangePagination}
+				/>);
+			}
+	    return retlist;
   	}
 }
 

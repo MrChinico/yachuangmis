@@ -37,8 +37,8 @@ class App extends React.Component {
 										<h4><span>
 											<RadioGroup defaultValue="all" >
 												<RadioButton value="all">全部</RadioButton>
-								        <RadioButton value="reviewed">已申</RadioButton>
-								        <RadioButton value="notreviewed">未申</RadioButton>
+								        <RadioButton value="reviewed">已审</RadioButton>
+								        <RadioButton value="notreviewed">未审</RadioButton>
 								      </RadioGroup>
 										</span>
 										<button className="return" onClick={
