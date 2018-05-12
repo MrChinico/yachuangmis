@@ -23,7 +23,7 @@ class App extends React.Component {
 			const {ispopuserinfo,ispoppwd} = this.props;
 	    return (
 	      	<Layout>
-						<HeadTitle />
+						<HeadTitle showbtns={true}/>
 						<Patientinfolist query={{}}
 						history={this.props.history}/>
 						{ispopuserinfo  && <Usercenter /> }

@@ -25,7 +25,7 @@ class App extends React.Component {
   	render() {
 	    return (
 	      	<Layout>
-						<IndexHead />
+						<IndexHead title="申报审阅"/>
 						<div className="content-box">
 								<div className="content">
 									<h4>21206<span>张三丰</span>

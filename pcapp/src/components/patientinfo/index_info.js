@@ -88,7 +88,7 @@ class App extends React.Component {
 					title:'转归与申报',
 					visible:true,
 					enabled:true,
-					Co:<InfoLapsetto curpaientinfo={curpaientinfo} db={db}/>
+					Co:<InfoLapsetto curpaientinfo={curpaientinfo} db={db} history={this.props.history}/>
 				},
 				{
 					btnkey:'btnto',
