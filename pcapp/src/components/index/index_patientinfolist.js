@@ -39,7 +39,7 @@ class App extends React.Component {
           db={this.props.db}
           onClickDetail = {this.onClickDetail}
           onClickEvalute = {this.onClickEvalute}
-          listtypeid = 'antdtablealarmdetail'
+          listtypeid = 'antdtablepaientinfo'
           usecache = {!!g_querysaved}
           ref='refpaientinfo'
           onItemConvert={this.onItemConvert.bind(this)}
