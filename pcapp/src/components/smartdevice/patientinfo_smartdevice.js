@@ -148,8 +148,8 @@ class App extends React.Component {
 							<div onClick={()=>{
 									this.onClickSendCmd({
 										angle:0,
-										direct:'S',
-										turnovermode:0x53,//‘S’(0x53):停止
+										direct:'R',
+										turnovermode:0x52,//‘R’(0x52):复位
 										turnovertime:0
 									});
 								}
@@ -158,8 +158,8 @@ class App extends React.Component {
 							<div onClick={()=>{
 									this.onClickSendCmd({
 										angle:0,
-										direct:'R',
-										turnovermode:0x52,//‘R’(0x52):复位
+										direct:'S',
+										turnovermode:0x53,//‘S’(0x53):停止
 										turnovertime:0
 									});
 								}
