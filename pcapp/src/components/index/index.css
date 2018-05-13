@@ -485,16 +485,18 @@ input{
     border-radius: 10px;
 }
 /* 评估-智能设备【运行】 */
-.device-info .device-name{
+.device-name{
     font-size: 18px;
     color:#000;
     font-weight: 400;
 }
-.device-info .device-name{
+.device-info {
     font-size: 18px;
     color:#000;
     font-weight: 400;
+    height: 35px;
 }
+
 .device-info span{
     font-size: 14px;
     color:#888;
