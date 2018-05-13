@@ -160,7 +160,7 @@ class App extends React.Component {
 								}><img src="return.png" alt=""/></button>
 								<div className="clearfix"></div>
 							</h2>
-							<TitleDetail curpaientinfo={curpaientinfo} />
+							<TitleDetail curpaientinfo={curpaientinfo} db={db}/>
 							</div>
 							<div className="tabcontent">
 								<Tabs onChange={this.changePage} type="card" defaultActiveKey={defaultbtnkey}>

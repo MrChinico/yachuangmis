@@ -12,7 +12,7 @@ const ViewPrintHeader = (props)=>{
       <tbody>
         <tr className="elastic">
           <td>姓名：<input type="text" readOnly value={`${lodashget(curpaientinfo,'Patientname','')}`}/></td>
-          <td>性别：<input type="text" readOnly value={`${lodashget(curpaientinfo,'Sex','')}`}/></td>
+          <td>性别：<input type="text" readOnly value={`${lodashget(curpaientinfo,'SexString','男')}`}/></td>
           <td>年龄：<input type="text" readOnly value={`${lodashget(curpaientinfo,'Age','')}`}/></td>
           <td>住院号：<input type="text"  readOnly value={`${lodashget(curpaientinfo,'Patientno','')}`}/></td>
         </tr>

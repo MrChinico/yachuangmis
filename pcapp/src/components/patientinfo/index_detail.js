@@ -21,7 +21,7 @@ class App extends React.Component {
 			this.props.history.push(`/indexdetailedit/${curpaientinfo._id}`);
 		}
   	render() {
-			const {curpaientinfo} = this.props;
+			const {curpaientinfo,db} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -39,7 +39,7 @@ class App extends React.Component {
 							}><img src="return.png" alt=""/></button>
 							<div className="clearfix"></div>
 							</h2>
-							<TitleDetail curpaientinfo={curpaientinfo} />
+							<TitleDetail curpaientinfo={curpaientinfo} db={db}/>
 							<div>
 								<button className="ant-btn-edit" onClick={
 									()=>{
@@ -58,6 +58,6 @@ const mapStateToProps = ({db},props) => {
 		const {paientinfos} = db;
 		const id = lodashget(props,'match.params.pid');
 		let curpaientinfo = paientinfos[id];
-    return {curpaientinfo};
+    return {curpaientinfo,db};
 }
 export default connect(mapStateToProps)(App);
