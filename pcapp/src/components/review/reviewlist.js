@@ -25,9 +25,7 @@ class App extends React.Component {
 		componentWillUnmount() {
 
 		}
-		onClickReviewDetail = (rid)=>{
-			this.props.history.push(`/reviewdetail/${rid}`)
-		}
+
   	render() {
 	    return (
 	      	<Layout>

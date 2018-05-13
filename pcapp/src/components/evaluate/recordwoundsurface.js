@@ -18,18 +18,19 @@ class App extends React.Component {
 		}
 
   	render() {
-			const {curpaientinfo,db,evaluatewoundsurfacelist} = this.props;
+			const {curpaientinfo,db,evaluatewoundsurfacelist,app} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
+			const {Hospitalname} = app;
 	    return (
 				<Layout>
 					<Header>
-						<span><img src="index.png" className="icon-index" alt=""/>查看打印创面评估表单</span>
+						<span><img src="index.png" className="icon-index" alt=""/>创面评估</span>
 					</Header>
 					<div className="content-box">
 					<div className="content assess">
-						<h1 className="printing-title">压疮护理措施记录查看
+						<h1 className="printing-title">压疮疮面评估查看
 							<button className="ant-btn">
 								<img src="printing.png" alt="" />打印报表
 							</button>
@@ -42,10 +43,10 @@ class App extends React.Component {
 						</h1>
 						<form>
 							<div className="form-box">
-								<h1>某某市某某医院危险因素评估</h1>
+								<h1>{Hospitalname}压疮疮面评估</h1>
 								<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 								<RecordwoundsurfaceTablebody evaluatewoundsurfacelist={evaluatewoundsurfacelist} db={db} />
-								
+
 								</div>
 						</form>
 					</div>
@@ -56,11 +57,11 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = ({db,evaluatewoundsurface},props) => {
+const mapStateToProps = ({db,evaluatewoundsurface,app},props) => {
 		const {paientinfos} = db;
 		const id = lodashget(props,'match.params.pid');
 		const {evaluatewoundsurfacelist} = evaluatewoundsurface;
 		let curpaientinfo = paientinfos[id];
-    return {curpaientinfo,db,evaluatewoundsurfacelist};
+    return {curpaientinfo,db,evaluatewoundsurfacelist,app};
 }
 export default connect(mapStateToProps)(App);

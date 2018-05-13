@@ -142,15 +142,16 @@ const renderPreventivesmeasure = (props)=>{
 
 class PageForm extends React.Component {
   render() {
-    const { handleSubmit,onClickSubmit,curpaientinfo,db } = this.props;
+    const { handleSubmit,onClickSubmit,curpaientinfo,db,app } = this.props;
     console.log(this.props);
+    const {Hospitalname} = app;
     return (
       <Form
           onSubmit={handleSubmit(onClickSubmit)}
           >
             <div className="form-box">
 
-    						<h1>某某市某某医院高危压疮申报表</h1>
+    						<h1>{Hospitalname}转归审阅申请表</h1>
                 <ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 
     						<table className="choose-info">

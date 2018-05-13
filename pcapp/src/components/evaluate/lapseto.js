@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import lodashget from 'lodash.get';
+// import lodashget from 'lodash.get';
 import ContentTitleBar from '../patientinfo/patientinfo_content_titlebar';
-import PageForm from './form_lapseto_barden';
+// import PageForm from './form_lapseto_barden';
 import {getdefaultlapseto_barden} from '../../util';
 import {createformreviewlapseto_request,editformreviewlapseto_request} from '../../actions';
 import ReviewDetailInfo from './lapseto_viewinfo';
@@ -59,7 +59,7 @@ class App extends React.Component {
 	    return (
 	      	<div>
 						<ContentTitleBar title="转归与申报记录" titleNew="转归填写" titleView="打印报表"
-							onClickNew={this.onClickNew} onClickViewPrint={this.onClickViewPrint} />
+							onClickNew={this.onClickNew}  />
 
 						{!!curformreviewlapseto && <ReviewDetailInfo info={curformreviewlapseto} /> }
 	      	</div>

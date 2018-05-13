@@ -23,15 +23,15 @@ class App extends React.Component {
 			this.props.history.goBack();
 		}
   	render() {
-			const {curpaientinfo,db,evaluatebardenlist} = this.props;
+			const {curpaientinfo,db,evaluatebardenlist,app} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
-
+			const {Hospitalname} = app;
 	    return (
 				<Layout>
 					<Header>
-						<span><img src="index.png" className="icon-index" alt=""/>查看打印Barden表单</span>
+						<span><img src="index.png" className="icon-index" alt=""/>查看Bardenp评估</span>
 					</Header>
 					<div className="content-box">
 					<div className="content assess">
@@ -48,7 +48,7 @@ class App extends React.Component {
 						</h1>
 						<form>
 								<div className="form-box">
-									<h1>某某医院压疮危险因素评估表</h1>
+									<h1>{Hospitalname}压疮危险因素评估表</h1>
 									<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 									<RecordbardenTableBody evaluatebardenlist={evaluatebardenlist} db={db}/>
 								</div>
@@ -61,11 +61,11 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = ({db,evaluatebarden},props) => {
+const mapStateToProps = ({db,evaluatebarden,app},props) => {
 		const {paientinfos} = db;
 		const {evaluatebardenlist} = evaluatebarden;
 		const id = lodashget(props,'match.params.pid');
 		let curpaientinfo = paientinfos[id];
-    return {curpaientinfo,db,evaluatebardenlist};
+    return {curpaientinfo,db,evaluatebardenlist,app};
 }
 export default connect(mapStateToProps)(App);

@@ -37,7 +37,7 @@ class App extends React.Component {
 			console.log(values);
 		}
   	render() {
-			const {curpaientinfo,db,curformreviewlapseto,isnew} = this.props;
+			const {curpaientinfo,db,curformreviewlapseto,isnew,app} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -66,6 +66,7 @@ class App extends React.Component {
 						<TitleDetail curpaientinfo={curpaientinfo} />
 
 						<PageForm onClickSubmit={this.onClickSubmit}
+							app={app}
 							db={db}
 							formname={formname}
 							formvalues={formvalues}/>
@@ -91,7 +92,7 @@ class App extends React.Component {
 // 		return {curpaientinfo,isnew,curformreviewlapseto,db};
 // }
 
-const mapStateToProps = ({db},props) => {
+const mapStateToProps = ({db,app},props) => {
 		const {paientinfos,formreviewlapsetos} = db;
 		const id = lodashget(props,'match.params.pid');
 		const formreviewlapsetoid = lodashget(props,'match.params.id');
@@ -108,9 +109,9 @@ const mapStateToProps = ({db},props) => {
 			}
 		}
 		if(isnew){
-			return {curpaientinfo,isnew};
+			return {curpaientinfo,isnew,app};
 		}
-		return {curpaientinfo,isnew,curformreviewlapseto,db};
+		return {curpaientinfo,isnew,curformreviewlapseto,db,app};
 }
 
 export default connect(mapStateToProps)(App);

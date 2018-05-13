@@ -17,18 +17,19 @@ class App extends React.Component {
 		}
 
   	render() {
-			const {curpaientinfo,db,evaluatenursingmeasureslist} = this.props;
+			const {curpaientinfo,db,evaluatenursingmeasureslist,app} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
+			const {Hospitalname} = app;
 	    return (
 				<Layout>
 					<Header>
-						<span><img src="index.png" className="icon-index" alt=""/>查看打印护理措施表单</span>
+						<span><img src="index.png" className="icon-index" alt=""/>护理措施</span>
 					</Header>
 					<div className="content-box">
 						<div className="content assess">
-							<h1 className="printing-title">压疮护理措施记录查看
+							<h1 className="printing-title">护理措施查看
 								<button className="ant-btn">
 									<img src="printing.png" alt="" />打印报表
 								</button>
@@ -41,7 +42,7 @@ class App extends React.Component {
 							</h1>
 							<form>
 								<div className="form-box">
-									<h1>某某市某某医院压疮护理措施表</h1>
+									<h1>{Hospitalname}护理措施表</h1>
 									<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 
 									<RecordNursingMeasuresTableBody db={db} evaluatenursingmeasureslist={evaluatenursingmeasureslist}/>
@@ -55,11 +56,11 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = ({db,evaluatenursingmeasures},props) => {
+const mapStateToProps = ({db,evaluatenursingmeasures,app},props) => {
 		const {paientinfos} = db;
 		const {evaluatenursingmeasureslist} = evaluatenursingmeasures;
 		const id = lodashget(props,'match.params.pid');
 		let curpaientinfo = paientinfos[id];
-    return {curpaientinfo,db,evaluatenursingmeasureslist};
+    return {curpaientinfo,db,evaluatenursingmeasureslist,app};
 }
 export default connect(mapStateToProps)(App);
