@@ -35,7 +35,7 @@ class App extends React.Component {
 			// this.props.history.goBack();
 		}
   	render() {
-			const {curpaientinfo,isnew,curevaluatenursingmeasures} = this.props;
+			const {curpaientinfo,isnew,curevaluatenursingmeasures,db} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -61,7 +61,7 @@ class App extends React.Component {
 							<div className="clearfix"></div>
 						</h2>
 
-						<TitleDetail curpaientinfo={curpaientinfo} />
+						<TitleDetail curpaientinfo={curpaientinfo} db={db}/>
 						<NewnursingmeasuresForm onClickSubmit={this.onClickSubmit}
 							formname={formname}
 							formvalues={formvalues}/>
@@ -79,14 +79,14 @@ const mapStateToProps = ({db},props) => {
 		let isnew = bardenid === '0';
 		let curpaientinfo = paientinfos[id];
 		if(isnew){
-			return {curpaientinfo,isnew};
+			return {curpaientinfo,isnew,db};
 		}
 		const {evaluatenursingmeasuress} = db;
 		const curevaluatenursingmeasures = evaluatenursingmeasuress[bardenid];
 		if(!curevaluatenursingmeasures){
 			isnew = true;
 		}
-		return {curpaientinfo,isnew,curevaluatenursingmeasures};
+		return {curpaientinfo,isnew,curevaluatenursingmeasures,db};
 }
 
 export default connect(mapStateToProps)(App);

@@ -50,7 +50,7 @@ class App extends React.Component {
 	    return (
 				<Layout>
 					<Header>
-						<span><img src="index.png" className="icon-index" alt=""/>{title}护理措施表单</span>
+						<span><img src="index.png" className="icon-index" alt=""/>{title}专柜申请表</span>
 					</Header>
 					<div className="content-box">
 					<div className="content assess">
@@ -63,9 +63,10 @@ class App extends React.Component {
 							<div className="clearfix"></div>
 						</h2>
 
-						<TitleDetail curpaientinfo={curpaientinfo} />
+						<TitleDetail curpaientinfo={curpaientinfo} db={db}/>
 
 						<PageForm onClickSubmit={this.onClickSubmit}
+							curpaientinfo={curpaientinfo}
 							app={app}
 							db={db}
 							formname={formname}
@@ -109,7 +110,7 @@ const mapStateToProps = ({db,app},props) => {
 			}
 		}
 		if(isnew){
-			return {curpaientinfo,isnew,app};
+			return {curpaientinfo,isnew,db,app};
 		}
 		return {curpaientinfo,isnew,curformreviewlapseto,db,app};
 }

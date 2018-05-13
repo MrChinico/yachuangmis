@@ -8,7 +8,7 @@ import {
 
   set_weui,
 
-  getpatientinfo_request,
+  // getpatientinfo_request,
 
   changepwd_result,
   set_uiapp,
