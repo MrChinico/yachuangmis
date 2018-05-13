@@ -26,6 +26,7 @@ class App extends React.Component {
   	render() {
       return (
         <AsyncTable
+          db={this.props.db}
           onClickDetail = {this.onClickDetail}
           listtypeid = 'antdtablereviewlist'
           usecache = {!!g_querysaved}

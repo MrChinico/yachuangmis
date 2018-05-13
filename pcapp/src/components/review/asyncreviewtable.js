@@ -144,7 +144,6 @@ class App extends React.Component {
 					<table width="100%" border="0" className="declare-review-list">
 						<tbody>
 						<tr className="top">
-							<td><div align="center">序号</div></td>
 							<td><div align="center">姓名</div></td>
 							<td><div align="center">住院号</div></td>
 							<td><div align="center">科室</div></td>
@@ -159,6 +158,7 @@ class App extends React.Component {
 							lodashmap(this.state.dataSource,(info)=>{
 								return (<ReviewDetailinfo key={info._id}
 									info={info}
+									db={this.props.db}
 									onClickDetail={this.props.onClickDetail} />)
 							})
 						}

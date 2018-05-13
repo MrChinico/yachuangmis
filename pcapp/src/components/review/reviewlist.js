@@ -50,6 +50,7 @@ class App extends React.Component {
 									</h4>
 								</div>
 								<ReviewDetaillist query={{}}
+									db={this.props.db}
 									history={this.props.history}
 									ref='rlistsearch'/>
 						</div>
@@ -58,11 +59,8 @@ class App extends React.Component {
   	}
 }
 
-// const mapStateToProps = ({paientinfo},props) => {
-// 		const {paientinfos} = paientinfo;
-// 		const id = lodashget(props,'match.params.pid');
-// 		let curpaientinfo = paientinfos[id];
-//     return {curpaientinfo};
-// }
+const mapStateToProps = ({db}) => {
+    return {db};
+}
 // App = withRouter(App);
-export default connect()(App);
+export default connect(mapStateToProps)(App);
