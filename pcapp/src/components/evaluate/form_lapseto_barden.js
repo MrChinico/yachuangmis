@@ -2,170 +2,196 @@ import React from 'react';
 import {FieldArray, Field, reduxForm, Form  } from 'redux-form';
 // import { connect } from 'react-redux';
 import ViewPrintHeader from './viewprint_header';
-import lodashmap from 'lodash.map';
+// import lodashmap from 'lodash.map';
 
-const renderConditions_prerequisites = (props)=>{
-
+const renderConditions_prerequisites_options = (props)=>{
+  const {input:{value,onChange}} = props;
+  const v = value;
+  return (<tr><td><input type="checkbox" name="check[]" checked={v.checked} onClick={
+    ()=>{
+      onChange({
+        name:v.name,
+        checked:!v.checked
+      });
+    }
+  } onChange={()=>{}}/>{v.name}</td></tr>);
 }
 
-const renderConditions_alternative = (props)=>{
+const renderConditions_alternative_options = (props)=>{
+  const {input:{value,onChange}} = props;
 
+  const v = value;
+  return (<tr><td><input type="checkbox" name="check[]" checked={v.checked} onClick={
+    ()=>{
+      onChange({
+        name:v.name,
+        checked:!v.checked
+      });
+    }
+  } onChange={()=>{}}/>{v.name}</td></tr>);
 }
+
+const renderConditions_prerequisites = (props) => {
+  const {fields} = props;
+  return fields.map((option,index)=>{
+    return (<Field component={renderConditions_prerequisites_options} name={option} key={`p${index}`}/>);
+  });
+}
+
+const renderConditions_alternative = (props) => {
+  const {fields} = props;
+  return fields.map((option,index)=>{
+    return (<Field component={renderConditions_alternative_options} name={option} key={`c${index}`}/>);
+  });
+}
+
 
 const renderConditions = (props)=>{
-
-    const {input:{value,onChange}} = props;
-    console.log(value);
+    const {input:{value}} = props;
     const {prerequisites,alternative} = value;
     if(!prerequisites || !alternative){
       return [];
     }
-    // let tr_prerequisites = [];
-    // let tr_alternative = [];
 
-    const onChange_prerequisites = (index,checked)=>{
-      let newprerequisites = [...prerequisites];
-      newprerequisites[index].checked = checked;
-      let newvalue = {prerequisites:[...newprerequisites],alternative:[...alternative]};
-      onChange(newvalue);
-    }
-    const onChange_alternative = (index,checked)=>{
-      let newvalue = {...value};
-      newvalue.alternative[index].checked = checked;
-      newvalue.alternative = [...alternative];
-      onChange(newvalue);
-    }
-
-    let retc = [
+    const retc = [
       <tr className="gray title" key='canda'>
         <td>必备条件和选择条件</td>
         <td></td>
       </tr>,
       <tr className="gray"  key='canda2'>
         <td>必备条件：强迫体位需要严格限制造成强迫体位的原因</td>
-        <td>可选择条件</td>
-      </tr>];
-
-
-    const maxrow = prerequisites.length > alternative.length ? prerequisites.length:alternative.length;
-
-    for(let i = 0 ;i < maxrow; i++){
-      let td1 = <td key={`c1_${i}`}></td>;
-      let td2 = <td key={`c2_${i}`}></td>;
-      if(i < prerequisites.length){
-        const v = prerequisites[i];
-        td1 = <td key={`c1_${i}`}><input type="checkbox" name="check[]" checked={v.checked} onClick={
-          ()=>{
-            onChange_prerequisites(i,!v.checked);
-          }
-        }/>{v.name}</td>
-      }
-      if(i < alternative.length){
-        const v = alternative[i];
-        td2 = <td key={`c2_${i}`}><input type="checkbox" name="check[]" checked={v.checked} onClick={
-          ()=>{
-            onChange_alternative(i,!v.checked);
-          }
-        }/>{v.name}</td>
-      }
-      retc.push(<tr key={`tr_${i}`}>{td1}{td2}</tr>);
-    }
+        <td>
+          可选择条件
+        </td>
+      </tr>,
+      <tr className="gray"  key='canda3'>
+        <td>
+          <table>
+            <tbody>
+              <FieldArray
+              name="conditions.prerequisites"
+              component={renderConditions_prerequisites} key='cp' />
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tbody>
+              <FieldArray
+                  name="conditions.alternative"
+                  component={renderConditions_alternative}  key='ca'/>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    ];
     return retc;
 }
 
+const renderPreventivesmeasure_Item_OptionsArray_option = (props)=>{
+  const {input:{value:vs,onChange}} = props;
+
+  if(vs.value !== undefined){
+    return (<span >{vs.name}
+      <input type="text" className=""  value={vs.value}  onChange={
+        (e)=>{
+          onChange({
+            name:vs.name,
+            value:e.target.value
+          });
+        }
+      }/></span>);
+  }
+  return (<span>{vs.name}<input type="checkbox" name="check[]" checked={vs.checked}
+    onClick={
+     ()=>{
+       onChange({
+         name:vs.name,
+         checked:!vs.checked,
+       });
+     }
+   } onChange={()=>{}}/></span>);
+}
+
+const renderPreventivesmeasure_Item_OptionsArray = (props)=>{
+  const {fields} = props;
+  return fields.map((option,index)=>{
+    console.log(option);
+    return (<Field component={renderPreventivesmeasure_Item_OptionsArray_option} name={option} key={`pmoption${index}`}/>);
+  });
+};
+
 const renderPreventivesmeasure_Item = (props)=>{
-  const {input:{value:vo,onChange}} = props;
-  if(!!vo.options){
+  const {input:{value:vo,onChange,name}} = props;
+  console.log(props);
+  if(!!vo.options && vo.options.length>0){
     return (<tr>
       <td colSpan="2">
-        <input type="checkbox" name="check[]" />{vo.name}
-        {
-          lodashmap(vo.options,(vs,index)=>{
-            if(vs.value !== undefined){
-              return (<span key={`s_${index}`}>{vs.name}<input type="text" className=""  value={vs.value}/></span>);
-            }
-            return (<span key={`s_${index}`}>{vs.name}<input type="checkbox" name="check[]" checked={vs.checked}/></span>);
-          })
-        }
+        <input type="checkbox" name="check[]" onClick={
+          ()=>{
+            onChange({
+              name:vo.name,
+              checked:!vo.checked,
+              options:vo.options
+            });
+          }
+        } onChange={()=>{}}/>{vo.name}
+        <FieldArray
+            name={`${name}.options`}
+            component={renderPreventivesmeasure_Item_OptionsArray} />
       </td>
     </tr>)
   }
   if(vo.value !== undefined){
-    return  (<tr><td colSpan="2"><input type="checkbox" name="check[]" checked={vo.checked}/>{vo.name}<input type="text" value={vo.value}/></td></tr>);
+    return  (<tr><td colSpan="2">
+      <input type="checkbox" name="check[]" checked={vo.checked} onClick={
+        ()=>{
+          onChange({
+            name:vo.name,
+            checked:!vo.checked,
+            value:vo.value
+          });
+        }
+      } onChange={()=>{}}
+      />
+        {vo.name}<input type="text" value={vo.value} onChange={
+          (e)=>{
+            onChange({
+              name:vo.name,
+              checked:vo.checked,
+              value:e.target.value
+            });
+          }
+        }/>
+      </td>
+    </tr>);
   }
+
   return (<tr>
-    <td colSpan="2"><input type="checkbox" name="check[]" checked={vo.checked}/>
+    <td colSpan="2"><input type="checkbox" name="check[]" checked={vo.checked}  onClick={
+      ()=>{
+        onChange({
+          name:vo.name,
+          checked:!vo.checked
+        });
+      }
+    } onChange={()=>{}}/>
       {vo.name}
     </td>
   </tr>);
-
-  // const onChangeOne = (checked)=>{
-  //   onChange({
-  //     name:vo.name,
-  //     checked
-  //   });
-  // }
-  // if(vo.checked){
-  //   return (<td className="blue" onClick={
-  //     ()=>{
-  //       onChangeOne(false);
-  //     }
-  //   }>{vo.name}</td>);
-  // }
-  // return (<td onClick={
-  //   ()=>{
-  //     onChangeOne(true);
-  //   }
-  // }>{vo.name}</td>);
-}
-
-const renderPreventivesmeasure_Options = (vg, indexg, fields) => {
-  return <Field component={renderPreventivesmeasure_Item} name={vg} key={indexg}/>
 }
 
 const renderPreventivesmeasure = (props)=>{
-  // const {input:{value,onChange}} = props;
-  // const preventivesmeasure = value;
   const {fields} = props;
-  return fields.map(renderPreventivesmeasure_Options);
-
-  // <tr className="gray title">
-  //   <td>预防措施：</td>
-  //   <td></td>
-  // </tr>
-  // <tr>
-  //   <td colSpan="2"><input type="checkbox" name="check[]" />
-  //   1、告知患者及家压疮属的危险并悬挂“压疮高危”警示标志，进行健康宣教，讲解相关注意事项。
-  //   </td>
-  // </tr>
-  // <tr>
-  //   <td colSpan="2"><input type="checkbox" name="check[]" />
-  //   2、告知患者及家压疮属的危险并悬挂“压疮高危”警示标志，进行健康宣教，讲解相关注意事项。
-  //   </td>
-  // </tr>
-  // <tr>
-  //   <td colSpan="2">
-  //     <input type="checkbox" name="check[]" />3、使用：
-  //     <span>1)翻身床治疗<input type="checkbox" name="check[]" /></span>
-  //     <span>2)翻身床治疗<input type="checkbox" name="check[]" /></span>
-  //     <span>3)翻身床治疗<input type="checkbox" name="check[]" /></span>
-  //     <span>4)其他：<input type="text" className="" /></span>
-  //   </td>
-  // </tr>
-  // <tr>
-  //   <td colSpan="2"><input type="checkbox" name="check[]" />
-  //   10、动态评估与记录
-  //   </td>
-  // </tr>
-  // <tr>
-  //   <td colSpan="2"><input type="checkbox" name="check[]" />11、其他<input type="text" /></td>
-  // </tr>
+  return fields.map((option,index)=>{
+    return (<Field component={renderPreventivesmeasure_Item} name={option} key={`pm${index}`}/>);
+  });
 }
 
 class PageForm extends React.Component {
   render() {
     const { handleSubmit,onClickSubmit,curpaientinfo,db,app } = this.props;
-    console.log(this.props);
+
     const {Hospitalname} = app;
     return (
       <Form
