@@ -40,9 +40,9 @@ const defaultsystemconfig = {
 }
 
 const initDB = ()=>{
-  const systemconfigModel = DBModels.SystemConfigModel;
-  systemconfigModel.findOneAndUpdate({_id:defaultsystemconfig._id}, {$set:defaultsystemconfig},{new: true,upsert:true},(err,result)=>{
-  });
+  // const systemconfigModel = DBModels.SystemConfigModel;
+  // systemconfigModel.findOneAndUpdate({_id:defaultsystemconfig._id}, {$set:defaultsystemconfig},{new: true,upsert:true},(err,result)=>{
+  // });
 
   const dbModel = DBModels.PermissionModel;
   _.map(permission_json,(v)=>{

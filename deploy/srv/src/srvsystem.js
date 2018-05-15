@@ -22,7 +22,7 @@ const synctodb = require('./sync');
 const job=()=>{
 
     // createadmin();
-    dbinit();
+    // dbinit();
     // startsrv_devpush(config);
     // redis.setSubscribeHandler('deviceiotdata_realtimedata',handlermsg.handlermsg_realtimedata);
     // synctodb(()=>{

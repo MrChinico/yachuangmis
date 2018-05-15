@@ -137,9 +137,6 @@ export function* wsrecvsagabizflow() {
         }
       }
 
-      if(i === 6 || i === 7){
-        return;
-      }
       yield put(goBack());
     });
   }

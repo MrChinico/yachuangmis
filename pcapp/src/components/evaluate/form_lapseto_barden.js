@@ -4,6 +4,14 @@ import {FieldArray, Field, reduxForm, Form  } from 'redux-form';
 import ViewPrintHeader from './viewprint_header';
 import lodashmap from 'lodash.map';
 
+const renderConditions_prerequisites = (props)=>{
+
+}
+
+const renderConditions_alternative = (props)=>{
+
+}
+
 const renderConditions = (props)=>{
 
     const {input:{value,onChange}} = props;
@@ -15,11 +23,17 @@ const renderConditions = (props)=>{
     // let tr_prerequisites = [];
     // let tr_alternative = [];
 
-    const onChange_prerequisites = ()=>{
-
+    const onChange_prerequisites = (index,checked)=>{
+      let newprerequisites = [...prerequisites];
+      newprerequisites[index].checked = checked;
+      let newvalue = {prerequisites:[...newprerequisites],alternative:[...alternative]};
+      onChange(newvalue);
     }
-    const onChange_alternative = ()=>{
-
+    const onChange_alternative = (index,checked)=>{
+      let newvalue = {...value};
+      newvalue.alternative[index].checked = checked;
+      newvalue.alternative = [...alternative];
+      onChange(newvalue);
     }
 
     let retc = [
@@ -40,11 +54,19 @@ const renderConditions = (props)=>{
       let td2 = <td key={`c2_${i}`}></td>;
       if(i < prerequisites.length){
         const v = prerequisites[i];
-        td1 = <td key={`c1_${i}`}><input type="checkbox" name="check[]" />{v.name}</td>
+        td1 = <td key={`c1_${i}`}><input type="checkbox" name="check[]" checked={v.checked} onClick={
+          ()=>{
+            onChange_prerequisites(i,!v.checked);
+          }
+        }/>{v.name}</td>
       }
       if(i < alternative.length){
         const v = alternative[i];
-        td2 = <td key={`c2_${i}`}><input type="checkbox" name="check[]" />{v.name}</td>
+        td2 = <td key={`c2_${i}`}><input type="checkbox" name="check[]" checked={v.checked} onClick={
+          ()=>{
+            onChange_alternative(i,!v.checked);
+          }
+        }/>{v.name}</td>
       }
       retc.push(<tr key={`tr_${i}`}>{td1}{td2}</tr>);
     }
@@ -62,17 +84,17 @@ const renderPreventivesmeasure_Item = (props)=>{
             if(vs.value !== undefined){
               return (<span key={`s_${index}`}>{vs.name}<input type="text" className=""  value={vs.value}/></span>);
             }
-            return (<span key={`s_${index}`}>{vs.name}<input type="checkbox" name="check[]" /></span>);
+            return (<span key={`s_${index}`}>{vs.name}<input type="checkbox" name="check[]" checked={vs.checked}/></span>);
           })
         }
       </td>
     </tr>)
   }
   if(vo.value !== undefined){
-    return  (<tr><td colSpan="2"><input type="checkbox" name="check[]" />{vo.name}<input type="text" value={vo.value}/></td></tr>);
+    return  (<tr><td colSpan="2"><input type="checkbox" name="check[]" checked={vo.checked}/>{vo.name}<input type="text" value={vo.value}/></td></tr>);
   }
   return (<tr>
-    <td colSpan="2"><input type="checkbox" name="check[]" />
+    <td colSpan="2"><input type="checkbox" name="check[]" checked={vo.checked}/>
       {vo.name}
     </td>
   </tr>);
