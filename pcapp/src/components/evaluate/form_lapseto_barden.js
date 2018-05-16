@@ -1,5 +1,5 @@
 import React from 'react';
-import {FieldArray, Field, reduxForm, Form  } from 'redux-form';
+import {FieldArray,Fields, Field, reduxForm, Form  } from 'redux-form';
 // import { connect } from 'react-redux';
 import ViewPrintHeader from './viewprint_header';
 // import lodashmap from 'lodash.map';
@@ -276,6 +276,49 @@ const renderLapseto= (props)=>{
   return trsz;
 }
 
+const renderInstruction= (fields)=>{
+  const {isunavoidablepressureulcer,instruction} = fields;
+  const input_isunavoidablepressureulcer = isunavoidablepressureulcer.input;
+  const input_instruction = instruction.input;
+
+  const onChangeChecked = (checked)=>{
+    input_isunavoidablepressureulcer.onChange(checked?1:0);
+  }
+  let trsz = [];
+  trsz.push(<tr className="gray title" key="title">
+    <td colSpan="2">主管部门审核与指导意见</td>
+  </tr>);
+
+  trsz.push(<tr key="in">
+      <td colSpan="2">
+        <span>符合难免压疮申报的条件：</span>
+        <span>是<input type="checkbox" name="check[]" checked={input_isunavoidablepressureulcer.value}
+             onClick={
+               ()=>{
+                 onChangeChecked(true);
+               }
+             }
+           onChange={
+          ()=>{}
+        }/></span>
+        <span>否<input type="checkbox" name="check[]" checked={!input_isunavoidablepressureulcer.value} onClick={
+          ()=>{
+            onChangeChecked(false);
+          }
+        }
+      onChange={
+     ()=>{}
+   }/></span>
+      </td>
+    </tr>);
+
+    trsz.push(<tr key="guide">
+        <td colSpan="2">指导意见：<input type="text" {...input_instruction}/></td>
+      </tr>);
+
+  return trsz;
+}
+
 
 class PageForm extends React.Component {
   render() {
@@ -332,19 +375,10 @@ class PageForm extends React.Component {
     									<input type="text" />:<input type="text" />
     								</td>
     							</tr>
-    							<tr className="gray title">
-    								<td colSpan="2">主管部门审核与指导意见</td>
-    							</tr>
-    							<tr>
-    								<td colSpan="2">
-    									<input type="checkbox" name="check[]" />符合难免压疮申报的条件：
-    									<span>是<input type="checkbox" name="check[]" /></span>
-    									<span>否<input type="checkbox" name="check[]" /></span>
-    								</td>
-    							</tr>
-    							<tr>
-    								<td colSpan="2">指导意见：<input type="text" /></td>
-    							</tr>
+
+                  <Fields names={[ 'instruction', 'isunavoidablepressureulcer' ]} component={renderInstruction}/>
+
+
     							<tr>
     								<td>主管部门签字：<input type="text" /></td>
     								<td className="w-50">日期：

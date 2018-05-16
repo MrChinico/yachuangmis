@@ -93,6 +93,7 @@ const normalizr_formreviewlapseto = (resultlist)=>{
   return entities;
 }
 
+
 export {
   normalizr_paientinfo,
   normalizr_evaluatebarden,

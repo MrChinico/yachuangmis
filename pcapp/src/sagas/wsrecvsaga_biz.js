@@ -29,9 +29,11 @@ import {
   normalizr_evaluatebarden,
   normalizr_evaluatewoundsurface,
   normalizr_evaluatenursingmeasures,
+  normalizr_formreviewlapseto
 } from './normalizr';
 import {
-  page_getpatientinfolist_result
+  page_getpatientinfolist_result,
+  page_getformreviewlapsetolist_result
 } from '../sagas/pagination';
 // import config from '../env/config.js';
 const popandreturn = [
@@ -147,6 +149,13 @@ export function* wsrecvsagabizflow() {
     const result = normalizr_paientinfo(payload.result);
     yield put(set_db(result));
   });
+
+  yield takeLatest(`${page_getformreviewlapsetolist_result}`,function*(action){
+    const {payload} = action;
+    const result = normalizr_formreviewlapseto(payload.result);
+    yield put(set_db(result));
+  });
+
 
   yield takeLatest(`${editpatientinfo_result}`,function*(action){
     const {payload} = action;

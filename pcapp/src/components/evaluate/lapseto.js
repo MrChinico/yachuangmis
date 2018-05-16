@@ -52,7 +52,7 @@ class App extends React.Component {
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
-			if(!isnew){
+			if(isnew){
 				return (<InfoNorecords btnTitle="转归填写" onClickNew={this.onClickNew} />);
 			}
 	    return (
