@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import PTable from './table';
 import ContentTitleBar from './patientinfo_content_titlebar';
 import lodashget from 'lodash.get';
-
+import InfoNorecords from './info_norecords';
 
 class App extends React.Component {
 
@@ -50,11 +50,14 @@ class App extends React.Component {
 				const record = evaluatenursingmeasuress[evaluatenursingmeasureslist[i]];
 				allrecords.push(record);
 			}
+			if(allrecords.length === 0){
+				return (<InfoNorecords btnTitle="新建护理" onClickNew={this.onClickNew} />);
+			}
+
 	    return (
 	      	<div>
 						<ContentTitleBar title="护理措施记录" titleNew="新建护理" titleView="查看&打印"
 							onClickNew={this.onClickNew} onClickViewPrint={this.onClickViewPrint} />
-
 						<PTable allrecords={allrecords} renderTableRecord={this.renderTableRecord} pagenumber={5} />
 	      	</div>
 	    );

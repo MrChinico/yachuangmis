@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 // import lodashget from 'lodash.get';
 import ContentTitleBar from '../patientinfo/patientinfo_content_titlebar';
 // import PageForm from './form_lapseto_barden';
-import {getdefaultlapseto_barden} from '../../util';
+// import {getdefaultlapseto_barden} from '../../util';
 import {createformreviewlapseto_request,editformreviewlapseto_request} from '../../actions';
 import ReviewDetailInfo from './lapseto_viewinfo';
+import InfoNorecords from '../patientinfo/info_norecords';
 
 
 class App extends React.Component {
@@ -24,7 +25,7 @@ class App extends React.Component {
 			this.props.history.push(`/newlapseto/${curpaientinfo._id}/0`);
 		}
 		onClickViewPrint = ()=>{
-			const {curpaientinfo} = this.props;
+			// const {curpaientinfo} = this.props;
 			// this.props.history.push(`/viewprintrecordbarden/${curpaientinfo._id}`);
 		}
 		// onClickEdit =(record)=>{
@@ -51,11 +52,9 @@ class App extends React.Component {
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
-			// let formname = 'NewLapsetoForm';
-			// let formvalues = getdefaultlapseto_barden(16);
-			// if(!isnew){
-			// 	formvalues = curformreviewlapseto;
-			// }
+			if(!isnew){
+				return (<InfoNorecords btnTitle="转归填写" onClickNew={this.onClickNew} />);
+			}
 	    return (
 	      	<div>
 						<ContentTitleBar title="转归与申报记录" titleNew="转归填写" titleView="打印报表"

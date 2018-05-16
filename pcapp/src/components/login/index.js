@@ -6,8 +6,8 @@ import {
   set_weui
 } from '../../actions';
 import "./style.css";
-// import LoginBg from "../../img/loginbg.png";
-// import Img1 from "../../img/1.png";
+import LoginBg from "./index.jpg";
+import Img1 from "./login_tit.png";
 // import Img2 from "../../img/2.png";
 // import Img3 from "../../img/23.png";
 // import Header from "../header/page.js";
@@ -46,26 +46,27 @@ class PageForm extends React.Component {
       const { handleSubmit,onClickLogin } = this.props;
     	return (
 				<Form
-						className="loginForm"
+						className="loginFormC"
 						onSubmit={handleSubmit(onClickLogin)}
 						>
       		<div
       			className="loginPage"
       			style={{
       				width: "100%",
-      				height: `${this.state.innerHeight}px`,
-      				overflow: "hidden"
+      				/*height: `${this.state.innerHeight}px`,*/
+      				overflow: "hidden",
+					    margin:"30% 0px"
       			}}
       			>
-        		{/* <img alt="" src={LoginBg} className="loginbg" /> */}
+        		{<img alt="" src={LoginBg} className="loginbg" />}
         		<div className="loginForm">
         			<div className="tit">
-        				<p className="t">XX医院压疮管理系统</p>
+        				<p className="t">{<img alt="" src={Img1} className="login_tit" />}</p>
         				<p className="i"></p>
         			</div>
 					<div className="li">
 						{/* <img alt="" src={Img1}/> */}
-						<Field
+						<label>账号</label><Field
 								name="username"
 								id="username"
                 component="input"
@@ -75,7 +76,7 @@ class PageForm extends React.Component {
 					</div>
 					<div className="li">
 						{/* <img alt="" src={Img2} /> */}
-						<Field
+						<label>密码</label><Field
 								name="password"
 								id="password"
                 component="input"
@@ -84,8 +85,8 @@ class PageForm extends React.Component {
 						/>
 					</div>
 					<div className="butn">
-						<button
-            onClick={handleSubmit(onClickLogin)}>登录</button>
+						<a
+            onClick={handleSubmit(onClickLogin)}>登录</a>
 					</div>
         		</div>
       		</div>

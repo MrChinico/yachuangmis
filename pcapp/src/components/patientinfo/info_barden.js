@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import ContentTitleBar from './patientinfo_content_titlebar';
 import PTable from './table';
 import lodashget from 'lodash.get';
-
+import InfoNorecords from './info_norecords';
 
 class App extends React.Component {
 
@@ -50,6 +50,9 @@ class App extends React.Component {
 			for(let i = 0 ;i <  evaluatebardenlist.length; i ++){
 				const record = evaluatebardens[evaluatebardenlist[i]];
 				allrecords.push(record);
+			}
+			if(allrecords.length === 0){
+				return (<InfoNorecords btnTitle="新建评估" onClickNew={this.onClickNew} />);
 			}
 
 	    return (

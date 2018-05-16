@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Layout } from 'antd';
 import {set_uiapp} from '../../actions';
+import { Avatar,Badge } from 'antd';
 
 const { Header } = Layout;
 class App extends React.Component {
@@ -41,11 +42,19 @@ class App extends React.Component {
 				<button key={'btnreview'} onClick={
 					()=>{
 					this.onClickReview()
-				}}>申报审阅</button>,
-				<button key={'btnuserinfo'} onClick={
+				}}>
+				<Badge count={99} overflowCount={10}>
+					<span style={{color:'white'}}>申报审阅&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				</Badge>
+			  </button>,
+				<button  key={'btnuser'} onClick={
 					()=>{
 					this.onClickUser()
-				}} className="">用户信息</button>
+					}}>
+					<Avatar style={{ backgroundColor:'#f56a00', verticalAlign: 'middle' }} shape="circle" size="large" >
+					 张三
+					</Avatar>
+				</button>
 			];
 			const title = this.props.title || '病人列表';
 	    return (

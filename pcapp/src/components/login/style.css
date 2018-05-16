@@ -23,12 +23,19 @@ input:-webkit-autofill {
     bottom: 0;
     z-index: 1;
 }
-
+.login_tit{ width:100%}
+.loginFormC{position: relative;
+    z-index: 100;
+    flex-grow: 1;
+    padding: 30px 30px;
+	width: 60%;
+    float: right; }
 .loginForm {
     position: relative;
     z-index: 100;
     flex-grow: 1;
-    padding: 0px 30px
+    padding: 30px 30px;
+	width: 60%;background-color:rgba(255,255,255,0.6); border-radius:20px
 }
 
 .loginForm .tit {
@@ -49,7 +56,7 @@ input:-webkit-autofill {
     -moz-justify-content: flex-start;
     -webkit-justify-content: flex-start;
     justify-content: flex-start;
-    border-bottom: 1px solid #EEE;
+    border-bottom: 1px solid #bbbbbb;
     margin-bottom: 30px;
     padding-bottom: 10px
 }
@@ -58,23 +65,24 @@ input:-webkit-autofill {
     width: 26px;
     margin: 0 5px;
 }
-
+.loginForm .li lable{ width:60px;
+    font-size: 18px;}
 .loginForm .li>input {
     background: transparent;
-    border: none;
+    border: none !important;
     height: 36px;
     line-height: 36px;
     flex-grow: 1;
     outline: none;
     font-size: 18px;
-    color: #FFF;
+    color: #333;
 }
 
 .loginForm .butn {
     padding-top: 20px;
 }
 
-.loginForm .butn button {
+.loginForm .butn a {
     height: 50px;
     line-height: 50px;
     font-size: 22px;
@@ -83,7 +91,8 @@ input:-webkit-autofill {
     text-align: center;
     display: block;
     width: 100%;
-    background: linear-gradient(180deg, #1396d2, #017db6);
+	background-image: -webkit-linear-gradient(to bottom, #00a28d, #008f7c);
+        background-image: linear-gradient(to bottom, #00a28d, #008f7c);
     border: none;
     border-radius: 4px;
 }
