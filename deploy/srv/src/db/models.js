@@ -251,8 +251,9 @@ const FormReviewLapsetoSchema = new Schema({
       }
     ],
   },
+
   isunavoidablepressureulcer:{ type: Number,default: -1 },//是否符合难免压疮申报条件
-  instruction:String,
+  instruction:String,//指导意见
   signed_nurse:{ type: Schema.Types.ObjectId, ref: 'user' },//护士签名
   signed_nurse_time:{ type: String},//护士签名时间
   signed_headnurse:{ type: Schema.Types.ObjectId, ref: 'user' },//护士长签名
@@ -260,14 +261,12 @@ const FormReviewLapsetoSchema = new Schema({
   signed_nursingdepartment:{ type: Schema.Types.ObjectId, ref: 'user' },//主管部门签名
   signed_nursingdepartment_time:{ type: String},//主管部门签名时间
   lapseto:{
-    ispressuresores:{ type: Number,default: -1 },
-    occuredpressuresorestime:{type:String},
-    lapsetooptions:[
-      {
-        name:String,
-        checked:{ type: Schema.Types.Boolean,default: false },
-      }
-    ]
+    ispressuresores:{ type: Number,default: -1 },//是否发生压疮
+    occuredpressuresorestime:{type:String},//压疮发生时间
+    lapsetooptions:{//患者去向
+      'checkout_checked':{ type: Schema.Types.Boolean,default: false },//出院/转院
+      'death_checked':{ type: Schema.Types.Boolean,default: false },//死亡
+    }
   }
 }, { strict: false });
 FormReviewLapsetoSchema.plugin(mongoosePaginate);

@@ -299,16 +299,10 @@ export const getdefaultlapseto_barden = (evaluatebardenscore)=>{
       lapseto:{
         ispressuresores:-1,//是否发生压疮
         occuredpressuresorestime:'',//压疮发生时间
-        lapsetooptions:[
-          {
-            name:'出院/转院',
-            checked:false,
-          },
-          {
-            name:'死亡',
-            checked:false,
-          },
-        ]
+        lapsetooptions:{//患者去向
+          'checkout_checked':false,//出院/转院
+          'death_checked':false,//死亡
+        }
       }
     };
     return v;

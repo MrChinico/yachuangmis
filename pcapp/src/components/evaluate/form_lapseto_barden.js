@@ -188,6 +188,95 @@ const renderPreventivesmeasure = (props)=>{
   });
 }
 
+const renderScore = (props)=>{
+  const {input:{value}} = props;
+  return (<td>{value}分</td>);
+}
+
+const renderLapseto= (props)=>{
+  const {input:{value,onChange}} = props;
+  const {ispressuresores,//是否发生压疮
+    occuredpressuresorestime,//压疮发生时间
+    lapsetooptions} = value;
+  if(value === ''){
+    return <tr />;
+  }
+  const onChange_Ispressuresores = (checked)=>{
+    onChange({
+      ispressuresores:checked?1:0,
+      occuredpressuresorestime,
+      lapsetooptions
+    });
+  }
+  const onChange_lapsetooptions_checkout = (checked)=>{
+    onChange({
+      ispressuresores,
+      occuredpressuresorestime,
+      lapsetooptions:{
+        checkout_checked:checked,
+        death_checked:lapsetooptions.death_checked
+      }
+    });
+  }
+  const onChange_lapsetooptions_death = (checked)=>{
+    onChange({
+      ispressuresores,
+      occuredpressuresorestime,
+      lapsetooptions:{
+        checkout_checked:lapsetooptions.checkout_checked,
+        death_checked:checked
+      }
+    });
+  }
+
+  let trsz = [];
+  trsz.push(<tr className="blue title" key="title">
+      <td colSpan="2">转归情况：</td>
+    </tr>);
+
+  trsz.push(
+  <tr  key="title2">
+    <td>
+      <span>1、是否发生压疮：</span>
+      <span>是<input type="checkbox" name="check[]" checked={ispressuresores===1} onClick={
+        ()=>{
+          onChange_Ispressuresores(true);
+        }
+      } onChange={()=>{}}/></span>
+      <span>否<input type="checkbox" name="check[]" checked={ispressuresores===0} onClick={
+        ()=>{
+          onChange_Ispressuresores(false);
+        }
+      } onChange={()=>{}}/></span>
+    </td>
+    <td className="w-50">压疮发生时间：
+      <input type="text" />年
+      <input type="text" />月
+      <input type="text" />日
+      <input type="text" />:<input type="text" />
+    </td>
+  </tr>);
+
+  trsz.push(
+  <tr  key="title3">
+    <td colSpan="2">
+      <span>2、患者去向：</span>
+      <span>出院/转院<input type="checkbox" name="check[]" checked={lapsetooptions.checkout_checked} onClick={
+        ()=>{
+          onChange_lapsetooptions_checkout(!lapsetooptions.checkout_checked);
+        }
+      } onChange={()=>{}}/></span>
+      <span>死亡<input type="checkbox" name="check[]" checked={lapsetooptions.death_checked}onClick={
+        ()=>{
+          onChange_lapsetooptions_death(!lapsetooptions.death_checked);
+        }
+      } onChange={()=>{}}/></span>
+    </td>
+  </tr>);
+  return trsz;
+}
+
+
 class PageForm extends React.Component {
   render() {
     const { handleSubmit,onClickSubmit,curpaientinfo,db,app } = this.props;
@@ -210,7 +299,7 @@ class PageForm extends React.Component {
     							</tr>
     							<tr>
     								<td>压疮评分：</td>
-    								<td>分</td>
+    								<Field component={renderScore} name="evaluatebardenscore"/>
     							</tr>
                   <Field
                       name="conditions"
@@ -265,29 +354,14 @@ class PageForm extends React.Component {
     									<input type="text" />:<input type="text" />
     								</td>
     							</tr>
-    							<tr className="blue title">
-    								<td colSpan="2">转归情况：</td>
-    							</tr>
-    							<tr>
-    								<td>
-    									<input type="checkbox" name="check[]" />1、是否发生压疮：
-    									<span>是<input type="checkbox" name="check[]" /></span>
-    									<span>否<input type="checkbox" name="check[]" /></span>
-    								</td>
-    								<td className="w-50">压疮发生时间：
-    									<input type="text" />年
-    									<input type="text" />月
-    									<input type="text" />日
-    									<input type="text" />:<input type="text" />
-    								</td>
-    							</tr>
-    							<tr>
-    								<td colSpan="2">
-    									<input type="checkbox" name="check[]" />1、患者去向：
-    									<span>出院/转院<input type="checkbox" name="check[]" /></span>
-    									<span>死亡<input type="checkbox" name="check[]" /></span>
-    								</td>
-    							</tr>
+
+                  <Field
+                      name="lapseto"
+                      id="lapseto"
+                      component={renderLapseto}
+                  />
+
+
     							<tr>
     								<td>上报人：<input type="text" /></td>
     								<td className="w-50">日期：
@@ -297,6 +371,7 @@ class PageForm extends React.Component {
     									<input type="text" />:<input type="text" />
     								</td>
     							</tr>
+
     							</tbody>
     						</table>
 
