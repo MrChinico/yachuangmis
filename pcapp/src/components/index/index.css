@@ -652,6 +652,8 @@ input{
     font-size: 17px;
     color:#000;
 }
+.lapseto.center{ text-align: center}
+.lapseto.center p{ padding:40px 0px !important}
 .lapseto button{
     color: #fff;
     background-color: #0084bf !important;
@@ -692,7 +694,7 @@ input{
     border:transparent !important;
     border-bottom:1px solid #646464  !important;
     width:64%;
-    text-align: center;
+    text-align: center; height:16px
 }
 .form-box .patient-info td{
     width:25%;
@@ -734,6 +736,8 @@ input{
 .form-box .choose-info tr td:last-child{
     border-right:0px;
 }
+.form-box .choose-info tr td tr:first-child{ border-top:0px}
+.form-box .choose-info tr td tr td{ color:#333}
 .form-box .choose-info tr td{
     padding:10px 15px;
     font-size: 14px;
@@ -1023,3 +1027,7 @@ background-color:#f9f9f9;
     border-bottom:1px solid #ddd;
     padding:10px;
 }
+
+
+.va_top{vertical-align: top;}
+.p0{ padding:0px !important}

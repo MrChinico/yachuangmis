@@ -5,6 +5,8 @@ const ReviewDetailInfo = (props)=>{
 	const {info} = props;
 	const {evaluatebardenscore,created_at} = info;
 	return (
+		<div className="content-box">
+		<div className="content">
 		<ul>
 			<li><div align="center">0001</div></li>
 			<li><div align="center">张三丰</div></li>
@@ -15,6 +17,8 @@ const ReviewDetailInfo = (props)=>{
 			<li><div align="center">杜拉拉</div></li>
 			<li><div align="center">无无无-已审</div></li>
 		</ul>
+		</div>
+		</div>
 	)
 }
 

@@ -65,7 +65,7 @@ const renderConditions = (props)=>{
         </td>
       </tr>,
       <tr className="gray"  key='canda3'>
-        <td>
+        <td className="va_top p0">
           <table>
             <tbody>
               <FieldArray
@@ -74,7 +74,7 @@ const renderConditions = (props)=>{
             </tbody>
           </table>
         </td>
-        <td>
+        <td className="va_top p0">
           <table>
             <tbody>
               <FieldArray
