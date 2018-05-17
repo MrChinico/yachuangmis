@@ -141,7 +141,7 @@ class RecordNursingMeasuresTableBody extends React.Component {
 
                                   <tr>
                                     <td colSpan="2">护士签名
-                                      <input type="text" />
+                                      <input type="text" readOnly/>
                                     </td>
                                     {
                                       lodashmap(retlist,(id,index)=>{
@@ -153,7 +153,7 @@ class RecordNursingMeasuresTableBody extends React.Component {
                                    </tr>
                                    <tr>
                                     <td colSpan="2">护士长签名
-                                    <input type="text" />
+                                    <input type="text" readOnly/>
                                    </td>
                                    {
                                      lodashmap(retlist,(id,index)=>{

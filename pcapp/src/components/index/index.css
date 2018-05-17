@@ -864,6 +864,11 @@ form input[type="radio"], form input[type="checkbox"] {
     padding: 0 10px;
     margin-left: 15px;
 }
+.printing-title .ant-btn img{
+    width:20px;
+    height:20px;
+    margin:0px 5px 5px 0px;
+}
 .printing-title button.return{
     float: right;
 }

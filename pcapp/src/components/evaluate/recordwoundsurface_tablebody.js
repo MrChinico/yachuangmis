@@ -222,7 +222,7 @@ class RecordbardenTableBody extends React.Component {
 
                 <tr>
                   <td colSpan="3" className="white-bg">评估人
-                  <input type="text" />
+                  <input type="text" readOnly/>
                   </td>
                   {
                     lodashmap(retlist,(id,index)=>{

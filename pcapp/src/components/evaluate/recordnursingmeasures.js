@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ViewPrintHeader from './viewprint_header';
+
 import RecordNursingMeasuresTableBody from './recordnursingmeasures_tablebody.js';
 import lodashget from 'lodash.get';
 import { Layout } from 'antd';
+import ViewPrintTitltToPrint from './viewprint_title_toprint';
+
 const { Header } = Layout;
+
 class App extends React.Component {
 
 
@@ -29,22 +33,12 @@ class App extends React.Component {
 					</Header>
 					<div className="content-box">
 						<div className="content assess">
-							<h1 className="printing-title">护理措施查看
-								<button className="ant-btn">
-									<img src="printing.png" alt="" />打印报表
-								</button>
-								<button className="return" onClick={
-									()=>{
-										this.props.history.goBack();
-									}
-								}><img src="return.png" alt=""/></button>
-								<div className="clearfix"></div>
-							</h1>
-							<form>
+							<ViewPrintTitltToPrint title="护理措施查看" refnode={() => this.componentRef} history={this.props.history}/>
+
+							<form ref={el => (this.componentRef = el)}>
 								<div className="form-box">
 									<h1>{Hospitalname}护理措施表</h1>
 									<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
-
 									<RecordNursingMeasuresTableBody db={db} evaluatenursingmeasureslist={evaluatenursingmeasureslist}/>
 								</div>
 							</form>

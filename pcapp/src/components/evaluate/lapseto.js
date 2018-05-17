@@ -57,7 +57,7 @@ class App extends React.Component {
 			}
 	    return (
 	      	<div>
-						<ContentTitleBar title="转归与申报记录" titleNew="转归填写" titleView="打印报表"
+						<ContentTitleBar title="转归与申报记录" titleNew="编辑审阅转归单" titleView="打印报表"
 							onClickNew={this.onClickNew}  />
 
 						{!!curformreviewlapseto && <ReviewDetailInfo info={curformreviewlapseto} /> }

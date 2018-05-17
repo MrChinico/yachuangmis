@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ViewPrintHeader from './viewprint_header';
 import lodashget from 'lodash.get';
 import RecordwoundsurfaceTablebody from './recordwoundsurface_tablebody';
+import ViewPrintTitltToPrint from './viewprint_title_toprint';
 
 import { Layout } from 'antd';
 const { Header } = Layout;
@@ -30,23 +31,12 @@ class App extends React.Component {
 					</Header>
 					<div className="content-box">
 					<div className="content assess">
-						<h1 className="printing-title">压疮疮面评估查看
-							<button className="ant-btn">
-								<img src="printing.png" alt="" />打印报表
-							</button>
-							<button className="return" onClick={
-								()=>{
-									this.props.history.goBack();
-								}
-							}><img src="return.png" alt=""/></button>
-							<div className="clearfix"></div>
-						</h1>
-						<form>
+						<ViewPrintTitltToPrint title="疮面打印" refnode={() => this.componentRef} history={this.props.history}/>
+						<form ref={el => (this.componentRef = el)}>
 							<div className="form-box">
 								<h1>{Hospitalname}压疮疮面评估</h1>
 								<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 								<RecordwoundsurfaceTablebody evaluatewoundsurfacelist={evaluatewoundsurfacelist} db={db} />
-
 								</div>
 						</form>
 					</div>

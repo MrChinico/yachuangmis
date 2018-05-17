@@ -138,12 +138,12 @@ class RecordbardenTableBody extends React.Component {
                                   </tr>
                                   <tr>
                                     <td colSpan="6">评估护士签名
-                                      <input type="text" />
+                                      <input type="text" readOnly/>
                                     </td>
                                   </tr>
                                   <tr>
                                     <td colSpan="6">护士长签名
-                                      <input type="text" />
+                                      <input type="text" readOnly/>
                                     </td>
                                   </tr>
                                   </tbody>

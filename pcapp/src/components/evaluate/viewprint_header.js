@@ -3,11 +3,14 @@ import lodashget from 'lodash.get';
 import moment from 'moment';
 
 const ViewPrintHeader = (props)=>{
-  const {curpaientinfo} = props;
+  const {curpaientinfo,db} = props;
+  const {depats,beds} = db;
   if(!curpaientinfo){
     return <div>无病人信息</div>
   }
   const momentin = moment(curpaientinfo.In_date);
+  const Depatname = lodashget(depats,`${curpaientinfo.depatid}.Depatname`,'');
+  const Bedname = lodashget(beds,`${curpaientinfo.bedid}.Bedname`,'');
   return (<table className="patient-info">
       <tbody>
         <tr className="elastic">
@@ -17,7 +20,7 @@ const ViewPrintHeader = (props)=>{
           <td>住院号：<input type="text"  readOnly value={`${lodashget(curpaientinfo,'Patientno','')}`}/></td>
         </tr>
         <tr className="elastic">
-          <td>科室：<input type="text" readOnly value={`${lodashget(curpaientinfo,'DT001','')}`}/></td>
+          <td>科室：<input type="text" readOnly value={`${Depatname}`}/></td>
           <td className="w-50">入院日期：
             <input type="text" readOnly value={momentin.format('YYYY')}/>年
             <input type="text" readOnly value={momentin.format('MM')}/>月
@@ -25,7 +28,7 @@ const ViewPrintHeader = (props)=>{
             <input type="text" readOnly value={momentin.format('HH')}/>:
             <input type="text" readOnly value={momentin.format('mm')}/>
           </td>
-          <td>床号：<input type="text" readOnly value={`${lodashget(curpaientinfo,'Bedno','')}`}/></td>
+          <td>床号：<input type="text" readOnly value={`${Bedname}`}/></td>
         </tr>
       </tbody>
     </table>);
