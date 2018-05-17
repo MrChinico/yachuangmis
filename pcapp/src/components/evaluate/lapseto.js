@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // import lodashget from 'lodash.get';
-import ContentTitleBar from '../patientinfo/patientinfo_content_titlebar';
+// import ContentTitleBar from '../patientinfo/patientinfo_content_titlebar';
 // import PageForm from './form_lapseto_barden';
 // import {getdefaultlapseto_barden} from '../../util';
 import {createformreviewlapseto_request,editformreviewlapseto_request} from '../../actions';
