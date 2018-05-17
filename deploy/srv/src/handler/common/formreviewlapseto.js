@@ -2,10 +2,35 @@ const config = require('../../config.js');
 const DBModels = require('../../db/models.js');
 const mongoose  = require('mongoose');
 const winston = require('../../log/log.js');
-// const coordtransform = require('coordtransform');
 const _ = require('lodash');
+const getdepatlistids = require('../getdepatlistids');
 const moment = require('moment');
 const debug = require('debug')('appsrv:patientinfo');
+
+const getlapsetoquery = (ctx,callbackfn)=>{
+  //如果是普通护士
+  if(ctx.permission.name === '普通护士'){
+    //只能看到自己新建的
+    callbackfn({usercreatorid:ctx.userid});
+  }
+  else{
+    //护士长 或 护理部主管
+    getdepatlistids(ctx,(depatlistids)=>{
+        const dbModel = DBModels.PatientinfoModel;
+        dbModel.find({depatid:{$in:depatlistids}},{_id:1}).lean().exec((err,plist)=>{
+          let patientlistids = [];
+          if(!err && !!plist.length > 0){
+            _.map(plist,(item)=>{
+              patientlistids.push(item._id);
+            });
+          }
+          callbackfn({userpatientid:{
+            $in:patientlistids
+          }});
+        });
+    });
+  }
+}
 
 exports.createformreviewlapseto = (actiondata,ctx,callback)=>{
   let entitydata = actiondata;
@@ -76,9 +101,8 @@ exports.page_getformreviewlapsetolist =  (actiondata,ctx,callback)=>{
         select:'username truename Staffno Staffid Staffname Depatno',
       },
   ];
-  // getdepatlistids(ctx,(depatlistids)=>{
+  getlapsetoquery(ctx,(query)=>{
     let querypre = actiondata.query;
-    let query = {};
     _.map(querypre,(value,key)=>{
       let keysz = key.split('_');
       if(keysz.length === 2){
@@ -110,5 +134,5 @@ exports.page_getformreviewlapsetolist =  (actiondata,ctx,callback)=>{
         });
       }
     });
-  // });
+  });
 }

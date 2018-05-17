@@ -31,7 +31,7 @@ class App extends React.Component {
   	render() {
 			const Depatname = lodashget(this,'props.userlogin.depatid.Depatname','');
 			const PermissionName = lodashget(this,'props.userlogin.permission.name','');
-			const truename = lodashget(this,'props.userlogin.truename','');
+			const truename = lodashget(this,'props.userlogin.Staffname','');
 			const btns = [
 				<button key={'btnsearch'} onClick={
 					()=>{
