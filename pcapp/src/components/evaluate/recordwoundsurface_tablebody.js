@@ -45,7 +45,7 @@ class RecordbardenTableBody extends React.Component {
 
   		}
       render() {
-            const {evaluatewoundsurfaces,users} = this.props.db;
+            const {evaluatewoundsurfaces,} = this.props.db;
             const {isfirst,islast,retlist} = this.state;
             let tabletrs = [];
             let maxcount = 0;

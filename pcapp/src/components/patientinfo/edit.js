@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Layout,Button } from 'antd';
+import { Layout, } from 'antd';
 import lodashget from 'lodash.get';
 import EditpatientinfoForm from './form_editpatientinfo';
 const { Header } = Layout;

@@ -97,7 +97,7 @@ class App extends React.Component {
 const mapStateToProps = ({db},props) => {
 		const {paientinfos} = db;
 		const pid = lodashget(props,'match.params.pid');
-		const bid = lodashget(props,'match.params.bid');
+		// const bid = lodashget(props,'match.params.bid');
 		let curpaientinfo = paientinfos[pid];
     return {curpaientinfo};
 }

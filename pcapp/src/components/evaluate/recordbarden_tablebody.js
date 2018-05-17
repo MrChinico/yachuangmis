@@ -45,7 +45,7 @@ class RecordbardenTableBody extends React.Component {
 
   		}
       render() {
-            const {evaluatebardens,users} = this.props.db;
+            const {evaluatebardens,} = this.props.db;
             const {isfirst,islast,retlist} = this.state;
             const tablebradengroups = gettablebradengroups();
             let tabletrlist = [];

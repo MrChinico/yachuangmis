@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Layout } from 'antd';
 import {set_uiapp} from '../../actions';
-import { Avatar,Badge } from 'antd';
+import { Badge } from 'antd';
 import lodashget from 'lodash.get';
 const { Header } = Layout;
 class App extends React.Component {

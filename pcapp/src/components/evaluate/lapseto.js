@@ -48,7 +48,7 @@ class App extends React.Component {
 			console.log(values);
 		}
   	render() {
-			const {curpaientinfo,db,curformreviewlapseto,isnew} = this.props;
+			const {curpaientinfo,curformreviewlapseto,isnew} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}

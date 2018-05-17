@@ -1,6 +1,6 @@
 import React from 'react';
 import lodashmap from 'lodash.map';
-import lodashget from 'lodash.get';
+// import lodashget from 'lodash.get';
 
 import moment from 'moment';
 import {getpagelist} from '../../util';
@@ -45,7 +45,7 @@ class RecordNursingMeasuresTableBody extends React.Component {
 
   		}
       render() {
-            const {evaluatenursingmeasuress,users} = this.props.db;
+            const {evaluatenursingmeasuress,} = this.props.db;
             const {isfirst,islast,retlist} = this.state;
 
             let tabletrlist = [];
