@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import lodashget from 'lodash.get';
 import { Layout } from 'antd';
 // import lodashget from 'lodash.get';
-import TitleDetail from '../patientinfo/patientinfo_content_title_detail';
+// import TitleDetail from '../patientinfo/patientinfo_content_title_detail';
 // import ContentTitleBar from '../patientinfo/patientinfo_content_titlebar';
 import PageForm from './form_lapseto_barden';
 import {getdefaultlapseto_barden} from '../../util';
@@ -63,7 +63,7 @@ class App extends React.Component {
 							<div className="clearfix"></div>
 						</h2>
 
-						<TitleDetail curpaientinfo={curpaientinfo} db={db}/>
+						{/* <TitleDetail curpaientinfo={curpaientinfo} db={db}/> */}
 
 						<PageForm onClickSubmit={this.onClickSubmit}
 							curpaientinfo={curpaientinfo}

@@ -1,0 +1,15 @@
+.lapseto .ant-btn{
+    color: #fff;
+    background-color: #0084bf !important;
+    border-radius: 15px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+    padding: 0 10px;
+    margin-left: 15px;
+}
+.lapseto .ant-btn img{
+    width:20px;
+    height:20px;
+    margin:0px 5px 5px 0px;
+}

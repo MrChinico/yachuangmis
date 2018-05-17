@@ -7,7 +7,8 @@ import ContentTitleBar from '../patientinfo/patientinfo_content_titlebar';
 import {createformreviewlapseto_request,editformreviewlapseto_request} from '../../actions';
 import ReviewDetailInfo from './lapseto_viewinfo';
 import InfoNorecords from '../patientinfo/info_norecords';
-
+import ReactToPrint from "react-to-print";
+import './lapseto.css';
 
 class App extends React.Component {
 
@@ -48,7 +49,7 @@ class App extends React.Component {
 			console.log(values);
 		}
   	render() {
-			const {curpaientinfo,curformreviewlapseto,isnew} = this.props;
+			const {curpaientinfo,curformreviewlapseto,isnew,db,Hospitalname} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -56,20 +57,35 @@ class App extends React.Component {
 				return (<InfoNorecords btnTitle="转归填写" onClickNew={this.onClickNew} />);
 			}
 	    return (
-	      	<div>
-						<ContentTitleBar title="转归与申报记录" titleNew="编辑审阅转归单" titleView="打印报表"
-							onClickNew={this.onClickNew}  />
+	      	<div className="printing-title">
+						<div className="lapseto">
+					    <span>转归与申报记录</span>
+					    <button  onClick={
+					            ()=>{
+					              this.onClickNew();
+					            }
+					          } className="ant-btn"><img src="add.png" alt=""/>
+					          编辑审阅转归单</button>
+							<ReactToPrint  trigger={() => <span className="ant-btn"><img src="printing.png" alt="" />打印报表</span>}
+									content={() => this.componentRef}
+								/>
+							</div>
+							<div ref={el => (this.componentRef = el)}>
+								<ReviewDetailInfo info={curformreviewlapseto} Hospitalname={Hospitalname} curpaientinfo={curpaientinfo} db={db}
+								/>
+							</div>
 
-						{!!curformreviewlapseto && <ReviewDetailInfo info={curformreviewlapseto} /> }
+
 	      	</div>
 	    );
   	}
 }
 
 
-const mapStateToProps = ({db},props) => {
+const mapStateToProps = ({db,app},props) => {
 		let curpaientinfo = props.curpaientinfo;
 		const {formreviewlapsetos} = db;
+		const {Hospitalname} = app;
 		let isnew = true;
 		let curformreviewlapseto;
 		if(!!curpaientinfo.formreviewlapsetoid){
@@ -78,6 +94,6 @@ const mapStateToProps = ({db},props) => {
 				isnew = false;
 			}
 		}
-		return {curpaientinfo,isnew,curformreviewlapseto,db};
+		return {curpaientinfo,isnew,curformreviewlapseto,db,Hospitalname};
 }
 export default connect(mapStateToProps)(App);
