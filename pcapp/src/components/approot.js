@@ -42,26 +42,26 @@ class AppRoot extends React.Component {
       return (
               <div className="container">
                 <Switch>
-                  <Route exact path="/" component={Index} />
-                  <Route exact path="/indexdetail/:pid" component={IndexDetail} />
-                  <Route exact path="/indexdetailedit/:pid" component={IndexDetailEdit} />
-                  <Route exact path="/indexinfo/:pid" component={IndexInfo} />
-                  <Route exact path="/newbarden/:pid/:id" component={NewBarden} />
-                  <Route exact path="/newnursingmeasures/:pid/:id" component={NewNursingmeasures} />
-                  <Route exact path="/newwoundsurface/:pid/:id" component={NewWoundsurface} />
-                  <Route exact path="/newlapseto/:pid/:id" component={NewLapseto} />
+                  <Route exact path="/" component={requireAuthentication(Index)} />
+                  <Route exact path="/indexdetail/:pid" component={requireAuthentication(IndexDetail)} />
+                  <Route exact path="/indexdetailedit/:pid" component={requireAuthentication(IndexDetailEdit)} />
+                  <Route exact path="/indexinfo/:pid" component={requireAuthentication(IndexInfo)} />
+                  <Route exact path="/newbarden/:pid/:id" component={requireAuthentication(NewBarden)} />
+                  <Route exact path="/newnursingmeasures/:pid/:id" component={requireAuthentication(NewNursingmeasures)} />
+                  <Route exact path="/newwoundsurface/:pid/:id" component={requireAuthentication(NewWoundsurface)} />
+                  <Route exact path="/newlapseto/:pid/:id" component={requireAuthentication(NewLapseto)} />
 
-                  <Route exact path="/viewprintrecordbarden/:pid" component={ViewPrintRecordBarden} />
-                  <Route exact path="/viewprintrecordnursingmeasures/:pid" component={ViewPrintRecordNursingmeasures} />
-                  <Route exact path="/viewprintrecordwoundsurface/:pid" component={ViewPrintRecordWoundsurface} />
+                  <Route exact path="/viewprintrecordbarden/:pid" component={requireAuthentication(ViewPrintRecordBarden)} />
+                  <Route exact path="/viewprintrecordnursingmeasures/:pid" component={requireAuthentication(ViewPrintRecordNursingmeasures)} />
+                  <Route exact path="/viewprintrecordwoundsurface/:pid" component={requireAuthentication(ViewPrintRecordWoundsurface)} />
 
-                  <Route exact path="/defineturnover/:pid/:bid" component={DefineTurnover} />
+                  <Route exact path="/defineturnover/:pid/:bid" component={requireAuthentication(DefineTurnover)} />
 
-                  <Route exact path="/searchpaientinfo" component={SearchPaientinfo} />
-                  <Route exact path="/datastat" component={Datastat} />
-                  <Route exact path="/datastatdetail/:type" component={Datastatdetail} />
-                  <Route exact path="/review" component={Review} />
-    
+                  <Route exact path="/searchpaientinfo" component={requireAuthentication(SearchPaientinfo)} />
+                  <Route exact path="/datastat" component={requireAuthentication(Datastat)} />
+                  <Route exact path="/datastatdetail/:type" component={requireAuthentication(Datastatdetail)} />
+                  <Route exact path="/review" component={requireAuthentication(Review)} />
+
                   <Route exact path="/login" component={Login} />
                 </Switch>
               </div>

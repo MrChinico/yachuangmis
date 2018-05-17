@@ -104,7 +104,7 @@ class App extends React.Component {
     render() {
         return (
           <div className="modify-password" >
-           <h1>您好，张三！<img src="close-white.png" alt="" onClick = {this.onClickClosePwd}/><div className="clearfix"></div></h1>
+           <h1>修改密码<img src="close-white.png" alt="" onClick = {this.onClickClosePwd}/><div className="clearfix"></div></h1>
            <p><span>旧&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</span><input type="text" /></p>
            <p><span>新&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</span><input type="text" /></p>
            <p><span>新密码确认：</span><input type="text" /></p>

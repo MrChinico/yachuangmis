@@ -125,6 +125,11 @@ let sendmessagefnsz = {
 
   'getsystemconfig':`${getsystemconfig_request}`,
 
+
+};
+
+//验证发送接口
+let sendmessageauthfnsz = {
   'sendsmartdevicecmd':`${sendsmartdevicecmd_request}`,
   'subscribedevice':`${subscribedevice_request}`,
 
@@ -146,10 +151,6 @@ let sendmessagefnsz = {
   'createformreviewlapseto':`${createformreviewlapseto_request}`,
   'editformreviewlapseto':`${editformreviewlapseto_request}`,
   'page_getformreviewlapsetolist':`${page_getformreviewlapsetolist_request}`,
-};
-
-//验证发送接口
-let sendmessageauthfnsz = {
   'getpatientinfolist':`${getpatientinfo_request}`,
   'getdepatlist':`${getdepatlist_request}`,
   'changepwd':`${changepwd_request}`,

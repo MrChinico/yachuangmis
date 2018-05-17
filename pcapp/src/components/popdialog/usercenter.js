@@ -26,7 +26,7 @@ class App extends React.Component {
   	render() {
 	    return (
 					<div className="modify-password">
-						<h1>您好，张三！<img src="close-white.png" onClick={this.onClickCloseUser} alt=""/>
+						<h1>用户中心<img src="close-white.png" onClick={this.onClickCloseUser} alt=""/>
 						<div className="clearfix">
 						</div>
 						</h1>

@@ -13,8 +13,12 @@ const debugapp = require('debug')('appsrv:app:index');
 const actiondatahandler = {
   'getsystemconfig':systemconfig.getsystemconfig,
   'loginwithtoken':userlogin.loginwithtoken,
-  'logout':userlogin.logout,
   'login':userlogin.loginuser,
+};
+
+const authhandler = {
+
+  'logout':userlogin.logout,
   'getpatientinfo':patientinfo.getpatientinfo,
   'page_getpatientinfolist':patientinfo.page_getpatientinfolist,
   'createformreviewlapseto':formreviewlapseto.createformreviewlapseto,
@@ -32,9 +36,6 @@ const actiondatahandler = {
   'getevaluatewoundsurfacelist':evaluatewoundsurface.getevaluatewoundsurfacelist,
   'sendsmartdevicecmd':smartdevice.sendsmartdevicecmd,
   'subscribedevice':smartdevice.subscribedevice,
-};
-
-const authhandler = {
   'getdepatlist':depat.getdepatlist,
   'changepwd':userlogin.changepwd,
 };

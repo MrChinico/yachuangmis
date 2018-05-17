@@ -14,8 +14,8 @@ const startwebsocketsrv = (http)=>{
     let ctx = {};//for each connection
 
     //for test <---
-    ctx.depatid = '5aeac4a846c43bd15c8951f7';
-    ctx.userid = '5aeac4a946c43bd15c895276';
+    // ctx.depatid = '5aeac4a846c43bd15c8951f7';
+    // ctx.userid = '5aeac4a946c43bd15c895276';
     //for test end <--
 
     usersubfn(socket,ctx);

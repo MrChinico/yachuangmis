@@ -1,4 +1,4 @@
-import {takeLatest,put} from 'redux-saga/effects';
+import {takeLatest,put,select} from 'redux-saga/effects';
 import {
   notify_socket_connected,
   getsystemconfig_request,
@@ -14,7 +14,12 @@ export function* socketflow(){//仅执行一次
       if(issocketconnected){
         yield put(getsystemconfig_request({}));
 
-        if(config.softmode === 'app'){
+        //已经登录状态
+        const loginsuccess = yield select((state)=>{
+          return state.userlogin.loginsuccess;
+        });
+
+        if(loginsuccess){
           const token = localStorage.getItem(`yc_${config.softmode}_token`);
           if (!!token) {
             yield put(loginwithtoken_request({token}));

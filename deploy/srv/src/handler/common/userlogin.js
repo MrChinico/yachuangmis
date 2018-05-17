@@ -42,7 +42,7 @@ let setloginsuccess = (ctx,user,callback)=>{
    if(typeof ctx.userid === "string"){
       ctx.userid = mongoose.Types.ObjectId(ctx.userid);
    }
-   ctx.Depatno = user.Depatno;
+   ctx.depatid = user.depatid;
    ctx.permission = user.permission;
   //  ctx.usersettings = _.get(user,'usersettings',{
   //    warninglevel:'',
@@ -102,6 +102,10 @@ exports.loginuser = (actiondata,ctx,callback)=>{
   const dbModel = DBModels.UserModel;
   dbModel.findOne({ username: oneUser.username })
     .populate([
+      {
+        path:'depatid',
+        model:'depat',
+      },
       {
         path:'permission',
         model: 'permission',

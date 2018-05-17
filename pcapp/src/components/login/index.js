@@ -111,14 +111,14 @@ export class Page extends React.Component {
         if(nextProps.loginsuccess && !this.props.loginsuccess){
             console.log("------->" + JSON.stringify(this.props.location));
             //search:?next=/devicelist
-            var fdStart = this.props.location.search.indexOf("?next=");
-            if(fdStart === 0){
-                const redirectRoute = this.props.location.search.substring(6);
-                this.props.history.replace(redirectRoute);
-            }
-            else{
+            // var fdStart = this.props.location.search.indexOf("?next=");
+            // if(fdStart === 0){
+            //     const redirectRoute = this.props.location.search.substring(6);
+            //     this.props.history.replace(redirectRoute);
+            // }
+            // else{//强制进入首页
                 this.props.history.replace('/');
-            }
+            // }
             return;
         }
     }

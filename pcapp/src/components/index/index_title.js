@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Layout } from 'antd';
 import {set_uiapp} from '../../actions';
 import { Avatar,Badge } from 'antd';
-
+import lodashget from 'lodash.get';
 const { Header } = Layout;
 class App extends React.Component {
 		componentDidMount(){
@@ -29,6 +29,9 @@ class App extends React.Component {
 		}
 
   	render() {
+			const Depatname = lodashget(this,'props.userlogin.depatid.Depatname','');
+			const PermissionName = lodashget(this,'props.userlogin.permission.name','');
+			const truename = lodashget(this,'props.userlogin.truename','');
 			const btns = [
 				<button key={'btnsearch'} onClick={
 					()=>{
@@ -51,9 +54,9 @@ class App extends React.Component {
 					()=>{
 					this.onClickUser()
 					}}>
-					<Avatar style={{ backgroundColor:'#f56a00', verticalAlign: 'middle' }} shape="circle" size="large" >
-					 张三
-					</Avatar>
+					<span>{Depatname}-</span>
+					<span>{PermissionName}-</span>
+					<span>{truename}</span>
 				</button>
 			];
 			const title = this.props.title || '病人列表';
@@ -66,5 +69,8 @@ class App extends React.Component {
   	}
 }
 
+const mapStateToProps = ({userlogin}) => {
+    return {userlogin};
+}
 App = withRouter(App);
-export default connect()(App);
+export default connect(mapStateToProps)(App);
