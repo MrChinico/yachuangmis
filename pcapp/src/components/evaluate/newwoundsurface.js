@@ -5,7 +5,7 @@ import lodashget from 'lodash.get';
 import TitleDetail from '../patientinfo/patientinfo_content_title_detail';
 import NewwoundsurfaceForm from './form_newwoundsurface';
 import {createevaluatewoundsurface_request,editevaluatewoundsurface_request} from '../../actions';
-
+import {set_weui} from '../../actions';
 const { Header } = Layout;
 class App extends React.Component {
 
@@ -18,6 +18,15 @@ class App extends React.Component {
 
 		}
 		onClickSubmit =(values)=>{
+			if(values.evaluateWoundsurfaces.length === 0){
+				this.props.dispatch(set_weui({
+					toast:{
+					text:'请至少添加一个创面',
+					show: true,
+					type:'warning'
+				}}));
+				return;
+			}
 			const {curpaientinfo,isnew,curevaluatewoundsurface} = this.props;
 			if(isnew){
 				values.userpatientid = curpaientinfo._id;

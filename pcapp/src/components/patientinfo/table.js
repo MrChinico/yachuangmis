@@ -49,9 +49,9 @@ class App extends React.Component {
 					{ulsz}
 				</ul>
 			</div>);
-			if(paginateCollection.totaPages > paginateCollection.perPage){
+			if(allrecords.length > pageSize){//大于1页
 				retlist.push(<Pagination key={'div1'} defaultCurrent={1}
-					total={paginateCollection.totaPages}
+					total={paginateCollection.total}
 					current={paginateCollection.currentPage}
 					pageSize={paginateCollection.perPage}
 					onChange={this.onChangePagination}

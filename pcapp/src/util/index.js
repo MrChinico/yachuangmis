@@ -332,7 +332,7 @@ export const getpagelist = (currentpage,listall,perpage)=>{
     }
 
     const isfirst = istart === 0;
-    const islast = iend + perpage >= listall.length;
+    const islast = iend >= listall.length;
 
     return {
       isfirst,

@@ -33,7 +33,7 @@ class App extends React.Component {
 			if(!!record){
 				return [
 					<span key={0}>{lodashget(record,'created_at','')}</span>,
-					<span key={1}>评估护士:{lodashget(users[record.usercreatorid],'username','')}</span>,
+					<span key={1}>评估护士:{lodashget(users[record.usercreatorid],'Staffname','')}</span>,
 					<span key={2}>创面个数:{lodashget(record,'evaluateWoundsurfaces',[]).length}</span>,
 					<span key={3} onClick={()=>{this.onClickEdit(record);}}>详情</span>
 				];
