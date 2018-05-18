@@ -71,7 +71,7 @@ class App extends React.Component {
 								/>
 							</div>
 							<div ref={el => (this.componentRef = el)}>
-								<ReviewDetailInfo info={curformreviewlapseto} Hospitalname={Hospitalname} curpaientinfo={curpaientinfo} db={db}
+								<ReviewDetailInfo info={curformreviewlapseto} Hospitalname={Hospitalname} db={db}
 								/>
 							</div>
 

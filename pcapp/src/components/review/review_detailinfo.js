@@ -4,13 +4,15 @@ import lodashget from 'lodash.get';
 const ReviewDetailInfo = (props)=>{
 	const {info,onClickDetail,db} = props;
 	const curpaientinfo = db.paientinfos[info.userpatientid];
+	if(!curpaientinfo){
+		return <tr></tr>
+	}
 	const curdepat = db.depats[curpaientinfo.depatid];
 	const {evaluatebardenscore,created_at} = info;
 	const Patientname = lodashget(curpaientinfo,'Patientname','');
 	const Patientno = lodashget(curpaientinfo,'Patientno','');
 	const Staffname = info.usercreatorid.Staffname;
 
-	console.log(info);
 	// const bedStatusString = lodashget(curpaientinfo,'bedid','') === ''?'离床':'在床';
 	const depatName = curdepat.Depatname;
 	let ApprovalString_headnurse = '未审';

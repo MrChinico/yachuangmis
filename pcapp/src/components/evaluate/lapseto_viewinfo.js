@@ -193,7 +193,8 @@ const CRenderInstruction= (props)=>{
 }
 
 const ReviewDetailInfo = (props)=>{
-	const {Hospitalname,curpaientinfo,db,info} = props;
+	const {Hospitalname,db,info} = props;
+  const curpaientinfo = db.paientinfos[info.userpatientid];
 	return (
 		<div className="form-box">
 
