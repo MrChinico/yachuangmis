@@ -60,55 +60,63 @@ class App extends React.Component {
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
+			const Diseaseclassification = lodashget(curpaientinfo,'Diseaseclassification','普通病人');
+			if(Diseaseclassification === '普通病人'){
+				return <div>普通病人不能显示评估页面</div>
+			}
 			let btnz = [];
-			const btninfoz = [
-				{
-					btnkey:'btnbd',
-					title:'Barden评估',
-					visible:true,
-					enabled:true,
-					Co:<InfoBarden curpaientinfo={curpaientinfo} />
-				},
-				{
-					btnkey:'btnws',
-					title:'创面评估',
-					visible:true,
-					enabled:true,
-					Co:<InfoWoundsurface curpaientinfo={curpaientinfo} />
-				},
-				{
-					btnkey:'btnnm',
-					title:'护理措施',
-					visible:true,
-					enabled:true,
-					Co:<InfoNursingmeasures curpaientinfo={curpaientinfo} />
-				},
-				{
-					btnkey:'btnls',
-					title:'转归与申报',
-					visible:true,
-					enabled:true,
-					Co:<InfoLapsetto curpaientinfo={curpaientinfo} db={db} history={this.props.history}/>
-				},
-				{
-					btnkey:'btnto',
-					title:'翻身治疗',
-					visible:true,
-					enabled:true,
-					Co:<InfoSmartdevice curpaientinfo={curpaientinfo} cursmartdevice={cursmartdevice} />
-				},
 
-			];
+			{
+				const btninfoz = [
+					{
+						btnkey:'btnbd',
+						title:'Barden评估',
+						visible:true,
+						enabled:true,
+						Co:<InfoBarden curpaientinfo={curpaientinfo} />
+					},
+					{
+						btnkey:'btnws',
+						title:'创面评估',
+						visible:true,
+						enabled:true,
+						Co:<InfoWoundsurface curpaientinfo={curpaientinfo} />
+					},
+					{
+						btnkey:'btnnm',
+						title:'护理措施',
+						visible:true,
+						enabled:true,
+						Co:<InfoNursingmeasures curpaientinfo={curpaientinfo} />
+					},
+					{
+						btnkey:'btnls',
+						title:'转归与申报',
+						visible:true,
+						enabled:true,
+						Co:<InfoLapsetto curpaientinfo={curpaientinfo} db={db} history={this.props.history}/>
+					},
+					{
+						btnkey:'btnto',
+						title:'翻身治疗',
+						visible:true,
+						enabled:true,
+						Co:<InfoSmartdevice curpaientinfo={curpaientinfo} cursmartdevice={cursmartdevice} />
+					},
 
-			lodashmap(btninfoz,(btninfo)=>{
-					btnz.push({
-						btnkey:btninfo['btnkey'],
-						title:btninfo['title'],
-						enabled:btninfo['enabled'],
-						visible:btninfo['visible'],
-						Co:btninfo['Co']
-					});
-			});
+				];
+
+				lodashmap(btninfoz,(btninfo)=>{
+						btnz.push({
+							btnkey:btninfo['btnkey'],
+							title:btninfo['title'],
+							enabled:btninfo['enabled'],
+							visible:btninfo['visible'],
+							Co:btninfo['Co']
+						});
+				});
+			}
+
 
 			if(!curpaientinfo.firstevaluatebardenid){
 				//没有首次Barden评估,仅显示第一个按钮
@@ -119,24 +127,24 @@ class App extends React.Component {
 				})
 			}
 
-			if(!curpaientinfo.firstevaluatewoundsurfaceid){
-				//如果病人是高危，则必须填写
-				if(curpaientinfo.Diseaseclassification === '压疮高危'){
-					lodashmap(btnz,(info,index)=>{
-						if(index > 1){
-							info.visible = false;
-						}
-					});
+			if(Diseaseclassification === '压疮高危'){
+				//不显示创面评估页面
+				btnz[1].visible = false;
+			}
+			else{
+				if(!curpaientinfo.firstevaluatewoundsurfaceid){
+							lodashmap(btnz,(info,index)=>{
+							if(index > 1){
+								info.visible = false;
+							}
+						});
 				}
 			}
 
+
 			if(!curpaientinfo.firstevaluatenursingmeasuresid){
 				//没有首次护理措施评估,不显示转归申报
-				lodashmap(btnz,(info,index)=>{
-					if(index === 3){
-						info.visible = false;
-					}
-				});
+				btnz[3].visible = false;
 			}
 
 			if(!cursmartdevice){

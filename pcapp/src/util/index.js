@@ -152,74 +152,89 @@ export const getdefaultnursingmeasures = ()=>{
 
 }
 
-export const getdefaultlapseto_barden = (evaluatebardenscore)=>{
-
-  const v = {
-      evaluatebardenscore:evaluatebardenscore,//evaluatebarden
-      preventivesmeasure:[
+export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassification='院前压疮')=>{
+  let preventivesmeasure = [
+    {
+      name:'1、告知患者及家属压疮的危险性并悬挂“压疮高危”警示标志，进行健康宣教，讲解相关注意事项。',
+      checked:false,
+    },
+    {
+      name:'2、定时翻身更换体位，减轻皮肤受压、避免摩擦。',
+      checked:false,
+    },
+    {
+      name:'3、使用:',
+      checked:false,
+      options:[
         {
-          name:'1、告知患者及家属压疮的危险性并悬挂“压疮高危”警示标志，进行健康宣教，讲解相关注意事项。',
+          name:'1)防压疮翻身床垫',
           checked:false,
         },
         {
-          name:'2、定时翻身更换体位，减轻皮肤受压、避免摩擦。',
+          name:'2)压疮辅料',
           checked:false,
         },
         {
-          name:'3、使用:',
-          checked:false,
-          options:[
-            {
-              name:'1)防压疮翻身床垫',
-              checked:false,
-            },
-            {
-              name:'2)压疮辅料',
-              checked:false,
-            },
-            {
-              name:'3)请专家会诊',
-              checked:false,
-            },
-            {
-              name:'4)其他',
-              value:'',
-            },
-          ]
-        },
-        {
-          name:'4、保持皮肤清洁、干燥，及时处理患者排泄物。',
+          name:'3)请专家会诊',
           checked:false,
         },
         {
-          name:'5、即时更换床单，保持整洁、干燥。',
-          checked:false,
-        },
-        {
-          name:'6、指导及协助患者移位时，避免牵拉及摩擦皮肤',
-          checked:false,
-        },
-        {
-          name:'7、加强全身营养',
-          checked:false,
-        },
-        {
-          name:'8、严格执行交接班制度',
-          checked:false,
-        },
-        {
-          name:'9、根据压疮分期采取正确的压疮护理',
-          checked:false,
-        },
-        {
-          name:'10、动态评估与记录',
-          checked:false,
-        },
-        {
-          name:'11、其他',
+          name:'4)其他',
           value:'',
         },
-      ],
+      ]
+    },
+    {
+      name:'4、保持皮肤清洁、干燥，及时处理患者排泄物。',
+      checked:false,
+    },
+    {
+      name:'5、即时更换床单，保持整洁、干燥。',
+      checked:false,
+    },
+    {
+      name:'6、指导及协助患者移位时，避免牵拉及摩擦皮肤',
+      checked:false,
+    },
+    {
+      name:'7、加强全身营养',
+      checked:false,
+    },
+    {
+      name:'8、严格执行交接班制度',
+      checked:false,
+    },
+    {
+      name:'9、根据压疮分期采取正确的压疮护理',
+      checked:false,
+    },
+    {
+      name:'10、动态评估与记录',
+      checked:false,
+    },
+    {
+      name:'11、其他',
+      value:'',
+    },
+  ];
+
+  if(Diseaseclassification === '压疮高危'){
+    preventivesmeasure[preventivesmeasure.length - 1] = {
+      name:'11、伤口造口治疗师会诊处理',
+      checked:false,
+    };
+    preventivesmeasure.push({
+      name:'12、科室换药',
+      checked:false,
+    });
+    preventivesmeasure.push({
+      name:'13、其他',
+      value:'',
+    });
+  }
+  const v = {
+      evaluatebardenscore:evaluatebardenscore,//evaluatebarden
+      preventivesmeasure,
       conditions:{
         prerequisites:[
           {

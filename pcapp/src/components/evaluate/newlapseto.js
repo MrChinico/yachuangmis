@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import lodashget from 'lodash.get';
 import { Layout } from 'antd';
-// import lodashget from 'lodash.get';
 // import TitleDetail from '../patientinfo/patientinfo_content_title_detail';
 // import ContentTitleBar from '../patientinfo/patientinfo_content_titlebar';
 import PageForm from './form_lapseto_barden';
@@ -42,9 +41,14 @@ class App extends React.Component {
 				return <div>无病人信息</div>
 			}
 			let formname = 'NewLapsetoForm';
-			let formvalues = getdefaultlapseto_barden(16);
+			let formvalues;
 			if(!isnew){
 				formvalues = curformreviewlapseto;
+			}
+			else{
+				const {evaluatebardens} = db;
+				const score = lodashget(evaluatebardens,`${curpaientinfo.firstevaluatebardenid}.score`,0);
+				formvalues = getdefaultlapseto_barden(score,curpaientinfo.Diseaseclassification);
 			}
 			const title = isnew?'新建':'编辑';
 	    return (
