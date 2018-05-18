@@ -53,14 +53,14 @@ const CRenderConditions = (props)=>{
       </tr>,
       <tr className="gray"  key='canda3'>
         <td className="va_top p0">
-          <table>
+          <table style={{textAlign:'left'}}>
             <tbody>
 							<CRenderConditionsprerequisites info={prerequisites} />
             </tbody>
           </table>
         </td>
         <td className="va_top p0">
-          <table>
+          <table style={{textAlign:'left'}}>
             <tbody>
 							<CRenderConditionsalternative info={alternative} />
             </tbody>

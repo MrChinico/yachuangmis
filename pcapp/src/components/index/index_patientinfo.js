@@ -11,13 +11,14 @@ const Paientinfo = (props)=>{
 	const smartDeviceString = lodashget(curpaientinfo,'bedid.smartdeviceid.realtimedata.positionstring','') + lodashget(curpaientinfo,'bedid.smartdeviceid.realtimedata.anglestring','');
 	const isInSmartBed = lodashget(curpaientinfo,'bedid.smartdeviceid','')===''?false:true;
 	const stateClassname = bedStatusString==='在床'?'statein':'stateoff';
+	const Diseaseclassification = lodashget(curpaientinfo,'Diseaseclassification','普通病人');
 	return (
 			<div className="module-box">
 				<div className="module">
 					<div className="module-top">
 						<h2>{Patientno}<span>{Patientname}</span></h2>
 						<p>
-							<span className="fontSize13">普通压疮</span>
+							<span className="fontSize13">{Diseaseclassification}</span>
 							<button type="" className="ant-btn-details" onClick={
 								()=>{
 									onClickDetail(curpaientinfo._id)
@@ -30,11 +31,14 @@ const Paientinfo = (props)=>{
 						<p>
 							<span className={stateClassname}>{bedStatusString}</span>
 							<span>{`${depatName}${bedName}`}</span>
-							<button type="" className="ant-btn-assess" onClick={
-								()=>{
-									onClickEvalute(curpaientinfo._id)
-								}
-							}>评估</button>
+							{
+								Diseaseclassification !== '普通病人' && (<button type="" className="ant-btn-assess" onClick={
+									()=>{
+										onClickEvalute(curpaientinfo._id)
+									}
+								}>评估</button>)
+							}
+
 						</p>
 					</div>
 				</div>

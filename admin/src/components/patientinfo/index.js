@@ -48,6 +48,12 @@ const PatientinfoEdit = (props) => {
      <TextField label="出院日期" source="Out_date"  />
      <TextField label="入院诊断" source="In_diagnosis"  />
      <TextField label="在院判别" source="In_out_flag"  />
+      <TextField label="在院判别" source="In_out_flag"  />
+      <SelectInput label="病人分类"  source="Diseaseclassification" choices={[
+          { id: '压疮高危', name: '压疮高危' },
+          { id: '院前压疮', name: '院前压疮' },
+          { id: '普通病人', name: '普通病人' },
+      ]} />
      <ReferenceInput label="所在科室" source="depatid" reference="depat" allowEmpty>
        <SelectInput optionText="Depatname" />
      </ReferenceInput>
@@ -73,6 +79,7 @@ const PatientinfoList = (props) => (
       <TextField label="住院号码" source="Patientno"  />
       <TextField label="病人姓名" source="Patientname"  />
       <TextField label="病人性别" source="Sex"  />
+      <TextField label="病人分类" source="Diseaseclassification"  />
       <ReferenceField label="所在科室" source="depatid" reference="depat" allowEmpty>
         <TextField source="Depatname" />
       </ReferenceField>
