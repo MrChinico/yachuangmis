@@ -2,7 +2,7 @@ import React from 'react';
 import {FieldArray,Fields, Field, reduxForm, Form  } from 'redux-form';
 // import { connect } from 'react-redux';
 import ViewPrintHeader from './viewprint_header';
-// import lodashmap from 'lodash.map';
+import lodashget from 'lodash.get';
 
 const renderConditions_prerequisites_options = (props)=>{
   const {input:{value,onChange}} = props;
@@ -319,12 +319,105 @@ const renderInstruction= (fields)=>{
   return trsz;
 }
 
+//--------
+const renderAdmissions_Item = (props)=>{
+  const {input:{value,onChange}} = props;
+  const v = value;
+
+  return (<td><input type="checkbox" name="check[]" checked={v.checked} onClick={
+    ()=>{
+      onChange({
+        name:v.name,
+        checked:!v.checked
+      });
+    }
+  } onChange={()=>{}}/>{v.name}</td>);
+}
+
+
+const renderAdmissions = (props)=>{
+  const {fields} = props;
+  let options = [];
+  let retc = [];
+  for(let j = 0 ;j < fields.length; j++){
+    const option = fields.get(j);
+
+    options.push(<Field component={renderAdmissions_Item} name={`admissions[${j}]`} key={`admissions${j}`}/>);
+  }
+
+  if(options.length % 2 === 1){
+    options.push(<td key='ad'></td>);
+  }
+
+  const halflength = options.length/2;
+  for(let i = 0 ;i < halflength; i++){
+    retc.push(<tr key={`options${i}`}>
+      {options[i]}
+      {options[halflength+i]}
+    </tr>)
+  }
+
+  return retc;
+}
+
+const renderEvaluateWoundsurfaces_Item = (props)=>{
+  const {input:{value,onChange}} = props;
+  return (
+    <tr>
+      <td key="tdwf0">{lodashget(value,'部位','')}</td>
+      <td key="tdwf1">{lodashget(value,'分期','')}</td>
+      <td key="tdwf2">{lodashget(value,'大小','')}</td>
+      <td key="tdwf3">{lodashget(value,'情况','')}</td>
+    </tr>
+  );
+}
+
+
+const renderEvaluateWoundsurfaces =  (props)=>{
+  const {fields} = props;
+  return fields.map((option,index)=>{
+    return (<Field component={renderEvaluateWoundsurfaces_Item} name={option} key={`ewf${index}`}/>);
+  });
+}
+
+//--------
 
 class PageForm extends React.Component {
   render() {
     const { handleSubmit,onClickSubmit,curpaientinfo,db,app } = this.props;
-
     const {Hospitalname} = app;
+
+    let trlist = [];
+    if(curpaientinfo.Diseaseclassification === '院前压疮'){
+      trlist.push(<tr className="gray title" key='admissions'>
+          <td>入院时存在以下情况</td>
+          <td></td>
+        </tr>);
+      trlist.push(<FieldArray key="admissionsarray"
+                        name="admissions"
+                        id="admissions"
+                        component={renderAdmissions}
+                    />);
+      trlist.push(<tr className="gray title" key='evaluateWoundsurfaces'>
+        <td>部位</td>
+        <td>分期</td>
+        <td>大小</td>
+        <td>情况</td>
+        </tr>);
+        trlist.push(<FieldArray key="evaluateWoundsurfacesarray"
+                          name="evaluateWoundsurfaces"
+                          id="evaluateWoundsurfaces"
+                          component={renderEvaluateWoundsurfaces}
+                      />);
+    }
+    else if(curpaientinfo.Diseaseclassification === '压疮高危'){
+      trlist.push(<Field key="conditions"
+                        name="conditions"
+                        id="conditions"
+                        component={renderConditions}
+                    />);
+    }
+
     return (
       <Form
           onSubmit={handleSubmit(onClickSubmit)}
@@ -344,11 +437,8 @@ class PageForm extends React.Component {
     								<td>压疮评分：</td>
     								<Field component={renderScore} name="evaluatebardenscore"/>
     							</tr>
-                  <Field
-                      name="conditions"
-                      id="conditions"
-                      component={renderConditions}
-                  />
+
+                  {trlist}
 
                   <tr className="gray title">
                     <td>预防措施：</td>

@@ -46,9 +46,10 @@ class App extends React.Component {
 				formvalues = curformreviewlapseto;
 			}
 			else{
-				const {evaluatebardens} = db;
+				const {evaluatebardens,evaluatewoundsurfaces} = db;
 				const score = lodashget(evaluatebardens,`${curpaientinfo.firstevaluatebardenid}.score`,0);
-				formvalues = getdefaultlapseto_barden(score,curpaientinfo.Diseaseclassification);
+				const cmlist = lodashget(evaluatewoundsurfaces,`${curpaientinfo.firstevaluatewoundsurfaceid}.evaluateWoundsurfaces`,[]);
+				formvalues = getdefaultlapseto_barden(score,curpaientinfo.Diseaseclassification,cmlist);
 			}
 			const title = isnew?'新建':'编辑';
 	    return (

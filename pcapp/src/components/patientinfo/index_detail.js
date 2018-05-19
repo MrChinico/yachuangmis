@@ -7,8 +7,6 @@ import './index_details.css';
 const { Header } = Layout;
 class App extends React.Component {
 
-
-
 		componentDidMount(){
 
 		}
@@ -25,14 +23,16 @@ class App extends React.Component {
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
+			const Patientname = lodashget(curpaientinfo,'Patientname','');
+			const Patientno = lodashget(curpaientinfo,'Patientno','');
 	    return (
 	      	<Layout>
 					<Header>
-						<span><img src="index.png" className="icon-index" alt=""/>病人列表-张三丰详情信息</span>
+						<span><img src="index.png" className="icon-index" alt=""/>病人详情</span>
 					</Header>
 					<div className="content-box">
 						<div className="content">
-							<h2>21206<span>张三丰</span><button className="return" onClick={
+							<h2>{Patientno}<span>{Patientname}</span><button className="return" onClick={
 								()=>{
 									this.props.history.goBack();
 								}

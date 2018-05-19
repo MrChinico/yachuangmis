@@ -1,3 +1,5 @@
+import lodashget from 'lodash.get';
+
 export const getbardenstring = (score)=>{
   let resultstring = '尚未评估';
   if(score >= 16){
@@ -152,7 +154,7 @@ export const getdefaultnursingmeasures = ()=>{
 
 }
 
-export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassification='院前压疮')=>{
+export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassification='院前压疮',cmlist=[])=>{
   let preventivesmeasure = [
     {
       name:'1、告知患者及家属压疮的危险性并悬挂“压疮高危”警示标志，进行健康宣教，讲解相关注意事项。',
@@ -218,7 +220,7 @@ export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassificati
     },
   ];
 
-  if(Diseaseclassification === '压疮高危'){
+  if(Diseaseclassification === '院前压疮'){
     preventivesmeasure[preventivesmeasure.length - 1] = {
       name:'11、伤口造口治疗师会诊处理',
       checked:false,
@@ -232,9 +234,88 @@ export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassificati
       value:'',
     });
   }
+
+  let admissions = [];
+  let evaluateWoundsurfaces = [];
+
+  if(Diseaseclassification === '院前压疮'){
+    admissions.push({
+      name:'1、强迫体位需要严格限制翻身',
+      checked:false,
+    });
+    admissions.push({
+      name:'2、昏迷',
+      checked:false,
+    });
+    admissions.push({
+      name:'3、肝功能衰竭',
+      checked:false,
+    });
+    admissions.push({
+      name:'4、心力衰竭',
+      checked:false,
+    });
+    admissions.push({
+      name:'5、呼吸衰竭',
+      checked:false,
+    });
+    admissions.push({
+      name:'6、偏瘫/截肢/骨盆骨折/四肢麻痹',
+      checked:false,
+    });
+    admissions.push({
+      name:'7、生命体征不稳定',
+      checked:false,
+    });
+    admissions.push({
+      name:'8、高龄≥70 岁',
+      checked:false,
+    });
+    admissions.push({
+      name:'9、血清蛋白<30g/L',
+      checked:false,
+    });
+    admissions.push({
+      name:'10、极度消瘦',
+      checked:false,
+    });
+    admissions.push({
+      name:'11、高度水肿',
+      checked:false,
+    });
+    admissions.push({
+      name:'12、大小便失禁',
+      checked:false,
+    });
+    admissions.push({
+      name:'13、疼痛',
+      checked:false,
+    });
+    admissions.push({
+      name:'14、依从性差',
+      checked:false,
+    });
+    admissions.push({
+      name:'15、其他',
+      checked:false,
+    });
+
+    for(let i = 0 ;i < cmlist.length ;i ++){
+      const cm = cmlist[i];
+      evaluateWoundsurfaces.push({
+        '部位':lodashget(cm,'部位.label',''),
+        '分期':lodashget(cm,'分期.label',''),
+        '大小':`长:${lodashget(cm,'创面大小.长','')}cm,宽:${lodashget(cm,'创面大小.宽','')}cm,深:${lodashget(cm,'创面大小.深','')}cm`,
+        '情况':`渗液量:${lodashget(cm,'创面大小.渗液量','')},颜色:${lodashget(cm,'创面大小.颜色','')},窦道:${lodashget(cm,'创面大小.窦道','')},潜行:${lodashget(cm,'创面大小.潜行','')}`,
+      });
+    }
+  }
+
   const v = {
       evaluatebardenscore:evaluatebardenscore,//evaluatebarden
       preventivesmeasure,
+      evaluateWoundsurfaces,
+      admissions,
       conditions:{
         prerequisites:[
           {
