@@ -26,9 +26,9 @@ class App extends React.Component {
 			let percent2 = 0;
 			let percent3 = 0;
 			if(count_total > 0){
-				percent1 = (count_occur1/count_total).toFixed(2);
-				percent2 = (count_occur2/count_total).toFixed(2);
-				percent3 = (count_cure/count_total).toFixed(2);
+				percent1 = (count_occur1*100/count_total).toFixed(1);
+				percent2 = (count_occur2*100/count_total).toFixed(1);
+				percent3 = (count_cure*100/count_total).toFixed(1);
 			}
 	    return (
 	      	<Layout>

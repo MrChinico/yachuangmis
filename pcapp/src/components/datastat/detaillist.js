@@ -30,19 +30,19 @@ class App extends React.Component {
 			let percenttitle = '';
 			if(count_total > 0){
 				if(flag === '0'){
-					percent1 = (count_occur1/count_total).toFixed(2);
+					percent1 = (count_occur1*100/count_total).toFixed(1);
 					count = count_occur1;
 					percenttitle = '压疮发生率';
 					query[`Diseaseclassification`] = `院前压疮`;
 				}
 				else if(flag === '1'){
-					percent1 = (count_occur2/count_total).toFixed(2);
+					percent1 = (count_occur2*100/count_total).toFixed(1);
 					count = count_occur2;
 					percenttitle = '高危压疮发生率';
 					query[`Diseaseclassification`] = `压疮高危`;
 				}
 				else if(flag === '2'){
-					percent1 = (count_cure/count_total).toFixed(2);
+					percent1 = (count_cure*100/count_total).toFixed(1);
 					count = count_cure;
 					percenttitle = '治愈率';
 					query[`stage`] = '已治愈';
