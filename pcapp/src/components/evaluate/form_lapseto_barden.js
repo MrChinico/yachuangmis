@@ -398,17 +398,28 @@ class PageForm extends React.Component {
                         id="admissions"
                         component={renderAdmissions}
                     />);
+
+
       trlist.push(<tr className="gray title" key='evaluateWoundsurfaces'>
-        <td>部位</td>
-        <td>分期</td>
-        <td>大小</td>
-        <td>情况</td>
+        <td colSpan="2">
+          <table>
+            <tbody>
+              <tr>
+                <td>部位</td>
+                <td>分期</td>
+                <td>大小</td>
+                <td>情况</td>
+              </tr>
+              <FieldArray key="evaluateWoundsurfacesarray"
+                                  name="evaluateWoundsurfaces"
+                                  id="evaluateWoundsurfaces"
+                                  component={renderEvaluateWoundsurfaces}
+                              />
+
+            </tbody>
+          </table>
+        </td>
         </tr>);
-        trlist.push(<FieldArray key="evaluateWoundsurfacesarray"
-                          name="evaluateWoundsurfaces"
-                          id="evaluateWoundsurfaces"
-                          component={renderEvaluateWoundsurfaces}
-                      />);
     }
     else if(curpaientinfo.Diseaseclassification === '压疮高危'){
       trlist.push(<Field key="conditions"

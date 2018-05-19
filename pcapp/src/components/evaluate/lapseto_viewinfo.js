@@ -192,9 +192,85 @@ const CRenderInstruction= (props)=>{
   return trsz;
 }
 
+//--------
+
+
+const CrenderAdmissions = (props)=>{
+  const {admissions} = props;
+
+  let options = [];
+  let retc = [];
+  for(let j = 0 ;j < admissions.length; j++){
+    const v = admissions[j];
+    options.push(<td><input type="checkbox" name="check[]" checked={v.checked}/> {v.name}</td>);
+  }
+
+  if(options.length % 2 === 1){
+    options.push(<td key='ad'></td>);
+  }
+
+  const halflength = options.length/2;
+  for(let i = 0 ;i < halflength; i++){
+    retc.push(<tr key={`options${i}`}>
+      {options[i]}
+      {options[halflength+i]}
+    </tr>)
+  }
+
+  return retc;
+}
+
+
+const CrenderEvaluateWoundsurfaces =  (props)=>{
+  const {evaluateWoundsurfaces} = props;
+  let trsz = [];
+  for(let i = 0 ;i < evaluateWoundsurfaces.length ; i++){
+    const value = evaluateWoundsurfaces[i];
+    trsz.push(
+      <tr>
+        <td key="tdwf0">{lodashget(value,'部位','')}</td>
+        <td key="tdwf1">{lodashget(value,'分期','')}</td>
+        <td key="tdwf2">{lodashget(value,'大小','')}</td>
+        <td key="tdwf3">{lodashget(value,'情况','')}</td>
+      </tr>
+    );
+  }
+  return trsz;
+}
+
+//--------
 const ReviewDetailInfo = (props)=>{
 	const {Hospitalname,db,info} = props;
   const curpaientinfo = db.paientinfos[info.userpatientid];
+  let trlist = [];
+  if(curpaientinfo.Diseaseclassification === '院前压疮'){
+    trlist.push(<tr className="gray title" key='admissions'>
+        <td>入院时存在以下情况</td>
+        <td></td>
+      </tr>);
+    trlist.push(<CrenderAdmissions {...info} />);
+
+
+    trlist.push(<tr className="gray title" key='evaluateWoundsurfaces'>
+      <td colSpan="2">
+        <table>
+          <tbody>
+            <tr>
+              <td>部位</td>
+              <td>分期</td>
+              <td>大小</td>
+              <td>情况</td>
+            </tr>
+            <CrenderEvaluateWoundsurfaces {...info} />
+          </tbody>
+        </table>
+      </td>
+      </tr>);
+  }
+  else if(curpaientinfo.Diseaseclassification === '压疮高危'){
+    trlist.push(<CRenderConditions {...info} />);
+  }
+
 	return (
 		<div className="form-box">
 
@@ -211,7 +287,8 @@ const ReviewDetailInfo = (props)=>{
 						<td>压疮评分：</td>
 						<CRenderScore  {...info} />
 					</tr>
-					<CRenderConditions {...info} />
+
+					{trlist}
 
 					<tr className="gray title">
 						<td>预防措施：</td>
