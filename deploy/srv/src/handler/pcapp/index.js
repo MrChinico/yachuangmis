@@ -21,6 +21,7 @@ const authhandler = {
   'logout':userlogin.logout,
   'getpatientinfo':patientinfo.getpatientinfo,
   'page_getpatientinfolist':patientinfo.page_getpatientinfolist,
+  'getcount_reviewlapseto':formreviewlapseto.getcount_reviewlapseto,
   'createformreviewlapseto':formreviewlapseto.createformreviewlapseto,
   'editformreviewlapseto':formreviewlapseto.editformreviewlapseto,
   'page_getformreviewlapsetolist':formreviewlapseto.page_getformreviewlapsetolist,

@@ -5,3 +5,6 @@ export const createformreviewlapseto_result  = createAction('createformreviewlap
 
 export const editformreviewlapseto_request  = createAction('editformreviewlapseto_request');
 export const editformreviewlapseto_result  = createAction('editformreviewlapseto_result');
+
+export const getcount_reviewlapseto_request  = createAction('getcount_reviewlapseto_request');
+export const getcount_reviewlapseto_result  = createAction('getcount_reviewlapseto_result');

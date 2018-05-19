@@ -32,6 +32,7 @@ class App extends React.Component {
 			const Depatname = lodashget(this,'props.userlogin.depatid.Depatname','');
 			const PermissionName = lodashget(this,'props.userlogin.permission.name','');
 			const truename = lodashget(this,'props.userlogin.Staffname','');
+			const reviewnumber = lodashget(this,'props.userlogin.reviewnumber','');
 			const btns = [
 				<button key={'btnsearch'} onClick={
 					()=>{
@@ -46,7 +47,7 @@ class App extends React.Component {
 					()=>{
 					this.onClickReview()
 				}}>
-				<Badge count={99} overflowCount={10}>
+				<Badge count={reviewnumber} overflowCount={99}>
 					<span style={{color:'white'}}>申报审阅&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				</Badge>
 			  </button>,

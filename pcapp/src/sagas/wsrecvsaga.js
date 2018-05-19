@@ -13,7 +13,8 @@ import {
   changepwd_result,
   set_uiapp,
 
-  logout_result
+  logout_result,
+  getcount_reviewlapseto_request
 } from '../actions';
 
 import config from '../env/config.js';
@@ -40,7 +41,7 @@ export function* wsrecvsagaflow() {
             yield put(login_result(result));
             if(result.loginsuccess){
               localStorage.setItem(`yc_${config.softmode}_token`,result.token);
-              // yield put(getpatientinfo_request({}));
+              yield put(getcount_reviewlapseto_request({}));
             }
         }
 

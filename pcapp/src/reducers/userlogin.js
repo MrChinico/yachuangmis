@@ -4,6 +4,7 @@ import {
     login_result,
     logout_result,
     saveusersettings_result,
+    getcount_reviewlapseto_result
 } from '../actions';
 import config from '../env/config';
 
@@ -13,13 +14,17 @@ const initial = {
     username: '',
     token: '',
     avatar : "",
+    reviewnumber:0,
     usersettings : {
     },
-    role:'admin'//operator
   },
 };
 
 const userlogin = createReducer({
+  [getcount_reviewlapseto_result]:(state,payload)=>{
+    const {number} =  payload;
+    return { ...state, reviewnumber:number};
+  },
   [saveusersettings_result]:(state,payload)=>{
     return { ...state, ...payload};
   },

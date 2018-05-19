@@ -5,6 +5,8 @@ import HeadTitle from './index_title';
 import Patientinfolist from './index_patientinfolist';
 import Changepwd from "../popdialog/pwd.js";
 import Usercenter from "../popdialog/usercenter.js";
+import {getcount_reviewlapseto_request} from '../../actions';
+
 class App extends React.Component {
 
 	// constructor(props) {
@@ -12,7 +14,7 @@ class App extends React.Component {
   //   }
 
 		componentDidMount(){
-
+			this.props.dispatch(getcount_reviewlapseto_request({}));
 		}
 
 		componentWillUnmount() {

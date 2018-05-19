@@ -75,6 +75,26 @@ exports.editformreviewlapseto = (actiondata,ctx,callback)=>{
     });
 }
 
+exports.getcount_reviewlapseto = (actiondata,ctx,callback)=>{
+  const dbModel = DBModels.FormReviewLapsetoModel;
+  getlapsetoquery(ctx,(query)=>{
+    dbModel.count(query,(err,number)=>{
+        if(!err){
+          callback({
+            cmd:'getcount_reviewlapseto_result',
+            payload:{number}
+          });
+        }
+        else{
+          callback({
+            cmd:'common_err',
+            payload:{errmsg:err.message,type:'getcount_reviewlapseto_result'}
+          });
+        }
+    });
+  });
+}
+
 exports.page_getformreviewlapsetolist =  (actiondata,ctx,callback)=>{
   const dbModel = DBModels.FormReviewLapsetoModel;
   actiondata.options = actiondata.options || {};
