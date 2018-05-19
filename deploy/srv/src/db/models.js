@@ -34,6 +34,8 @@ const PatientinfoSchema = new Schema({
 
   Diseaseclassification:String,//病人分类:压疮高危／院前压疮／普通病人
 
+  stage:String,//病人状态【
+
   firstevaluatebardenid:{ type: Schema.Types.ObjectId, ref: 'evaluatebarden' },//首次evaluatebarden评估
   firstevaluatewoundsurfaceid:{ type: Schema.Types.ObjectId, ref: 'evaluatewoundsurface' },//首次创面评估
   firstevaluatenursingmeasuresid:{ type: Schema.Types.ObjectId, ref: 'evaluatenursingmeasures' },//首次护理措施

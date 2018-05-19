@@ -70,7 +70,10 @@ import {
     serverpush_devicerealtimedata,
 
     getcount_reviewlapseto_request,
-    getcount_reviewlapseto_result
+    getcount_reviewlapseto_result,
+
+    getstat_request,
+    getstat_result
   } from '../actions';
 
 import {
@@ -111,6 +114,7 @@ let recvmessagetoresultpair = {
   'getcount_reviewlapseto_result':getcount_reviewlapseto_result,
 
   'getsystemconfig_result':getsystemconfig_result,
+  'getstat_result':getstat_result,
 
   'common_err':common_err,
 
@@ -134,6 +138,7 @@ let sendmessagefnsz = {
 
 //验证发送接口
 let sendmessageauthfnsz = {
+  'getstat':`${getstat_request}`,
   'getcount_reviewlapseto':`${getcount_reviewlapseto_request}`,
   'sendsmartdevicecmd':`${sendsmartdevicecmd_request}`,
   'subscribedevice':`${subscribedevice_request}`,

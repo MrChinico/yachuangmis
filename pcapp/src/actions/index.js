@@ -9,3 +9,4 @@ export * from './evaluatenursingmeasures';
 export * from './evaluatewoundsurface';
 export * from './smartdevice';
 export * from './formreviewlapseto';
+export * from './stat';

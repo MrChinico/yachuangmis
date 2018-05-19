@@ -3,6 +3,7 @@ const DBModels = require('../../db/models.js');
 const mongoose  = require('mongoose');
 const winston = require('../../log/log.js');
 const _ = require('lodash');
+const async = require('async');
 const moment = require('moment');
 const debug = require('debug')('appsrv:patientinfo');
 const getdepatlistids = require('../getdepatlistids');
@@ -282,4 +283,65 @@ exports.page_getpatientinfolist =  (actiondata,ctx,callback)=>{
       }
     });
   });
+}
+
+exports.getstat =  (actiondata,ctx,callback)=>{
+
+  const dbModel = DBModels.PatientinfoModel;
+  getdepatlistids(ctx,(depatlistids)=>{
+    let query = {
+      depatid:{$in:depatlistids}
+    };
+
+    const fn_total = (callbackfn)=>{//所有
+        dbModel.count(query,(err, list)=> {
+            callbackfn(err,list);
+        });
+    };
+
+    const fn_stat_occur1 = (callbackfn)=>{
+      query[`Diseaseclassification`] = `院前压疮`;
+      dbModel.count(query,(err, list)=> {
+          callbackfn(err,list);
+      });
+    };
+
+    const fn_stat_occur2 = (callbackfn)=>{
+      query[`Diseaseclassification`] = `压疮高危`;
+      dbModel.count(query,(err, list)=> {
+          callbackfn(err,list);
+      });
+    };
+
+    const fn_stat_cure = (callbackfn)=>{
+      query[`stage`] = '已治愈';
+      dbModel.count(query,(err, list)=> {
+          callbackfn(err,list);
+      });
+    };
+
+
+
+  let asyncfnsz = [fn_total,fn_stat_occur1,fn_stat_occur2,fn_stat_cure];
+  async.parallel(asyncfnsz,(err,result)=>{
+    if(!err){
+      const count_total= result[0];
+      const count_occur1 = result[1];
+      const count_occur2 = result[2];
+      const count_cure = result[3];
+      callback({
+        cmd:'getstat_result',
+        payload:{count_total,count_occur1,count_occur2,count_cure}
+      });
+    }
+    else{
+      callback({
+        cmd:'common_err',
+        payload:{errmsg:`获取个数失败`,type:'getstat'}
+      });
+    }
+  });
+
+});
+
 }

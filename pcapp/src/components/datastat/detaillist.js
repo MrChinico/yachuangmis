@@ -2,17 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Layout } from 'antd';
 import Patientinfolist from '../index/index_patientinfolist';
-// import { Input } from 'antd'
-// import lodashget from 'lodash.get';
 import IndexHead from '../index/index_title';
+import lodashget from 'lodash.get';
 
 class App extends React.Component {
 
 		constructor(props) {
 			super(props);
-			this.state = {
-				query:{},
-			}
 		}
 		componentDidMount(){
 
@@ -25,7 +21,35 @@ class App extends React.Component {
 
   	render() {
 			const title = "数据统计";
-			const showtext = '压疮发生率 28% 2391人';
+			let query = {};
+			const {stat} = this.props.userlogin;
+			const {count_total,count_occur1,count_occur2,count_cure} = stat;
+			const flag = lodashget(this.props,'match.params.flag');
+			let percent1 = 0;
+			let count = 0;
+			let percenttitle = '';
+			if(count_total > 0){
+				if(flag === '0'){
+					percent1 = (count_occur1/count_total).toFixed(2);
+					count = count_occur1;
+					percenttitle = '压疮发生率';
+					query[`Diseaseclassification`] = `院前压疮`;
+				}
+				else if(flag === '1'){
+					percent1 = (count_occur2/count_total).toFixed(2);
+					count = count_occur2;
+					percenttitle = '高危压疮发生率';
+					query[`Diseaseclassification`] = `压疮高危`;
+				}
+				else if(flag === '2'){
+					percent1 = (count_cure/count_total).toFixed(2);
+					count = count_cure;
+					percenttitle = '治愈率';
+					query[`stage`] = '已治愈';
+				}
+			}
+			const showtext = `${percenttitle} ${percent1}% ${count}人`;
+			console.log(query);
 	    return (
 	      	<Layout>
 						<IndexHead title={title}/>
@@ -41,7 +65,7 @@ class App extends React.Component {
 									<div className="clearfix">
 								</div>
 								</h2>
-								<Patientinfolist query={this.state.query}
+								<Patientinfolist query={query}
 									history={this.props.history}
 									db={this.props.db}
 									pagenumber={12}
@@ -53,8 +77,8 @@ class App extends React.Component {
   	}
 }
 
-const mapStateToProps = ({db},props) => {
-    return {db};
+const mapStateToProps = ({db,userlogin},props) => {
+    return {db,userlogin};
 }
 
 export default connect(mapStateToProps)(App);

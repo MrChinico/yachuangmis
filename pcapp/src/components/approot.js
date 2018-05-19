@@ -59,7 +59,7 @@ class AppRoot extends React.Component {
 
                   <Route exact path="/searchpaientinfo" component={requireAuthentication(SearchPaientinfo)} />
                   <Route exact path="/datastat" component={requireAuthentication(Datastat)} />
-                  <Route exact path="/datastatdetail/:type" component={requireAuthentication(Datastatdetail)} />
+                  <Route exact path="/datastatdetail/:flag" component={requireAuthentication(Datastatdetail)} />
                   <Route exact path="/review" component={requireAuthentication(Review)} />
 
                   <Route exact path="/login" component={Login} />

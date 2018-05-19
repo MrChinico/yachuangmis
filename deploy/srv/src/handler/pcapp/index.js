@@ -17,7 +17,7 @@ const actiondatahandler = {
 };
 
 const authhandler = {
-
+  'getstat':patientinfo.getstat,
   'logout':userlogin.logout,
   'getpatientinfo':patientinfo.getpatientinfo,
   'page_getpatientinfolist':patientinfo.page_getpatientinfolist,
