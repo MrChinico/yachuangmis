@@ -223,7 +223,7 @@ const FormReviewLapsetoSchema = new Schema({
   usercreatorid:{ type: Schema.Types.ObjectId, ref: 'user' },//用户ID
   created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},//新建时间
   updated_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},//更新时间
-
+  stagestatus:{type: String,enum:['未审核','护士长审核中','护理部审核中','已审核','已上报'],default: '未审核'},
   evaluatebardenscore:Number,//evaluatebarden
   preventivesmeasure:[
     {
@@ -269,7 +269,10 @@ const FormReviewLapsetoSchema = new Schema({
       'checkout_checked':{ type: Schema.Types.Boolean,default: false },//出院/转院
       'death_checked':{ type: Schema.Types.Boolean,default: false },//死亡
     }
-  }
+  },
+  signed_report:{ type: Schema.Types.ObjectId, ref: 'user' },//护士签名
+  signed_report_time:{ type: String},//护士签名时间
+
 }, { strict: false });
 FormReviewLapsetoSchema.plugin(mongoosePaginate);
 const FormReviewLapsetoModel =mongoose.model('formreviewlapseto',  FormReviewLapsetoSchema);

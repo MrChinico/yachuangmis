@@ -36,7 +36,7 @@ class App extends React.Component {
 			console.log(values);
 		}
   	render() {
-			const {curpaientinfo,db,curformreviewlapseto,isnew,app} = this.props;
+			const {curpaientinfo,db,curformreviewlapseto,isnew,app,userlogin} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -74,6 +74,7 @@ class App extends React.Component {
 							curpaientinfo={curpaientinfo}
 							app={app}
 							db={db}
+							userlogin={userlogin}
 							formname={formname}
 							formvalues={formvalues}/>
 						</div>
@@ -98,7 +99,7 @@ class App extends React.Component {
 // 		return {curpaientinfo,isnew,curformreviewlapseto,db};
 // }
 
-const mapStateToProps = ({db,app},props) => {
+const mapStateToProps = ({db,app,userlogin},props) => {
 		const {paientinfos,formreviewlapsetos} = db;
 		const id = lodashget(props,'match.params.pid');
 		const formreviewlapsetoid = lodashget(props,'match.params.id');
@@ -115,9 +116,9 @@ const mapStateToProps = ({db,app},props) => {
 			}
 		}
 		if(isnew){
-			return {curpaientinfo,isnew,db,app};
+			return {curpaientinfo,isnew,db,app,userlogin};
 		}
-		return {curpaientinfo,isnew,curformreviewlapseto,db,app};
+		return {curpaientinfo,isnew,curformreviewlapseto,db,app,userlogin};
 }
 
 export default connect(mapStateToProps)(App);

@@ -9,7 +9,6 @@ import {set_weui} from '../../actions';
 const { Header } = Layout;
 class App extends React.Component {
 
-
 		componentDidMount(){
 
 		}

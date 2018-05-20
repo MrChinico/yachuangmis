@@ -313,6 +313,7 @@ export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassificati
 
   const v = {
       evaluatebardenscore:evaluatebardenscore,//evaluatebarden
+      stagestatus:'未审核',
       preventivesmeasure,
       evaluateWoundsurfaces,
       admissions,

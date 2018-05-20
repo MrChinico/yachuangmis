@@ -49,7 +49,7 @@ class App extends React.Component {
 			console.log(values);
 		}
   	render() {
-			const {curpaientinfo,curformreviewlapseto,isnew,db,Hospitalname} = this.props;
+			const {curpaientinfo,curformreviewlapseto,isnew,db,Hospitalname,userlogin} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -71,7 +71,7 @@ class App extends React.Component {
 								/>
 							</div>
 							<div ref={el => (this.componentRef = el)}>
-								<ReviewDetailInfo info={curformreviewlapseto} Hospitalname={Hospitalname} db={db}
+								<ReviewDetailInfo info={curformreviewlapseto} Hospitalname={Hospitalname} db={db} userlogin={userlogin}
 								/>
 							</div>
 
@@ -82,7 +82,7 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = ({db,app},props) => {
+const mapStateToProps = ({db,app,userlogin},props) => {
 		let curpaientinfo = props.curpaientinfo;
 		const {formreviewlapsetos} = db;
 		const {Hospitalname} = app;
@@ -94,6 +94,6 @@ const mapStateToProps = ({db,app},props) => {
 				isnew = false;
 			}
 		}
-		return {curpaientinfo,isnew,curformreviewlapseto,db,Hospitalname};
+		return {curpaientinfo,isnew,curformreviewlapseto,db,userlogin,Hospitalname};
 }
 export default connect(mapStateToProps)(App);
