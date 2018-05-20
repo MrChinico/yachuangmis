@@ -150,8 +150,8 @@ class App extends React.Component {
 							<td><div align="center">入院时间</div></td>
 							<td><div align="center">床号</div></td>
 							<td><div align="center">申请护士</div></td>
-							<td><div align="center">护士审阅</div></td>
-							<td><div align="center">护理部审阅</div></td>
+							<td><div align="center">审核状态</div></td>
+							<td><div align="center">操作</div></td>
 						</tr>
 
 						{
