@@ -207,7 +207,7 @@ const CRenderAdmissions = (props)=>{
   let retc = [];
   for(let j = 0 ;j < admissions.length; j++){
     const v = admissions[j];
-    options.push(<td><input type="checkbox" name="check[]" checked={v.checked}/> {v.name}</td>);
+    options.push(<td><input type="checkbox" name="check[]" checked={v.checked} readOnly/> {v.name}</td>);
   }
 
   if(options.length % 2 === 1){

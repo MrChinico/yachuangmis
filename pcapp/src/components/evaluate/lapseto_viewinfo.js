@@ -41,7 +41,7 @@ const ReviewDetailInfo = (props)=>{
       </tr>);
   }
   else if(curpaientinfo.Diseaseclassification === '压疮高危'){
-    trlist.push(<CRenderConditions {...info} />);
+    trlist.push(<CRenderConditions {...info} key='gwyc'/>);
   }
 
 	return (

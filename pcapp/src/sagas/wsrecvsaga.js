@@ -14,7 +14,9 @@ import {
   set_uiapp,
 
   logout_result,
-  getcount_reviewlapseto_request
+  getcount_reviewlapseto_request,
+
+  set_db,
 } from '../actions';
 
 import config from '../env/config.js';
@@ -42,6 +44,10 @@ export function* wsrecvsagaflow() {
             if(result.loginsuccess){
               localStorage.setItem(`yc_${config.softmode}_token`,result.token);
               yield put(getcount_reviewlapseto_request({}));
+              const {_id,Staffid,Depatno,Staffname,Staffno,username,truename} = result;
+              let users = {};
+              users[_id] =  {_id,Staffid,Depatno,Staffname,Staffno,username,truename};
+              yield put(set_db({users}));
             }
         }
 
