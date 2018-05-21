@@ -1,4 +1,4 @@
-let islocalhost = false;
+let islocalhost = true;
 let serverurl = islocalhost?'http://localhost:6012':'http://yunqi.com28.cn:6012';
 
 export default {

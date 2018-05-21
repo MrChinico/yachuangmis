@@ -31,7 +31,7 @@ import {EvaluatewoundsurfaceList,EvaluatewoundsurfaceEdit} from './components/ev
 import {FormReviewlapsetoList,FormReviewlapsetoEdit} from './components/formreviewlapseto';
 import {SmartdeviceList,SmartdeviceEdit} from './components/smartdevice';
 import {TurnoverstrategyList,TurnoverstrategyEdit} from './components/turnoverstrategy';
-
+import {TurnoverhistoryList,TurnoverhistoryEdit} from './components/turnoverhistory';
 
 import systemconfigreducer from './components/systemconfig/reducer';
 
@@ -72,7 +72,7 @@ class App extends Component {
                     <Resource name="evaluatenursingmeasures" list={EvaluatenursingmeasuresList} edit={EvaluatenursingmeasuresEdit} />,
                     <Resource name="evaluatewoundsurface" list={EvaluatewoundsurfaceList} edit={EvaluatewoundsurfaceEdit} />,
                     <Resource name="formreivewlapseto" list={FormReviewlapsetoList} edit={FormReviewlapsetoEdit} />,
-                    <Resource name="turnoverstrategy" list={TurnoverstrategyList} edit={TurnoverstrategyEdit} />,
+                    <Resource name="turnoverhistory" list={TurnoverhistoryList} edit={TurnoverhistoryEdit} />,
                     <Resource name="smartdevice" list={SmartdeviceList} edit={SmartdeviceEdit} />,
                   ];
                 }

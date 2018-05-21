@@ -277,15 +277,6 @@ const FormReviewLapsetoSchema = new Schema({
 FormReviewLapsetoSchema.plugin(mongoosePaginate);
 const FormReviewLapsetoModel =mongoose.model('formreviewlapseto',  FormReviewLapsetoSchema);
 
-//翻身策略
-const TurnoverstrategySchema = new Schema({
-  userpatientid:{ type: Schema.Types.ObjectId, ref: 'patientinfo' },//病人ID
-  usercreatorid:{ type: Schema.Types.ObjectId, ref: 'user' },//用户ID
-  smartdeviceid:{ type: Schema.Types.ObjectId, ref: 'smartdevice' },//设备ID
-}, { strict: false });
-TurnoverstrategySchema.plugin(mongoosePaginate);
-const TurnoverstrategyModel =mongoose.model('turnoverstrategy',  TurnoverstrategySchema);
-
 //智能设备
 const SmartDeviceSchema = new Schema({
   deviceid:String,
@@ -305,6 +296,18 @@ const SmartDeviceSchema = new Schema({
 SmartDeviceSchema.plugin(mongoosePaginate);
 const SmartDeviceModel =mongoose.model('smartdevice',  SmartDeviceSchema);
 
+//翻身记录
+const TurnoverHistorySchema = new Schema({
+  userpatientid:{ type: Schema.Types.ObjectId, ref: 'patientinfo' },//病人ID
+  usercreatorid:{ type: Schema.Types.ObjectId, ref: 'user' },//用户ID
+  smartdeviceid:{ type: Schema.Types.ObjectId, ref: 'smartdevice' },//设备ID
+  created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},//新建时间
+  descriptionstring:String,
+  cmdhex:String,
+  sendstatus:String,
+}, { strict: false });
+TurnoverHistorySchema.plugin(mongoosePaginate);
+const TurnoverHistoryModel =mongoose.model('turnoverhistory',  TurnoverHistorySchema);
 
 exports.SystemConfigSchema = SystemConfigSchema;
 exports.PatientinfoSchema = PatientinfoSchema;
@@ -318,7 +321,7 @@ exports.EvaluateBardenSchema = EvaluateBardenSchema;
 exports.EvaluateNursingmeasuresSchema = EvaluateNursingmeasuresSchema;
 exports.EvaluateWoundsurfaceSchema = EvaluateWoundsurfaceSchema;
 exports.FormReviewLapsetoSchema = FormReviewLapsetoSchema;
-exports.TurnoverstrategySchema = TurnoverstrategySchema;
+exports.TurnoverHistorySchema = TurnoverHistorySchema;
 exports.SmartDeviceSchema = SmartDeviceSchema;
 
 
@@ -334,5 +337,5 @@ exports.EvaluateBardenModel = EvaluateBardenModel;
 exports.EvaluateNursingmeasuresModel = EvaluateNursingmeasuresModel;
 exports.EvaluateWoundsurfaceModel = EvaluateWoundsurfaceModel;
 exports.FormReviewLapsetoModel = FormReviewLapsetoModel;
-exports.TurnoverstrategyModel = TurnoverstrategyModel;
+exports.TurnoverHistoryModel = TurnoverHistoryModel;
 exports.SmartDeviceModel = SmartDeviceModel;

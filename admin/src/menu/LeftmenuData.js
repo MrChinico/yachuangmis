@@ -28,5 +28,5 @@ export default [
         { name: 'evaluatenursingmeasures', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'evaluatewoundsurface', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'formreivewlapseto', icon: <OnlineResearchIcon /> ,adminonly:false},
-        { name: 'turnoverstrategy', icon: <OnlineResearchIcon /> ,adminonly:false},
+        { name: 'turnoverhistory', icon: <OnlineResearchIcon /> ,adminonly:false},
 ];

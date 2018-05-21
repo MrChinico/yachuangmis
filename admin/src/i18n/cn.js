@@ -28,6 +28,9 @@ export default {
     formreivewlapseto:{
       name: '审阅转归 |||| 审阅转归',
     },
+    turnoverhistory:{
+      name: '翻身记录 |||| 翻身记录',
+    },
     turnoverstrategy:{
       name: '翻身策略 |||| 翻身策略',
     },

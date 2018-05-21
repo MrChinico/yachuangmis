@@ -14,9 +14,13 @@ exports.sendsmartdevicecmd = (actiondata,ctx,callback)=>{
   const deviceid = _.get(actiondata,'deviceid','');
   const turnovermode = _.get(actiondata,'cmd.turnovermode','');
   const turnovertime = _.get(actiondata,'cmd.turnovertime','');
+  const descriptionstring = _.get(actiondata,'descriptionstring','');
+  const buf  = getbuf.getbuf_control(deviceid,turnovermode,turnovertime);
+  const userpatientid = _.get(actiondata,'userpatientid','');
+  const smartdeviceid = _.get(actiondata,'smartdeviceid','');
+  let sendstatus = '下发成功';
   const socket = tcpsrv.getsocketfromid(deviceid);
   if(!!socket){
-    const buf  = getbuf.getbuf_control(deviceid,turnovermode,turnovertime);
     socket.write(buf);
 
     winston.getlog().info(`发送给硬件${deviceid}命令${turnovermode},${turnovertime},数据==>${buf.toString('hex')}`);
@@ -31,11 +35,26 @@ exports.sendsmartdevicecmd = (actiondata,ctx,callback)=>{
     });
   }
   else{
+    sendstatus = `设备${deviceid}处于离线状态`;
     callback({
       cmd:'common_err',
       payload:{errmsg:`设备${deviceid}处于离线状态`,type:'sendsmartdevicecmd'}
     });
   }
+
+  const SaveData = {
+    userpatientid,
+    usercreatorid:ctx.userid,
+    smartdeviceid,
+    created_at:moment().format('YYYY-MM-DD HH:mm:ss'),
+    descriptionstring,
+    cmdhex:buf.toString('hex'),
+    sendstatus
+  };
+  const dbModel = DBModels.TurnoverHistoryModel;
+  const entity = new dbModel(SaveData);
+  entity.save((err,newrecord)=>{
+  });
 
 }
 

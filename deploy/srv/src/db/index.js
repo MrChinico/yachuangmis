@@ -61,10 +61,10 @@ const dbs = {
     schema:db.FormReviewLapsetoSchema,
     collectionname:'formreviewlapseto',
   },
-  'turnoverstrategy':{
-    urlname:'/turnoverstrategy',
-    schema:db.TurnoverstrategySchema,
-    collectionname:'turnoverstrategy',
+  'turnoverhistory':{
+    urlname:'/turnoverhistory',
+    schema:db.TurnoverHistorySchema,
+    collectionname:'turnoverhistory',
   },
   'smartdevice':{
     urlname:'/smartdevice',
