@@ -31,7 +31,7 @@ class App extends React.Component {
   	render() {
 			const Depatname = lodashget(this,'props.userlogin.depatid.Depatname','');
 			const PermissionName = lodashget(this,'props.userlogin.permission.name','');
-			const truename = lodashget(this,'props.userlogin.Staffname','');
+			const Staffname = lodashget(this,'props.userlogin.Staffname','');
 			const reviewnumber = lodashget(this,'props.userlogin.reviewnumber','');
 			const btns = [
 				<button key={'btnsearch'} onClick={
@@ -55,9 +55,8 @@ class App extends React.Component {
 					()=>{
 					this.onClickUser()
 					}}>
-					<span>{Depatname}-</span>
-					<span>{PermissionName}-</span>
-					<span>{truename}</span>
+					<span>【{Depatname}】</span>
+					<span>{Staffname}({PermissionName})</span>
 				</button>
 			];
 			const title = this.props.title || '病人列表';
