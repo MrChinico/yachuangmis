@@ -71,7 +71,11 @@ const dbs = {
     schema:db.SmartDeviceSchema,
     collectionname:'smartdevice',
   },
-
+  'historydevice':{
+    urlname:'/historydevice',
+    schema:db.HistoryDeviceSchema,
+    collectionname:'historydevice',
+  },
 
 };
 

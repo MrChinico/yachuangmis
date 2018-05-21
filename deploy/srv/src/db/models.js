@@ -309,6 +309,22 @@ const TurnoverHistorySchema = new Schema({
 TurnoverHistorySchema.plugin(mongoosePaginate);
 const TurnoverHistoryModel =mongoose.model('turnoverhistory',  TurnoverHistorySchema);
 
+//历史数据
+const HistoryDeviceSchema = new Schema({
+  smartdeviceid:{ type: Schema.Types.ObjectId, ref: 'smartdevice' },//设备ID
+  created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},//新建时间
+  status:Number,
+  statusstring:String,
+  position:Number,
+  positionstring:String,
+  angle:Number,
+  anglestring:String,
+  establishstatus:Number,
+  establishstatusstring:String,
+}, { strict: false });
+HistoryDeviceSchema.plugin(mongoosePaginate);
+const HistoryDeviceModel =mongoose.model('historydevice',  HistoryDeviceSchema);
+
 exports.SystemConfigSchema = SystemConfigSchema;
 exports.PatientinfoSchema = PatientinfoSchema;
 exports.DepatSchema = DepatSchema;
@@ -323,6 +339,7 @@ exports.EvaluateWoundsurfaceSchema = EvaluateWoundsurfaceSchema;
 exports.FormReviewLapsetoSchema = FormReviewLapsetoSchema;
 exports.TurnoverHistorySchema = TurnoverHistorySchema;
 exports.SmartDeviceSchema = SmartDeviceSchema;
+exports.HistoryDeviceSchema = HistoryDeviceSchema;
 
 
 exports.SystemConfigModel = SystemConfigModel;
@@ -339,3 +356,4 @@ exports.EvaluateWoundsurfaceModel = EvaluateWoundsurfaceModel;
 exports.FormReviewLapsetoModel = FormReviewLapsetoModel;
 exports.TurnoverHistoryModel = TurnoverHistoryModel;
 exports.SmartDeviceModel = SmartDeviceModel;
+exports.HistoryDeviceModel = HistoryDeviceModel;

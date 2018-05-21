@@ -89,6 +89,24 @@ const setdata_devicestatus = (deviceid,bodybuf)=>{
       debug(smartdevice);
       if(!err && !!smartdevice){
         PubSub.publish(`smartdevice.${smartdevice._id}`,smartdevice);
+
+        //历史数据
+        const historyDeviceModel = DBModels.HistoryDeviceModel;
+        const historyData = {
+          smartdeviceid:smartdevice._id,
+          created_at:smartdevice.lastupdatetime,
+          status,
+          statusstring,
+          position,
+          positionstring,
+          angle,
+          anglestring,
+          establishstatus,
+          establishstatusstring,
+        };
+        const entity = new historyDeviceModel(historyData);
+        entity.save((err,newrecord)=>{
+        });
       }
   });
 }

@@ -29,4 +29,5 @@ export default [
         { name: 'evaluatewoundsurface', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'formreivewlapseto', icon: <OnlineResearchIcon /> ,adminonly:false},
         { name: 'turnoverhistory', icon: <OnlineResearchIcon /> ,adminonly:false},
+        { name: 'historydevice', icon: <OnlineResearchIcon /> ,adminonly:false},
 ];

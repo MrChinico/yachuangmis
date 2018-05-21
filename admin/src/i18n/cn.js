@@ -37,6 +37,9 @@ export default {
     smartdevice:{
       name: '智能设备 |||| 智能设备',
     },
+    historydevice:{
+      name: '历史设备数据 |||| 历史设备数据',
+    },
     patientinfo:{
       name: '病人管理 |||| 病人管理',
     },
