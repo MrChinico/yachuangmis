@@ -40,7 +40,7 @@ const EvaluatewoundsurfaceEdit = (props) => {
   return (<Edit title="创面评估"  {...props} >
     <SimpleForm>
       <ReferenceInput label="评估护士" source="usercreatorid" reference="user" allowEmpty>
-      <SelectInput optionText="username" />
+      <SelectInput optionText="Staffname" />
       </ReferenceInput>
       <ReferenceInput label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
         <SelectInput optionText="Patientname" />
@@ -55,7 +55,7 @@ const EvaluatewoundsurfaceEdit = (props) => {
 const EvaluatewoundsurfaceFilter = (props) => (
   <Filter {...props}>
     <ReferenceInput label="评估护士" source="usercreatorid" reference="user" allowEmpty>
-      <SelectInput optionText="username" />
+      <SelectInput optionText="Staffname" />
     </ReferenceInput>
     <ReferenceInput label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
       <SelectInput optionText="Patientname" />
@@ -67,7 +67,7 @@ const EvaluatewoundsurfaceList = (props) => (
   <List title="创面评估" filters={<EvaluatewoundsurfaceFilter />} {...props} sort={{field:'Evaluatewoundsurfaceno',order:'DESC'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
       <ReferenceField label="评估护士" source="usercreatorid" reference="user" allowEmpty>
-        <TextField source="username" />
+        <TextField source="Staffname" />
       </ReferenceField>
       <ReferenceField label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
         <TextField source="Patientname" />

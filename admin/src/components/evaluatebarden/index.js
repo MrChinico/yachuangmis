@@ -40,7 +40,7 @@ const EvaluatebardenEdit = (props) => {
   return (<Edit title="Barden评估"  {...props} >
     <SimpleForm>
        <ReferenceInput label="评估护士" source="usercreatorid" reference="user" allowEmpty>
-       <SelectInput optionText="username" />
+       <SelectInput optionText="Staffname" />
      </ReferenceInput>
      <ReferenceInput label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
        <SelectInput optionText="Patientname" />
@@ -62,7 +62,7 @@ const EvaluatebardenEdit = (props) => {
 const EvaluatebardenFilter = (props) => (
   <Filter {...props}>
     <ReferenceInput label="评估护士" source="usercreatorid" reference="user" allowEmpty>
-      <SelectInput optionText="username" />
+      <SelectInput optionText="Staffname" />
     </ReferenceInput>
     <ReferenceInput label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
       <SelectInput optionText="Patientname" />
@@ -74,7 +74,7 @@ const EvaluatebardenList = (props) => (
   <List title="Barden评估" filters={<EvaluatebardenFilter />} {...props} sort={{field:'Evaluatebardenno',order:'updated_at'}}>
     <Datagrid  bodyOptions={{ showRowHover: true }}>
       <ReferenceField label="评估护士" source="usercreatorid" reference="user" allowEmpty>
-        <TextField source="username" />
+        <TextField source="Staffname" />
       </ReferenceField>
       <ReferenceField label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
         <TextField source="Patientname" />

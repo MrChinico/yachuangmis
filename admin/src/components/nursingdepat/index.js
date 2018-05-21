@@ -41,7 +41,7 @@ const NursingDepatCreate = (props) => {
     <SimpleForm>
      <TextInput label="护理部名字" source="name"  />
      <ReferenceInput label="负责人" source="nursingdepatuserid" reference="user" allowEmpty filter={{ permission: '5a5a1113da6e595af4eb515e' }}>
-       <SelectInput optionText="username" />
+       <SelectInput optionText="Staffname" />
      </ReferenceInput>
     </SimpleForm>
   </Create>
@@ -54,7 +54,7 @@ const NursingDepatEdit = (props) => {
     <SimpleForm>
      <TextInput label="护理部名字" source="name"  />
      <ReferenceInput label="负责人" source="nursingdepatuserid" reference="user" allowEmpty filter={{ permission: '5a5a1113da6e595af4eb515e' }}>
-       <SelectInput optionText="username" />
+       <SelectInput optionText="Staffname" />
      </ReferenceInput>
     </SimpleForm>
   </Edit>
@@ -67,7 +67,7 @@ const NursingDepatList = (props) => (
     <Datagrid  bodyOptions={{ showRowHover: true }}>
       <TextField label="护理部名字" source="name"  />
       <ReferenceField label="负责人" source="nursingdepatuserid" reference="user" allowEmpty>
-        <TextField source="username" />
+        <TextField source="Staffname" />
       </ReferenceField>
       <EditButton />
     </Datagrid>

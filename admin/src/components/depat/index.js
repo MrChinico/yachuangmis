@@ -42,7 +42,7 @@ const DepatEdit = (props) => {
      <TextField label="科室编号" source="Depatno"  />
      <TextField label="科室名称" source="Depatname"  />
      <ReferenceInput label="护士长" source="headnurseid" reference="user" allowEmpty filter={{ permission: '5a03b66e13e7410cd0ef3094' }}>
-       <SelectInput optionText="username" />
+       <SelectInput optionText="Staffname" />
      </ReferenceInput>
      <ReferenceInput label="护理部" source="nursingdepatid" reference="nursingdepat" allowEmpty>
        <SelectInput optionText="name" />
@@ -76,7 +76,7 @@ const DepatList = (props) => (
       <TextField label="科室名称" source="Depatname"  />
       <TextField label="科室属性" source="DepProperty" />
       <ReferenceField label="护士长" source="headnurseid" reference="user" allowEmpty>
-        <TextField source="username" />
+        <TextField source="Staffname" />
       </ReferenceField>
       <ReferenceField label="护理部" source="nursingdepatid" reference="nursingdepat" allowEmpty>
         <TextField source="name" />

@@ -41,13 +41,13 @@ const FormReviewlapsetoEdit = (props) => {
     <SimpleForm>
      <TextField label="barden评分" source="evaluatebardenscore"  />
      <ReferenceField label="评估护士" source="signed_nurse" reference="user" allowEmpty>
-       <TextField source="username" />
+       <TextField source="Staffname" />
      </ReferenceField>
      <ReferenceField label="护士长" source="signed_headnurse" reference="user" allowEmpty>
-       <TextField source="username" />
+       <TextField source="Staffname" />
      </ReferenceField>
      <ReferenceField label="主管部门" source="signed_nursingdepartment" reference="user" allowEmpty>
-       <TextField source="username" />
+       <TextField source="Staffname" />
      </ReferenceField>
      <ReferenceField label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
        <TextField source="Patientname" />
@@ -60,13 +60,13 @@ const FormReviewlapsetoEdit = (props) => {
 const FormReviewlapsetoFilter = (props) => (
   <Filter {...props}>
     <ReferenceInput label="评估护士" source="signed_nurse" reference="user" allowEmpty>
-      <SelectInput optionText="username" />
+      <SelectInput optionText="Staffname" />
     </ReferenceInput>
     <ReferenceInput label="护士长" source="signed_headnurse" reference="user" allowEmpty>
-      <SelectInput optionText="username" />
+      <SelectInput optionText="Staffname" />
     </ReferenceInput>
     <ReferenceInput label="主管部门" source="signed_nursingdepartment" reference="user" allowEmpty>
-      <SelectInput optionText="username" />
+      <SelectInput optionText="Staffname" />
     </ReferenceInput>
     <ReferenceInput label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
       <SelectInput optionText="Patientname" />
@@ -79,17 +79,18 @@ const FormReviewlapsetoList = (props) => (
     <Datagrid  bodyOptions={{ showRowHover: true }}>
       <TextField label="barden评分" source="evaluatebardenscore"  />
       <ReferenceField label="评估护士" source="signed_nurse" reference="user" allowEmpty>
-        <TextField source="username" />
+        <TextField source="Staffname" />
       </ReferenceField>
       <ReferenceField label="护士长" source="signed_headnurse" reference="user" allowEmpty>
-        <TextField source="username" />
+        <TextField source="Staffname" />
       </ReferenceField>
       <ReferenceField label="主管部门" source="signed_nursingdepartment" reference="user" allowEmpty>
-        <TextField source="username" />
+        <TextField source="Staffname" />
       </ReferenceField>
       <ReferenceField label="病人" source="userpatientid" reference="patientinfo" allowEmpty>
         <TextField source="Patientname" />
       </ReferenceField>
+      <TextField source="stagestatus" label="状态" />
       <TextField source="created_at" label="新建时间" />
       <EditButton />
     </Datagrid>
