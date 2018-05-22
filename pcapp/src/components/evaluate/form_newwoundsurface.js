@@ -172,7 +172,8 @@ const renderBW = (props)=>{
       lr:true,
     },
     {
-      label:'髂嵴',      lr:true,
+      label:'髂嵴',
+      lr:true,
       value:8,
     },
     {
@@ -369,7 +370,7 @@ const renderWoundsurfaces = ({ fields, meta: { touched, error, submitFailed } })
   }
 
   return (
-    <div>
+    <div className="lapseto mt20">
       {
         fields.map((wf,index)=>{
           return <Woundsurfaces key={index} wf={wf} index={index} onClickRemove={onClickRemove}/>

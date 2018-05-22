@@ -37,7 +37,7 @@ class PageForm extends React.Component {
 
 
       trlist.push(<tr className="gray title" key='evaluateWoundsurfaces'>
-        <td colSpan="2">
+        <td colSpan="2" className="p0">
           <table>
             <tbody>
               <tr>

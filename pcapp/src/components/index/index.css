@@ -693,8 +693,9 @@ input{
     background: transparent !important;
     border:transparent !important;
     border-bottom:1px solid #646464  !important;
-    width:64%;
-    text-align: center; height:16px
+    text-align: center; height:16px;display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
 }
 .form-box .patient-info td{
     width:25%;
@@ -723,6 +724,7 @@ input{
 .form-box .choose-info td{
     width:50%;
 }
+.form-box .choose-info tr td tr td{ width:auto}
 .form-box .choose-info tr{
     border-top:1px solid #ddd;
     line-height: 20px;
@@ -1036,3 +1038,4 @@ background-color:#f9f9f9;
 
 .va_top{vertical-align: top;}
 .p0{ padding:0px !important}
+.mt20{ margin-top:20px}
