@@ -72,19 +72,19 @@ const ReviewDetailInfo = (props)=>{
 						 <td></td>
 				 </tr>
 
-				 <CRenderPreventivesmeasure {...info}/>
+  				 <CRenderPreventivesmeasure {...info}/>
 
-         <CRenderUserSignedNurse {...info}  db={db}/>
+           <CRenderUserSignedNurse {...info}  db={db}/>
 
-         <CRenderUserSignedHeadNurse {...info}  db={db}/>
+           <CRenderUserSignedHeadNurse {...info}  db={db}/>
 
-					<CRenderInstruction {...info}/>
+  				 <CRenderInstruction {...info}/>
 
-          <CRenderUserSignedNursingDepartment {...info}  db={db}/>
+           <CRenderUserSignedNursingDepartment {...info}  db={db}/>
 
-				  <CRenderLapseto {...info}/>
+  				 <CRenderLapseto {...info}/>
 
-          <CRenderUserReport {...info}  db={db}/>
+           <CRenderUserReport {...info}  db={db}/>
 
 					</tbody>
 				</table>
