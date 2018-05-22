@@ -154,10 +154,10 @@ const CRenderLapseto= (props)=>{
       <span>否<input type="checkbox" name="check[]" checked={ispressuresores===0} readOnly/></span>
     </td>
     <td className="w-50">压疮发生时间：
-      <input type="text" />年
-      <input type="text" />月
-      <input type="text" />日
-      <input type="text" />:<input type="text" />
+      <input type="text" readOnly/>年
+      <input type="text" readOnly/>月
+      <input type="text" readOnly/>日
+      <input type="text" readOnly/>:<input type="text" readOnly/>
     </td>
   </tr>);
 
