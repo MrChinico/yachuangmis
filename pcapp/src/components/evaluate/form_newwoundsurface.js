@@ -370,13 +370,16 @@ const renderWoundsurfaces = ({ fields, meta: { touched, error, submitFailed } })
   }
 
   return (
-    <div className="lapseto mt20">
+    <div>
       {
         fields.map((wf,index)=>{
           return <Woundsurfaces key={index} wf={wf} index={index} onClickRemove={onClickRemove}/>
         })
       }
-      <button type="button" className="add-btn"><img src="add-blue.png" alt=""  onClick={() => fields.push(default_woundsurfaces)}/>添加新创面</button>
+      <div className="lapseto mt20">
+        <button type="button" onClick={() => fields.push(default_woundsurfaces)}>
+          <img src="add-blue.png" alt="" />添加新创面</button>
+      </div>
     </div>
   );
 
