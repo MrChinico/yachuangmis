@@ -1,6 +1,6 @@
 import React from 'react';
 import lodashget from 'lodash.get';
-
+import moment from 'moment';
 
 const CRenderConditionsprerequisitesoptions = (props)=>{
   const {info} = props;
@@ -243,6 +243,146 @@ const CRenderEvaluateWoundsurfaces =  (props)=>{
 }
 
 
+const CRenderUserSignedNurse= (props)=>{
+  const {signed_nurse,signed_nurse_time,db} = props;
+  // let isenabled = stagestatus === '未审核';
+  let Staffname = lodashget(db,`users.${signed_nurse}.Staffname`,'');
+  let MYY = '';
+  let MMM = '';
+  let MDD = '';
+  let MHH = '';
+  let Mmm = '';
+
+  const time_input_value = signed_nurse_time;
+  if(!!time_input_value){
+    const momenttime = moment(time_input_value);
+    MYY = momenttime.format('YYYY');
+    MMM = momenttime.format('MM');
+    MDD = momenttime.format('DD');
+    MHH = momenttime.format('HH');
+    Mmm = momenttime.format('mm');
+
+  }
+  let Co = (<tr>
+      <td>申报人签字：<input type="text" readOnly value={Staffname}/></td>
+      <td className="w-50">申报时间：
+          <input type="text" readOnly value={MYY}/>年
+          <input type="text" readOnly value={MMM}/>月
+          <input type="text" readOnly value={MDD}/>日
+          <input type="text" readOnly value={MHH}/>:
+          <input type="text" readOnly value={Mmm}/>
+      </td>
+    </tr>);
+
+  return Co;
+}
+
+
+const CRenderUserSignedHeadNurse= (props)=>{
+
+  const {signed_headnurse,signed_headnurse_time,db} = props;
+  let Staffname = lodashget(db,`users.${signed_headnurse}.Staffname`,'');
+  let MYY = '';
+  let MMM = '';
+  let MDD = '';
+  let MHH = '';
+  let Mmm = '';
+
+  const time_input_value = signed_headnurse_time;
+  if(!!time_input_value){
+    const momenttime = moment(time_input_value);
+    MYY = momenttime.format('YYYY');
+    MMM = momenttime.format('MM');
+    MDD = momenttime.format('DD');
+    MHH = momenttime.format('HH');
+    Mmm = momenttime.format('mm');
+
+  }
+  let Co = (<tr>
+      <td>护士长签字：<input type="text" readOnly value={Staffname}/></td>
+      <td className="w-50">日期：
+          <input type="text" readOnly value={MYY}/>年
+          <input type="text" readOnly value={MMM}/>月
+          <input type="text" readOnly value={MDD}/>日
+          <input type="text" readOnly value={MHH}/>:
+          <input type="text" readOnly value={Mmm}/>
+      </td>
+    </tr>);
+
+  return Co;
+}
+
+
+const CRenderUserSignedNursingDepartment= (fields)=>{
+  const {signed_nursingdepartment,signed_nursingdepartment_time,db} = fields;
+
+  let Staffname = lodashget(db,`users.${signed_nursingdepartment}.Staffname`,'');
+  let MYY = '';
+  let MMM = '';
+  let MDD = '';
+  let MHH = '';
+  let Mmm = '';
+
+  const time_input_value = signed_nursingdepartment_time;
+  if(!!time_input_value){
+    const momenttime = moment(time_input_value);
+    MYY = momenttime.format('YYYY');
+    MMM = momenttime.format('MM');
+    MDD = momenttime.format('DD');
+    MHH = momenttime.format('HH');
+    Mmm = momenttime.format('mm');
+
+  }
+  let Co = (<tr>
+      <td>主管部门签字：<input type="text" readOnly value={Staffname}/></td>
+      <td className="w-50">日期：
+          <input type="text" readOnly value={MYY}/>年
+          <input type="text" readOnly value={MMM}/>月
+          <input type="text" readOnly value={MDD}/>日
+          <input type="text" readOnly value={MHH}/>:
+          <input type="text" readOnly value={Mmm}/>
+      </td>
+    </tr>);
+
+  return Co;
+}
+
+
+const CRenderUserReport= (props)=>{
+  const {signed_report,signed_report_time,db} = props;
+
+  let Staffname = lodashget(db,`users.${signed_report}.Staffname`,'');
+  let MYY = '';
+  let MMM = '';
+  let MDD = '';
+  let MHH = '';
+  let Mmm = '';
+
+  const time_input_value = signed_report_time;
+  if(!!time_input_value){
+    const momenttime = moment(time_input_value);
+    MYY = momenttime.format('YYYY');
+    MMM = momenttime.format('MM');
+    MDD = momenttime.format('DD');
+    MHH = momenttime.format('HH');
+    Mmm = momenttime.format('mm');
+
+  }
+  let Co = (<tr>
+      <td>上报人签字:<input type="text" readOnly value={Staffname}/></td>
+      <td className="w-50">日期：
+          <input type="text" readOnly value={MYY}/>年
+          <input type="text" readOnly value={MMM}/>月
+          <input type="text" readOnly value={MDD}/>日
+          <input type="text" readOnly value={MHH}/>:
+          <input type="text" readOnly value={Mmm}/>
+      </td>
+    </tr>);
+
+  return Co;
+}
+
+
 export {
   CRenderConditionsprerequisitesoptions,
   CRenderConditionsalternativeoptions,
@@ -257,5 +397,9 @@ export {
   CRenderLapseto,
   CRenderInstruction,
   CRenderAdmissions,
-  CRenderEvaluateWoundsurfaces
+  CRenderEvaluateWoundsurfaces,
+  CRenderUserSignedNurse,
+  CRenderUserSignedHeadNurse,
+  CRenderUserSignedNursingDepartment,
+  CRenderUserReport
 };

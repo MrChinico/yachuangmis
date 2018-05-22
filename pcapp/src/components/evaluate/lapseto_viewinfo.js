@@ -8,7 +8,11 @@ import {
   CRenderLapseto,
   CRenderInstruction,
   CRenderAdmissions,
-  CRenderEvaluateWoundsurfaces
+  CRenderEvaluateWoundsurfaces,
+  CRenderUserSignedNurse,
+  CRenderUserSignedHeadNurse,
+  CRenderUserSignedNursingDepartment,
+  CRenderUserReport
 } from './form_lapseto_barden_renderfield_readonly';
 
 //--------
@@ -69,50 +73,18 @@ const ReviewDetailInfo = (props)=>{
 				 </tr>
 
 				 <CRenderPreventivesmeasure {...info}/>
-				 <tr>
-						<td>申报人：<input type="text" /></td>
-						<td className="w-50">申报时间：
-							<input type="text" />年
-							<input type="text" />月
-							<input type="text" />日
-							<input type="text" />:<input type="text" />
-						</td>
-					</tr>
-					<tr>
-						<td>护士长签字：<input type="text" /></td>
-						<td className="w-50">日期：
-							<input type="text" />年
-							<input type="text" />月
-							<input type="text" />日
-							<input type="text" />:<input type="text" />
-						</td>
-					</tr>
+
+         <CRenderUserSignedNurse {...info}  db={db}/>
+
+         <CRenderUserSignedHeadNurse {...info}  db={db}/>
 
 					<CRenderInstruction {...info}/>
 
+          <CRenderUserSignedNursingDepartment {...info}  db={db}/>
 
-					<tr>
-						<td>主管部门签字：<input type="text" /></td>
-						<td className="w-50">日期：
-							<input type="text" />年
-							<input type="text" />月
-							<input type="text" />日
-							<input type="text" />:<input type="text" />
-						</td>
-					</tr>
+				  <CRenderLapseto {...info}/>
 
-				<CRenderLapseto {...info}/>
-
-
-					<tr>
-						<td>上报人：<input type="text" /></td>
-						<td className="w-50">日期：
-							<input type="text" />年
-							<input type="text" />月
-							<input type="text" />日
-							<input type="text" />:<input type="text" />
-						</td>
-					</tr>
+          <CRenderUserReport {...info}  db={db}/>
 
 					</tbody>
 				</table>
