@@ -49,7 +49,6 @@ class App extends React.Component {
 				}
 			}
 			const showtext = `${percenttitle} ${percent1}% ${count}人`;
-			console.log(query);
 	    return (
 	      	<Layout>
 						<IndexHead title={title}/>

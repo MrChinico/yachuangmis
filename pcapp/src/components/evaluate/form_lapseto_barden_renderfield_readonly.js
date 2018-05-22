@@ -95,7 +95,6 @@ const CRenderPreventivesmeasureItemOptionsArray = (props)=>{
 
 const CRenderPreventivesmeasureItem = (props)=>{
   const {info:vo} = props;
-  console.log(props);
   if(!!vo.options && vo.options.length>0){
     return (<tr>
       <td colSpan="2">

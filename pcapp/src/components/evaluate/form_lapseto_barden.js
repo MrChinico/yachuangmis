@@ -97,23 +97,26 @@ class PageForm extends React.Component {
 
                   <Fields names={[ 'signed_nurse', 'signed_nurse_time','stagestatus' ]} component={renderUserSignedNurse}
                     db={db} userlogin={userlogin}/>
+
                   <Fields names={[ 'signed_headnurse', 'signed_headnurse_time','stagestatus' ]} component={renderUserSignedHeadNurse}
                     db={db}  userlogin={userlogin}/>
 
 
-                  <Fields names={[ 'instruction', 'isunavoidablepressureulcer','stagestatus' ]} component={renderInstruction}/>
+                  <Fields names={[ 'instruction', 'isunavoidablepressureulcer','stagestatus' ]} component={renderInstruction}
+                  db={db} userlogin={userlogin}/>
 
                   <Fields names={[ 'signed_nursingdepartment', 'signed_nursingdepartment_time','stagestatus' ]} component={renderUserSignedNursingDepartment}
                       db={db} userlogin={userlogin}/>
 
 
-                  <Field
-                      name="lapseto"
+                  <Fields
+                      names={["lapseto",'stagestatus' ]}
                       id="lapseto"
                       component={renderLapseto}
                   />
 
-                  <Fields names={[ 'signed_report', 'signed_report_time','stagestatus' ]} component={renderUserReport}
+                  <Fields names={[ 'signed_report', 'signed_report_time','stagestatus' ]}
+                      component={renderUserReport}
                       db={db} userlogin={userlogin}/>
 
     							</tbody>

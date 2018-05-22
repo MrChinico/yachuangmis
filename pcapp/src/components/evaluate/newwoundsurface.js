@@ -35,9 +35,6 @@ class App extends React.Component {
 				let newcurevaluatewoundsurface = {...curevaluatewoundsurface,...values};
 				this.props.dispatch(editevaluatewoundsurface_request(newcurevaluatewoundsurface));
 			}
-
-			console.log(values);
-			// this.props.history.goBack();
 		}
   	render() {
 			const {curpaientinfo,isnew,curevaluatewoundsurface,db} = this.props;

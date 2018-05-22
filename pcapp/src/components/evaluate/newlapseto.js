@@ -22,7 +22,6 @@ class App extends React.Component {
 		}
 
 		onClickSubmit = (values)=>{
-			console.log(values);
 			const {curpaientinfo,isnew,curformreviewlapseto} = this.props;
 			if(isnew){
 				values.userpatientid = curpaientinfo._id;
@@ -32,8 +31,6 @@ class App extends React.Component {
 				let newcurformreviewlapseto = {...curformreviewlapseto,...values};
 				this.props.dispatch(editformreviewlapseto_request(newcurformreviewlapseto));
 			}
-
-			console.log(values);
 		}
   	render() {
 			const {curpaientinfo,db,curformreviewlapseto,isnew,app,userlogin} = this.props;

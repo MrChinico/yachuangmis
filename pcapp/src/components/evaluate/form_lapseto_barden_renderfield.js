@@ -119,7 +119,6 @@ const renderPreventivesmeasure_Item_OptionsArray_option = (props)=>{
 const renderPreventivesmeasure_Item_OptionsArray = (props)=>{
   const {fields} = props;
   return fields.map((option,index)=>{
-    console.log(option);
     return (<Field component={renderPreventivesmeasure_Item_OptionsArray_option} name={option} key={`pmoption${index}`}/>);
   });
 };
@@ -127,7 +126,6 @@ const renderPreventivesmeasure_Item_OptionsArray = (props)=>{
 
 const renderPreventivesmeasure_Item = (props)=>{
   const {input:{value:vo,onChange,name}} = props;
-  console.log(props);
   if(!!vo.options && vo.options.length>0){
     return (<tr>
       <td colSpan="2">
@@ -199,7 +197,8 @@ const renderScore = (props)=>{
 }
 
 const renderLapseto= (props)=>{
-  const {input:{value,onChange}} = props;
+  const {lapseto,stagestatus} = props;
+  const {input:{value,onChange}} = lapseto;
   const {ispressuresores,//是否发生压疮
     occuredpressuresorestime,//压疮发生时间
     lapsetooptions} = value;
@@ -233,7 +232,22 @@ const renderLapseto= (props)=>{
       }
     });
   }
+  let MYY = '';
+  let MMM = '';
+  let MDD = '';
+  let MHH = '';
+  let Mmm = '';
 
+  const time_input_value = lodashget(occuredpressuresorestime,'input.value');
+  if(!!time_input_value){
+    const momenttime = moment(time_input_value);
+    MYY = momenttime.format('YYYY');
+    MMM = momenttime.format('MM');
+    MDD = momenttime.format('DD');
+    MHH = momenttime.format('HH');
+    Mmm = momenttime.format('mm');
+  }
+  const isReadOnly = stagestatus.value !== '已审核';
   let trsz = [];
   trsz.push(<tr className="blue title" key="title">
       <td colSpan="2">转归情况：</td>
@@ -245,20 +259,25 @@ const renderLapseto= (props)=>{
       <span>1、是否发生压疮：</span>
       <span>是<input type="checkbox" name="check[]" checked={ispressuresores===1} onClick={
         ()=>{
-          onChange_Ispressuresores(true);
+          if(!isReadOnly){
+            onChange_Ispressuresores(true);
+          }
         }
-      } onChange={()=>{}}/></span>
+      } onChange={()=>{}} readOnly={isReadOnly}/></span>
       <span>否<input type="checkbox" name="check[]" checked={ispressuresores===0} onClick={
         ()=>{
-          onChange_Ispressuresores(false);
+          if(!isReadOnly){
+            onChange_Ispressuresores(false);
+          }
         }
-      } onChange={()=>{}}/></span>
+      } onChange={()=>{}}  readOnly={isReadOnly}/></span>
     </td>
     <td className="w-50">压疮发生时间：
-      <input type="text" />年
-      <input type="text" />月
-      <input type="text" />日
-      <input type="text" />:<input type="text" />
+      <input type="text" value={MYY} readOnly/>年
+      <input type="text" value={MMM} readOnly/>月
+      <input type="text" value={MDD} readOnly/>日
+      <input type="text" value={MHH} readOnly/>:
+      <input type="text" value={Mmm} readOnly/>
     </td>
   </tr>);
 
@@ -268,26 +287,33 @@ const renderLapseto= (props)=>{
       <span>2、患者去向：</span>
       <span>出院/转院<input type="checkbox" name="check[]" checked={lapsetooptions.checkout_checked} onClick={
         ()=>{
-          onChange_lapsetooptions_checkout(!lapsetooptions.checkout_checked);
+          if(!isReadOnly){
+            onChange_lapsetooptions_checkout(!lapsetooptions.checkout_checked);
+          }
         }
-      } onChange={()=>{}}/></span>
-      <span>死亡<input type="checkbox" name="check[]" checked={lapsetooptions.death_checked}onClick={
+      } onChange={()=>{}}  readOnly={isReadOnly}/></span>
+      <span>死亡<input type="checkbox" name="check[]" checked={lapsetooptions.death_checked} onClick={
         ()=>{
-          onChange_lapsetooptions_death(!lapsetooptions.death_checked);
+          if(!isReadOnly){
+            onChange_lapsetooptions_death(!lapsetooptions.death_checked);
+          }
         }
-      } onChange={()=>{}}/></span>
+      } onChange={()=>{}}  readOnly={isReadOnly}/></span>
     </td>
   </tr>);
   return trsz;
 }
 
 const renderInstruction= (fields)=>{
-  const {isunavoidablepressureulcer,instruction} = fields;
+  const {isunavoidablepressureulcer,instruction,stagestatus,userlogin} = fields;
   const input_isunavoidablepressureulcer = isunavoidablepressureulcer.input;
   const input_instruction = instruction.input;
 
+  let isReadOnly = !(lodashget(stagestatus,'input.value','') === '护理部审核中' &&
+    lodashget(userlogin,'permission.name','') === '护理部主管');//如果自己是护士长并且正在护士长审核中
+
   const onChangeChecked = (checked)=>{
-    input_isunavoidablepressureulcer.onChange(checked?1:0);
+      input_isunavoidablepressureulcer.onChange(checked?1:0);
   }
   let trsz = [];
   trsz.push(<tr className="gray title" key="title">
@@ -300,25 +326,29 @@ const renderInstruction= (fields)=>{
         <span>是<input type="checkbox" name="check[]" checked={input_isunavoidablepressureulcer.value}
              onClick={
                ()=>{
-                 onChangeChecked(true);
+                 if(!isReadOnly){
+                   onChangeChecked(true);
+                 }
                }
              }
            onChange={
           ()=>{}
-        }/></span>
+        } readOnly={isReadOnly}/></span>
         <span>否<input type="checkbox" name="check[]" checked={!input_isunavoidablepressureulcer.value} onClick={
           ()=>{
-            onChangeChecked(false);
+            if(!isReadOnly){
+              onChangeChecked(false);
+            }
           }
         }
       onChange={
      ()=>{}
-   }/></span>
+   } readOnly={isReadOnly}/></span>
       </td>
     </tr>);
 
     trsz.push(<tr key="guide">
-        <td colSpan="2">指导意见：<input type="text" {...input_instruction}/></td>
+        <td colSpan="2">指导意见：<input type="text" {...input_instruction} readOnly={isReadOnly}/></td>
       </tr>);
 
   return trsz;
@@ -345,7 +375,7 @@ const renderAdmissions = (props)=>{
   let options = [];
   let retc = [];
   for(let j = 0 ;j < fields.length; j++){
-    const option = fields.get(j);
+    // const option = fields.get(j);
 
     options.push(<Field component={renderAdmissions_Item} name={`admissions[${j}]`} key={`admissions${j}`}/>);
   }
@@ -366,7 +396,7 @@ const renderAdmissions = (props)=>{
 }
 
 const renderEvaluateWoundsurfaces_Item = (props)=>{
-  const {input:{value,onChange}} = props;
+  const {input:{value}} = props;
   return (
     <tr>
       <td key="tdwf0">{lodashget(value,'部位','')}</td>
