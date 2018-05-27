@@ -17,9 +17,9 @@ const style_nursing_record_td_white = {
   textAlign: 'left'
 };
 
-const style_nursing_record_tdlast = {
-  borderRight:'0px'
-};
+// const style_nursing_record_tdlast = {
+//   borderRight:'0px'
+// };
 
 const style_nursing_record_tr2n = {
   backgroundColor:'#f9f9f9'

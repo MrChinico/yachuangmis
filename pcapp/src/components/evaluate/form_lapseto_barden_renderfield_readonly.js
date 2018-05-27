@@ -138,7 +138,7 @@ const CRenderScore = (props)=>{
 const CRenderLapseto= (props)=>{
   const {lapseto} = props;
   const {ispressuresores,//是否发生压疮
-    occuredpressuresorestime,//压疮发生时间
+    // occuredpressuresorestime,//压疮发生时间
     lapsetooptions} = lapseto;
 
   let trsz = [];

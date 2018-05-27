@@ -17,9 +17,9 @@ const style_nursing_record_td_white = {
   textAlign: 'left'
 };
 
-const style_nursing_record_tdlast = {
-  borderRight:'0px'
-};
+// const style_nursing_record_tdlast = {
+//   borderRight:'0px'
+// };
 
 const style_nursing_record_tr2n = {
   backgroundColor:'#f9f9f9'
@@ -29,11 +29,11 @@ const style_trdate = {
   backgroundColor:'#e4f3f1'
 };
 
-const stylefont = {
-  color:'#0084bf',
-  fontSize: '18px',
-  fontWeight: '500'
-};
+// const stylefont = {
+//   color:'#0084bf',
+//   fontSize: '18px',
+//   fontWeight: '500'
+// };
 
 const stylewhite = {...style_nursing_record_td,...style_nursing_record_td_white};
 
