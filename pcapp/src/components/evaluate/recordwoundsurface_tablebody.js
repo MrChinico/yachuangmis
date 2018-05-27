@@ -5,6 +5,39 @@ import lodashget from 'lodash.get';
 import moment from 'moment';
 import {getpagelist} from '../../util';
 
+const style_nursing_record_td = {
+  padding: '9px 10px',
+  border: '1px solid #ddd',
+  borderLeft: '0px',
+  borderBottom: '0px',
+};
+
+const style_nursing_record_td_white = {
+  backgroundColor:'#fff',
+  textAlign: 'left'
+};
+
+const style_nursing_record_tdlast = {
+  borderRight:'0px'
+};
+
+const style_nursing_record_tr2n = {
+  backgroundColor:'#f9f9f9'
+};
+
+const style_trdate = {
+  backgroundColor:'#e4f3f1'
+};
+
+const stylefont = {
+  color:'#0084bf',
+  fontSize: '18px',
+  fontWeight: '500'
+};
+
+const stylewhite = {...style_nursing_record_td,...style_nursing_record_td_white};
+
+
 class RecordbardenTableBody extends React.Component {
 
       constructor(props) {
@@ -85,41 +118,41 @@ class RecordbardenTableBody extends React.Component {
                   if(!!bw_lr){
                     bw = `${bw}(${bw_lr})`;
                   }
-                  tabletds_fq.push(<td key={`${id}_${i}_fq`} align="center">{fq}</td>);
-                  tabletds_bw.push(<td key={`${id}_${i}_bw`} align="center">{bw}</td>);
-                  tabletds_cm_syl.push(<td key={`${id}_${i}_cm_syl`} align="center">{cm_syl}</td>);
-                  tabletds_cm_ys.push(<td key={`${id}_${i}_cm_ys`} align="center">{cm_ys}</td>);
-                  tabletds_cm_dd.push(<td key={`${id}_${i}_cm_dd`} align="center">{cm_dd}</td>);
-                  tabletds_cm_qx.push(<td key={`${id}_${i}_cm_qx`} align="center">{cm_qx}</td>);
-                  tabletds_cm_s.push(<td key={`${id}_${i}_cm_s`} align="center">{cm_s}</td>);
-                  tabletds_cm_k.push(<td key={`${id}_${i}_cm_k`} align="center">{cm_k}</td>);
-                  tabletds_cm_c.push(<td key={`${id}_${i}_cm_c`} align="center">{cm_c}</td>);
+                  tabletds_fq.push(<td  style={style_nursing_record_td} key={`${id}_${i}_fq`} align="center">{fq}</td>);
+                  tabletds_bw.push(<td  style={style_nursing_record_td} key={`${id}_${i}_bw`} align="center">{bw}</td>);
+                  tabletds_cm_syl.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_syl`} align="center">{cm_syl}</td>);
+                  tabletds_cm_ys.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_ys`} align="center">{cm_ys}</td>);
+                  tabletds_cm_dd.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_dd`} align="center">{cm_dd}</td>);
+                  tabletds_cm_qx.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_qx`} align="center">{cm_qx}</td>);
+                  tabletds_cm_s.push(<td  style={style_nursing_record_td} key={`${id}_${i}_cm_s`} align="center">{cm_s}</td>);
+                  tabletds_cm_k.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_k`} align="center">{cm_k}</td>);
+                  tabletds_cm_c.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_c`} align="center">{cm_c}</td>);
                 }
                 else{
-                  tabletds_fq.push(<td key={`${id}_${i}_fq`} align="center"></td>);
-                  tabletds_bw.push(<td key={`${id}_${i}_bw`} align="center"></td>);
-                  tabletds_cm_syl.push(<td key={`${id}_${i}_cm_syl`} align="center"></td>);
-                  tabletds_cm_ys.push(<td key={`${id}_${i}_cm_ys`} align="center"></td>);
-                  tabletds_cm_dd.push(<td key={`${id}_${i}_cm_dd`} align="center"></td>);
-                  tabletds_cm_qx.push(<td key={`${id}_${i}_cm_qx`} align="center"></td>);
-                  tabletds_cm_s.push(<td key={`${id}_${i}_cm_s`} align="center"></td>);
-                  tabletds_cm_k.push(<td key={`${id}_${i}_cm_k`} align="center"></td>);
-                  tabletds_cm_c.push(<td key={`${id}_${i}_cm_c`} align="center"></td>);
+                  tabletds_fq.push(<td style={style_nursing_record_td} key={`${id}_${i}_fq`} align="center"></td>);
+                  tabletds_bw.push(<td style={style_nursing_record_td} key={`${id}_${i}_bw`} align="center"></td>);
+                  tabletds_cm_syl.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_syl`} align="center"></td>);
+                  tabletds_cm_ys.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_ys`} align="center"></td>);
+                  tabletds_cm_dd.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_dd`} align="center"></td>);
+                  tabletds_cm_qx.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_qx`} align="center"></td>);
+                  tabletds_cm_s.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_s`} align="center"></td>);
+                  tabletds_cm_k.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_k`} align="center"></td>);
+                  tabletds_cm_c.push(<td style={style_nursing_record_td} key={`${id}_${i}_cm_c`} align="center"></td>);
                 }
               });
 
               tabletrs.push(
                 <tr key={`c1_${i}`}>
-                  <td rowSpan="9" className="white-bg">创面{i+1}</td>
-                  <td colSpan="2" align="center">分期</td>
+                  <td style={stylewhite} rowSpan="9" >创面{i+1}</td>
+                  <td  style={style_nursing_record_td} colSpan="2" align="center">分期</td>
                   {
                     tabletds_fq
                   }
                 </tr>);
 
               tabletrs.push(
-                <tr key={`c2_${i}`}>
-                  <td colSpan="2" align="center">部位</td>
+                <tr style={style_nursing_record_tr2n} key={`c2_${i}`}>
+                  <td style={style_nursing_record_td} colSpan="2" align="center">部位</td>
                   {
                     tabletds_bw
                   }
@@ -128,16 +161,16 @@ class RecordbardenTableBody extends React.Component {
 
                 tabletrs.push(
                 <tr key={`c3_${i}`}>
-                  <td rowSpan="7">创面大小</td>
-                  <td align="center">长cm</td>
+                  <td style={style_nursing_record_td} rowSpan="7">创面大小</td>
+                  <td style={style_nursing_record_td} align="center">长cm</td>
                   {
                     tabletds_cm_c
                   }
                 </tr>);
 
                 tabletrs.push(
-                <tr key={`c4_${i}`}>
-                  <td align="center">宽cm</td>
+                <tr style={style_nursing_record_tr2n} key={`c4_${i}`}>
+                  <td style={style_nursing_record_td} align="center">宽cm</td>
                   {
                     tabletds_cm_k
                   }
@@ -145,15 +178,15 @@ class RecordbardenTableBody extends React.Component {
 
                 tabletrs.push(
                 <tr key={`c5_${i}`}>
-                  <td align="center">深cm</td>
+                  <td style={style_nursing_record_td} align="center">深cm</td>
                   {
                     tabletds_cm_s
                   }
                 </tr>);
 
                 tabletrs.push(
-                <tr key={`c6_${i}`}>
-                  <td align="center">潜行</td>
+                <tr style={style_nursing_record_tr2n} key={`c6_${i}`}>
+                  <td style={style_nursing_record_td} align="center">潜行</td>
                   {
                     tabletds_cm_qx
                   }
@@ -161,15 +194,15 @@ class RecordbardenTableBody extends React.Component {
 
                 tabletrs.push(
                 <tr key={`c7_${i}`}>
-                  <td align="center">窦道</td>
+                  <td style={style_nursing_record_td} align="center">窦道</td>
                   {
                     tabletds_cm_dd
                   }
                 </tr>);
 
                 tabletrs.push(
-                <tr key={`c8_${i}`}>
-                  <td align="center">颜色</td>
+                <tr style={style_nursing_record_tr2n} key={`c8_${i}`}>
+                  <td style={style_nursing_record_td} align="center">颜色</td>
                   {
                     tabletds_cm_ys
                   }
@@ -177,40 +210,41 @@ class RecordbardenTableBody extends React.Component {
 
               tabletrs.push(
                 <tr key={`c9_${i}`}>
-                  <td align="center">渗液量</td>
+                  <td style={style_nursing_record_td} align="center">渗液量</td>
                   {
                     tabletds_cm_syl
                   }
                 </tr>
               );
             }
-
-            return (<table width="100%" className="nursing-record white-bg">
+            const styletrdate = style_trdate;
+            return (<table width="100%"  style={{backgroundColor: '#fff'}}>
                 <tbody>
                 <tr>
-                  <td colSpan="" rowSpan="2">创面</td>
-                  <td colSpan="" rowSpan="2">创面大小</td>
-                  <td colSpan="" rowSpan="2">项目指标</td>
-                  <td colSpan={`${retlist.length}`}><div align="center">评估日期</div></td>
+                  <td style={style_nursing_record_td}  colSpan="" rowSpan="2">创面</td>
+                  <td style={style_nursing_record_td} colSpan="" rowSpan="2">创面大小</td>
+                  <td style={style_nursing_record_td}  colSpan="" rowSpan="2">项目指标</td>
+                  <td style={style_nursing_record_td}  colSpan={`${retlist.length}`}><div align="center">评估日期</div></td>
                 </tr>
-                <tr className="date">
+                <tr style={styletrdate}>
                   {
                     lodashmap(retlist,(info,index)=>{
+                      const styletddate = style_nursing_record_td;
                       const curday = moment(info.updated_at).format('MM月DD日')
                       if(index === 0){
-                        return (<td key={index}><div align="center">{ !isfirst && <img src="arrow-left-green.png" alt="" onClick={
+                        return (<td  style={styletddate} key={index}><div align="center">{ !isfirst && <img src="arrow-left-green.png" alt="" onClick={
                                 this.PagePrev
                               }/>}{curday}</div></td>);
                       }
                       else if(index === retlist.length - 1){
-                          return (<td  key={index}><div align="center">{curday}
+                          return (<td style={styletddate} key={index}><div align="center">{curday}
                             {!islast && <img src="arrow-right-green.png" className="right" alt="" onClick={
                               this.PageNext
                             }/>}
                           </div></td>);
                       }
                       else{
-                        return (<td  key={index}><div align="center">{curday}</div></td>);
+                        return (<td style={styletddate} key={index}><div align="center">{curday}</div></td>);
                       }
 
                     })
@@ -221,13 +255,13 @@ class RecordbardenTableBody extends React.Component {
 
 
                 <tr>
-                  <td colSpan="3" className="white-bg">评估人
+                  <td  style={stylewhite} colSpan="3" >评估人
                   <input type="text" readOnly/>
                   </td>
                   {
                     lodashmap(retlist,(id,index)=>{
                       return (
-                        <td align="center" className="white-bg" key={`${id}`}></td>
+                        <td  style={stylewhite} align="center" key={`${id}`}></td>
                       )
                     })
                   }

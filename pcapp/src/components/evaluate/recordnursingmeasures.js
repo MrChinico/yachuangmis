@@ -36,8 +36,19 @@ class App extends React.Component {
 							<ViewPrintTitltToPrint title="护理措施查看" refnode={() => this.componentRef} history={this.props.history}/>
 
 							<form ref={el => (this.componentRef = el)}>
-								<div className="form-box">
-									<h1>{Hospitalname}护理措施表</h1>
+								<div style={{
+									width: '100%',
+							    margin: '20px auto',
+							    color: '#333',
+							    background: '#f9f9f9',
+							    border:'1px solid #ddd',
+								}}>
+									<h1 style={{
+										color:'#111',
+								    fontSize: '20px',
+								    textAlign: 'center',
+								    lineHeight:'70px',
+									}}>{Hospitalname}护理措施表</h1>
 									<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 									<RecordNursingMeasuresTableBody db={db} evaluatenursingmeasureslist={evaluatenursingmeasureslist}/>
 								</div>

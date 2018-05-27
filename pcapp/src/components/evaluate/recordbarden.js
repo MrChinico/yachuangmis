@@ -38,8 +38,19 @@ class App extends React.Component {
 					<div className="content assess">
 						<ViewPrintTitltToPrint title="Barden评估打印" refnode={() => this.componentRef} history={this.props.history}/>
 						<form ref={el => (this.componentRef = el)}>
-								<div className="form-box">
-									<h1>{Hospitalname}压疮危险因素评估表</h1>
+								<div style={{
+									width: '100%',
+							    margin: '20px auto',
+							    color: '#333',
+							    background: '#f9f9f9',
+							    border:'1px solid #ddd',
+								}}>
+									<h1 style={{
+										color:'#111',
+								    fontSize: '20px',
+								    textAlign: 'center',
+								    lineHeight:'70px',
+									}}>{Hospitalname}压疮危险因素评估表</h1>
 									<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 									<RecordbardenTableBody evaluatebardenlist={evaluatebardenlist} db={db}/>
 								</div>

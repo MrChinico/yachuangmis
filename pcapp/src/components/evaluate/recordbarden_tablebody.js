@@ -5,6 +5,30 @@ import lodashget from 'lodash.get';
 import moment from 'moment';
 import {getpagelist,gettablebradengroups} from '../../util';
 
+const style_nursing_record_td = {
+  padding: '9px 10px',
+  border: '1px solid #ddd',
+  borderLeft: '0px',
+  borderBottom: '0px',
+};
+
+const style_nursing_record_td_white = {
+  backgroundColor:'#fff',
+  textAlign: 'left'
+};
+
+const style_nursing_record_tdlast = {
+  borderRight:'0px'
+};
+
+const style_nursing_record_tr2n = {
+  backgroundColor:'#f9f9f9'
+};
+
+const style_trdate = {
+  backgroundColor:'#e4f3f1'
+};
+
 class RecordbardenTableBody extends React.Component {
 
       constructor(props) {
@@ -45,7 +69,7 @@ class RecordbardenTableBody extends React.Component {
 
   		}
       render() {
-            const {evaluatebardens,} = this.props.db;
+            const {evaluatebardens} = this.props.db;
             const {isfirst,islast,retlist} = this.state;
             const tablebradengroups = gettablebradengroups();
             let tabletrlist = [];
@@ -53,17 +77,17 @@ class RecordbardenTableBody extends React.Component {
                 const rowspancount = tablegroup.labelsz.length;
                 const labelvalue = tablegroup.labelvalue;
                 lodashmap(tablegroup.labelsz,(vlabel,lindex)=>{
+                  const styletr = lindex%2 === 1?style_nursing_record_tr2n:{};
                   if(lindex === 0){
                     tabletrlist.push(
-                      <tr key={`${gindex}_${lindex}`}>
-                        <td rowSpan={`${rowspancount}`} className="white-bg">{tablegroup.labeltitle}</td>
-                        <td align="center">{vlabel.label}</td>
-                        <td align="center">{vlabel.value}</td>
+                      <tr style={styletr} key={`${gindex}_${lindex}`}>
+                        <td  style={style_nursing_record_td}  rowSpan={`${rowspancount}`} >{tablegroup.labeltitle}</td>
+                        <td  style={style_nursing_record_td}  align="center">{vlabel.label}</td>
+                        <td  style={style_nursing_record_td}  align="center">{vlabel.value}</td>
                         {
                           lodashmap(retlist,(bid,index)=>{
                             const ischecked = lodashget(evaluatebardens[bid],labelvalue,0) === vlabel.value;
-                            //<font className="blue fontSize18 font-weight">√</font>
-                            return (<td key={index} align="center">
+                            return (<td style={style_nursing_record_td} key={index} align="center">
                               {ischecked && <span>{vlabel.value}</span>}
                             </td>);
                           })
@@ -73,13 +97,13 @@ class RecordbardenTableBody extends React.Component {
                   }
                   else{
                     tabletrlist.push(
-                      <tr key={`${gindex}_${lindex}`}>
-                          <td align="center">{vlabel.label}</td>
-                          <td align="center">{vlabel.value}</td>
+                      <tr style={styletr}  key={`${gindex}_${lindex}`}>
+                          <td  style={style_nursing_record_td} align="center">{vlabel.label}</td>
+                          <td  style={style_nursing_record_td} align="center">{vlabel.value}</td>
                           {
                             lodashmap(retlist,(bid,index)=>{
                               const ischecked = lodashget(evaluatebardens[bid],labelvalue,0) === vlabel.value;
-                              return (<td key={index} align="center">
+                              return (<td style={style_nursing_record_td}  key={index} align="center">
                                 {ischecked && <span>{vlabel.value}</span>}
                               </td>);
                             })
@@ -89,32 +113,37 @@ class RecordbardenTableBody extends React.Component {
                   }
                 })
               });
-              return (<table width="100%" className="nursing-record white-bg">
+              const styletrdate = style_trdate;
+              return (<table width="100%" style={{backgroundColor: '#fff'}}>
                         <tbody>
                                 <tr>
-                                    <td colSpan="" rowSpan="2">项目</td>
-                                    <td colSpan="" rowSpan="2">具体指标</td>
-                                    <td colSpan="" rowSpan="2">评分数值</td>
-                                    <td colSpan={`${retlist.length}`}><div align="center">实际得分（按照评估日期填写）</div></td>
+                                    <td style={style_nursing_record_td}
+                                      colSpan="" rowSpan="2">项目</td>
+                                    <td style={style_nursing_record_td} colSpan="" rowSpan="2">具体指标</td>
+                                    <td style={style_nursing_record_td} colSpan="" rowSpan="2">评分数值</td>
+                                    <td style={style_nursing_record_td} colSpan={`${retlist.length}`}>
+                                      <div align="center">实际得分（按照评估日期填写）</div>
+                                    </td>
                                   </tr>
-                                  <tr className="date">
+                                  <tr style={styletrdate}>
                                     {
                                       lodashmap(retlist,(info,index)=>{
+                                        const styletddate = style_nursing_record_td;
                                         const curday = moment(info.updated_at).format('MM月DD日')
                                         if(index === 0){
-                                          return (<td key={index}><div align="center">{ !isfirst && <img src="arrow-left-green.png" alt="" onClick={
+                                          return (<td style={styletddate} key={index}><div align="center">{ !isfirst && <img src="arrow-left-green.png" alt="" onClick={
                                                   this.PagePrev
                                                 }/>}{curday}</div></td>);
                                         }
                                         else if(index === retlist.length - 1){
-                                            return (<td  key={index}><div align="center">{curday}
+                                            return (<td  style={styletddate}  key={index}><div align="center">{curday}
                                               {!islast && <img src="arrow-right-green.png" className="right" alt="" onClick={
                                                 this.PageNext
                                               }/>}
                                             </div></td>);
                                         }
                                         else{
-                                          return (<td  key={index}><div align="center">{curday}</div></td>);
+                                          return (<td style={styletddate} key={index}><div align="center">{curday}</div></td>);
                                         }
 
                                       })
@@ -124,12 +153,18 @@ class RecordbardenTableBody extends React.Component {
                                   {tabletrlist}
 
                                   <tr>
-                                    <td colSpan="3" className="white-bg">总得分</td>
+                                    <td style={{...style_nursing_record_td,...style_nursing_record_td_white}} colSpan="3">总得分</td>
                                     {
                                       lodashmap(retlist,(bid,index)=>{
                                         const score = lodashget(evaluatebardens[bid],'score',0);
-                                        return (<td key={index} align="center">
-                                          <font className="blue fontSize18 font-weight">
+                                        const tdstyle = style_nursing_record_td;
+                                        const stylefont = {
+                                          color:'#0084bf',
+                                          fontSize: '18px',
+                                          fontWeight: '500'
+                                        };
+                                        return (<td style={tdstyle} key={index} align="center">
+                                          <font style={stylefont}>
                                             {score}
                                           </font>
                                           </td>);
@@ -137,12 +172,12 @@ class RecordbardenTableBody extends React.Component {
                                     }
                                   </tr>
                                   <tr>
-                                    <td colSpan="6">评估护士签名
+                                    <td   style={style_nursing_record_td} colSpan={`${3+retlist.length}`}>评估护士签名
                                       <input type="text" readOnly/>
                                     </td>
                                   </tr>
                                   <tr>
-                                    <td colSpan="6">护士长签名
+                                    <td   style={style_nursing_record_td} colSpan={`${3+retlist.length}`}>护士长签名
                                       <input type="text" readOnly/>
                                     </td>
                                   </tr>
