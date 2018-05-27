@@ -2,10 +2,68 @@ import React from 'react';
 import lodashget from 'lodash.get';
 import moment from 'moment';
 
+
+const style_choose_info_td = {
+  padding:'10px 15px',
+  fontSize: '14px',
+  width:'50%',
+  borderRight:'1px solid #ddd'
+}
+
+const style_choose_info_td_w50 = {
+  ...style_choose_info_td,
+  width:'10%'
+};
+
+const style_choose_info_td_w50_input = {
+  background: 'transparent!important',
+  border: 'transparent!important',
+  borderBottom: '1px solid #646464!important',
+  textAlign: 'center',
+  height: '16px',
+  display: 'inline-block',
+  verticalAlign: 'middle',
+  marginRight: '10px',
+  width:'10%',
+};
+
+const style_choose_info_tr = {
+  borderTop:'1px solid #ddd',
+  lineHeight: '20px',
+  borderRight:'1px solid #ddd'
+};
+
+const style_choose_info_tr_odd = {...style_choose_info_tr,
+background:'#fff'};
+
+
+const style_choose_info_tr_gray = {...style_choose_info_tr,
+   color:'#888',
+   fontSize: '13px',
+   borderRight: '0px'
+};
+
+const style_choose_info_td_vatop = {
+    ...style_choose_info_td,
+    verticalAlign: 'top',
+    padding:'0px !important'
+};
+
+const style_choose_info_tr_graytitle = {
+  ...style_choose_info_tr_gray,
+   borderRight: '0px'
+};
+
+const style_choose_info_tr_bluetitle = {
+  ...style_choose_info_tr_gray,
+   color:'#0084bf!important',
+};
+
 const CRenderConditionsprerequisitesoptions = (props)=>{
   const {info} = props;
   const v = info;
-  return (<tr><td><input type="checkbox" name="check[]" checked={v.checked} readOnly/>{v.name}</td></tr>);
+  return (<tr style={style_choose_info_tr}><td style={style_choose_info_td}>
+    <input type="checkbox" name="check[]" checked={v.checked} readOnly/>{v.name}</td></tr>);
 }
 
 
@@ -13,7 +71,8 @@ const CRenderConditionsalternativeoptions = (props)=>{
   const {info} = props;
 
   const v = info;
-  return (<tr><td><input type="checkbox" name="check[]" checked={v.checked} readOnly/>{v.name}</td></tr>);
+  return (<tr style={style_choose_info_tr}><td style={style_choose_info_td}>
+    <input type="checkbox" name="check[]" checked={v.checked} readOnly/>{v.name}</td></tr>);
 }
 
 const CRenderConditionsprerequisites = (props) => {
@@ -42,25 +101,25 @@ const CRenderConditions = (props)=>{
     }
 
     const retc = [
-      <tr className="gray title" key='canda'>
-        <td>必备条件和选择条件</td>
-        <td></td>
+      <tr style={style_choose_info_tr_odd} key='canda'>
+        <td style={style_choose_info_td}>必备条件和选择条件</td>
+        <td style={style_choose_info_td}></td>
       </tr>,
-      <tr className="gray"  key='canda2'>
-        <td>必备条件：强迫体位需要严格限制造成强迫体位的原因</td>
-        <td>
+      <tr style={style_choose_info_tr_gray} key='canda2'>
+        <td style={style_choose_info_td}>必备条件：强迫体位需要严格限制造成强迫体位的原因</td>
+        <td style={style_choose_info_td}>
           可选择条件
         </td>
       </tr>,
-      <tr className="gray"  key='canda3'>
-        <td className="va_top p0">
+      <tr style={style_choose_info_tr_gray} key='canda3'>
+        <td style={style_choose_info_td_vatop}>
           <table style={{textAlign:'left'}}>
             <tbody>
 							<CRenderConditionsprerequisites info={prerequisites} />
             </tbody>
           </table>
         </td>
-        <td className="va_top p0">
+        <td style={style_choose_info_td_vatop}>
           <table style={{textAlign:'left'}}>
             <tbody>
 							<CRenderConditionsalternative info={alternative} />
@@ -96,15 +155,15 @@ const CRenderPreventivesmeasureItemOptionsArray = (props)=>{
 const CRenderPreventivesmeasureItem = (props)=>{
   const {info:vo} = props;
   if(!!vo.options && vo.options.length>0){
-    return (<tr>
-      <td colSpan="2">
+    return (<tr style={style_choose_info_tr}>
+      <td style={style_choose_info_td} colSpan="2">
         <input type="checkbox" name="check[]" readOnly/>{vo.name}
 				<CRenderPreventivesmeasureItemOptionsArray options={vo.options} />
       </td>
     </tr>)
   }
   if(vo.value !== undefined){
-    return  (<tr><td colSpan="2">
+    return  (<tr style={style_choose_info_tr}><td style={style_choose_info_td} colSpan="2">
       <input type="checkbox" name="check[]" checked={vo.checked} readOnly
       />
         {vo.name}<input type="text" value={vo.value} readOnly/>
@@ -112,8 +171,8 @@ const CRenderPreventivesmeasureItem = (props)=>{
     </tr>);
   }
 
-  return (<tr>
-    <td colSpan="2"><input type="checkbox" name="check[]" checked={vo.checked} readOnly/>
+  return (<tr style={style_choose_info_tr}>
+    <td style={style_choose_info_td} colSpan="2"><input type="checkbox" name="check[]" checked={vo.checked} readOnly/>
       {vo.name}
     </td>
   </tr>);
@@ -142,28 +201,29 @@ const CRenderLapseto= (props)=>{
     lapsetooptions} = lapseto;
 
   let trsz = [];
-  trsz.push(<tr className="blue title" key="title">
-      <td colSpan="2">转归情况：</td>
+  trsz.push(<tr style={style_choose_info_tr_bluetitle} key="title">
+      <td  style={style_choose_info_td}  colSpan="2">转归情况：</td>
     </tr>);
 
   trsz.push(
-  <tr  key="title2">
-    <td>
+  <tr  style={style_choose_info_tr} key="title2">
+    <td style={style_choose_info_td}>
       <span>1、是否发生压疮：</span>
       <span>是<input type="checkbox" name="check[]" checked={ispressuresores===1} readOnly/></span>
       <span>否<input type="checkbox" name="check[]" checked={ispressuresores===0} readOnly/></span>
     </td>
-    <td className="w-50">压疮发生时间：
-      <input type="text" readOnly/>年
-      <input type="text" readOnly/>月
-      <input type="text" readOnly/>日
-      <input type="text" readOnly/>:<input type="text" readOnly/>
+    <td style={style_choose_info_td_w50}>压疮发生时间：
+      <input style={style_choose_info_td_w50_input} type="text" readOnly/>年
+      <input style={style_choose_info_td_w50_input} type="text" readOnly/>月
+      <input style={style_choose_info_td_w50_input} type="text" readOnly/>日
+      <input style={style_choose_info_td_w50_input} type="text" readOnly/>:
+      <input  style={style_choose_info_td_w50_input} type="text" readOnly/>
     </td>
   </tr>);
 
   trsz.push(
-  <tr  key="title3">
-    <td colSpan="2">
+  <tr  style={style_choose_info_tr} key="title3">
+    <td style={style_choose_info_td} colSpan="2">
       <span>2、患者去向：</span>
       <span>出院/转院<input type="checkbox" name="check[]" checked={lapsetooptions.checkout_checked} readOnly/></span>
       <span>死亡<input type="checkbox" name="check[]" checked={lapsetooptions.death_checked} readOnly/></span>
@@ -176,20 +236,20 @@ const CRenderInstruction= (props)=>{
   const {isunavoidablepressureulcer,instruction} = props;
 
   let trsz = [];
-  trsz.push(<tr className="gray title" key="title">
-    <td colSpan="2">主管部门审核与指导意见</td>
+  trsz.push(<tr style={style_choose_info_tr_graytitle} key="title">
+    <td style={style_choose_info_td} colSpan="2">主管部门审核与指导意见</td>
   </tr>);
 
-  trsz.push(<tr key="in">
-      <td colSpan="2">
+  trsz.push(<tr style={style_choose_info_tr} key="in">
+      <td style={style_choose_info_td} colSpan="2">
         <span>符合难免压疮申报的条件：</span>
         <span>是<input type="checkbox" name="check[]" checked={isunavoidablepressureulcer} readOnly/></span>
         <span>否<input type="checkbox" name="check[]" checked={!isunavoidablepressureulcer} readOnly/></span>
       </td>
     </tr>);
 
-    trsz.push(<tr key="guide">
-        <td colSpan="2">指导意见：<input type="text" value={instruction} readOnly/></td>
+    trsz.push(<tr style={style_choose_info_tr} key="guide">
+        <td style={style_choose_info_td} colSpan="2">指导意见：<input type="text" value={instruction} readOnly/></td>
       </tr>);
 
   return trsz;
@@ -206,16 +266,16 @@ const CRenderAdmissions = (props)=>{
   let retc = [];
   for(let j = 0 ;j < admissions.length; j++){
     const v = admissions[j];
-    options.push(<td><input type="checkbox" name="check[]" checked={v.checked} readOnly/> {v.name}</td>);
+    options.push(<td style={style_choose_info_td}><input type="checkbox" name="check[]" checked={v.checked} readOnly/> {v.name}</td>);
   }
 
   if(options.length % 2 === 1){
-    options.push(<td key='ad'></td>);
+    options.push(<td style={style_choose_info_td} key='ad'></td>);
   }
 
   const halflength = options.length/2;
   for(let i = 0 ;i < halflength; i++){
-    retc.push(<tr key={`options${i}`}>
+    retc.push(<tr style={style_choose_info_tr} key={`options${i}`}>
       {options[i]}
       {options[halflength+i]}
     </tr>)
@@ -231,11 +291,11 @@ const CRenderEvaluateWoundsurfaces =  (props)=>{
   for(let i = 0 ;i < evaluateWoundsurfaces.length ; i++){
     const value = evaluateWoundsurfaces[i];
     trsz.push(
-      <tr key={`trewfs${i}`}>
-        <td key="tdwf0">{lodashget(value,'部位','')}</td>
-        <td key="tdwf1">{lodashget(value,'分期','')}</td>
-        <td key="tdwf2">{lodashget(value,'大小','')}</td>
-        <td key="tdwf3">{lodashget(value,'情况','')}</td>
+      <tr style={style_choose_info_tr} key={`trewfs${i}`}>
+        <td style={style_choose_info_td} key="tdwf0">{lodashget(value,'部位','')}</td>
+        <td style={style_choose_info_td} key="tdwf1">{lodashget(value,'分期','')}</td>
+        <td style={style_choose_info_td} key="tdwf2">{lodashget(value,'大小','')}</td>
+        <td style={style_choose_info_td} key="tdwf3">{lodashget(value,'情况','')}</td>
       </tr>
     );
   }
@@ -263,14 +323,14 @@ const CRenderUserSignedNurse= (props)=>{
     Mmm = momenttime.format('mm');
 
   }
-  let Co = (<tr>
-      <td>申报人签字：<input type="text" readOnly value={Staffname}/></td>
-      <td className="w-50">申报时间：
-          <input type="text" readOnly value={MYY}/>年
-          <input type="text" readOnly value={MMM}/>月
-          <input type="text" readOnly value={MDD}/>日
-          <input type="text" readOnly value={MHH}/>:
-          <input type="text" readOnly value={Mmm}/>
+  let Co = (<tr style={style_choose_info_tr}>
+      <td style={style_choose_info_td}>申报人签字：<input type="text" readOnly value={Staffname}/></td>
+      <td style={style_choose_info_td_w50}>申报时间：
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MYY}/>年
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MMM}/>月
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MDD}/>日
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MHH}/>:
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
 
@@ -298,14 +358,14 @@ const CRenderUserSignedHeadNurse= (props)=>{
     Mmm = momenttime.format('mm');
 
   }
-  let Co = (<tr>
-      <td>护士长签字：<input type="text" readOnly value={Staffname}/></td>
-      <td className="w-50">日期：
-          <input type="text" readOnly value={MYY}/>年
-          <input type="text" readOnly value={MMM}/>月
-          <input type="text" readOnly value={MDD}/>日
-          <input type="text" readOnly value={MHH}/>:
-          <input type="text" readOnly value={Mmm}/>
+  let Co = (<tr style={style_choose_info_tr}>
+      <td style={style_choose_info_td}>护士长签字：<input type="text" readOnly value={Staffname}/></td>
+      <td style={style_choose_info_td_w50}>日期：
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MYY}/>年
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MMM}/>月
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MDD}/>日
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MHH}/>:
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
 
@@ -333,14 +393,14 @@ const CRenderUserSignedNursingDepartment= (fields)=>{
     Mmm = momenttime.format('mm');
 
   }
-  let Co = (<tr>
-      <td>主管部门签字：<input type="text" readOnly value={Staffname}/></td>
-      <td className="w-50">日期：
-          <input type="text" readOnly value={MYY}/>年
-          <input type="text" readOnly value={MMM}/>月
-          <input type="text" readOnly value={MDD}/>日
-          <input type="text" readOnly value={MHH}/>:
-          <input type="text" readOnly value={Mmm}/>
+  let Co = (<tr style={style_choose_info_tr}>
+      <td style={style_choose_info_td}>主管部门签字：<input type="text" readOnly value={Staffname}/></td>
+      <td style={style_choose_info_td_w50}>日期：
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MYY}/>年
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MMM}/>月
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MDD}/>日
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MHH}/>:
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
 
@@ -368,14 +428,14 @@ const CRenderUserReport= (props)=>{
     Mmm = momenttime.format('mm');
 
   }
-  let Co = (<tr>
-      <td>上报人签字:<input type="text" readOnly value={Staffname}/></td>
-      <td className="w-50">日期：
-          <input type="text" readOnly value={MYY}/>年
-          <input type="text" readOnly value={MMM}/>月
-          <input type="text" readOnly value={MDD}/>日
-          <input type="text" readOnly value={MHH}/>:
-          <input type="text" readOnly value={Mmm}/>
+  let Co = (<tr style={style_choose_info_tr}>
+      <td style={style_choose_info_td}>上报人签字:<input type="text" readOnly value={Staffname}/></td>
+      <td style={style_choose_info_td_w50}>日期：
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MYY}/>年
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MMM}/>月
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MDD}/>日
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MHH}/>:
+          <input style={style_choose_info_td_w50_input} type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
 
