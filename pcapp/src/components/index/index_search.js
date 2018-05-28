@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { Layout } from 'antd';
 import Patientinfolist from './index_patientinfolist';
 import { Input } from 'antd'
-// import lodashget from 'lodash.get';
+import DepatSelect from './selector_depat';
+
 const Search = Input.Search;
 const { Header } = Layout;
+
 
 class App extends React.Component {
 
@@ -13,7 +15,8 @@ class App extends React.Component {
 			super(props);
 			this.state = {
 				query:{},
-				searchtxt:''
+				searchtxt:'',
+				curdepatid:'0',
 			}
 		}
 		componentDidMount(){
@@ -24,13 +27,37 @@ class App extends React.Component {
 
 		}
 
+		onChangeDepat =(id)=>{
+			let query = this.state.query;
+			if(id !== '0'){
+				query['depatid'] = id;
+			}
+			else{
+				const {depatid,...rest} = query;
+				query = rest;
+			}
+			this.setState({
+				curdepatid:id,
+				query
+			});
+			window.setTimeout(()=>{
+				const h1 = this.refs.plistsearch;
+				console.log(h1);
+				if(!!h1){
+					const h2 = h1.refs.refpaientinfo.getWrappedInstance();
+					if(!!h2){
+						h2.onRefresh();
+					}
+				}
+			},0);
+		}
+
 		onSearch = (value)=>{
-			// value => console.log(value)
+			let query = this.state.query;
+			query['Patientname_q'] = value;
 			this.setState({
 				searchtxt:value,
-				query:{
-					'Patientname_q':value
-				}
+				query
 			});
 
 			window.setTimeout(()=>{
@@ -65,6 +92,11 @@ class App extends React.Component {
 							<div className="index-content assess">
 								<h2 className="bbm-green">
 									{showtext}
+									<DepatSelect
+										onChangeDepat={this.onChangeDepat}
+										db={this.props.db}
+										curdepatid={this.state.curdepatid}
+									/>
 									<button className="return" onClick={
 									()=>{
 										this.props.history.goBack();

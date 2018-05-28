@@ -6,7 +6,7 @@ import {set_uiapp} from '../../actions';
 import { Badge } from 'antd';
 import lodashget from 'lodash.get';
 import DepatSelect from './selector_depat';
-import lodashmap from 'lodash.map';
+// import lodashmap from 'lodash.map';
 const { Header } = Layout;
 class App extends React.Component {
 
