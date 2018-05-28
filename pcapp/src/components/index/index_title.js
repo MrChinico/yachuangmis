@@ -5,8 +5,11 @@ import { Layout } from 'antd';
 import {set_uiapp} from '../../actions';
 import { Badge } from 'antd';
 import lodashget from 'lodash.get';
+import DepatSelect from './selector_depat';
+import lodashmap from 'lodash.map';
 const { Header } = Layout;
 class App extends React.Component {
+
 		componentDidMount(){
 
 		}
@@ -33,7 +36,8 @@ class App extends React.Component {
 			const PermissionName = lodashget(this,'props.userlogin.permission.name','');
 			const Staffname = lodashget(this,'props.userlogin.Staffname','');
 			const reviewnumber = lodashget(this,'props.userlogin.reviewnumber','');
-			const btns = [
+
+			let btns = [
 				<button key={'btnsearch'} onClick={
 					()=>{
 					this.onClickSearch()
@@ -51,14 +55,33 @@ class App extends React.Component {
 					<span style={{color:'white'}}>申报审阅&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				</Badge>
 			  </button>,
-				<button  key={'btnuser'} onClick={
+
+			];
+
+			if(PermissionName === '护理部主管'){
+
+				btns.push(<DepatSelect  key={'btnuser2'}
+					onChangeDepat={this.props.onChangeDepat}
+					db={this.props.db}
+					curdepatid={this.props.curdepatid}
+				/>);
+
+				btns.push(<button  key={'btnuser'} onClick={
+					()=>{
+					this.onClickUser()
+					}}>
+					<span>{Staffname}({PermissionName})</span>
+				</button>);
+			}
+			else{
+				btns.push(<button  key={'btnuser'} onClick={
 					()=>{
 					this.onClickUser()
 					}}>
 					<span>【{Depatname}】</span>
 					<span>{Staffname}({PermissionName})</span>
-				</button>
-			];
+				</button>);
+			}
 			const title = this.props.title || '病人列表';
 	    return (
 	      	<Header>
@@ -69,8 +92,8 @@ class App extends React.Component {
   	}
 }
 
-const mapStateToProps = ({userlogin}) => {
-    return {userlogin};
+const mapStateToProps = ({userlogin,db}) => {
+    return {userlogin,db};
 }
 App = withRouter(App);
 export default connect(mapStateToProps)(App);

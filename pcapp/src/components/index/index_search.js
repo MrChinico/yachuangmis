@@ -73,7 +73,8 @@ class App extends React.Component {
 									<div className="clearfix">
 								</div>
 								</h2>
-								<Patientinfolist query={this.state.query}
+								<Patientinfolist
+									query={this.state.query}
 									history={this.props.history}
 									db={this.props.db}
 									pagenumber={12}

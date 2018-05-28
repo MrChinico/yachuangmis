@@ -15,12 +15,13 @@ import {
 
   logout_result,
   getcount_reviewlapseto_request,
-
+  getdepatlist_request,
   set_db,
 } from '../actions';
 
 import config from '../env/config.js';
 import { replace } from 'react-router-redux';
+import lodashget from 'lodash.get';
 
 export function* wsrecvsagaflow() {
 
@@ -48,6 +49,10 @@ export function* wsrecvsagaflow() {
               let users = {};
               users[_id] =  {_id,Staffid,Depatno,Staffname,Staffno,username,truename};
               yield put(set_db({users}));
+
+              if(lodashget(result,'permission.name') === '护理部主管'){
+                yield put(getdepatlist_request({}));
+              }
             }
         }
 

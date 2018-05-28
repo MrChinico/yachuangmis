@@ -20,7 +20,9 @@ import {
 
   getevaluatebardenlist_result,
   getevaluatenursingmeasureslist_result,
-  getevaluatewoundsurfacelist_result
+  getevaluatewoundsurfacelist_result,
+
+  getdepatlist_result
 } from '../actions';
 import { goBack  } from 'react-router-redux';
 // import lodashmap from 'lodash.map';
@@ -189,5 +191,15 @@ export function* wsrecvsagabizflow() {
     const result = normalizr_evaluatewoundsurface(payload);
     yield put(set_db(result));
   });
-
+  //---------------getdepatlist_result
+  yield takeLatest(`${getdepatlist_result}`,function*(action){
+    const {payload} = action;
+    const {list} = payload;
+    let depats = {};
+    for(let i = 0 ; i < list.length ; i++ ){
+      const info = list[i];
+      depats[info._id] = info;
+    };
+    yield put(set_db({depats}));
+  });
 }
