@@ -56,10 +56,11 @@ class App extends React.Component {
 		}
 
   	render() {
-			const {curpaientinfo,cursmartdevice,db} = this.props;
+			const {curpaientinfo,cursmartdevice,db,userlogin} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
+			const permissionname = lodashget(userlogin,'permission.name','普通护士');
 			const Diseaseclassification = lodashget(curpaientinfo,'Diseaseclassification','普通病人');
 			if(Diseaseclassification === '普通病人'){
 				return <div>普通病人不能显示评估页面</div>
@@ -73,21 +74,21 @@ class App extends React.Component {
 						title:'Barden评估',
 						visible:true,
 						enabled:true,
-						Co:<InfoBarden curpaientinfo={curpaientinfo} />
+						Co:<InfoBarden curpaientinfo={curpaientinfo} permissionname={permissionname}/>
 					},
 					{
 						btnkey:'btnws',
 						title:'创面评估',
 						visible:true,
 						enabled:true,
-						Co:<InfoWoundsurface curpaientinfo={curpaientinfo} />
+						Co:<InfoWoundsurface curpaientinfo={curpaientinfo} permissionname={permissionname}/>
 					},
 					{
 						btnkey:'btnnm',
 						title:'护理措施',
 						visible:true,
 						enabled:true,
-						Co:<InfoNursingmeasures curpaientinfo={curpaientinfo} />
+						Co:<InfoNursingmeasures curpaientinfo={curpaientinfo} permissionname={permissionname}/>
 					},
 					{
 						btnkey:'btnls',
@@ -147,7 +148,7 @@ class App extends React.Component {
 				btnz[3].visible = false;
 			}
 
-			if(!cursmartdevice){
+			if(!cursmartdevice || permissionname === '护理部主管'){
 				btnz[btnz.length - 1].visible = false;
 			}
 
@@ -195,7 +196,7 @@ class App extends React.Component {
   	}
 }
 
-const mapStateToProps = ({db},props) => {
+const mapStateToProps = ({db,userlogin},props) => {
 		const {paientinfos,beds,smartdevices} = db;
 		const id = lodashget(props,'match.params.pid');
 		let curpaientinfo = paientinfos[id];
@@ -207,6 +208,6 @@ const mapStateToProps = ({db},props) => {
 				cursmartdevice = smartdevices[smartdeviceid];
 			}
 		}
-    return {curpaientinfo,cursmartdevice,db};
+    return {curpaientinfo,cursmartdevice,db,userlogin};
 }
 export default connect(mapStateToProps)(App);

@@ -41,7 +41,7 @@ class App extends React.Component {
 			return [];
 		}
   	render() {
-			const {curpaientinfo,evaluatenursingmeasureslist,evaluatenursingmeasuress} = this.props;
+			const {curpaientinfo,evaluatenursingmeasureslist,evaluatenursingmeasuress,permissionname} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -50,14 +50,16 @@ class App extends React.Component {
 				const record = evaluatenursingmeasuress[evaluatenursingmeasureslist[i]];
 				allrecords.push(record);
 			}
+
+			const onClickNew = permissionname === '护理部主管'?undefined:this.onClickNew;
 			if(allrecords.length === 0){
-				return (<InfoNorecords btnTitle="新建护理" onClickNew={this.onClickNew} />);
+				return (<InfoNorecords btnTitle="新建护理" onClickNew={onClickNew} />);
 			}
 
 	    return (
 	      	<div>
 						<ContentTitleBar title="护理措施记录" titleNew="新建护理" titleView="查看&打印"
-							onClickNew={this.onClickNew} onClickViewPrint={this.onClickViewPrint} />
+							onClickNew={onClickNew} onClickViewPrint={this.onClickViewPrint} />
 						<PTable allrecords={allrecords} renderTableRecord={this.renderTableRecord} pagenumber={5} />
 	      	</div>
 	    );

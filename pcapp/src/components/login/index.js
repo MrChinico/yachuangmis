@@ -98,8 +98,8 @@ class PageForm extends React.Component {
 PageForm = reduxForm({
     form: 'LoginPageForm',
     initialValues:{
-      username:'T002',
-      password:'T002'
+      username:'T000',
+      password:'T000'
     }
 })(PageForm);
 

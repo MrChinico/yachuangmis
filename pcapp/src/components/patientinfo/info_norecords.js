@@ -4,8 +4,9 @@ import React from 'react';
 
 const InfoNorecords = (props)=>{
   const {btntitle,onClickNew} = props;
+  const title = !!onClickNew?'暂无记录,点击这里新建':'请等待护士新建记录';
   return (<div className="lapseto center">
-    <p>暂无记录,点击这里新建噢</p>
+    <p>{title}</p>
     {
       !!onClickNew &&  (<button  onClick={
             ()=>{
