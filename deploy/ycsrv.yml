@@ -6,6 +6,7 @@ services:
     command: node ./index.js
     working_dir: /app
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./srv:/app
       - ./dist:/dist
       - ./log:/log

@@ -59,10 +59,10 @@ const setdata_devicestatus = (deviceid,bodybuf)=>{
   }
 
   let establishstatusstring = '';
-  if(status === 0x30){
+  if(establishstatus === 0x30){
     establishstatusstring = '姿态建立中';
   }
-  else if(status === 0x31){
+  else if(establishstatus === 0x31){
     establishstatusstring = '姿态建立完成并保持';
   }
 

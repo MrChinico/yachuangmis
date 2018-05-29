@@ -11,6 +11,7 @@ import config from '../env/config';
 export function* socketflow(){//仅执行一次
    yield takeLatest(`${notify_socket_connected}`, function*(action) {
       let {payload:issocketconnected} = action;
+      console.log(`notify_socket_connected--->issocketconnected--->${issocketconnected}`);
       if(issocketconnected){
         yield put(getsystemconfig_request({}));
 

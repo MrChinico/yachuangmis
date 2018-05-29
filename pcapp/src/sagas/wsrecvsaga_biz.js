@@ -1,7 +1,7 @@
 import { put,takeLatest,select} from 'redux-saga/effects';
 // import {delay} from 'redux-saga';
 import {
-  editpatientinfo_request,
+  setpatientinfo_request,
 
   createevaluatebarden_result,
   editevaluatebarden_result,
@@ -16,6 +16,7 @@ import {
   set_db,
 
   editpatientinfo_result,
+  setpatientinfo_result,
   getpatientinfo_result,
 
   getevaluatebardenlist_result,
@@ -115,25 +116,25 @@ export function* wsrecvsagabizflow() {
         });
         if(!!paientinfo){
           if(i === 0 && !paientinfo.firstevaluatebardenid){
-            yield put(editpatientinfo_request({
+            yield put(setpatientinfo_request({
               _id:paientinfo._id,
               firstevaluatebardenid:payload._id
             }));
           }
           if(i === 2 && !paientinfo.firstevaluatenursingmeasuresid){
-            yield put(editpatientinfo_request({
+            yield put(setpatientinfo_request({
               _id:paientinfo._id,
               firstevaluatenursingmeasuresid:payload._id
             }));
           }
           if(i === 4 && !paientinfo.firstevaluatewoundsurfaceid){
-            yield put(editpatientinfo_request({
+            yield put(setpatientinfo_request({
               _id:paientinfo._id,
               firstevaluatewoundsurfaceid:payload._id
             }));
           }
           if(i === 6 && !paientinfo.formreviewlapsetoid){
-            yield put(editpatientinfo_request({
+            yield put(setpatientinfo_request({
               _id:paientinfo._id,
               formreviewlapsetoid:payload._id
             }));
@@ -159,11 +160,25 @@ export function* wsrecvsagabizflow() {
   });
 
 
+  yield takeLatest(`${setpatientinfo_result}`,function*(action){
+    const {payload} = action;
+    let paientinfos = {};
+    paientinfos[payload._id] = payload;
+    yield put(set_db({paientinfos}));
+  });
+
   yield takeLatest(`${editpatientinfo_result}`,function*(action){
     const {payload} = action;
     let paientinfos = {};
     paientinfos[payload._id] = payload;
     yield put(set_db({paientinfos}));
+    yield put(set_weui({
+      toast:{
+        text:'编辑病人成功',
+        show: true,
+        type:'success'
+    }}));
+    yield put(goBack());
   });
 
   yield takeLatest(`${getpatientinfo_result}`,function*(action){

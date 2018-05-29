@@ -7,6 +7,9 @@ import { Radio } from 'antd';
 import lodashget from 'lodash.get';
 import IndexHead from '../index/index_title';
 import ReviewDetaillist from './review_detaillist';
+
+import DepatSelect from '../index/selector_depat';
+
 import './reviewlist.css';
 
 const RadioButton = Radio.Button;
@@ -20,6 +23,7 @@ class App extends React.Component {
 		constructor(props) {
 				super(props);
 				this.state = {
+						curdepatid:'0',
 						query : {}
 				};
 		}
@@ -33,41 +37,46 @@ class App extends React.Component {
 
 		onChange = (e)=>{
 			const selectedstring = e.target.value;
-			console.log(selectedstring)
+			let query = this.state.query;
 			if(selectedstring === 'all'){
-				this.setState({query:{}});
+				const {usercreatorid,signed_headnurse,signed_nursingdepartment,stagestatus,...rest} = query;
+				query = rest;
+				this.setState({query});
 			}
 			if(selectedstring === 'mine'){
 				const {userlogin} = this.props;
 				const userid = lodashget(userlogin,'_id');
 				const permissionname = lodashget(userlogin,'permission.name','普通护士');
 				if(permissionname === '普通护士'){
-					this.setState({query:{usercreatorid:userid}});
+					query[`usercreatorid`] = userid;
+					this.setState({query});
 				}
 				else if(permissionname === '护士长'){
-					this.setState({query:{signed_headnurse:userid}});
+					query[`signed_headnurse`] = userid;
+					this.setState({query});
 				}
 				else  if(permissionname === '护理部主管'){
-					this.setState({query:{signed_nursingdepartment:userid}});
+					query[`signed_nursingdepartment`] = userid;
+					this.setState({query});
 				}
 
 			}
 			if(selectedstring === 'reviewing'){
-				this.setState({query:{
-					stagestatus:{$in:['护士长审核中','护理部审核中']}
-				}});
+				query[`stagestatus`] = {$in:['护士长审核中','护理部审核中']};
+				this.setState({query});
 			}
 			if(selectedstring === 'reviewed'){
-				this.setState({query:{
-					stagestatus:{$in:['已审核','已上报']}
-				}});
+				query[`stagestatus`] = {$in:['已审核','已上报']};
+				this.setState({query});
 			}
 			if(selectedstring === 'notreviewed'){
-				this.setState({query:{
-					stagestatus:{$in:['未审核']}
-				}});
+				query[`stagestatus`] = {$in:['未审核']};
+				this.setState({query});
 			}
+			this.refreshReviewlist();
+		}
 
+		refreshReviewlist = ()=>{
 			window.setTimeout(()=>{
 				const h1 = this.refs.rlistsearch;
 				console.log(h1);
@@ -75,18 +84,35 @@ class App extends React.Component {
 					const h2 = h1.refs.refreviewinfo.getWrappedInstance();
 					if(!!h2){
 						h2.onRefresh();
-					}			
+					}
 				}
 			},0);
 		}
-
+		onChangeDepat =(id)=>{
+			let query = this.state.query;
+			if(id !== '0'){
+				query['depatid'] = id;
+			}
+			else{
+				const {depatid,...rest} = query;
+				query = rest;
+			}
+			this.setState({
+				curdepatid:id,
+				query
+			});
+			this.refreshReviewlist();
+		}
   	render() {
+			const {db,userlogin} = this.props;
+			const PermissionName = lodashget(userlogin,'permission.name','');
 	    return (
 	      	<Layout>
 						<IndexHead title="申报审阅"/>
 						<div className="content-box">
 								<div className="content">
-										<h4><span>
+										<h4>
+										<span>
 											<RadioGroup defaultValue="all" onChange={this.onChange}>
 												<RadioButton value="all">全部</RadioButton>
 												<RadioButton value="mine">我的递交</RadioButton>
@@ -95,6 +121,16 @@ class App extends React.Component {
 								        <RadioButton value="notreviewed">未审</RadioButton>
 								      </RadioGroup>
 										</span>
+										{
+											PermissionName === '护理部主管' && (<span>
+																						<DepatSelect
+																							onChangeDepat={this.onChangeDepat}
+																							db={db}
+																							curdepatid={this.state.curdepatid}
+																						/>
+																					</span>)
+										}
+
 										<button className="return" onClick={
 											()=>{
 												this.props.history.replace('/');

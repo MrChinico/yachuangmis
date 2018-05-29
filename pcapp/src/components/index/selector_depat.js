@@ -15,7 +15,6 @@ const DepatSelect = (props)=>{
   menus.push(<Menu.Item key="0">所有科室</Menu.Item>);
   const {depats} = db;
   lodashmap(depats,(depat)=>{
-    console.log(depat);
     menus.push(<Menu.Item key={`${depat._id}`}>{`${depat.Depatname}`}</Menu.Item>);
   });
   const menu = (

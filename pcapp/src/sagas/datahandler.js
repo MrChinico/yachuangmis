@@ -62,6 +62,9 @@ import {
     editpatientinfo_request,
     editpatientinfo_result,
 
+    setpatientinfo_request,
+    setpatientinfo_result,
+
     sendsmartdevicecmd_request,
     sendsmartdevicecmd_result,
 
@@ -105,6 +108,7 @@ let recvmessagetoresultpair = {
   'getevaluatewoundsurfacelist_result':getevaluatewoundsurfacelist_result,
 
   'editpatientinfo_result':editpatientinfo_result,
+  'setpatientinfo_result':setpatientinfo_result,
   'page_getpatientinfolist_result':page_getpatientinfolist_result,
   'getpatientinfo_result':getpatientinfo_result,
   'getdepatlist_result':getdepatlist_result,
@@ -145,6 +149,7 @@ let sendmessageauthfnsz = {
 
   'saveusersettings':`${saveusersettings_request}`,
   'page_getpatientinfolist':`${page_getpatientinfolist_request}`,
+  'setpatientinfo':`${setpatientinfo_request}`,
   'editpatientinfo':`${editpatientinfo_request}`,
   'createevaluatebarden':`${createevaluatebarden_request}`,
   'editevaluatebarden':`${editevaluatebarden_request}`,

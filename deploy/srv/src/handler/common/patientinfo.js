@@ -8,6 +8,24 @@ const moment = require('moment');
 const debug = require('debug')('appsrv:patientinfo');
 const getdepatlistids = require('../getdepatlistids');
 
+exports.setpatientinfo  = (actiondata,ctx,callback)=>{
+  const dbModel = DBModels.PatientinfoModel;
+  dbModel.findOneAndUpdate({_id: actiondata._id},{$set:actiondata},{new: true}).lean().exec((err, newrecord)=> {
+      if(!err && !!newrecord){
+        callback({
+          cmd:'esetpatientinfo_result',
+          payload:newrecord
+        });
+      }
+      else{
+        callback({
+          cmd:'common_err',
+          payload:{errmsg:'设置病人信息失败',type:'setpatientinfo'}
+        });
+      }
+  });
+}
+
 exports.editpatientinfo = (actiondata,ctx,callback)=>{
   const dbModel = DBModels.PatientinfoModel;
   dbModel.findOneAndUpdate({_id: actiondata._id},{$set:actiondata},{new: true}).lean().exec((err, newrecord)=> {
