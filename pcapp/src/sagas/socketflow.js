@@ -23,6 +23,7 @@ export function* socketflow(){//仅执行一次
           const token = localStorage.getItem(`yc_${config.softmode}_token`);
           if (!!token) {
             yield put(loginwithtoken_request({token}));
+            console.log(`重新发送登录请求`);
           }
         }
       }

@@ -4,6 +4,7 @@ import { Layout } from 'antd';
 import Patientinfolist from './index_patientinfolist';
 import { Input } from 'antd'
 import DepatSelect from './selector_depat';
+import DiseaseclassificationSelect from './selector_diseaseclassification';
 
 const Search = Input.Search;
 const { Header } = Layout;
@@ -17,6 +18,7 @@ class App extends React.Component {
 				query:{},
 				searchtxt:'',
 				curdepatid:'0',
+				curdiseaseclassification:'0'
 			}
 		}
 		componentDidMount(){
@@ -25,6 +27,33 @@ class App extends React.Component {
 
 		componentWillUnmount() {
 
+		}
+	  refreshPaientList = ()=>{
+			window.setTimeout(()=>{
+				const h1 = this.refs.plistsearch;
+				console.log(h1);
+				if(!!h1){
+					const h2 = h1.refs.refpaientinfo.getWrappedInstance();
+					if(!!h2){
+						h2.onRefresh();
+					}
+				}
+			},0);
+		}
+		onChangeDiseaseclassification=(id)=>{
+			let query = this.state.query;
+			if(id !== '0'){
+				query['Diseaseclassification'] = id;
+			}
+			else{
+				const {Diseaseclassification,...rest} = query;
+				query = rest;
+			}
+			this.setState({
+				curdiseaseclassification:id,
+				query
+			});
+			this.refreshPaientList();
 		}
 
 		onChangeDepat =(id)=>{
@@ -40,16 +69,7 @@ class App extends React.Component {
 				curdepatid:id,
 				query
 			});
-			window.setTimeout(()=>{
-				const h1 = this.refs.plistsearch;
-				console.log(h1);
-				if(!!h1){
-					const h2 = h1.refs.refpaientinfo.getWrappedInstance();
-					if(!!h2){
-						h2.onRefresh();
-					}
-				}
-			},0);
+			this.refreshPaientList();
 		}
 
 		onSearch = (value)=>{
@@ -60,17 +80,7 @@ class App extends React.Component {
 				query
 			});
 
-			window.setTimeout(()=>{
-				console.log(this.refs);
-				// const refhande = lodashget(this,``)
-				const h1 = this.refs.plistsearch;
-				if(!!h1){
-					const h2 = h1.refs.refpaientinfo.getWrappedInstance();
-					if(!!h2){
-						h2.onRefresh();
-					}
-				}
-			},0);
+			this.refreshPaientList();
 		}
   	render() {
 			const showtext = this.state.searchtxt === ''?'所有病人记录':`${this.state.searchtxt}的搜索结果`;
@@ -97,6 +107,10 @@ class App extends React.Component {
 										db={this.props.db}
 										curdepatid={this.state.curdepatid}
 									/>
+									<DiseaseclassificationSelect
+										onChangeDiseaseclassification={this.onChangeDiseaseclassification}
+										curdiseaseclassification={this.state.curdiseaseclassification}
+								/>
 									<button className="return" onClick={
 									()=>{
 										this.props.history.goBack();

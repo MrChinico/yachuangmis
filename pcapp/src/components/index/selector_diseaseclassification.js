@@ -4,7 +4,7 @@ import { Menu, Dropdown, Button, Icon, } from 'antd';
 // import lodashget from 'lodash.get';
 
 const DiseaseclassificationSelector = (props)=>{
-  const {onChangeDiseaseclassification,db,curdiseaseclassification} = props;
+  const {onChangeDiseaseclassification,curdiseaseclassification} = props;
   const  handleMenuClick = ({ item, key, keyPath })=>{
     if(!!onChangeDiseaseclassification){
       onChangeDiseaseclassification(key);
