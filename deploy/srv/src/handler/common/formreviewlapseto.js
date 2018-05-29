@@ -7,7 +7,7 @@ const getdepatlistids = require('../getdepatlistids');
 const moment = require('moment');
 const debug = require('debug')('appsrv:patientinfo');
 
-const getlapsetoquery = (ctx,callbackfn)=>{
+const getlapsetoquery = (ctx,depatid,callbackfn)=>{
   //如果是普通护士
   if(ctx.permission.name === '普通护士'){
     //只能看到自己新建的
@@ -16,6 +16,9 @@ const getlapsetoquery = (ctx,callbackfn)=>{
   else{
     //护士长 或 护理部主管
     getdepatlistids(ctx,(depatlistids)=>{
+        if(!!depatid){
+          depatlistids = [depatid];
+        }
         const dbModel = DBModels.PatientinfoModel;
         dbModel.find({depatid:{$in:depatlistids}},{_id:1}).lean().exec((err,plist)=>{
           let patientlistids = [];
@@ -77,7 +80,7 @@ exports.editformreviewlapseto = (actiondata,ctx,callback)=>{
 
 exports.getcount_reviewlapseto = (actiondata,ctx,callback)=>{
   const dbModel = DBModels.FormReviewLapsetoModel;
-  getlapsetoquery(ctx,(query)=>{
+  getlapsetoquery(ctx,undefined,(query)=>{
     dbModel.count(query,(err,number)=>{
         if(!err){
           callback({
@@ -121,16 +124,11 @@ exports.page_getformreviewlapsetolist =  (actiondata,ctx,callback)=>{
         select:'username truename Staffno Staffid Staffname Depatno',
       },
   ];
-  getlapsetoquery(ctx,(query)=>{
+  const depatid = _.get(actiondata,'query.depatid');
+  getlapsetoquery(ctx,depatid,(query)=>{
     let querypre = actiondata.query;
     _.map(querypre,(value,key)=>{
-      let keysz = key.split('_');
-      if(keysz.length === 2){
-        if(keysz[1]=== 'q'){
-          query[keysz[0]] = new RegExp(value,'ig');
-        }
-      }
-      else{
+      if(key !== 'depatid'){
         query[key] = value;
       }
     });

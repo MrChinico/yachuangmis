@@ -7,7 +7,7 @@ const moment = require('moment');
 
 exports.getdepatlist = (actiondata,ctx,callback)=>{
   const depatModel = DBModels.DepatModel;
-  const queryexec = depatModel.find({isenabled:true}).select().lean();
+  const queryexec = depatModel.find({}).select().lean();
   queryexec.exec((err,list)=>{
     if(!err && !!list){
         callback({
