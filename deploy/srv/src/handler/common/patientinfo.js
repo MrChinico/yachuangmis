@@ -20,7 +20,7 @@ exports.editpatientinfo = (actiondata,ctx,callback)=>{
       else{
         callback({
           cmd:'common_err',
-          payload:{errmsg:'编辑护理措施失败',type:'editpatientinfo'}
+          payload:{errmsg:'编辑病人信息失败',type:'editpatientinfo'}
         });
       }
   });
