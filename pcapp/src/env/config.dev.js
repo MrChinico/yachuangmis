@@ -1,4 +1,4 @@
-let islocalhost = true;
+let islocalhost = false;
 const serverurl = islocalhost?'http://localhost:6012':'http://yunqi.com28.cn:6012';
 
 const serverurlrestful = islocalhost?`${serverurl}/api`:`${serverurl}/api`;
