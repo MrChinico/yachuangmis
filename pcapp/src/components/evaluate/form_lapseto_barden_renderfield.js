@@ -1,7 +1,8 @@
 import React from 'react';
 import {FieldArray,Field, } from 'redux-form';
 import lodashget from 'lodash.get';
-import { Popconfirm } from 'antd';
+// import { Popconfirm } from 'antd';
+import popConfirmSign from './popconfirmsign';
 import moment from 'moment';
 
 const renderConditions_prerequisites_options = (props)=>{
@@ -435,9 +436,22 @@ const renderUserSignedNurse= (fields)=>{
     MDD = momenttime.format('DD');
     MHH = momenttime.format('HH');
     Mmm = momenttime.format('mm');
-
   }
-  let Co = (<tr>
+
+  const onConfirm = ()=>{
+    if(isenabled){
+      let initmoment = moment();
+      popConfirmSign(initmoment,(resultmoment)=>{
+        const userid = userlogin._id;
+        const moments = resultmoment.format('YYYY-MM-DD HH:mm:ss');
+        signed_nurse.input.onChange(userid);
+        signed_nurse_time.input.onChange(moments);
+        stagestatus.input.onChange('护士长审核中');
+      });
+    }
+  };
+
+  const Co = (<tr onClick={onConfirm}>
       <td>申报人签字：<input type="text" readOnly value={Staffname}/></td>
       <td className="w-50">申报时间：
           <input type="text" readOnly value={MYY}/>年
@@ -447,17 +461,6 @@ const renderUserSignedNurse= (fields)=>{
           <input type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
-  if(isenabled){
-    return <Popconfirm placement="top" title="确定要签名吗" onConfirm={()=>{
-      const userid = userlogin._id;
-      const moments = moment().format('YYYY-MM-DD HH:mm:ss');
-      signed_nurse.input.onChange(userid);
-      signed_nurse_time.input.onChange(moments);
-      stagestatus.input.onChange('护士长审核中');
-    }} okText="是" cancelText="否" okType="secondary">
-      {Co}
-      </Popconfirm>
-  }
   return Co;
 }
 
@@ -483,7 +486,21 @@ const renderUserSignedHeadNurse= (fields)=>{
     Mmm = momenttime.format('mm');
 
   }
-  let Co = (<tr>
+
+  const onConfirm = ()=>{
+    if(isenabled){
+      let initmoment = moment();
+      popConfirmSign(initmoment,(resultmoment)=>{
+        const userid = userlogin._id;
+        const moments = resultmoment.format('YYYY-MM-DD HH:mm:ss');
+        signed_headnurse.input.onChange(userid);
+        signed_headnurse_time.input.onChange(moments);
+        stagestatus.input.onChange('护理部审核中');
+      });
+    }
+  };
+
+  const Co = (<tr onClick={onConfirm}>
       <td>护士长签字：<input type="text" readOnly value={Staffname}/></td>
       <td className="w-50">日期：
           <input type="text" readOnly value={MYY}/>年
@@ -493,17 +510,7 @@ const renderUserSignedHeadNurse= (fields)=>{
           <input type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
-  if(isenabled){
-    return <Popconfirm placement="top" title="确定要签名吗" onConfirm={()=>{
-      const userid = userlogin._id;
-      const moments = moment().format('YYYY-MM-DD HH:mm:ss');
-      signed_headnurse.input.onChange(userid);
-      signed_headnurse_time.input.onChange(moments);
-      stagestatus.input.onChange('护理部审核中');
-    }} okText="是" cancelText="否" okType="secondary">
-      {Co}
-      </Popconfirm>
-  }
+
   return Co;
 }
 
@@ -528,9 +535,21 @@ const renderUserSignedNursingDepartment= (fields)=>{
     MDD = momenttime.format('DD');
     MHH = momenttime.format('HH');
     Mmm = momenttime.format('mm');
-
   }
-  let Co = (<tr>
+  const onConfirm = ()=>{
+    if(isenabled){
+      let initmoment = moment();
+      popConfirmSign(initmoment,(resultmoment)=>{
+        const userid = userlogin._id;
+        const moments = resultmoment.format('YYYY-MM-DD HH:mm:ss');
+        signed_nursingdepartment.input.onChange(userid);
+        signed_nursingdepartment_time.input.onChange(moments);
+        stagestatus.input.onChange('已审核');
+      });
+    }
+  };
+
+  const Co = (<tr onClick={onConfirm}>
       <td>主管部门签字：<input type="text" readOnly value={Staffname}/></td>
       <td className="w-50">日期：
           <input type="text" readOnly value={MYY}/>年
@@ -540,17 +559,7 @@ const renderUserSignedNursingDepartment= (fields)=>{
           <input type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
-  if(isenabled){
-    return <Popconfirm placement="top" title="确定要签名吗" onConfirm={()=>{
-      const userid = userlogin._id;
-      const moments = moment().format('YYYY-MM-DD HH:mm:ss');
-      signed_nursingdepartment.input.onChange(userid);
-      signed_nursingdepartment_time.input.onChange(moments);
-      stagestatus.input.onChange('已审核');
-    }} okText="是" cancelText="否" okType="secondary">
-      {Co}
-      </Popconfirm>
-  }
+
   return Co;
 }
 
@@ -576,7 +585,20 @@ const renderUserReport= (fields)=>{
     Mmm = momenttime.format('mm');
 
   }
-  let Co = (<tr>
+
+  const onConfirm = ()=>{
+    if(isenabled){
+      let initmoment = moment();
+      popConfirmSign(initmoment,(resultmoment)=>{
+        const userid = userlogin._id;
+        const moments = resultmoment.format('YYYY-MM-DD HH:mm:ss');
+        signed_report.input.onChange(userid);
+        signed_report_time.input.onChange(moments);
+        stagestatus.input.onChange('已上报');
+      });
+    }
+  };
+  const Co = (<tr onClick={onConfirm}>
       <td>上报人签字:<input type="text" readOnly value={Staffname}/></td>
       <td className="w-50">日期：
           <input type="text" readOnly value={MYY}/>年
@@ -586,17 +608,7 @@ const renderUserReport= (fields)=>{
           <input type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
-  if(isenabled){
-    return <Popconfirm placement="top" title="确定要签名吗" onConfirm={()=>{
-      const userid = userlogin._id;
-      const moments = moment().format('YYYY-MM-DD HH:mm:ss');
-      signed_report.input.onChange(userid);
-      signed_report_time.input.onChange(moments);
-      stagestatus.input.onChange('已上报');
-    }} okText="是" cancelText="否" okType="secondary">
-      {Co}
-      </Popconfirm>
-  }
+
   return Co;
 }
 
