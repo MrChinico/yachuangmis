@@ -14,17 +14,24 @@ const style_table_td = {
     fontSize: '14px'
 };
 
-
+/**
+ * 第四题修改处 
+ * 由于input元素宽度过宽导致在打印时被强制换行，被限制的高度也导致输出字符会出现打印不完全的问题。
+ * 解决方法：将宽度值缩短到合适范围，并且设置合适的高度。
+*/
 const style_table_tr_input = {
   background: 'transparent !important',
   border:'transparent !important',
+  width: '100px',
   borderBottom:'1px solid #646464  !important',
   textAlign: 'center',
-  height:'16px',
+  height:'20px',
+  paddingBottom: '0px',
   display: 'inline-block',
   verticalAlign: 'middle',
   marginRight: '10px',
 };
+//-----------------------
 const style_table_td2 = {
     width:'50%'
 };

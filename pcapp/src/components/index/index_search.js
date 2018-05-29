@@ -102,6 +102,12 @@ class App extends React.Component {
 							<div className="index-content assess">
 								<h2 className="bbm-green">
 									{showtext}
+									{/* 第二题修改位置 */}
+									<button className="return" onClick={
+									()=>{
+										this.props.history.goBack();
+									}
+								}><img src="return.png" alt="" /></button>
 									<DepatSelect
 										onChangeDepat={this.onChangeDepat}
 										db={this.props.db}
@@ -110,12 +116,8 @@ class App extends React.Component {
 									<DiseaseclassificationSelect
 										onChangeDiseaseclassification={this.onChangeDiseaseclassification}
 										curdiseaseclassification={this.state.curdiseaseclassification}
-								/>
-									<button className="return" onClick={
-									()=>{
-										this.props.history.goBack();
-									}
-								}><img src="return.png" alt="" /></button>
+									/>
+									{/* -------------- */}
 									<div className="clearfix">
 								</div>
 								</h2>

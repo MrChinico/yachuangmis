@@ -51,12 +51,6 @@ class PageForm extends React.Component {
 						>
       		<div
       			className="loginPage"
-      			style={{
-      				width: "100%",
-      				/*height: `${this.state.innerHeight}px`,*/
-      				overflow: "hidden",
-					    margin:"30% 0px"
-      			}}
       			>
         		{<img alt="" src={LoginBg} className="loginbg" />}
         		<div className="loginForm">

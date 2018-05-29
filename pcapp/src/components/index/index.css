@@ -1010,6 +1010,7 @@ background-color:#f9f9f9;
     padding: 10px 0px !important;
     margin:5px 20px !important;
 }
+
 .index-content h2{
     border-bottom: 0px;
     padding: 0px !important;
@@ -1024,12 +1025,19 @@ background-color:#f9f9f9;
     width: 24px;
     height: 24px;
 }
+/* 第二题修改位置 */
+/* 由于float的特性 右浮动的元素会颠倒，所以需要倒叙排列。另外由于给button元素统一定宽导致该元素宽度混乱 */
+/* 解决方案：将宽度取消使用默认值，根据float特性修改正确的DOM */
 .index-content h2 button {
     float: right;
-    width: 24px;
+    /* width: 24px; */
     height: 24px;
     margin-top: 3px;
 }
+.index-content h2 button.return {
+    font-size: 0;
+}
+/* ------------- */
 .modify-password .bbm{
     border-bottom:1px solid #ddd;
     padding:10px;

@@ -5,7 +5,8 @@ import { Layout } from 'antd';
 import {set_uiapp} from '../../actions';
 import { Badge } from 'antd';
 import lodashget from 'lodash.get';
-import DepatSelect from './selector_depat';
+
+import DepatSelect from './selector_depat';	// 载入分选模块
 // import lodashmap from 'lodash.map';
 const { Header } = Layout;
 class App extends React.Component {
@@ -37,16 +38,19 @@ class App extends React.Component {
 			const Staffname = lodashget(this,'props.userlogin.Staffname','');
 			const reviewnumber = lodashget(this,'props.userlogin.reviewnumber','');
 
+			// 按钮列表
 			let btns = [
 				<button key={'btnsearch'} onClick={
 					()=>{
 					this.onClickSearch()
 				}}>搜索</button>,
+
 				<button key={'btndata'} onClick={
 					()=>{
 						this.onClickDatastat();
 					}
 				}>数据统计</button>,
+				
 				<button key={'btnreview'} onClick={
 					()=>{
 					this.onClickReview()
@@ -58,21 +62,31 @@ class App extends React.Component {
 
 			];
 
-			if(PermissionName === '护理部主管'){
+			if(PermissionName === '护理部主管') {
+				
+				// 推送所有科室的代码块
+				btns.push(
+					<DepatSelect
+						key = {'btnuser2'}
+						onChangeDepat = {this.props.onChangeDepat}
+						db = {this.props.db}
+						curdepatid = {this.props.curdepatid}
+					/>);
 
-				btns.push(<DepatSelect  key={'btnuser2'}
-					onChangeDepat={this.props.onChangeDepat}
-					db={this.props.db}
-					curdepatid={this.props.curdepatid}
-				/>);
-
-				btns.push(<button  key={'btnuser'} onClick={
-					()=>{
-					this.onClickUser()
-					}}>
+				// 向数组推送当前用户的代码块
+				btns.push(
+					<button
+						key = {'btnuser'}
+						onClick = {
+							() => {
+								this.onClickUser()
+							}
+						}
+					>
 					<span>{Staffname}({PermissionName})</span>
 				</button>);
 			}
+
 			else{
 				btns.push(<button  key={'btnuser'} onClick={
 					()=>{
@@ -82,6 +96,7 @@ class App extends React.Component {
 					<span>{Staffname}({PermissionName})</span>
 				</button>);
 			}
+			
 			const title = this.props.title || '病人列表';
 	    return (
 	      	<Header>

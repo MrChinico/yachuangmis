@@ -11,6 +11,7 @@ const DepatSelect = (props)=>{
     }
   }
 
+  // 菜单数组 
   let menus = [];
   menus.push(<Menu.Item key="0">所有科室</Menu.Item>);
   const {depats} = db;
@@ -28,7 +29,9 @@ const DepatSelect = (props)=>{
   }
 
   return (<Dropdown overlay={menu}>
-    <Button style={{ marginLeft: 8 }}>
+    {/* 这里是第一题的修改地点，由于ANTD的Button类有默认的样式对应所以导致样式混乱 */}
+    {/* 解决方案使用高优先级的样式替换或者修改Button的默认样式选择器中的内容 */}
+    <Button style={{ height:100+'%', marginLeft: 8 }}> 
        {curdepatname}<Icon type="down" />
     </Button>
   </Dropdown>);
