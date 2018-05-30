@@ -140,7 +140,7 @@ class App extends React.Component {
 
 						 <div onClick={
 								()=>{
-									this.onClickTurnover();
+									// this.onClickTurnover();
 								}
 							}>
 							<img src="custom.png" alt=""/><p>暂不支持</p>
