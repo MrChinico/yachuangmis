@@ -110,8 +110,8 @@ class App extends React.Component {
 	      	<Layout>
 						<IndexHead title="申报审阅"/>
 						<div className="content-box">
-								<div className="content">
-										<h4>
+								<div className="index-content">
+										<h2>
 										<span>
 											<RadioGroup defaultValue="all" onChange={this.onChange}>
 												<RadioButton value="all">全部</RadioButton>
@@ -121,23 +121,24 @@ class App extends React.Component {
 								        <RadioButton value="notreviewed">未审</RadioButton>
 								      </RadioGroup>
 										</span>
-										{
-											PermissionName === '护理部主管' && (<span>
-																						<DepatSelect
-																							onChangeDepat={this.onChangeDepat}
-																							db={db}
-																							curdepatid={this.state.curdepatid}
-																						/>
-																					</span>)
-										}
 
 										<button className="return" onClick={
 											()=>{
 												this.props.history.replace('/');
 											}
 										}><img src="return.png" alt=""/></button>
+										{
+											PermissionName === '护理部主管' && (
+																						<DepatSelect
+																							onChangeDepat={this.onChangeDepat}
+																							db={db}
+																							curdepatid={this.state.curdepatid}
+																						/>
+																					)
+										}
+
 										<div className="clearfix"></div>
-									</h4>
+									</h2>
 								</div>
 								<ReviewDetaillist
 									query={this.state.query}
