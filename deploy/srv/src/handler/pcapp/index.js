@@ -24,7 +24,7 @@ const authhandler = {
   'getcount_reviewlapseto':formreviewlapseto.getcount_reviewlapseto,
   'createformreviewlapseto':formreviewlapseto.createformreviewlapseto,
   'editformreviewlapseto':formreviewlapseto.editformreviewlapseto,
-  'setpatientinfo':formreviewlapseto.setpatientinfo,
+  'setpatientinfo':patientinfo.setpatientinfo,
   'page_getformreviewlapsetolist':formreviewlapseto.page_getformreviewlapsetolist,
   'editpatientinfo':patientinfo.editpatientinfo,
   'createevaluatebarden':evaluatebarden.createevaluatebarden,

@@ -13,7 +13,7 @@ exports.setpatientinfo  = (actiondata,ctx,callback)=>{
   dbModel.findOneAndUpdate({_id: actiondata._id},{$set:actiondata},{new: true}).lean().exec((err, newrecord)=> {
       if(!err && !!newrecord){
         callback({
-          cmd:'esetpatientinfo_result',
+          cmd:'setpatientinfo_result',
           payload:newrecord
         });
       }
