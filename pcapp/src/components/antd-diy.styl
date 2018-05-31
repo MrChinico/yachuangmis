@@ -6,12 +6,7 @@
  *  Mr.Chinico  2018.5
  */
 
-// ----- 站点全局配色 -----
-
-theme-color-A = #008c7a
-theme-color-B = #007c6a
-
-// --------------------
+@import 'stylus-setting'
 
 .ant-radio-group
   background: #fff;
@@ -38,3 +33,21 @@ theme-color-B = #007c6a
     &:hover
       border-color: theme-color-A
       color: theme-color-A
+
+.ant-badge
+  margin-left: 4px;
+  margin-top: -16px;
+
+.ant-btn.ant-dropdown-trigger
+  background: transparent
+  color: inherit
+  height 100%;
+  &:hover
+    border-color: theme-color-A
+    color: theme-color-A
+  &:focus
+    @extend .ant-btn.ant-dropdown-trigger
+    border-color: theme-color-A
+
+.ant-btn-primary
+  background: transparent

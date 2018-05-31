@@ -7,6 +7,8 @@ import Changepwd from "../popdialog/pwd.js";
 import Usercenter from "../popdialog/usercenter.js";
 import {getcount_reviewlapseto_request} from '../../actions';
 
+import './index.styl';
+
 class App extends React.Component {
 
 		constructor(props) {
