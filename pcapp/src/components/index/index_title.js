@@ -1,90 +1,86 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { Layout } from 'antd';
-import {set_uiapp} from '../../actions';
-import { Badge } from 'antd';
-import lodashget from 'lodash.get';
+import React 					from 'react';
+import { connect } 		from 'react-redux';
+import { withRouter }	from 'react-router-dom';
+import { Layout } 		from 'antd';
+import { set_uiapp }	from '../../actions';
+import { Badge } 			from 'antd';
+import lodashget 			from 'lodash.get';
 
 import DepatSelect from './selector_depat';	// 载入分选模块
 // import lodashmap from 'lodash.map';
 const { Header } = Layout;
 class App extends React.Component {
+	
+	componentDidMount() {}
 
-		componentDidMount(){
+	componentWillUnmount() {}
 
-		}
+	onClickSearch = () => {
+		this.props.history.push( '/searchpaientinfo' );
+	}
 
-		componentWillUnmount() {
+	onClickDatastat = () => {
+		this.props.history.replace( '/datastat' );
+	}
 
-		}
+	onClickReview = () => {
+		this.props.history.replace( '/review' );
+	}
 
-		onClickSearch = ()=>{
-			this.props.history.push(`/searchpaientinfo`);
-		}
-		onClickDatastat = ()=>{
-			this.props.history.replace(`/datastat`);
-		}
-		onClickReview = ()=>{
-			this.props.history.replace(`/review`);
-		}
-		onClickUser = ()=>{
-			this.props.dispatch(set_uiapp({ispopuserinfo:true}));
-		}
+	onClickUser = () => {
+		this.props.dispatch( set_uiapp( { ispopuserinfo:true } ) );
+	}
 
-  	render() {
-			const Depatname = lodashget(this,'props.userlogin.depatid.Depatname','');
-			const PermissionName = lodashget(this,'props.userlogin.permission.name','');
-			const Staffname = lodashget(this,'props.userlogin.Staffname','');
-			const reviewnumber = lodashget(this,'props.userlogin.reviewnumber','');
+	render() {
+		const Depatname 			= lodashget( this, 'props.userlogin.depatid.Depatname', '');
+		const PermissionName	= lodashget( this, 'props.userlogin.permission.name', '' );
+		const Staffname				= lodashget( this, 'props.userlogin.Staffname', '' );
+		const reviewnumber 		= lodashget( this, 'props.userlogin.reviewnumber', '');
 
-			// 按钮列表
-			let btns = [
-				<button key={'btnsearch'} onClick={
-					()=>{
-					this.onClickSearch()
-				}}>搜索</button>,
-
-				<button key={'btndata'} onClick={
-					()=>{
-						this.onClickDatastat();
-					}
-				}>数据统计</button>,
-				
-				<button key={'btnreview'} onClick={
-					()=>{
-					this.onClickReview()
+		// 导航栏菜单数组
+		let btns = [
+			<button key = { 'btnsearch' } onClick = { () => {
+				this.onClickSearch();
 				}}>
-				<Badge count={reviewnumber} overflowCount={99}>
-					<span style={{color:'white'}}>申报审阅&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				</Badge>
-			  </button>,
+				搜索
+			</button>,
 
+			<button key = { 'btndata' } onClick={ () => {
+					this.onClickDatastat();
+				}}>
+				数据统计
+			</button>,
+				
+			<button key = { 'btnreview' } onClick = { () => {
+					this.onClickReview();
+				}}>
+				申报审阅
+				<Badge count = { reviewnumber } overflowCount = { 99 }></Badge>
+			</button>
 			];
 
-			if(PermissionName === '护理部主管') {
+			if( PermissionName === '护理部主管') {
 				
 				// 推送所有科室的代码块
 				btns.push(
 					<DepatSelect
-						key = {'btnuser2'}
-						onChangeDepat = {this.props.onChangeDepat}
-						db = {this.props.db}
-						curdepatid = {this.props.curdepatid}
+						key						= { 'btnuser2' }
+						onChangeDepat	= { this.props.onChangeDepat }
+						db 						= { this.props.db }
+						curdepatid		= { this.props.curdepatid }
 					/>);
 
 				// 向数组推送当前用户的代码块
 				btns.push(
 					<button
 						key = {'btnuser'}
-						onClick = {
-							() => {
+						onClick = { () => {
 								this.onClickUser()
-							}
-						}
-					>
-					<span>{Staffname}({PermissionName})</span>
-				</button>);
+							}}>
+						<span>
+							{ Staffname }({ PermissionName })
+						</span>
+					</button>);
 			}
 
 			else{

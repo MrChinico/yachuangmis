@@ -186,12 +186,7 @@ input{
     -webkit-flex: 1;
     flex: 1;
 }
-.ant-layout-header button{
-    background: transparent !important;
-    border-color: transparent !important;
-    color:#fff;
-    margin-left:40px;
-}
+
 .icon-index{
     width:16px;
     height:16px;

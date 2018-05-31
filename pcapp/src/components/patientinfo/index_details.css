@@ -54,22 +54,12 @@ h1, h2, h3, h4, h5, h6, p{
     -webkit-flex: 1;
     flex: 1;
 }
-.ant-layout-header button{
-    background: transparent !important;
-    border-color: transparent !important;
-    color:#fff;
-    margin-left:40px;
-}
 .icon-index{
     width:16px;
     height:16px;
     display: inline-flex;
     vertical-align: sub;
     margin-right:8px;
-}
-button{
-    background: transparent !important;
-    border-color: transparent !important;
 }
 
 
