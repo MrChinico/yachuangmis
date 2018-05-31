@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route,Switch } from 'react-router-dom';
+
+import './antd.css';
+
 import Index from './index';
 import IndexDetail from './patientinfo/index_detail';
 import IndexDetailEdit from './patientinfo/edit';
@@ -24,7 +27,6 @@ import Review from './review/reviewlist';
 import SearchPaientinfo from './index/index_search';
 
 import Login from './login';
-import './antd.css';
 import {requireAuthentication} from './requireauthentication';
 
 

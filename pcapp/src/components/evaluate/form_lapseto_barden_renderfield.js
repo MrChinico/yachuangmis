@@ -529,7 +529,7 @@ const renderUserSignedHeadNurse= (fields)=>{
   const btntitle = isenabled?'签名':'回退';
   const Co = (<tr>
       <td>护士长签字：<input type="text" readOnly value={Staffname}/>
-      {isshowbtn && <button type="button" onClick={onConfirm} className="ant-btn-edit blue">{btntitle}</button>}
+      {isshowbtn && <button type="button" onClick={onConfirm} className="go-back ant-btn-edit blue">{btntitle}</button>}
       </td>
       <td className="w-50">日期：
           <input type="text" readOnly value={MYY}/>年

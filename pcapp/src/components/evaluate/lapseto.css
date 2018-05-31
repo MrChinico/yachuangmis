@@ -20,3 +20,12 @@ input[type="checkbox"]{
 table{
     width: 100%;
 }
+
+.go-back{
+    width: auto;
+    display: inline;
+    padding: 1px 16px;
+    float: right;
+    margin: 0px !important;
+    margin-right: 16px !important;
+}
