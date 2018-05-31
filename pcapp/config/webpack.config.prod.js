@@ -90,7 +90,7 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-
+      
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -121,7 +121,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-
+              
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -149,7 +149,7 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-
+              
               compact: true,
             },
           },
@@ -212,23 +212,21 @@ module.exports = {
             ),
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
           },
-          // 新增stylus样式与编译器的解析规则
-          {
-            test: /\.styl$/,
-            loaders: ['style-loader', 'css-loader', 'stylus-loader']
-          },
-
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
           // This loader doesn't use a "test" so it will catch all modules
           // that fall through the other loaders.
+          {
+            test: /\.styl$/, 
+            loaders: ['style-loader', 'css-loader', 'stylus-loader']
+          },
           {
             loader: require.resolve('file-loader'),
             // Exclude `js` files to keep "css" loader working as it injects
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.styl$/],  // 添加对stylu文件的解析规则
+            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.styl$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },
