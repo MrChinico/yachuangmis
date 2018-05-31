@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 import 'antd/dist/antd.min.css';
-import './test.styl';
+import './antd-diy.styl';
 
 import Index from './index';
 import IndexDetail from './patientinfo/index_detail';
