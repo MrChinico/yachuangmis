@@ -15,6 +15,12 @@ const style_choose_info_td_w50 = {
   width:'10%'
 };
 
+const style_choose_info_td_w25 = {
+  ...style_choose_info_td,
+  width:'25%'
+};
+
+
 const style_choose_info_td_w50_input = {
   background: 'transparent!important',
   border: 'transparent!important',
@@ -31,6 +37,13 @@ const style_choose_info_tr = {
   borderTop:'1px solid #ddd',
   lineHeight: '20px',
   borderRight:'1px solid #ddd'
+};
+
+const style_choose_info_tr_whitebg = {
+  borderTop:'1px solid #ddd',
+  lineHeight: '20px',
+  borderRight:'1px solid #ddd',
+  backgroundColor: '#FFFFFF',
 };
 
 const style_choose_info_tr_odd = {...style_choose_info_tr,
@@ -153,9 +166,10 @@ const CRenderPreventivesmeasureItemOptionsArray = (props)=>{
 };
 
 const CRenderPreventivesmeasureItem = (props)=>{
-  const {info:vo} = props;
+  const {info:vo, index} = props;
   if(!!vo.options && vo.options.length>0){
-    return (<tr style={style_choose_info_tr}>
+    return (
+    <tr style={style_choose_info_tr}>
       <td style={style_choose_info_td} colSpan="2">
         <input type="checkbox" name="check[]" readOnly/>{vo.name}
 				<CRenderPreventivesmeasureItemOptionsArray options={vo.options} />
@@ -163,15 +177,16 @@ const CRenderPreventivesmeasureItem = (props)=>{
     </tr>)
   }
   if(vo.value !== undefined){
-    return  (<tr style={style_choose_info_tr}><td style={style_choose_info_td} colSpan="2">
-      <input type="checkbox" name="check[]" checked={vo.checked} readOnly
-      />
+    return  (
+    <tr style={style_choose_info_tr}><td style={style_choose_info_td} colSpan="2">
+      <input type="checkbox" name="check[]" checked={vo.checked} readOnly />
         {vo.name}<input type="text" value={vo.value} readOnly/>
       </td>
     </tr>);
   }
 
-  return (<tr style={style_choose_info_tr}>
+  return (
+  <tr style={index%2===0?style_choose_info_tr:style_choose_info_tr_whitebg}>
     <td style={style_choose_info_td} colSpan="2"><input type="checkbox" name="check[]" checked={vo.checked} readOnly/>
       {vo.name}
     </td>
@@ -184,7 +199,7 @@ const CRenderPreventivesmeasure = (props)=>{
   const {preventivesmeasure} = props;
 	let trsz = [];
 	for(let i = 0 ;i < preventivesmeasure.length ;i ++){
-		trsz.push(<CRenderPreventivesmeasureItem key={`pm${i}`} info={preventivesmeasure[i]}/>);
+		trsz.push(<CRenderPreventivesmeasureItem key={`pm${i}`} index={i} info={preventivesmeasure[i]}/>);
 	}
   return trsz;
 }
@@ -291,11 +306,11 @@ const CRenderEvaluateWoundsurfaces =  (props)=>{
   for(let i = 0 ;i < evaluateWoundsurfaces.length ; i++){
     const value = evaluateWoundsurfaces[i];
     trsz.push(
-      <tr style={style_choose_info_tr} key={`trewfs${i}`}>
-        <td style={style_choose_info_td} key="tdwf0">{lodashget(value,'部位','')}</td>
-        <td style={style_choose_info_td} key="tdwf1">{lodashget(value,'分期','')}</td>
-        <td style={style_choose_info_td} key="tdwf2">{lodashget(value,'大小','')}</td>
-        <td style={style_choose_info_td} key="tdwf3">{lodashget(value,'情况','')}</td>
+      <tr style={i%2===0?style_choose_info_tr:style_choose_info_tr_whitebg} key={`trewfs${i}`}>
+        <td style={style_choose_info_td_w25} key="tdwf0">{lodashget(value,'部位','')}</td>
+        <td style={style_choose_info_td_w25} key="tdwf1">{lodashget(value,'分期','')}</td>
+        <td style={style_choose_info_td_w25} key="tdwf2">{lodashget(value,'大小','')}</td>
+        <td style={style_choose_info_td_w25} key="tdwf3">{lodashget(value,'情况','')}</td>
       </tr>
     );
   }

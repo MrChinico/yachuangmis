@@ -41,6 +41,11 @@ const style_choose_info_td = {
   borderRight:'1px solid #ddd'
 }
 
+const style_choose_info_td_w25 = {
+  ...style_choose_info_td,
+  width:'25%'
+};
+
 
 const style_choose_info_tr = {
   borderTop:'1px solid #ddd',
@@ -107,14 +112,14 @@ const ReviewDetailInfo = (props)=>{
 
 
     trlist.push(<tr style={style_choose_info_tr_graytitle} key='evaluateWoundsurfaces'>
-      <td style={style_choose_info_td} colSpan="2">
+      <td style={{width:'100%'}} colSpan="2">
         <table>
           <tbody>
             <tr>
-              <td>部位</td>
-              <td>分期</td>
-              <td>大小</td>
-              <td>情况</td>
+              <td style={style_choose_info_td_w25}>部位</td>
+              <td style={style_choose_info_td_w25}>分期</td>
+              <td style={style_choose_info_td_w25}>大小</td>
+              <td style={style_choose_info_td_w25}>情况</td>
             </tr>
             <CRenderEvaluateWoundsurfaces {...info} />
           </tbody>
