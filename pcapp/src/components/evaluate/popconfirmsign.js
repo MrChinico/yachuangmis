@@ -1,34 +1,58 @@
 import React from 'react';
-import { notification, Icon } from 'antd';
+// import { notification, Icon, Button } from 'antd';
 
 // import moment from 'moment';
 import { DatePicker } from 'antd';
 //https://github.com/fkhadra/react-toastify
+import { Modal } from 'antd';
+const confirm = Modal.confirm;
+
 const popConfirmSign = (initmoment,callback)=>{
-	notification.open({
-		placement: 'topLeft',
-		duration:null,
-		message: '确定需要签名吗,请选择签名日期',
-		description: <div>
-			<DatePicker
-				defaultValue={initmoment}
-				format="YYYY-MM-DD HH:mm:ss"
-				showTime
-				onChange={(date, dateString)=>{
-					initmoment = date;
-				}}
-				onPanelChange={this.handlePanelChange}
-			/>
-		</div>,
-		icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
-		onClose:()=>{
-			console.log(`curdate-->${initmoment.format('YYYY-MM-DD HH:mm:ss')}`)
-			callback(initmoment);
-		}
-	});
+
+    confirm({
+        title: '确定需要签名吗,请选择签名日期?',
+        content: <div>
+            <DatePicker
+                defaultValue={initmoment}
+                format="YYYY-MM-DD HH:mm:ss"
+                showTime
+                onChange={(date, dateString)=>{
+                    initmoment = date;
+                }}
+                onPanelChange={this.handlePanelChange}
+            />
+        </div>,
+        okText:'确认',
+        cancelText:'取消',
+        okType:'Default',
+        onOk() {
+            console.log(`curdate-->${initmoment.format('YYYY-MM-DD HH:mm:ss')}--->OK`)
+            callback(initmoment);
+        },
+        onCancel() {
+            console.log(`curdate-->${initmoment.format('YYYY-MM-DD HH:mm:ss')}--->cancel`)
+		    },
+    });
+};
+
+const popConfirmBack = (callback)=>{
+  confirm({
+      title: '确定是否需要回退?',
+      content: <div>
+        回退后,当前签名失效,会将状态回复到签名前的状态
+      </div>,
+      okText:'确认',
+      cancelText:'取消',
+      okType:'Default',
+      onOk() {
+          callback();
+      },
+      onCancel() {
+      },
+  });
 }
 
-export default popConfirmSign;
+export {popConfirmSign,popConfirmBack};
 //
 // class PopconfirmSign extends React.Component {
 // 		constructor(props) {

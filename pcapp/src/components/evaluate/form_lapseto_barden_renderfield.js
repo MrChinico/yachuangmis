@@ -2,7 +2,7 @@ import React from 'react';
 import {FieldArray,Field, } from 'redux-form';
 import lodashget from 'lodash.get';
 // import { Popconfirm } from 'antd';
-import popConfirmSign from './popconfirmsign';
+import {popConfirmSign,popConfirmBack} from './popconfirmsign';
 import moment from 'moment';
 
 const renderConditions_prerequisites_options = (props)=>{
@@ -203,6 +203,10 @@ const renderLapseto= (props)=>{
   const {ispressuresores,//是否发生压疮
     occuredpressuresorestime,//压疮发生时间
     lapsetooptions} = value;
+
+   const isshowbtn = //lodashget(userlogin,'permission.name','') === '护理部主管' &&
+    (lodashget(stagestatus,'input.value','') === '已上报' || lodashget(stagestatus,'input.value','') === '已审核');
+
   if(value === ''){
     return <tr />;
   }
@@ -248,7 +252,7 @@ const renderLapseto= (props)=>{
     MHH = momenttime.format('HH');
     Mmm = momenttime.format('mm');
   }
-  const isReadOnly = stagestatus.value !== '已审核';
+  const isReadOnly = !isshowbtn;
   let trsz = [];
   trsz.push(<tr className="blue title" key="title">
       <td colSpan="2">转归情况：</td>
@@ -310,8 +314,10 @@ const renderInstruction= (fields)=>{
   const input_isunavoidablepressureulcer = isunavoidablepressureulcer.input;
   const input_instruction = instruction.input;
 
-  let isReadOnly = !(lodashget(stagestatus,'input.value','') === '护理部审核中' &&
-    lodashget(userlogin,'permission.name','') === '护理部主管');//如果自己是护士长并且正在护士长审核中
+  const isshowbtn = (lodashget(userlogin,'permission.name','') === '护理部主管')
+  && (lodashget(stagestatus,'input.value','') === '护理部审核中' || lodashget(stagestatus,'input.value','') === '已审核');
+
+  let isReadOnly = !isshowbtn;//如果自己是护士长并且正在护士长审核中
 
   const onChangeChecked = (checked)=>{
       input_isunavoidablepressureulcer.onChange(checked?1:0);
@@ -420,7 +426,8 @@ const renderEvaluateWoundsurfaces =  (props)=>{
 
 const renderUserSignedNurse= (fields)=>{
   const {signed_nurse,signed_nurse_time,stagestatus,userlogin,db} = fields;
-  let isenabled = lodashget(stagestatus,'input.value','') === '未审核';
+  const isenabled =  (lodashget(userlogin,'permission.name','') === '护士' || lodashget(userlogin,'permission.name','') === '护士长') &&
+    lodashget(stagestatus,'input.value','') === '未审核';
   let Staffname = lodashget(db,`users.${lodashget(signed_nurse,'input.value','')}.Staffname`,'');
   let MYY = '';
   let MMM = '';
@@ -449,10 +456,21 @@ const renderUserSignedNurse= (fields)=>{
         stagestatus.input.onChange('护士长审核中');
       });
     }
+    else{
+      popConfirmBack(()=>{
+        signed_nurse.input.onChange(null);
+        signed_nurse_time.input.onChange(null);
+        stagestatus.input.onChange('未审核');
+      });
+    }
   };
-
-  const Co = (<tr onClick={onConfirm}>
-      <td>申报人签字：<input type="text" readOnly value={Staffname}/></td>
+  const isshowbtn = (lodashget(userlogin,'permission.name','') === '护士' || lodashget(userlogin,'permission.name','') === '护士长')
+  && (lodashget(stagestatus,'input.value','') === '未审核' || lodashget(stagestatus,'input.value','') === '护士长审核中');
+  const btntitle = isenabled?'签名':'回退';
+  const Co = (<tr>
+      <td>申报人签字：<input type="text" readOnly value={Staffname}/>
+      {isshowbtn && <button  type="button" onClick={onConfirm} className="ant-btn-edit blue">{btntitle}</button>}
+      </td>
       <td className="w-50">申报时间：
           <input type="text" readOnly value={MYY}/>年
           <input type="text" readOnly value={MMM}/>月
@@ -466,7 +484,7 @@ const renderUserSignedNurse= (fields)=>{
 
 const renderUserSignedHeadNurse= (fields)=>{
   const {signed_headnurse,signed_headnurse_time,stagestatus,userlogin,db} = fields;
-  let isenabled = lodashget(stagestatus,'input.value','') === '护士长审核中' &&
+  const isenabled = lodashget(stagestatus,'input.value','') === '护士长审核中' &&
     lodashget(userlogin,'permission.name','') === '护士长';//如果自己是护士长并且正在护士长审核中
 
   let Staffname = lodashget(db,`users.${lodashget(signed_headnurse,'input.value','')}.Staffname`,'');
@@ -498,10 +516,21 @@ const renderUserSignedHeadNurse= (fields)=>{
         stagestatus.input.onChange('护理部审核中');
       });
     }
+    else{
+      popConfirmBack(()=>{
+        signed_headnurse.input.onChange(null);
+        signed_headnurse_time.input.onChange(null);
+        stagestatus.input.onChange('护士长审核中');
+      });
+    }
   };
-
-  const Co = (<tr onClick={onConfirm}>
-      <td>护士长签字：<input type="text" readOnly value={Staffname}/></td>
+  const isshowbtn = lodashget(userlogin,'permission.name','') === '护士长' &&
+    (lodashget(stagestatus,'input.value','') === '护士长审核中' || lodashget(stagestatus,'input.value','') === '护理部审核中');
+  const btntitle = isenabled?'签名':'回退';
+  const Co = (<tr>
+      <td>护士长签字：<input type="text" readOnly value={Staffname}/>
+      {isshowbtn && <button type="button" onClick={onConfirm} className="ant-btn-edit blue">{btntitle}</button>}
+      </td>
       <td className="w-50">日期：
           <input type="text" readOnly value={MYY}/>年
           <input type="text" readOnly value={MMM}/>月
@@ -517,7 +546,7 @@ const renderUserSignedHeadNurse= (fields)=>{
 
 const renderUserSignedNursingDepartment= (fields)=>{
   const {signed_nursingdepartment,signed_nursingdepartment_time,stagestatus,userlogin,db} = fields;
-  let isenabled = lodashget(stagestatus,'input.value','') === '护理部审核中' &&
+  const isenabled = lodashget(stagestatus,'input.value','') === '护理部审核中' &&
     lodashget(userlogin,'permission.name','') === '护理部主管';//如果自己是护理部主管并且正在护理部审核中
 
   let Staffname = lodashget(db,`users.${lodashget(signed_nursingdepartment,'input.value','')}.Staffname`,'');
@@ -547,10 +576,21 @@ const renderUserSignedNursingDepartment= (fields)=>{
         stagestatus.input.onChange('已审核');
       });
     }
+    else{
+      popConfirmBack(()=>{
+        signed_nursingdepartment.input.onChange(null);
+        signed_nursingdepartment_time.input.onChange(null);
+        stagestatus.input.onChange('护理部审核中');
+      });
+    }
   };
-
-  const Co = (<tr onClick={onConfirm}>
-      <td>主管部门签字：<input type="text" readOnly value={Staffname}/></td>
+  const isshowbtn = (lodashget(userlogin,'permission.name','') === '护理部主管')
+  && (lodashget(stagestatus,'input.value','') === '护理部审核中' || lodashget(stagestatus,'input.value','') === '已审核');
+  const btntitle = isenabled?'签名':'回退';
+  const Co = (<tr>
+      <td>主管部门签字：<input type="text" readOnly value={Staffname}/>
+      {isshowbtn && <button  type="button" onClick={onConfirm} className="ant-btn-edit blue">{btntitle}</button>}
+      </td>
       <td className="w-50">日期：
           <input type="text" readOnly value={MYY}/>年
           <input type="text" readOnly value={MMM}/>月
@@ -566,7 +606,8 @@ const renderUserSignedNursingDepartment= (fields)=>{
 
 const renderUserReport= (fields)=>{
   const {signed_report,signed_report_time,stagestatus,userlogin,db} = fields;
-  let isenabled = lodashget(stagestatus,'input.value','') === '已审核';//如果自己是护理部主管并且正在护理部审核中
+  const isenabled = 
+    lodashget(stagestatus,'input.value','') === '已审核';//如果自己是护理部主管并且正在护理部审核中
 
   let Staffname = lodashget(db,`users.${lodashget(signed_report,'input.value','')}.Staffname`,'');
   let MYY = '';
@@ -583,7 +624,6 @@ const renderUserReport= (fields)=>{
     MDD = momenttime.format('DD');
     MHH = momenttime.format('HH');
     Mmm = momenttime.format('mm');
-
   }
 
   const onConfirm = ()=>{
@@ -597,9 +637,22 @@ const renderUserReport= (fields)=>{
         stagestatus.input.onChange('已上报');
       });
     }
+    else{
+      popConfirmBack(()=>{
+        signed_report.input.onChange(null);
+        signed_report_time.input.onChange(null);
+        stagestatus.input.onChange('已审核');
+      });
+    }
   };
-  const Co = (<tr onClick={onConfirm}>
-      <td>上报人签字:<input type="text" readOnly value={Staffname}/></td>
+  const isshowbtn =
+  (lodashget(stagestatus,'input.value','') === '已上报' || lodashget(stagestatus,'input.value','') === '已审核');
+
+  const btntitle = isenabled?'签名':'回退';
+  const Co = (<tr>
+      <td>上报人签字:<input type="text" readOnly value={Staffname}/>
+      {isshowbtn && <button type="button" onClick={onConfirm} className="ant-btn-edit blue">{btntitle}</button>}
+      </td>
       <td className="w-50">日期：
           <input type="text" readOnly value={MYY}/>年
           <input type="text" readOnly value={MMM}/>月

@@ -113,6 +113,7 @@ class PageForm extends React.Component {
                       names={["lapseto",'stagestatus' ]}
                       id="lapseto"
                       component={renderLapseto}
+                      db={db} userlogin={userlogin}
                   />
 
                   <Fields names={[ 'signed_report', 'signed_report_time','stagestatus' ]}
