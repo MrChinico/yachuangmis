@@ -469,7 +469,7 @@ const renderUserSignedNurse= (fields)=>{
   const btntitle = isenabled?'签名':'回退';
   const Co = (<tr>
       <td>申报人签字：<input type="text" readOnly value={Staffname}/>
-      {isshowbtn && <button  type="button" onClick={onConfirm} className="ant-btn-edit blue">{btntitle}</button>}
+      {isshowbtn && <button  type="button" onClick={onConfirm} className="go-back ant-btn-edit blue">{btntitle}</button>}
       </td>
       <td className="w-50">申报时间：
           <input type="text" readOnly value={MYY}/>年
@@ -589,7 +589,7 @@ const renderUserSignedNursingDepartment= (fields)=>{
   const btntitle = isenabled?'签名':'回退';
   const Co = (<tr>
       <td>主管部门签字：<input type="text" readOnly value={Staffname}/>
-      {isshowbtn && <button  type="button" onClick={onConfirm} className="ant-btn-edit blue">{btntitle}</button>}
+      {isshowbtn && <button  type="button" onClick={onConfirm} className="go-back ant-btn-edit blue">{btntitle}</button>}
       </td>
       <td className="w-50">日期：
           <input type="text" readOnly value={MYY}/>年
@@ -606,7 +606,7 @@ const renderUserSignedNursingDepartment= (fields)=>{
 
 const renderUserReport= (fields)=>{
   const {signed_report,signed_report_time,stagestatus,userlogin,db} = fields;
-  const isenabled = 
+  const isenabled =
     lodashget(stagestatus,'input.value','') === '已审核';//如果自己是护理部主管并且正在护理部审核中
 
   let Staffname = lodashget(db,`users.${lodashget(signed_report,'input.value','')}.Staffname`,'');
@@ -651,7 +651,7 @@ const renderUserReport= (fields)=>{
   const btntitle = isenabled?'签名':'回退';
   const Co = (<tr>
       <td>上报人签字:<input type="text" readOnly value={Staffname}/>
-      {isshowbtn && <button type="button" onClick={onConfirm} className="ant-btn-edit blue">{btntitle}</button>}
+      {isshowbtn && <button type="button" onClick={onConfirm} className="go-back ant-btn-edit blue">{btntitle}</button>}
       </td>
       <td className="w-50">日期：
           <input type="text" readOnly value={MYY}/>年
