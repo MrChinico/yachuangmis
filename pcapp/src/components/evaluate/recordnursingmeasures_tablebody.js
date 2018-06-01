@@ -17,6 +17,14 @@ const style_nursing_record_td_white = {
   textAlign: 'left'
 };
 
+const style_input = { 
+  background: '#f9f9f9',
+  borderTop: 'none',
+  borderLeft: 'none',
+  borderRight: 'none',
+  borderBottom:'1px solid #646464',
+}
+
 // const style_nursing_record_tdlast = {
 //   borderRight:'0px'
 // };
@@ -175,7 +183,7 @@ class RecordNursingMeasuresTableBody extends React.Component {
 
                                   <tr>
                                     <td style={style_nursing_record_td} colSpan="2">护士签名
-                                      <input type="text" readOnly/>
+                                      <input style={style_input}  type="text" readOnly/>
                                     </td>
                                     {
                                       lodashmap(retlist,(id,index)=>{
@@ -187,7 +195,7 @@ class RecordNursingMeasuresTableBody extends React.Component {
                                    </tr>
                                    <tr>
                                     <td style={style_nursing_record_td} colSpan="2">护士长签名
-                                    <input type="text" readOnly/>
+                                    <input style={style_input} type="text" readOnly/>
                                    </td>
                                    {
                                      lodashmap(retlist,(id,index)=>{
