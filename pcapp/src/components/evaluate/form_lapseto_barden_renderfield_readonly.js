@@ -222,7 +222,7 @@ const CRenderPreventivesmeasure = (props)=>{
 
 const CRenderScore = (props)=>{
   const {evaluatebardenscore} = props;
-  return (<td>{evaluatebardenscore}分</td>);
+  return (<td style={style_choose_info_td}>{evaluatebardenscore}分</td>);
 }
 
 const CRenderLapseto= (props)=>{
