@@ -5,6 +5,30 @@ import lodashget from 'lodash.get';
 import {popConfirmSign,popConfirmBack} from './popconfirmsign';
 import moment from 'moment';
 
+const style_choose_info_tr = {
+  borderTop:'1px solid #ddd',
+  lineHeight: '20px',
+  borderRight:'1px solid #ddd'
+};
+const style_choose_info_tr_whitebg = {
+  borderTop:'1px solid #ddd',
+  lineHeight: '20px',
+  borderRight:'1px solid #ddd',
+  backgroundColor: '#FFFFFF',
+};
+
+const style_choose_info_td = {
+  padding:'10px 15px',
+  fontSize: '14px',
+  width:'50%',
+  borderRight:'1px solid #ddd'
+}
+
+const style_choose_info_td_w25 = {
+  ...style_choose_info_td,
+  width:'25%'
+};
+
 const renderConditions_prerequisites_options = (props)=>{
   const {input:{value,onChange}} = props;
   const v = value;
@@ -403,13 +427,13 @@ const renderAdmissions = (props)=>{
 }
 
 const renderEvaluateWoundsurfaces_Item = (props)=>{
-  const {input:{value}} = props;
+  const {input:{value},i} = props;
   return (
-    <tr>
-      <td key="tdwf0">{lodashget(value,'部位','')}</td>
-      <td key="tdwf1">{lodashget(value,'分期','')}</td>
-      <td key="tdwf2">{lodashget(value,'大小','')}</td>
-      <td key="tdwf3">{lodashget(value,'情况','')}</td>
+    <tr style={i%2===0?style_choose_info_tr:style_choose_info_tr_whitebg} key={`trewfs${i}`}>
+      <td style={style_choose_info_td_w25} key="tdwf0">{lodashget(value,'部位','')}</td>
+      <td style={style_choose_info_td_w25} key="tdwf1">{lodashget(value,'分期','')}</td>
+      <td style={style_choose_info_td_w25} key="tdwf2">{lodashget(value,'大小','')}</td>
+      <td style={style_choose_info_td_w25} key="tdwf3">{lodashget(value,'情况','')}</td>
     </tr>
   );
 }
@@ -418,7 +442,7 @@ const renderEvaluateWoundsurfaces_Item = (props)=>{
 const renderEvaluateWoundsurfaces =  (props)=>{
   const {fields} = props;
   return fields.map((option,index)=>{
-    return (<Field component={renderEvaluateWoundsurfaces_Item} name={option} key={`ewf${index}`}/>);
+    return (<Field component={renderEvaluateWoundsurfaces_Item} name={option} key={`ewf${index}`} i={index}/>);
   });
 }
 

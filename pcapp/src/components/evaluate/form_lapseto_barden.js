@@ -16,6 +16,36 @@ import {
   renderUserSignedNursingDepartment,
   renderUserReport,
 }from './form_lapseto_barden_renderfield';
+
+
+const style_choose_info_td = {
+  padding:'10px 15px',
+  fontSize: '14px',
+  width:'50%',
+  borderRight:'1px solid #ddd'
+}
+
+const style_choose_info_td_w25 = {
+  ...style_choose_info_td,
+  width:'25%'
+};
+
+const style_choose_info_tr = {
+  borderTop:'1px solid #ddd',
+  lineHeight: '20px',
+  borderRight:'1px solid #ddd'
+};
+
+const style_choose_info_tr_gray = {...style_choose_info_tr,
+   color:'#888',
+   fontSize: '13px',
+   borderRight: '0px'
+};
+
+const style_choose_info_tr_graytitle = {
+  ...style_choose_info_tr_gray,
+   borderRight: '0px',
+};
 //--------
 
 class PageForm extends React.Component {
@@ -36,15 +66,15 @@ class PageForm extends React.Component {
                     />);
 
 
-      trlist.push(<tr className="gray title" key='evaluateWoundsurfaces'>
-        <td colSpan="2" className="p0">
-          <table>
+      trlist.push(<tr style={style_choose_info_tr_graytitle} key='evaluateWoundsurfaces'>
+        <td colSpan="2">
+          <table style={{width:'100%'}}>
             <tbody>
               <tr>
-                <td>部位</td>
-                <td>分期</td>
-                <td>大小</td>
-                <td>情况</td>
+                <td style={style_choose_info_td_w25}>部位</td>
+                <td style={style_choose_info_td_w25}>分期</td>
+                <td style={style_choose_info_td_w25}>大小</td>
+                <td style={style_choose_info_td_w25}>情况</td>
               </tr>
               <FieldArray key="evaluateWoundsurfacesarray"
                                   name="evaluateWoundsurfaces"
