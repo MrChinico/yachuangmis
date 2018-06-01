@@ -5,6 +5,7 @@ import Patientinfolist from './index_patientinfolist';
 import { Input } from 'antd'
 import DepatSelect from './selector_depat';
 import DiseaseclassificationSelect from './selector_diseaseclassification';
+import lodashget 			from 'lodash.get';
 
 const Search = Input.Search;
 const { Header } = Layout;
@@ -83,6 +84,7 @@ class App extends React.Component {
 			this.refreshPaientList();
 		}
   	render() {
+			const PermissionName	= lodashget( this, 'props.userlogin.permission.name', '' );
 			const showtext = this.state.searchtxt === ''?'所有病人记录':`${this.state.searchtxt}的搜索结果`;
 	    return (
 	      	<Layout>
@@ -108,11 +110,14 @@ class App extends React.Component {
 										this.props.history.goBack();
 									}
 								}><img src="return.png" alt="" /></button>
-									<DepatSelect
-										onChangeDepat={this.onChangeDepat}
-										db={this.props.db}
-										curdepatid={this.state.curdepatid}
-									/>
+									{
+										PermissionName === '护理部主管' && (<DepatSelect
+											onChangeDepat={this.onChangeDepat}
+											db={this.props.db}
+											curdepatid={this.state.curdepatid}
+										/>)
+									}
+
 									<DiseaseclassificationSelect
 										onChangeDiseaseclassification={this.onChangeDiseaseclassification}
 										curdiseaseclassification={this.state.curdiseaseclassification}
@@ -135,8 +140,8 @@ class App extends React.Component {
   	}
 }
 
-const mapStateToProps = ({db},props) => {
-    return {db};
+const mapStateToProps = ({userlogin,db},props) => {
+    return {userlogin,db};
 }
 
 export default connect(mapStateToProps)(App);
