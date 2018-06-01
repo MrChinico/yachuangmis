@@ -20,13 +20,6 @@ const style_nursing_record_td_white = {
 // const style_nursing_record_tdlast = {
 //   borderRight:'0px'
 // };
-const style_input = {
-  background: '#f9f9f9',
-  borderTop: 'none',
-  borderLeft: 'none',
-  borderRight: 'none',
-  borderBottom:'1px solid #646464',
-}
 
 const style_nursing_record_tr2n = {
   backgroundColor:'#f9f9f9'
@@ -35,6 +28,16 @@ const style_nursing_record_tr2n = {
 const style_trdate = {
   backgroundColor:'#e4f3f1'
 };
+
+const style_input = {
+  background: 'inherit',
+  border: 'none',
+  borderBottom: '1px solid #000',
+  height: '16px',
+  display: 'inline-block',
+  verticalAlign: 'middle',
+  marginRight: '10px'
+}
 
 // const stylefont = {
 //   color:'#0084bf',
@@ -263,7 +266,7 @@ class RecordbardenTableBody extends React.Component {
 
                 <tr>
                   <td  style={stylewhite} colSpan="3" >评估人
-                  <input style={style_input}  type="text" readOnly/>
+                  <input type="text" style={style_input} readOnly/>
                   </td>
                   {
                     lodashmap(retlist,(id,index)=>{

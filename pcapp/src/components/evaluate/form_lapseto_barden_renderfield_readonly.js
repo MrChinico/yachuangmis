@@ -21,17 +21,33 @@ const style_choose_info_td_w25 = {
 };
 
 
-const style_choose_info_td_w50_input = {
-  background: 'transparent!important',
-  border: 'transparent!important',
-  borderBottom: '1px solid #646464!important',
-  textAlign: 'center',
+// const style_choose_info_td_w50_input = {
+//   background: 'transparent!important',
+//   border: 'transparent!important',
+//   borderBottom: '1px solid #646464!important',
+//   textAlign: 'center',
+//   height: '16px',
+//   display: 'inline-block',
+//   verticalAlign: 'middle',
+//   marginRight: '10px',
+//   width:'10%',
+// };
+
+const style_input = {
+  background: 'inherit',
+  border: 'none',
+  borderBottom: '1px solid #000',
   height: '16px',
   display: 'inline-block',
   verticalAlign: 'middle',
-  marginRight: '10px',
-  width:'10%',
-};
+  marginRight: '10px'
+}
+
+const style_w50_input = {
+  ...style_input,
+  textAlign: 'center',
+  width: '10%',
+}
 
 const style_choose_info_tr = {
   borderTop:'1px solid #ddd',
@@ -149,7 +165,7 @@ const CRenderPreventivesmeasureItemOptionsArrayoption = (props)=>{
 
   if(vs.value !== undefined){
     return (<span >{vs.name}
-      <input type="text" className=""  value={vs.value}  readOnly/></span>);
+      <input type="text" style={style_input} className=""  value={vs.value}  readOnly/></span>);
   }
   return (<span>{vs.name}<input type="checkbox" name="check[]" checked={vs.checked}
   readOnly/></span>);
@@ -180,7 +196,7 @@ const CRenderPreventivesmeasureItem = (props)=>{
     return  (
     <tr style={style_choose_info_tr}><td style={style_choose_info_td} colSpan="2">
       <input type="checkbox" name="check[]" checked={vo.checked} readOnly />
-        {vo.name}<input type="text" value={vo.value} readOnly/>
+        {vo.name}<input type="text" style={style_input} value={vo.value} readOnly/>
       </td>
     </tr>);
   }
@@ -228,11 +244,11 @@ const CRenderLapseto= (props)=>{
       <span>否<input type="checkbox" name="check[]" checked={ispressuresores===0} readOnly/></span>
     </td>
     <td style={style_choose_info_td_w50}>压疮发生时间：
-      <input style={style_choose_info_td_w50_input} type="text" readOnly/>年
-      <input style={style_choose_info_td_w50_input} type="text" readOnly/>月
-      <input style={style_choose_info_td_w50_input} type="text" readOnly/>日
-      <input style={style_choose_info_td_w50_input} type="text" readOnly/>:
-      <input  style={style_choose_info_td_w50_input} type="text" readOnly/>
+      <input style={{...style_w50_input, width: '7%'}} type="text" readOnly/>年
+      <input style={{...style_w50_input, width: '7%'}} type="text" readOnly/>月
+      <input style={{...style_w50_input, width: '7%'}} type="text" readOnly/>日
+      <input style={{...style_w50_input, width: '7%'}} type="text" readOnly/>:
+      <input  style={{...style_w50_input, width: '7%'}} type="text" readOnly/>
     </td>
   </tr>);
 
@@ -264,7 +280,7 @@ const CRenderInstruction= (props)=>{
     </tr>);
 
     trsz.push(<tr style={style_choose_info_tr} key="guide">
-        <td style={style_choose_info_td} colSpan="2">指导意见：<input type="text" value={instruction} readOnly/></td>
+        <td style={style_choose_info_td} colSpan="2">指导意见：<input type="text" style={style_input} value={instruction} readOnly/></td>
       </tr>);
 
   return trsz;
@@ -339,13 +355,13 @@ const CRenderUserSignedNurse= (props)=>{
 
   }
   let Co = (<tr style={style_choose_info_tr}>
-      <td style={style_choose_info_td}>申报人签字：<input type="text" readOnly value={Staffname}/></td>
+      <td style={style_choose_info_td}>申报人签字：<input type="text" style={style_input} readOnly value={Staffname}/></td>
       <td style={style_choose_info_td_w50}>申报时间：
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MYY}/>年
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MMM}/>月
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MDD}/>日
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MHH}/>:
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={Mmm}/>
+          <input style={style_w50_input} type="text" readOnly value={MYY}/>年
+          <input style={style_w50_input} type="text" readOnly value={MMM}/>月
+          <input style={style_w50_input} type="text" readOnly value={MDD}/>日
+          <input style={style_w50_input} type="text" readOnly value={MHH}/>:
+          <input style={style_w50_input} type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
 
@@ -374,13 +390,13 @@ const CRenderUserSignedHeadNurse= (props)=>{
 
   }
   let Co = (<tr style={style_choose_info_tr}>
-      <td style={style_choose_info_td}>护士长签字：<input type="text" readOnly value={Staffname}/></td>
+      <td style={style_choose_info_td}>护士长签字：<input type="text" style={style_input} readOnly value={Staffname}/></td>
       <td style={style_choose_info_td_w50}>日期：
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MYY}/>年
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MMM}/>月
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MDD}/>日
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MHH}/>:
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={Mmm}/>
+          <input style={style_w50_input} type="text" readOnly value={MYY}/>年
+          <input style={style_w50_input} type="text" readOnly value={MMM}/>月
+          <input style={style_w50_input} type="text" readOnly value={MDD}/>日
+          <input style={style_w50_input} type="text" readOnly value={MHH}/>:
+          <input style={style_w50_input} type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
 
@@ -409,13 +425,13 @@ const CRenderUserSignedNursingDepartment= (fields)=>{
 
   }
   let Co = (<tr style={style_choose_info_tr}>
-      <td style={style_choose_info_td}>主管部门签字：<input type="text" readOnly value={Staffname}/></td>
+      <td style={style_choose_info_td}>主管部门签字：<input type="text" style={style_input} readOnly value={Staffname}/></td>
       <td style={style_choose_info_td_w50}>日期：
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MYY}/>年
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MMM}/>月
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MDD}/>日
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MHH}/>:
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={Mmm}/>
+          <input style={style_w50_input} type="text" readOnly value={MYY}/>年
+          <input style={style_w50_input} type="text" readOnly value={MMM}/>月
+          <input style={style_w50_input} type="text" readOnly value={MDD}/>日
+          <input style={style_w50_input} type="text" readOnly value={MHH}/>:
+          <input style={style_w50_input} type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
 
@@ -444,13 +460,13 @@ const CRenderUserReport= (props)=>{
 
   }
   let Co = (<tr style={style_choose_info_tr}>
-      <td style={style_choose_info_td}>上报人签字:<input type="text" readOnly value={Staffname}/></td>
+      <td style={style_choose_info_td}>上报人签字:<input type="text" style={style_input} readOnly value={Staffname}/></td>
       <td style={style_choose_info_td_w50}>日期：
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MYY}/>年
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MMM}/>月
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MDD}/>日
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={MHH}/>:
-          <input style={style_choose_info_td_w50_input} type="text" readOnly value={Mmm}/>
+          <input style={style_w50_input} type="text" readOnly value={MYY}/>年
+          <input style={style_w50_input} type="text" readOnly value={MMM}/>月
+          <input style={style_w50_input} type="text" readOnly value={MDD}/>日
+          <input style={style_w50_input} type="text" readOnly value={MHH}/>:
+          <input style={style_w50_input} type="text" readOnly value={Mmm}/>
       </td>
     </tr>);
 

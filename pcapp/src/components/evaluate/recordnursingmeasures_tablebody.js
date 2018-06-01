@@ -17,14 +17,6 @@ const style_nursing_record_td_white = {
   textAlign: 'left'
 };
 
-const style_input = { 
-  background: '#f9f9f9',
-  borderTop: 'none',
-  borderLeft: 'none',
-  borderRight: 'none',
-  borderBottom:'1px solid #646464',
-}
-
 // const style_nursing_record_tdlast = {
 //   borderRight:'0px'
 // };
@@ -42,6 +34,16 @@ const stylefont = {
   fontSize: '18px',
   fontWeight: '500'
 };
+
+const style_input = {
+  background: 'inherit',
+  border: 'none',
+  borderBottom: '1px solid #000',
+  height: '16px',
+  display: 'inline-block',
+  verticalAlign: 'middle',
+  marginRight: '10px'
+}
 
 const stylewhite = {...style_nursing_record_td,...style_nursing_record_td_white};
 
@@ -183,7 +185,7 @@ class RecordNursingMeasuresTableBody extends React.Component {
 
                                   <tr>
                                     <td style={style_nursing_record_td} colSpan="2">护士签名
-                                      <input style={style_input}  type="text" readOnly/>
+                                      <input type="text" style={style_input} readOnly/>
                                     </td>
                                     {
                                       lodashmap(retlist,(id,index)=>{
@@ -195,7 +197,7 @@ class RecordNursingMeasuresTableBody extends React.Component {
                                    </tr>
                                    <tr>
                                     <td style={style_nursing_record_td} colSpan="2">护士长签名
-                                    <input style={style_input} type="text" readOnly/>
+                                    <input type="text" style={style_input} readOnly/>
                                    </td>
                                    {
                                      lodashmap(retlist,(id,index)=>{
