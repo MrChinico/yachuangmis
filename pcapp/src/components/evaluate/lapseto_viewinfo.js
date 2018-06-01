@@ -65,7 +65,7 @@ const style_choose_info_tr_gray = {...style_choose_info_tr,
 
 const style_choose_info_tr_graytitle = {
   ...style_choose_info_tr_gray,
-   borderRight: '0px'
+   borderRight: '0px',
 };
 // .form-box .choose-info tr td tr td{ width:auto}
 // .form-box .choose-info tr{
@@ -112,8 +112,8 @@ const ReviewDetailInfo = (props)=>{
 
 
     trlist.push(<tr style={style_choose_info_tr_graytitle} key='evaluateWoundsurfaces'>
-      <td style={{width:'100%'}} colSpan="2">
-        <table>
+      <td colSpan="2">
+        <table style={{width:'100%'}}>
           <tbody>
             <tr>
               <td style={style_choose_info_td_w25}>部位</td>
