@@ -157,7 +157,7 @@ export const getdefaultnursingmeasures = ()=>{
 export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassification='院前压疮',cmlist=[])=>{
   let preventivesmeasure = [
     {
-      name:'1、告知患者及家属压疮的危险性并悬挂“压疮高危”警示标志，进行健康宣教，讲解相关注意事项。',
+      name:'1、告知患者及家属压疮的危险性并悬挂“难免压疮”警示标志，进行健康宣教，讲解相关注意事项。',
       checked:false,
     },
     {

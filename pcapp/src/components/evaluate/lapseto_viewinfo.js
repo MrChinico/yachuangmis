@@ -126,53 +126,143 @@ const ReviewDetailInfo = (props)=>{
         </table>
       </td>
       </tr>);
+      return (
+    		<div style={style_form_box}>
+    				<h1 style={style_form_box_h1}>{Hospitalname}{curpaientinfo.Diseaseclassification}申报表</h1>
+    				<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
+
+    				<table style={style_choose_info}>
+    					<tbody>
+    					<tr style={style_choose_info_tr_odd}>
+    						<td style={style_choose_info_td}>诊断：</td>
+    						<td style={style_choose_info_td}></td>
+    					</tr>
+    					<tr style={style_choose_info_tr}>
+    						<td style={style_choose_info_td}>压疮评分：</td>
+    						<CRenderScore  {...info} />
+    					</tr>
+
+    					{trlist}
+
+    					<tr style={style_choose_info_tr_graytitle}>
+    						<td style={style_choose_info_td}>预防措施：</td>
+    						<td style={style_choose_info_td}></td>
+    				 </tr>
+
+      				 <CRenderPreventivesmeasure {...info}/>
+
+               <CRenderUserSignedNurse {...info}  db={db}/>
+
+               <CRenderUserSignedHeadNurse {...info}  db={db}/>
+
+      				 <CRenderInstruction {...info}/>
+
+               <CRenderUserSignedNursingDepartment {...info}  db={db}/>
+
+      				 <CRenderLapseto {...info}/>
+
+               <CRenderUserReport {...info}  db={db}/>
+
+    					</tbody>
+    				</table>
+
+    		</div>
+    	)
   }
-  else if(curpaientinfo.Diseaseclassification === '压疮高危'){
+  else if(curpaientinfo.Diseaseclassification === '难免压疮'){
     trlist.push(<CRenderConditions {...info} key='gwyc'/>);
+
+    return (
+  		<div style={style_form_box}>
+  				<h1 style={style_form_box_h1}>{Hospitalname}{curpaientinfo.Diseaseclassification}申报表</h1>
+  				<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
+
+  				<table style={style_choose_info}>
+  					<tbody>
+  					<tr style={style_choose_info_tr_odd}>
+  						<td style={style_choose_info_td}>诊断：</td>
+  						<td style={style_choose_info_td}></td>
+  					</tr>
+  					<tr style={style_choose_info_tr}>
+  						<td style={style_choose_info_td}>压疮评分：</td>
+  						<CRenderScore  {...info} />
+  					</tr>
+
+  					{trlist}
+
+  					<tr style={style_choose_info_tr_graytitle}>
+  						<td style={style_choose_info_td}>预防措施：</td>
+  						<td style={style_choose_info_td}></td>
+  				 </tr>
+
+    				 <CRenderPreventivesmeasure {...info}/>
+
+             <CRenderUserSignedNurse {...info}  db={db}/>
+
+             <CRenderUserSignedHeadNurse {...info}  db={db}/>
+
+    				 <CRenderInstruction {...info}/>
+
+             <CRenderUserSignedNursingDepartment {...info}  db={db}/>
+
+    				 <CRenderLapseto {...info}/>
+
+             <CRenderUserReport {...info}  db={db}/>
+
+  					</tbody>
+  				</table>
+
+  		</div>
+  	)
+  }
+  else if(curpaientinfo.Diseaseclassification === '院内压疮'){
+    trlist.push(<CRenderConditions {...info} key='gwyc'/>);
+
+    return (
+  		<div style={style_form_box}>
+  				<h1 style={style_form_box_h1}>{Hospitalname}{curpaientinfo.Diseaseclassification}申报表</h1>
+  				<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
+
+  				<table style={style_choose_info}>
+  					<tbody>
+  					<tr style={style_choose_info_tr_odd}>
+  						<td style={style_choose_info_td}>诊断：</td>
+  						<td style={style_choose_info_td}></td>
+  					</tr>
+  					<tr style={style_choose_info_tr}>
+  						<td style={style_choose_info_td}>压疮评分：</td>
+  						<CRenderScore  {...info} />
+  					</tr>
+
+  					{trlist}
+
+  					<tr style={style_choose_info_tr_graytitle}>
+  						<td style={style_choose_info_td}>预防措施：</td>
+  						<td style={style_choose_info_td}></td>
+  				 </tr>
+
+    				 <CRenderPreventivesmeasure {...info}/>
+
+             <CRenderUserSignedNurse {...info}  db={db}/>
+
+             <CRenderUserSignedHeadNurse {...info}  db={db}/>
+
+    				 <CRenderInstruction {...info}/>
+
+             <CRenderUserSignedNursingDepartment {...info}  db={db}/>
+
+    				 <CRenderLapseto {...info}/>
+
+             <CRenderUserReport {...info}  db={db}/>
+
+  					</tbody>
+  				</table>
+
+  		</div>
+  	);
   }
 
-	return (
-		<div style={style_form_box}>
-				<h1 style={style_form_box_h1}>{Hospitalname}转归审阅申请表</h1>
-				<ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 
-				<table style={style_choose_info}>
-					<tbody>
-					<tr style={style_choose_info_tr_odd}>
-						<td style={style_choose_info_td}>诊断：</td>
-						<td style={style_choose_info_td}></td>
-					</tr>
-					<tr style={style_choose_info_tr}>
-						<td style={style_choose_info_td}>压疮评分：</td>
-						<CRenderScore  {...info} />
-					</tr>
-
-					{trlist}
-
-					<tr style={style_choose_info_tr_graytitle}>
-						<td style={style_choose_info_td}>预防措施：</td>
-						<td style={style_choose_info_td}></td>
-				 </tr>
-
-  				 <CRenderPreventivesmeasure {...info}/>
-
-           <CRenderUserSignedNurse {...info}  db={db}/>
-
-           <CRenderUserSignedHeadNurse {...info}  db={db}/>
-
-  				 <CRenderInstruction {...info}/>
-
-           <CRenderUserSignedNursingDepartment {...info}  db={db}/>
-
-  				 <CRenderLapseto {...info}/>
-
-           <CRenderUserReport {...info}  db={db}/>
-
-					</tbody>
-				</table>
-
-		</div>
-	)
 }
 
 export default ReviewDetailInfo;

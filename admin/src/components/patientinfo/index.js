@@ -50,8 +50,9 @@ const PatientinfoEdit = (props) => {
      <TextField label="在院判别" source="In_out_flag"  />
       <TextField label="在院判别" source="In_out_flag"  />
       <SelectInput label="病人分类"  source="Diseaseclassification" choices={[
-          { id: '压疮高危', name: '压疮高危' },
+          { id: '难免压疮', name: '难免压疮' },
           { id: '院前压疮', name: '院前压疮' },
+          { id: '院内压疮', name: '院内压疮' },
           { id: '普通病人', name: '普通病人' },
       ]} />
      <ReferenceInput label="所在科室" source="depatid" reference="depat" allowEmpty>

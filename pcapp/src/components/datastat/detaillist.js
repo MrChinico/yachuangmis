@@ -37,7 +37,7 @@ class App extends React.Component {
 					percent1 = (count_occur2*100/count_total).toFixed(1);
 					count = count_occur2;
 					percenttitle = '高危压疮发生率';
-					query[`Diseaseclassification`] = `压疮高危`;
+					query[`Diseaseclassification`] = `难免压疮`;
 				}
 				else if(flag === '2'){
 					percent1 = (count_cure*100/count_total).toFixed(1);

@@ -14,7 +14,8 @@ const DiseaseclassificationSelector = (props)=>{
   let menus = [];
   menus.push(<Menu.Item key="普通病人">普通病人</Menu.Item>);
   menus.push(<Menu.Item key="院前压疮">院前压疮</Menu.Item>);
-  menus.push(<Menu.Item key="压疮高危">压疮高危</Menu.Item>);
+  menus.push(<Menu.Item key="院内压疮">院内压疮</Menu.Item>);
+  menus.push(<Menu.Item key="难免压疮">难免压疮</Menu.Item>);
 
   const menu = (
     <Menu onClick={handleMenuClick}>

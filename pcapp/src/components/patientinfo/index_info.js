@@ -128,7 +128,7 @@ class App extends React.Component {
 				})
 			}
 
-			if(Diseaseclassification === '压疮高危'){
+			if(Diseaseclassification === '难免压疮'){
 				//不显示创面评估页面
 				btnz[1].visible = false;
 			}
