@@ -1,7 +1,7 @@
 import React from 'react';
 import {FieldArray,Fields, Field, reduxForm, Form  } from 'redux-form';
 // import { connect } from 'react-redux';
-import ViewPrintHeader from './viewprint_header';
+import ViewPrintHeader from './viewtitleheader';
 
 import {
   renderWsffrom,
