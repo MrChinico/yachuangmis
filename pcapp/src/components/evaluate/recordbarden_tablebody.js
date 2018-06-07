@@ -12,12 +12,12 @@ const style_nursing_record_td = {
   borderBottom: '0px',
 };
 
-const style_nursing_record_td_white = {
-  backgroundColor:'#fff',
-  textAlign: 'left'
-};
+// const style_nursing_record_td_white = {
+//   backgroundColor:'#fff',
+//   textAlign: 'left'
+// };
 
-const style_input = { 
+const style_input = {
   background: '#f9f9f9',
   borderTop: 'none',
   borderLeft: 'none',
@@ -29,9 +29,9 @@ const style_input = {
 //   borderRight:'0px'
 // };
 
-const style_nursing_record_tr2n = {
-  backgroundColor:'#f9f9f9',
-};
+// const style_nursing_record_tr2n = {
+//   backgroundColor:'#f9f9f9',
+// };
 
 const style_trdate = {
   backgroundColor:'#e4f3f1'
@@ -77,121 +77,119 @@ class RecordbardenTableBody extends React.Component {
 
   		}
       render() {
-            const {evaluatebardens} = this.props.db;
-            const {isfirst,islast,retlist} = this.state;
-            const tablebradengroups = gettablebradengroups();
-            let tabletrlist = [];
-            lodashmap(tablebradengroups,(tablegroup,gindex)=>{
-                const rowspancount = tablegroup.labelsz.length;
-                const labelvalue = tablegroup.labelvalue;
+        const {evaluatebardens} = this.props.db;
+        const {isfirst,islast,retlist} = this.state;
+        const tablebradengroups = gettablebradengroups();
+        let tabletrlist = [];
+
+        lodashmap(tablebradengroups,(tablegroup,gindex)=>{
+          // const rowspancount = tablegroup.labelsz.length;
+          const labelvalue = tablegroup.labelvalue;
+
+          tabletrlist.push(
+            <div className="item" key={gindex}>
+              <div className="flex-1 center">{tablegroup.labeltitle}</div>
+              <div className="flex-5 column">
+              {
                 lodashmap(tablegroup.labelsz,(vlabel,lindex)=>{
-                  const styletr = lindex%2 === 1?style_nursing_record_tr2n:{};
-                  if(lindex === 0){
-                    tabletrlist.push(
-                      <tr style={styletr} key={`${gindex}_${lindex}`}>
-                        <td  style={style_nursing_record_td}  rowSpan={`${rowspancount}`} >{tablegroup.labeltitle}</td>
-                        <td  style={style_nursing_record_td}  align="center">{vlabel.label}</td>
-                        <td  style={style_nursing_record_td}  align="center">{vlabel.value}</td>
-                        {
-                          lodashmap(retlist,(bid,index)=>{
-                            const ischecked = lodashget(evaluatebardens[bid],labelvalue,0) === vlabel.value;
-                            return (<td style={style_nursing_record_td} key={index} align="center">
+                  return (
+                    <div key={lindex}>
+                      <div className="flex-4 center">{vlabel.label}</div>
+                      <div className="flex-4 center">{vlabel.value}</div>
+                      {
+                        lodashmap(retlist,(bid,index)=>{
+                          const ischecked = lodashget(evaluatebardens[bid],labelvalue,0) === vlabel.value;
+                          return (
+                            <div className="flex-3 center" key={index}>
                               {ischecked && <span>{vlabel.value}</span>}
-                            </td>);
-                          })
-                        }
-                      </tr>
-                    );
-                  }
-                  else{
-                    tabletrlist.push(
-                      <tr style={styletr}  key={`${gindex}_${lindex}`}>
-                          <td  style={style_nursing_record_td} align="center">{vlabel.label}</td>
-                          <td  style={style_nursing_record_td} align="center">{vlabel.value}</td>
-                          {
-                            lodashmap(retlist,(bid,index)=>{
-                              const ischecked = lodashget(evaluatebardens[bid],labelvalue,0) === vlabel.value;
-                              return (<td style={style_nursing_record_td}  key={index} align="center">
-                                {ischecked && <span>{vlabel.value}</span>}
-                              </td>);
-                            })
-                          }
-                      </tr>
-                    )
-                  }
+                            </div>
+                          );
+                        })
+                      }
+                    </div>
+                  );
                 })
-              });
-              const styletrdate = style_trdate;
-              return (<table width="100%" style={{backgroundColor: '#fff'}}>
-                        <tbody>
-                                <tr>
-                                    <td style={style_nursing_record_td}
-                                      colSpan="" rowSpan="2">项目</td>
-                                    <td style={style_nursing_record_td} colSpan="" rowSpan="2">具体指标</td>
-                                    <td style={style_nursing_record_td} colSpan="" rowSpan="2">评分数值</td>
-                                    <td style={style_nursing_record_td} colSpan={`${retlist.length}`}>
-                                      <div align="center">实际得分（按照评估日期填写）</div>
-                                    </td>
-                                  </tr>
-                                  <tr style={styletrdate}>
-                                    {
-                                      lodashmap(retlist,(info,index)=>{
-                                        const styletddate = style_nursing_record_td;
-                                        const curday = moment(info.updated_at).format('MM月DD日')
-                                        if(index === 0){
-                                          return (<td style={styletddate} key={index}><div align="center">{ !isfirst && <img src="arrow-left-green.png" alt="" onClick={
-                                                  this.PagePrev
-                                                }/>}{curday}</div></td>);
-                                        }
-                                        else if(index === retlist.length - 1){
-                                            return (<td  style={styletddate}  key={index}><div align="center">{curday}
-                                              {!islast && <img src="arrow-right-green.png" className="right" alt="" onClick={
-                                                this.PageNext
-                                              }/>}
-                                            </div></td>);
-                                        }
-                                        else{
-                                          return (<td style={styletddate} key={index}><div align="center">{curday}</div></td>);
-                                        }
+              }
+              </div>
+            </div>
+          )
+        })
 
-                                      })
-                                    }
-                                  </tr>
+        // const styletrdate = style_trdate;
 
-                                  {tabletrlist}
+          return (
+            <div className = "form-body flex-1 column">
+              <div className="item-head">
+                <div className="flex-1 center">项目</div>
+                <div className="flex-1 center">具体指标</div>
+                <div className="flex-1 center">评分数值</div>
+                <div className="flex-3 column">
+                  <div className="flex-1 center">实际得分（按照评估日期填写）</div>
+                  <div className="flex-1">
+                    {
+                      lodashmap(retlist,(info,index)=>{
+                        // const styletddate = style_nursing_record_td;
+                        const curday = moment(info.updated_at).format('MM月DD日')
+                        if(index === 0)
+                        {
+                          return (
+                            <div className="flex-1 center" key={index}>
+                              <div>{ !isfirst && <img src="arrow-left-green.png" alt="" onClick={ this.PagePrev }/>}{curday}</div>
+                            </div>
+                          );
+                        }
+                        else if(index === retlist.length - 1)
+                        {
+                          return (
+                            <div className="flex-1 center" key={index}>
+                              <div>{curday}{!islast && <img src="arrow-right-green.png" className="right" alt="" onClick={this.PageNext}/>}
+                              </div>
+                            </div>
+                          );
+                        }
+                        else{
+                          return (
+                            <div className="flex-1 center" key={index}>
+                              <div>{curday}</div>
+                            </div>
+                          );
+                        }
+                      })
+                    }
+                  </div>
+                </div>
+              </div>
 
-                                  <tr>
-                                    <td style={{...style_nursing_record_td,...style_nursing_record_td_white}} colSpan="3">总得分</td>
-                                    {
-                                      lodashmap(retlist,(bid,index)=>{
-                                        const score = lodashget(evaluatebardens[bid],'score',0);
-                                        const tdstyle = style_nursing_record_td;
-                                        const stylefont = {
-                                          color:'#0084bf',
-                                          fontSize: '18px',
-                                          fontWeight: '500'
-                                        };
-                                        return (<td style={tdstyle} key={index} align="center">
-                                          <font style={stylefont}>
-                                            {score}
-                                          </font>
-                                          </td>);
-                                      })
-                                    }
-                                  </tr>
-                                  <tr>
-                                    <td   style={style_nursing_record_td} colSpan={`${3+retlist.length}`}>评估护士签名
-                                      <input style={style_input} type="text" readOnly/>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td   style={style_nursing_record_td} colSpan={`${3+retlist.length}`}>护士长签名
-                                      <input style={style_input} type="text" readOnly/>
-                                    </td>
-                                  </tr>
-                                  </tbody>
-                                </table>);
-            }
+              {tabletrlist}
+
+              <div className="score">
+                <div className="flex-1 center">总得分</div>
+                <div className="flex-1">
+                {
+                  lodashmap(retlist,(bid,index)=>{
+                    const score = lodashget(evaluatebardens[bid],'score',0);
+                    return (
+                      <div className="flex-1 center" key={index}>
+                        <font>
+                          {score}
+                        </font>
+                      </div>
+                    );
+                  })
+                }
+                </div>
+              </div>
+              <div className="sign">
+                <div>评估护士签名
+                  <input style={style_input} type="text" readOnly/>
+                </div>
+                <div>护士长签名
+                  <input style={style_input} type="text" readOnly/>
+                </div>
+              </div>
+          </div>
+          );
+        }
 
 }
 

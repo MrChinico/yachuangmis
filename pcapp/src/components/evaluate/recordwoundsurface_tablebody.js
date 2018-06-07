@@ -6,8 +6,8 @@ import moment from 'moment';
 import {getpagelist} from '../../util';
 
 const style_nursing_record_td = {
-  padding: '9px 10px',
-  border: '1px solid #ddd',
+  padding: '4px 10px',
+  border: '1px solid #000',
   borderLeft: '0px',
   borderBottom: '0px',
 };
@@ -29,15 +29,15 @@ const style_trdate = {
   backgroundColor:'#e4f3f1'
 };
 
-const style_input = {
-  background: 'inherit',
-  border: 'none',
-  borderBottom: '1px solid #000',
-  height: '16px',
-  display: 'inline-block',
-  verticalAlign: 'middle',
-  marginRight: '10px'
-}
+// const style_input = {
+//   background: 'inherit',
+//   border: 'none',
+//   borderBottom: '1px solid #000',
+//   height: '16px',
+//   display: 'inline-block',
+//   verticalAlign: 'middle',
+//   marginRight: '10px'
+// }
 
 // const stylefont = {
 //   color:'#0084bf',
@@ -262,20 +262,6 @@ class RecordbardenTableBody extends React.Component {
                 </tr>
 
                 {tabletrs}
-
-
-                <tr>
-                  <td  style={stylewhite} colSpan="3" >评估人
-                  <input type="text" style={style_input} readOnly/>
-                  </td>
-                  {
-                    lodashmap(retlist,(id,index)=>{
-                      return (
-                        <td  style={stylewhite} align="center" key={`${id}`}></td>
-                      )
-                    })
-                  }
-                </tr>
                 </tbody>
                 </table>);
             }

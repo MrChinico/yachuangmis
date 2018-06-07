@@ -6,8 +6,8 @@ import moment from 'moment';
 import {getpagelist} from '../../util';
 
 const style_nursing_record_td = {
-  padding: '9px 10px',
-  border: '1px solid #ddd',
+  padding: '2px 10px',
+  border: '1px solid #000',
   borderLeft: '0px',
   borderBottom: '0px',
 };
@@ -149,7 +149,7 @@ class RecordNursingMeasuresTableBody extends React.Component {
             </tr>);
             const styletrdate = style_trdate;
             return (
-              <table width="100%"  style={{backgroundColor: '#fff'}}>
+              <table className="flex-1" width="100%"  style={{backgroundColor: '#fff'}}>
                 <tbody>
                                   <tr >
                                     <td style={style_nursing_record_td} colSpan="2" rowSpan="2">请在采取的护理措施项目内打“<font style={stylefont}>√</font>”</td>
