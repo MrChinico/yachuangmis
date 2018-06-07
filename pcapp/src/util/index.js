@@ -169,7 +169,7 @@ export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassificati
       checked:false,
       options:[
         {
-          name:'1)防压疮翻身床垫',
+          name:'1)气垫床',
           checked:false,
         },
         {
@@ -312,6 +312,8 @@ export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassificati
   }
 
   const v = {
+      wsffrom:'',
+      diagnosis:'',
       evaluatebardenscore:evaluatebardenscore,//evaluatebarden
       stagestatus:'未审核',
       preventivesmeasure,
@@ -399,6 +401,7 @@ export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassificati
         lapsetooptions:{//患者去向
           'checkout_checked':false,//出院/转院
           'death_checked':false,//死亡
+          'isok_checked':0,//0:愈合,1:好转,2:未愈
         }
       }
     };

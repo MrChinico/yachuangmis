@@ -253,7 +253,8 @@ const FormReviewLapsetoSchema = new Schema({
       }
     ],
   },
-
+  diagnosis:String,//诊断
+  wsffrom:String,//压疮来源
   isunavoidablepressureulcer:{ type: Number,default: -1 },//是否符合难免压疮申报条件
   instruction:String,//指导意见
   signed_nurse:{ type: Schema.Types.ObjectId, ref: 'user' },//护士签名

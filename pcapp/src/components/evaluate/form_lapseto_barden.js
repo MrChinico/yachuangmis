@@ -4,6 +4,8 @@ import {FieldArray,Fields, Field, reduxForm, Form  } from 'redux-form';
 import ViewPrintHeader from './viewprint_header';
 
 import {
+  renderWsffrom,
+  renderDiagnosis,
   renderConditions,
   renderPreventivesmeasure,
   renderScore,
@@ -100,8 +102,12 @@ class PageForm extends React.Component {
         							<tbody>
         							<tr>
         								<td>诊断：</td>
-        								<td></td>
+                        <Field component={renderDiagnosis} name="diagnosis"/>
         							</tr>
+                      <tr>
+                        <td>压疮来源</td>
+                        <Field component={renderWsffrom} name="wsffrom"/>
+                      </tr>
         							<tr>
         								<td>压疮评分：</td>
         								<Field component={renderScore} name="evaluatebardenscore"/>
@@ -134,6 +140,7 @@ class PageForm extends React.Component {
                       <Fields
                           names={["lapseto",'stagestatus' ]}
                           id="lapseto"
+                          Diseaseclassification={curpaientinfo.Diseaseclassification}
                           component={renderLapseto}
                           db={db} userlogin={userlogin}
                       />
@@ -169,8 +176,9 @@ class PageForm extends React.Component {
                     							<tbody>
                     							<tr>
                     								<td>诊断：</td>
-                    								<td></td>
+                    								<Field component={renderDiagnosis} name="diagnosis"/>
                     							</tr>
+
                     							<tr>
                     								<td>压疮评分：</td>
                     								<Field component={renderScore} name="evaluatebardenscore"/>
@@ -203,6 +211,7 @@ class PageForm extends React.Component {
                                   <Fields
                                       names={["lapseto",'stagestatus' ]}
                                       id="lapseto"
+                                      Diseaseclassification={curpaientinfo.Diseaseclassification}
                                       component={renderLapseto}
                                       db={db} userlogin={userlogin}
                                   />
@@ -233,7 +242,11 @@ class PageForm extends React.Component {
       							<tbody>
       							<tr>
       								<td>诊断：</td>
-      								<td></td>
+      								<Field component={renderDiagnosis} name="diagnosis"/>
+      							</tr>
+                    <tr>
+      								<td>压疮来源</td>
+      								<Field component={renderWsffrom} name="wsffrom"/>
       							</tr>
       							<tr>
       								<td>压疮评分：</td>
@@ -267,6 +280,7 @@ class PageForm extends React.Component {
                     <Fields
                         names={["lapseto",'stagestatus' ]}
                         id="lapseto"
+                        Diseaseclassification={curpaientinfo.Diseaseclassification}
                         component={renderLapseto}
                         db={db} userlogin={userlogin}
                     />

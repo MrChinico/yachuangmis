@@ -217,12 +217,14 @@ const renderPreventivesmeasure = (props)=>{
 
 
 const renderScore = (props)=>{
-  const {input:{value}} = props;
-  return (<td>{value}分</td>);
+  // const {input:{value}} = props;
+  // return (<td>{value}分</td>);
+  const {input:{value,onChange}} = props;
+  return (<td><input type="number" onChange={onChange} value={`${value}`}/>分</td>);
 }
 
 const renderLapseto= (props)=>{
-  const {lapseto,stagestatus} = props;
+  const {lapseto,stagestatus,Diseaseclassification} = props;
   const {input:{value,onChange}} = lapseto;
   const {ispressuresores,//是否发生压疮
     occuredpressuresorestime,//压疮发生时间
@@ -261,6 +263,15 @@ const renderLapseto= (props)=>{
       }
     });
   }
+  const onChange_lapsetooptions_isok = (value)=>{
+    onChange({
+      ispressuresores,
+      occuredpressuresorestime,
+      lapsetooptions:{
+        isok_checked:value
+      }
+    });
+  }
   let MYY = '';
   let MMM = '';
   let MDD = '';
@@ -282,54 +293,85 @@ const renderLapseto= (props)=>{
       <td colSpan="2">转归情况：</td>
     </tr>);
 
-  trsz.push(
-  <tr  key="title2">
-    <td>
-      <span>1、是否发生压疮：</span>
-      <span>是<input type="checkbox" name="check[]" checked={ispressuresores===1} onClick={
-        ()=>{
-          if(!isReadOnly){
-            onChange_Ispressuresores(true);
+  if(Diseaseclassification === '难免压疮'){
+    trsz.push(
+    <tr  key="title2">
+      <td>
+        <span>1、是否发生压疮：</span>
+        <span>是<input type="checkbox" name="check[]" checked={ispressuresores===1} onClick={
+          ()=>{
+            if(!isReadOnly){
+              onChange_Ispressuresores(true);
+            }
           }
-        }
-      } onChange={()=>{}} readOnly={isReadOnly}/></span>
-      <span>否<input type="checkbox" name="check[]" checked={ispressuresores===0} onClick={
-        ()=>{
-          if(!isReadOnly){
-            onChange_Ispressuresores(false);
+        } onChange={()=>{}} readOnly={isReadOnly}/></span>
+        <span>否<input type="checkbox" name="check[]" checked={ispressuresores===0} onClick={
+          ()=>{
+            if(!isReadOnly){
+              onChange_Ispressuresores(false);
+            }
           }
-        }
-      } onChange={()=>{}}  readOnly={isReadOnly}/></span>
-    </td>
-    <td className="w-50">压疮发生时间：
-      <input type="text" value={MYY} readOnly/>年
-      <input type="text" value={MMM} readOnly/>月
-      <input type="text" value={MDD} readOnly/>日
-      <input type="text" value={MHH} readOnly/>:
-      <input type="text" value={Mmm} readOnly/>
-    </td>
-  </tr>);
+        } onChange={()=>{}}  readOnly={isReadOnly}/></span>
+      </td>
+      <td className="w-50">压疮发生时间：
+        <input type="text" value={MYY} readOnly/>年
+        <input type="text" value={MMM} readOnly/>月
+        <input type="text" value={MDD} readOnly/>日
+        <input type="text" value={MHH} readOnly/>:
+        <input type="text" value={Mmm} readOnly/>
+      </td>
+    </tr>);
+    trsz.push(
+    <tr  key="title3">
+      <td colSpan="2">
+        <span>2、患者去向：</span>
+        <span>出院/转院<input type="checkbox" name="check[]" checked={lapsetooptions.checkout_checked} onClick={
+          ()=>{
+            if(!isReadOnly){
+              onChange_lapsetooptions_checkout(!lapsetooptions.checkout_checked);
+            }
+          }
+        } onChange={()=>{}}  readOnly={isReadOnly}/></span>
+        <span>死亡<input type="checkbox" name="check[]" checked={lapsetooptions.death_checked} onClick={
+          ()=>{
+            if(!isReadOnly){
+              onChange_lapsetooptions_death(!lapsetooptions.death_checked);
+            }
+          }
+        } onChange={()=>{}}  readOnly={isReadOnly}/></span>
+      </td>
+    </tr>);
+  }
+  else if(Diseaseclassification === '院前压疮' || Diseaseclassification === '院内压疮' ){
 
-  trsz.push(
-  <tr  key="title3">
-    <td colSpan="2">
-      <span>2、患者去向：</span>
-      <span>出院/转院<input type="checkbox" name="check[]" checked={lapsetooptions.checkout_checked} onClick={
-        ()=>{
-          if(!isReadOnly){
-            onChange_lapsetooptions_checkout(!lapsetooptions.checkout_checked);
+    trsz.push(
+    <tr  key="title3">
+      <td colSpan="2">
+        <span>愈合<input type="checkbox" name="check[]" checked={lapsetooptions.isok_checked === 0} onClick={
+          ()=>{
+            if(!isReadOnly){
+              onChange_lapsetooptions_isok(0);
+            }
           }
-        }
-      } onChange={()=>{}}  readOnly={isReadOnly}/></span>
-      <span>死亡<input type="checkbox" name="check[]" checked={lapsetooptions.death_checked} onClick={
-        ()=>{
-          if(!isReadOnly){
-            onChange_lapsetooptions_death(!lapsetooptions.death_checked);
+        } onChange={()=>{}}  readOnly={isReadOnly}/></span>
+        <span>好转<input type="checkbox" name="check[]" checked={lapsetooptions.isok_checked === 1} onClick={
+          ()=>{
+            if(!isReadOnly){
+              onChange_lapsetooptions_isok(1);
+            }
           }
-        }
-      } onChange={()=>{}}  readOnly={isReadOnly}/></span>
-    </td>
-  </tr>);
+        } onChange={()=>{}}  readOnly={isReadOnly}/></span>
+        <span>未愈<input type="checkbox" name="check[]" checked={lapsetooptions.isok_checked === 2} onClick={
+          ()=>{
+            if(!isReadOnly){
+              onChange_lapsetooptions_isok(2);
+            }
+          }
+        } onChange={()=>{}}  readOnly={isReadOnly}/></span>
+      </td>
+    </tr>);
+  }
+
   return trsz;
 }
 
@@ -689,8 +731,19 @@ const renderUserReport= (fields)=>{
   return Co;
 }
 
+const renderDiagnosis = (props)=>{//diagnosis
+  const {input:{value,onChange}} = props;
+  return (<td><input type="text" onChange={onChange} value={value}/></td>);
+}
+
+const renderWsffrom = (props)=>{//wsffrom
+  const {input:{value,onChange}} = props;
+  return (<td><input type="text" onChange={onChange} value={value}/></td>);
+}
 
 export {
+  renderDiagnosis,
+  renderWsffrom,
   renderConditions_prerequisites_options,
   renderConditions_alternative_options,
   renderConditions_prerequisites,
