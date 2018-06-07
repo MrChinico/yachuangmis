@@ -314,6 +314,11 @@ export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassificati
   const v = {
       wsffrom:'',
       diagnosis:'',
+      occuredtime:'',//院内压疮的压疮发生时间
+      tonm:{
+        istonm:false,//是否申报难免压疮
+        istonmtime:''//申报日期
+      },
       evaluatebardenscore:evaluatebardenscore,//evaluatebarden
       stagestatus:'未审核',
       preventivesmeasure,

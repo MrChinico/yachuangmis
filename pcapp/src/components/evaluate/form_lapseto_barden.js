@@ -6,6 +6,7 @@ import ViewPrintHeader from './viewprint_header';
 import {
   renderWsffrom,
   renderDiagnosis,
+  renderTonm,
   renderConditions,
   renderPreventivesmeasure,
   renderScore,
@@ -229,6 +230,11 @@ class PageForm extends React.Component {
                       </Form>);
     }
     else if(curpaientinfo.Diseaseclassification === '院内压疮'){
+      trlist.push(<Field key="conditions"
+                        name="conditions"
+                        id="conditions"
+                        component={renderConditions}
+                    />);
       return (
         <Form
             onSubmit={handleSubmit(onClickSubmit)}
@@ -244,14 +250,17 @@ class PageForm extends React.Component {
       								<td>诊断：</td>
       								<Field component={renderDiagnosis} name="diagnosis"/>
       							</tr>
-                    <tr>
-      								<td>压疮来源</td>
-      								<Field component={renderWsffrom} name="wsffrom"/>
-      							</tr>
       							<tr>
       								<td>压疮评分：</td>
       								<Field component={renderScore} name="evaluatebardenscore"/>
       							</tr>
+
+
+                    <Fields
+                        names={["tonm",'stagestatus' ]}
+                        id="tonm"
+                        component={renderTonm} />
+
 
                     {trlist}
 

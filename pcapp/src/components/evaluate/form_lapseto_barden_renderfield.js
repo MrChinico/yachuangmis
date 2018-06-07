@@ -2,7 +2,11 @@ import React from 'react';
 import {FieldArray,Field, } from 'redux-form';
 import lodashget from 'lodash.get';
 // import { Popconfirm } from 'antd';
-import {popConfirmSign,popConfirmBack} from './popconfirmsign';
+import {popConfirmSign,
+  popConfirmBack,
+  popConfirmTonm,
+  popConfirmTonmBack
+} from './popconfirmsign';
 import moment from 'moment';
 
 const style_choose_info_tr = {
@@ -741,9 +745,84 @@ const renderWsffrom = (props)=>{//wsffrom
   return (<td><input type="text" onChange={onChange} value={value}/></td>);
 }
 
+const renderTonm = (props)=>{//是否申报难免压疮		申报日期	2018-05-06 18：00
+  //
+  // tonm:{
+  //   istonm:false,//是否申报难免压疮
+  //   istonmtime:''//申报日期
+  // },
+  //
+  const {tonm} = props;
+  const {input:{value,onChange}} = tonm;
+  const {istonm,istonmtime} = value || {
+    istonm:false,
+    istonmtime:''
+  };
+
+
+  // const isenabled =
+  //   lodashget(stagestatus,'input.value','') === '已审核';//如果自己是护理部主管并且正在护理部审核中
+
+  let MYY = '';
+  let MMM = '';
+  let MDD = '';
+  let MHH = '';
+  let Mmm = '';
+
+  const time_input_value = istonmtime;
+  if(!!time_input_value && istonm){
+    const momenttime = moment(time_input_value);
+    MYY = momenttime.format('YYYY');
+    MMM = momenttime.format('MM');
+    MDD = momenttime.format('DD');
+    MHH = momenttime.format('HH');
+    Mmm = momenttime.format('mm');
+  }
+
+  const onConfirm = ()=>{
+    if(!istonm){
+      let initmoment = moment();
+      popConfirmTonm(initmoment,(resultmoment)=>{
+        const moments = resultmoment.format('YYYY-MM-DD HH:mm:ss');
+        onChange({
+          istonmtime:moments,
+          istonm:true
+        });
+      });
+    }
+    else{
+      popConfirmTonmBack(()=>{
+        onChange({
+          istonmtime:'',
+          istonm:false
+        });
+      });
+    }
+  };
+  const isshowbtn = true;
+  // (lodashget(stagestatus,'input.value','') === '已上报' || lodashget(stagestatus,'input.value','') === '已审核');
+
+  const btntitle = !istonm?'确定申报':'取消申报';
+  const Co = (<tr>
+      <td>是否申报难免压疮:{istonm?'是':'否'}
+      {isshowbtn && <button type="button" onClick={onConfirm} className="go-back ant-btn-edit blue">{btntitle}</button>}
+      </td>
+      <td className="w-50">日期：
+          <input type="text" readOnly value={MYY}/>年
+          <input type="text" readOnly value={MMM}/>月
+          <input type="text" readOnly value={MDD}/>日
+          <input type="text" readOnly value={MHH}/>:
+          <input type="text" readOnly value={Mmm}/>
+      </td>
+    </tr>);
+
+  return Co;
+}
+
 export {
   renderDiagnosis,
   renderWsffrom,
+  renderTonm,
   renderConditions_prerequisites_options,
   renderConditions_alternative_options,
   renderConditions_prerequisites,

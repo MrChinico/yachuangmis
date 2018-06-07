@@ -52,7 +52,53 @@ const popConfirmBack = (callback)=>{
   });
 }
 
-export {popConfirmSign,popConfirmBack};
+const popConfirmTonm = (initmoment,callback)=>{
+
+    confirm({
+        title: '确定需要申报难免压疮吗?请选择申报日期',
+        content: <div>
+            <DatePicker
+                defaultValue={initmoment}
+                format="YYYY-MM-DD HH:mm:ss"
+                showTime
+                onChange={(date, dateString)=>{
+                    initmoment = date;
+                }}
+                onPanelChange={this.handlePanelChange}
+            />
+        </div>,
+        okText:'确认',
+        cancelText:'取消',
+        okType:'Default',
+        onOk() {
+            console.log(`curdate-->${initmoment.format('YYYY-MM-DD HH:mm:ss')}--->OK`)
+            callback(initmoment);
+        },
+        onCancel() {
+            console.log(`curdate-->${initmoment.format('YYYY-MM-DD HH:mm:ss')}--->cancel`)
+		    },
+    });
+};
+
+const popConfirmTonmBack = (callback)=>{
+  confirm({
+      title: '确定取消申报?',
+      content: <div>
+        取消后,会将状态回复到未申报状态
+      </div>,
+      okText:'确认',
+      cancelText:'取消',
+      okType:'Default',
+      onOk() {
+          callback();
+      },
+      onCancel() {
+      },
+  });
+}
+
+
+export {popConfirmSign,popConfirmBack,popConfirmTonm,popConfirmTonmBack};
 //
 // class PopconfirmSign extends React.Component {
 // 		constructor(props) {
