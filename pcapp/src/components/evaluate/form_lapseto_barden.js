@@ -131,8 +131,8 @@ class PageForm extends React.Component {
                         db={db}  userlogin={userlogin}/>
 
 
-                      <Fields names={[ 'instruction', 'isunavoidablepressureulcer','stagestatus' ]} component={renderInstruction}
-                      db={db} userlogin={userlogin}/>
+                      <Fields names={[ 'instruction','isinfact', 'isunavoidablepressureulcer','stagestatus' ]} component={renderInstruction}
+                      db={db} userlogin={userlogin}   Diseaseclassification={curpaientinfo.Diseaseclassification}/>
 
                       <Fields names={[ 'signed_nursingdepartment', 'signed_nursingdepartment_time','stagestatus' ]} component={renderUserSignedNursingDepartment}
                           db={db} userlogin={userlogin}/>
@@ -202,8 +202,8 @@ class PageForm extends React.Component {
                                     db={db}  userlogin={userlogin}/>
 
 
-                                  <Fields names={[ 'instruction', 'isunavoidablepressureulcer','stagestatus' ]} component={renderInstruction}
-                                  db={db} userlogin={userlogin}/>
+                                  <Fields names={[ 'instruction','isinfact',  'isunavoidablepressureulcer','stagestatus' ]} component={renderInstruction}
+                                  db={db} userlogin={userlogin}   Diseaseclassification={curpaientinfo.Diseaseclassification}/>
 
                                   <Fields names={[ 'signed_nursingdepartment', 'signed_nursingdepartment_time','stagestatus' ]} component={renderUserSignedNursingDepartment}
                                       db={db} userlogin={userlogin}/>
@@ -252,7 +252,7 @@ class PageForm extends React.Component {
                         id="admissions"
                         component={renderAdmissions}
                     />);
-                    
+
       trlist.push(<tr style={style_choose_info_tr_graytitle} key='evaluateWoundsurfaces'>
         <td colSpan="2">
           <table style={{width:'100%'}}>
@@ -310,8 +310,8 @@ class PageForm extends React.Component {
                       db={db}  userlogin={userlogin}/>
 
 
-                    <Fields names={[ 'instruction', 'isunavoidablepressureulcer','stagestatus' ]} component={renderInstruction}
-                    db={db} userlogin={userlogin}/>
+                    <Fields names={[ 'instruction', 'isinfact', 'isunavoidablepressureulcer','stagestatus' ]} component={renderInstruction}
+                    db={db} userlogin={userlogin}   Diseaseclassification={curpaientinfo.Diseaseclassification}/>
 
                     <Fields names={[ 'signed_nursingdepartment', 'signed_nursingdepartment_time','stagestatus' ]} component={renderUserSignedNursingDepartment}
                         db={db} userlogin={userlogin}/>

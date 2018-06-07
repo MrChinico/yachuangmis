@@ -380,8 +380,9 @@ const renderLapseto= (props)=>{
 }
 
 const renderInstruction= (fields)=>{
-  const {isunavoidablepressureulcer,instruction,stagestatus,userlogin} = fields;
+  const {isunavoidablepressureulcer,Diseaseclassification,isinfact,instruction,stagestatus,userlogin} = fields;
   const input_isunavoidablepressureulcer = isunavoidablepressureulcer.input;
+  const input_isinfact = isinfact.input;
   const input_instruction = instruction.input;
 
   const isshowbtn = (lodashget(userlogin,'permission.name','') === '护理部主管')
@@ -389,44 +390,79 @@ const renderInstruction= (fields)=>{
 
   let isReadOnly = !isshowbtn;//如果自己是护士长并且正在护士长审核中
 
-  const onChangeChecked = (checked)=>{
-      input_isunavoidablepressureulcer.onChange(checked?1:0);
-  }
+
   let trsz = [];
   trsz.push(<tr className="gray title" key="title">
     <td colSpan="2">主管部门审核与指导意见</td>
   </tr>);
 
-  trsz.push(<tr key="in">
-      <td colSpan="2">
-        <span>符合难免压疮申报的条件：</span>
-        <span>是<input type="checkbox" name="check[]" checked={input_isunavoidablepressureulcer.value}
-             onClick={
-               ()=>{
-                 if(!isReadOnly){
-                   onChangeChecked(true);
+  if(Diseaseclassification === '难免压疮'){
+    const onChangeChecked = (checked)=>{
+        input_isunavoidablepressureulcer.onChange(checked?1:0);
+    }
+    trsz.push(<tr key="in">
+        <td colSpan="2">
+          <span>符合难免压疮申报的条件：</span>
+          <span>是<input type="checkbox" name="check[]" checked={input_isunavoidablepressureulcer.value}
+               onClick={
+                 ()=>{
+                   if(!isReadOnly){
+                     onChangeChecked(true);
+                   }
                  }
                }
-             }
-           onChange={
-          ()=>{}
-        } readOnly={isReadOnly}/></span>
-        <span>否<input type="checkbox" name="check[]" checked={!input_isunavoidablepressureulcer.value} onClick={
-          ()=>{
-            if(!isReadOnly){
-              onChangeChecked(false);
+             onChange={
+            ()=>{}
+          } readOnly={isReadOnly}/></span>
+          <span>否<input type="checkbox" name="check[]" checked={!input_isunavoidablepressureulcer.value} onClick={
+            ()=>{
+              if(!isReadOnly){
+                onChangeChecked(false);
+              }
             }
           }
-        }
-      onChange={
-     ()=>{}
-   } readOnly={isReadOnly}/></span>
-      </td>
-    </tr>);
-
-    trsz.push(<tr key="guide">
-        <td colSpan="2">指导意见：<input type="text" {...input_instruction} readOnly={isReadOnly}/></td>
+        onChange={
+       ()=>{}
+     } readOnly={isReadOnly}/></span>
+        </td>
       </tr>);
+  }
+  else if(Diseaseclassification === '院内压疮' || Diseaseclassification === '院前压疮' ){
+    const onChangeChecked = (value)=>{
+        input_isinfact.onChange(value);
+    }
+    trsz.push(<tr key="in">
+        <td colSpan="2">
+          <span>情况属实：</span>
+          <span>是<input type="checkbox" name="check[]" checked={input_isinfact.value === 1}
+               onClick={
+                 ()=>{
+                   if(!isReadOnly){
+                     onChangeChecked(1);
+                   }
+                 }
+               }
+             onChange={
+            ()=>{}
+          } readOnly={isReadOnly}/></span>
+          <span>否<input type="checkbox" name="check[]" checked={input_isinfact.value === 0} onClick={
+            ()=>{
+              if(!isReadOnly){
+                onChangeChecked(0);
+              }
+            }
+          }
+        onChange={
+       ()=>{}
+     } readOnly={isReadOnly}/></span>
+        </td>
+      </tr>);
+  }
+
+
+  trsz.push(<tr key="guide">
+      <td colSpan="2">指导意见：<input type="text" {...input_instruction} readOnly={isReadOnly}/></td>
+    </tr>);
 
   return trsz;
 }

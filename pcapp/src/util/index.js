@@ -399,6 +399,7 @@ export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassificati
         ],
       },
       isunavoidablepressureulcer:-1,//是否符合难免压疮申报条件
+      isinfact:-1,//情况属实
       instruction:'',//指导意见
       lapseto:{
         ispressuresores:-1,//是否发生压疮
