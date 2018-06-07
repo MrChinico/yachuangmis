@@ -235,6 +235,44 @@ class PageForm extends React.Component {
                         id="conditions"
                         component={renderConditions}
                     />);
+
+      trlist.push(<Fields
+            key="tonm"
+            names={["tonm",'stagestatus' ]}
+            id="tonm"
+            component={renderTonm} />);
+
+      trlist.push(<tr className="gray title" key='admissions'>
+          <td>患者存在以下情况</td>
+          <td></td>
+        </tr>);
+
+      trlist.push(<FieldArray key="admissionsarray"
+                        name="admissions"
+                        id="admissions"
+                        component={renderAdmissions}
+                    />);
+                    
+      trlist.push(<tr style={style_choose_info_tr_graytitle} key='evaluateWoundsurfaces'>
+        <td colSpan="2">
+          <table style={{width:'100%'}}>
+            <tbody>
+              <tr>
+                <td style={style_choose_info_td_w25}>部位</td>
+                <td style={style_choose_info_td_w25}>分期</td>
+                <td style={style_choose_info_td_w25}>大小</td>
+                <td style={style_choose_info_td_w25}>情况</td>
+              </tr>
+              <FieldArray key="evaluateWoundsurfacesarray"
+                                  name="evaluateWoundsurfaces"
+                                  id="evaluateWoundsurfaces"
+                                  component={renderEvaluateWoundsurfaces}
+                              />
+
+            </tbody>
+          </table>
+        </td>
+        </tr>);
       return (
         <Form
             onSubmit={handleSubmit(onClickSubmit)}
@@ -254,13 +292,6 @@ class PageForm extends React.Component {
       								<td>压疮评分：</td>
       								<Field component={renderScore} name="evaluatebardenscore"/>
       							</tr>
-
-
-                    <Fields
-                        names={["tonm",'stagestatus' ]}
-                        id="tonm"
-                        component={renderTonm} />
-
 
                     {trlist}
 
