@@ -6,20 +6,32 @@ import React      from 'react';
 import lodashget  from 'lodash.get';
 import lodashmap  from 'lodash.map';
 import moment     from 'moment';
+import { Icon } from 'antd';
 import {getvalueof_preventivesmeasure} from '../../util/index';
 import './form_tamplate_style.styl';
 
+const RenderCheckBox = (props)=>{
+  const {checked} = props;
+  if(checked){
+    return  <span>&nbsp;<Icon type="check-square-o" />&nbsp;</span>;
+  }
+  return  <span>&nbsp;<Icon type="close-square-o" />&nbsp;</span>;
+  // return (<Icon type="close-square-o" />);
+}
+
 const RenderCheckboxTitle = (props)=>{
   //改样式,否则没法打印,如果选中,则前面打勾
-  const {checked,value} = props;
-  return <span className = "check"><input type="checkbox" name="check[]" readOnly checked={checked} />{value}</span>;
+  const {checked,value} = props;//<Icon type="check" />
+  return <span className = "check">
+    <RenderCheckBox checked={checked} />
+    {value}</span>;
 }
 
 const RenderCheckboxTableCenterY = (props)=>{
   //改样式,否则没法打印,如果选中,则前面打勾
   const {checked,value} = props;
   return   <div className = "center-y" >
-      <input type="checkbox" checked = {checked } name="check[]" readOnly/>
+      <RenderCheckBox checked={checked} />
       {value }
     </div>
 }
@@ -27,7 +39,10 @@ const RenderCheckboxTableCenterY = (props)=>{
 const RenderCheckboxTitleFirst = (props)=>{
   //改样式,否则没法打印,如果选中,则前面打勾
   const {checked,value} = props;
-  return <span >{value}<input type="text" className=""  value={checked} readOnly/></span>;
+  return <span >
+    {value}
+    <RenderCheckBox checked={checked} />
+  </span>;
 }
 
 const FormSign = (props) => {
@@ -58,14 +73,14 @@ const FormSign = (props) => {
     Guidecheck = (<div className = "flex-1 center-y">
         <span className = "check">符合难免压疮申报的条件：</span>
         <RenderCheckboxTitle checked={isunavoidablepressureulcer}  value="是" />
-        <RenderCheckboxTitle checked={isunavoidablepressureulcer}  value="否" />
+        <RenderCheckboxTitle checked={!isunavoidablepressureulcer}  value="否" />
       </div>);
   }
   else{
     Guidecheck = (<div className = "flex-1 center-y">
         <span className = "check">情况属实</span>
         <RenderCheckboxTitle checked={isinfact}  value="是" />
-        <RenderCheckboxTitle checked={isinfact}  value="否" />
+        <RenderCheckboxTitle checked={!isinfact}  value="否" />
       </div>);
   }
   return (
@@ -109,8 +124,12 @@ const FormMeasures = props => {
       const CRenderPreventivesmeasureItemOptionsArrayoption = (props)=>{
         const {info:vs} = props;
         if(vs.value !== undefined){
-          return (<RenderCheckboxTitleFirst checked={vs.checked} value={vs.value} />);
+          return  (
+          <div className = "center-y" key={ index }>
+            <input type="text"  value={vo.value} readOnly/>
+          </div>);
         }
+
         return (<RenderCheckboxTitleFirst checked={vs.checked} value={vs.name} />);
 
       }
@@ -125,14 +144,14 @@ const FormMeasures = props => {
       }
       return (
         <div className = "center-y" key={ index }>
-          <input type="checkbox" name="check[]" readOnly/>{vo.name}
+          <RenderCheckBox checked={true} />{vo.name}
   				<CRenderPreventivesmeasureItemOptionsArray options={vo.options} />
         </div>)
     }
     if(vo.value !== undefined){
       return  (
       <div className = "center-y" key={ index }>
-        <input type="checkbox" name="check[]" checked={vo.checked} readOnly />
+        <RenderCheckBox checked={vo.checked} />
           {vo.name}<input type="text"  value={vo.value} readOnly/>
       </div>);
     }
