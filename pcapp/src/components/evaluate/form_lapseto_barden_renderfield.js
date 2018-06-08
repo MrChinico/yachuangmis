@@ -530,6 +530,22 @@ const renderEvaluateWoundsurfaces =  (props)=>{
   const onConfirm = ()=>{
     popConfirmSelectWs({evaluatewoundsurfacelist,db},(ws)=>{
       console.log(ws);
+      fields.removeAll();
+      for(let i = 0 ;i < ws.length ;i ++){
+        // {
+        //     "部位" : "坐骨结节",
+        //     "分期" : "二期",
+        //     "大小" : "长:0cm,宽:0cm,深:4cm",
+        //     "情况" : "渗液量:,颜色:23,窦道:22,潜行:11"
+        // },
+        const cm = ws[i];
+        fields.push({
+          '部位':lodashget(cm,'部位.label',''),
+          '分期':lodashget(cm,'分期.label',''),
+          '大小':`长:${lodashget(cm,'创面大小.长','')}cm,宽:${lodashget(cm,'创面大小.宽','')}cm,深:${lodashget(cm,'创面大小.深','')}cm`,
+          '情况':`渗液量:${lodashget(cm,'创面大小.渗液量','')},颜色:${lodashget(cm,'创面大小.颜色','')},窦道:${lodashget(cm,'创面大小.窦道','')},潜行:${lodashget(cm,'创面大小.潜行','')}`,
+        });
+      }
     });
   }
   return (<table style={{width:'100%'}}>
