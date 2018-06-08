@@ -126,7 +126,7 @@ const FormMeasures = props => {
         if(vs.value !== undefined){
           return  (
           <div className = "center-y" key={ index }>
-            <input type="text"  value={vo.value} readOnly/>
+            {vs.name}<input type="text"  value={vo.value} readOnly/>
           </div>);
         }
 
@@ -151,7 +151,6 @@ const FormMeasures = props => {
     if(vo.value !== undefined){
       return  (
       <div className = "center-y" key={ index }>
-        <RenderCheckBox checked={vo.checked} />
           {vo.name}<input type="text"  value={vo.value} readOnly/>
       </div>);
     }
@@ -525,6 +524,23 @@ const FormNosocomial = props => {
     Mmm_signed_report_time = momenttime.format('mm');
   }
 
+
+  let MYY_istonmtime = '';
+  let MMM_istonmtime= '';
+  let MDD_istonmtime= '';
+  let MHH_istonmtime = '';
+  let Mmm_istonmtime = '';
+  const istonmtime = lodashget(info,'tonm.istonmtime');
+  if(!!istonmtime && istonmtime!== ''){
+    const momenttime = moment(istonmtime);
+    MYY_istonmtime= momenttime.format('YYYY');
+    MMM_istonmtime = momenttime.format('MM');
+    MDD_istonmtime = momenttime.format('DD');
+    MHH_istonmtime = momenttime.format('HH');
+    Mmm_istonmtime = momenttime.format('mm');
+  }
+
+  const tonm_istonm = lodashget(info,'tonm.istonm',false);
   const lapsetooptions_isok_checked = lodashget(info,'lapseto.lapsetooptions.isok_checked',-1);
   return (
     <div className = "form-page" >
@@ -554,12 +570,22 @@ const FormNosocomial = props => {
             <div className = "flex-1 center">可选择条件</div>
           </div>
           <NosocomialOptions conditions = { lodashget(info,'conditions',{}) } />
-
-          <div>
-            <div className = "flex-1 center">是否申报难免压疮</div>
-            <div className = "flex-1 center"></div>
-            <div className = "flex-1 center">申报时间</div>
-            <div className = "flex-1 center"></div>
+          <div className = "form-sign column">
+            <div>
+              <div className = "flex-1 center">是否申报难免压疮</div>
+              <div className = "flex-2 center">
+                <RenderCheckboxTitle value="是"  checked={tonm_istonm}/>
+                <RenderCheckboxTitle value="否"  checked={!tonm_istonm}/>
+              </div>
+              <div className = "flex-1 center">申报时间</div>
+              <div className = "flex-2 center">
+                <span>{MYY_istonmtime}</span>年
+                <span>{MMM_istonmtime}</span>月
+                <span>{MDD_istonmtime}</span>日
+                <span>{MHH_istonmtime}</span>:
+                <span>{Mmm_istonmtime}</span>
+              </div>
+            </div>
           </div>
           <div className = "center">患者存在以下情况</div>
           <PrehospitalOptions admissions = { lodashget(info,'admissions',[]) } />
@@ -583,7 +609,7 @@ const FormNosocomial = props => {
           <div>
             <div className = "flex-1 center">护士长签名</div>
             <div className = "flex-2">{ lodashget(props.db,`users.${props.info.signed_headnurse}.Staffname`,'') }</div>
-            <div className = "flex-1 center">申报日期</div>
+            <div className = "flex-1 center">签名日期</div>
             <div className = "flex-2 center">
               <span>{MYY_signed_headnurse_time}</span>年
               <span>{MMM_signed_headnurse_time}</span>月
