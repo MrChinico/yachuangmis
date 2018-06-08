@@ -7,7 +7,28 @@ import lodashget  from 'lodash.get';
 import lodashmap  from 'lodash.map';
 import moment     from 'moment';
 import {getvalueof_preventivesmeasure} from '../../util/index';
-import './form_tamplate_style.styl'
+import './form_tamplate_style.styl';
+
+const RenderCheckboxTitle = (props)=>{
+  //改样式,否则没法打印,如果选中,则前面打勾
+  const {checked,value} = props;
+  return <span className = "check"><input type="checkbox" name="check[]" readOnly checked={checked} />{value}</span>;
+}
+
+const RenderCheckboxTableCenterY = (props)=>{
+  //改样式,否则没法打印,如果选中,则前面打勾
+  const {checked,value} = props;
+  return   <div className = "center-y" >
+      <input type="checkbox" checked = {checked } name="check[]" readOnly/>
+      {value }
+    </div>
+}
+
+const RenderCheckboxTitleFirst = (props)=>{
+  //改样式,否则没法打印,如果选中,则前面打勾
+  const {checked,value} = props;
+  return <span >{value}<input type="text" className=""  value={checked} readOnly/></span>;
+}
 
 const FormSign = (props) => {
   //主管部门审核与指导意见：
@@ -36,15 +57,15 @@ const FormSign = (props) => {
   if(Diseaseclassification === '难免压疮'){
     Guidecheck = (<div className = "flex-1 center-y">
         <span className = "check">符合难免压疮申报的条件：</span>
-        <span className = "check"><input type="checkbox" name="check[]" readOnly checked={isunavoidablepressureulcer} />是</span>
-        <span className = "check"><input type="checkbox" name="check[]" readOnly checked={isunavoidablepressureulcer} />否</span>
+        <RenderCheckboxTitle checked={isunavoidablepressureulcer}  value="是" />
+        <RenderCheckboxTitle checked={isunavoidablepressureulcer}  value="否" />
       </div>);
   }
   else{
     Guidecheck = (<div className = "flex-1 center-y">
         <span className = "check">情况属实</span>
-        <span className = "check"><input type="checkbox" name="check[]" readOnly checked={isinfact} />是</span>
-        <span className = "check"><input type="checkbox" name="check[]" readOnly checked={isinfact} />否</span>
+        <RenderCheckboxTitle checked={isinfact}  value="是" />
+        <RenderCheckboxTitle checked={isinfact}  value="否" />
       </div>);
   }
   return (
@@ -88,11 +109,10 @@ const FormMeasures = props => {
       const CRenderPreventivesmeasureItemOptionsArrayoption = (props)=>{
         const {info:vs} = props;
         if(vs.value !== undefined){
-          return (<span >{vs.name}
-            <input type="text" className=""  value={vs.value} readOnly/></span>);
+          return (<RenderCheckboxTitleFirst checked={vs.checked} value={vs.value} />);
         }
-        return (<span>{vs.name}<input type="checkbox" name="check[]" checked={vs.checked}
-        readOnly/></span>);
+        return (<RenderCheckboxTitleFirst checked={vs.checked} value={vs.name} />);
+
       }
 
       const CRenderPreventivesmeasureItemOptionsArray = (props)=>{
@@ -116,10 +136,9 @@ const FormMeasures = props => {
           {vo.name}<input type="text"  value={vo.value} readOnly/>
       </div>);
     }
-    return (<div className = "center-y" key={ index }>
-        <input type="checkbox" checked = { vo.checked } name="check[]" readOnly/>
-        { vo.name }
-      </div>);
+    return (
+      <RenderCheckboxTableCenterY key={ index } checked = { vo.checked } value={ vo.name } />
+    );
   }
   lodashmap( retpreventivesmeasure,( element, index ) => {
     elements.push(<CRenderItem vo={element} key={index} index={index}/>);
@@ -186,16 +205,12 @@ const UnavoidableOptions = props => {
 
   lodashmap(prerequisites,( element, index ) => {
     optionsLeft.push(
-      <div className = "center-y" key = { index }>
-        <input type="checkbox" name="check[]" checked = { element.checked } readOnly/> { element.name }
-      </div>
+      <RenderCheckboxTableCenterY value={ element.name } key={index} checked={ element.checked } />
     )
   })
   lodashmap(alternative,( element, index ) => {
     optionsRight.push(
-      <div className = "center-y" key = { index }>
-        <input type="checkbox" name="check[]" checked = { element.checked } readOnly/> { element.name }
-      </div>
+      <RenderCheckboxTableCenterY value={ element.name } key={index} checked={ element.checked } />
     )
   })
 
@@ -232,16 +247,12 @@ const NosocomialOptions = props => {
 
   lodashmap(prerequisites,( element, index ) => {
     optionsLeft.push(
-      <div className = "center-y" key = { index }>
-        <input type="checkbox" name="check[]" checked = { element.checked } readOnly/> { element.name }
-      </div>
+    <RenderCheckboxTableCenterY value={ element.name } key={index} checked={ element.checked } />
     )
   })
   lodashmap(alternative,( element, index ) => {
     optionsRight.push(
-      <div className = "center-y" key = { index }>
-        <input type="checkbox" name="check[]" checked = { element.checked } readOnly/> { element.name }
-      </div>
+    <RenderCheckboxTableCenterY value={ element.name } key={index} checked={ element.checked } />
     )
   })
 
@@ -277,9 +288,9 @@ const PrehospitalOptions = props => {
   for(let j = 0 ;j < admissions.length; j++){
     const v = admissions[j];
     options = (j<admissions.length/2)?optionsLeft:optionsRight;
-    options.push(<div className = "center-y" key = { j }>
-      <input type="checkbox" name="check[]" checked = { v.checked } readOnly/> { v.name }
-    </div>);
+    options.push(
+      <RenderCheckboxTableCenterY value={ v.name } key={j} checked={ v.checked } />
+    );
   }
 
   if(options.length % 2 === 1){
@@ -425,9 +436,9 @@ const FormPrehospital = (props) => {
         <div className="lapse-to">
           <div className="flex-2 center">转归情况：</div>
           <div className="flex-4 center">
-            <span className = "check"><input type="checkbox" name="check[]" readOnly checked={lapsetooptions_isok_checked === 0}/>愈合</span>
-            <span className = "check"><input type="checkbox" name="check[]" readOnly checked={lapsetooptions_isok_checked === 1}/>好转</span>
-            <span className = "check"><input type="checkbox" name="check[]" readOnly checked={lapsetooptions_isok_checked === 2}/>未愈</span>
+            <RenderCheckboxTitle value="愈合"  checked={lapsetooptions_isok_checked === 0}/>
+            <RenderCheckboxTitle value="好转"  checked={lapsetooptions_isok_checked === 1}/>
+            <RenderCheckboxTitle value="未愈"  checked={lapsetooptions_isok_checked === 2}/>
           </div>
           <div className="flex-2 center">填报人：</div>
           <div className="flex-2 center">{ lodashget(db,`users.${info.signed_report}.Staffname`,'') }</div>
@@ -567,10 +578,10 @@ const FormNosocomial = props => {
         <div className="lapse-to">
           <div className="flex-2 center">转归情况：</div>
           <div className="flex-4 center">
-            <span className = "check"><input type="checkbox" name="check[]" readOnly checked={lapsetooptions_isok_checked === 0}/>愈合</span>
-            <span className = "check"><input type="checkbox" name="check[]" readOnly checked={lapsetooptions_isok_checked === 1}/>好转</span>
-            <span className = "check"><input type="checkbox" name="check[]" readOnly checked={lapsetooptions_isok_checked === 2}/>未愈</span>
-          </div>
+            <RenderCheckboxTitle value="愈合"  checked={lapsetooptions_isok_checked === 0}/>
+            <RenderCheckboxTitle value="好转"  checked={lapsetooptions_isok_checked === 1}/>
+            <RenderCheckboxTitle value="未愈"  checked={lapsetooptions_isok_checked === 2}/>
+            </div>
           <div className="flex-2 center">填报人：</div>
           <div className="flex-2 center">{ lodashget(db,`users.${info.signed_report}.Staffname`,'') }</div>
           <div className="flex-5 center">
@@ -696,8 +707,8 @@ const FormUnavoidable = props => {
           <div>
             <div className="flex-1">1.是否发生压疮</div>
             <div className="flex-2">
-              <span className = "check"><input type="checkbox" name="check[]" readOnly checked={ispressuresores===0}/>否</span>
-              <span className = "check"><input type="checkbox" name="check[]" readOnly checked={ispressuresores===1}/>是</span>
+              <RenderCheckboxTitle value="否"  checked={ispressuresores===0}/>
+              <RenderCheckboxTitle value="是"  checked={ispressuresores===1}/>
             </div>
             <div className="flex-1">发生时间</div>
             <div className="flex-2">
@@ -711,8 +722,8 @@ const FormUnavoidable = props => {
           <div>
             <div className="flex-1">2.患者去向</div>
             <div className="flex-2">
-              <span className = "check"><input type="checkbox" name="check[]" readOnly checked={checkout_checked}/>出院/转院</span>
-              <span className = "check"><input type="checkbox" name="check[]" readOnly checked={death_checked}/>死亡</span>
+              <RenderCheckboxTitle value="出院/转院"  checked={checkout_checked}/>
+              <RenderCheckboxTitle value="死亡"  checked={death_checked}/>
             </div>
             <div className="flex-3"></div>
           </div>
