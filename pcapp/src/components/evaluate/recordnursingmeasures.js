@@ -37,17 +37,17 @@ class App extends React.Component {
 	    return (
 				<Layout>
 					<Header>
-						<span><img src="index.png" className="icon-index" alt=""/>查看Bardenp评估</span>
+						<span><img src="index.png" className="icon-index" alt=""/>护理措施</span>
 					</Header>
-					<ViewPrintTitltToPrint title="Barden评估打印" refnode={() => this.componentRef} history={this.props.history}/>
+					<ViewPrintTitltToPrint title="护理措施打印" refnode={() => this.componentRef} history={this.props.history}/>
 					<form ref={el => (this.componentRef = el)}>
-					<PrintFormNM Hospitalname={Hospitalname}
-						Depatname={Depatname}
-						momentin={momentin}
-						Bedname={Bedname}
-						curpaientinfo={curpaientinfo}
-						db={db}
-						evaluatenursingmeasureslist={evaluatenursingmeasureslist} />
+						<PrintFormNM Hospitalname={Hospitalname}
+							Depatname={Depatname}
+							momentin={momentin}
+							Bedname={Bedname}
+							curpaientinfo={curpaientinfo}
+							db={db}
+							evaluatenursingmeasureslist={evaluatenursingmeasureslist} />
 					</form>
 				</Layout>
 	    );

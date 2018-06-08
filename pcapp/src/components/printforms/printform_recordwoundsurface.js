@@ -9,7 +9,7 @@ const PrintForm_WS = (props)=>{
       <div className = "column">
         <div className = "form-header column">
           <div className = "form-title center-x">
-            { Hospitalname }压疮危险因素评估表
+            { Hospitalname }创面评估表
           </div>
           <div className = "form-abstract column">
             <div>
