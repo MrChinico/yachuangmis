@@ -11,8 +11,8 @@ import './form_tamplate_style.styl'
 
 const FormSign = (props) => {
   //主管部门审核与指导意见：
-  const {info,db} = props;
-  const {isunavoidablepressureulcer,instruction,signed_nursingdepartment} = info;
+  const {info,db,Diseaseclassification} = props;
+  const {isunavoidablepressureulcer,isinfact,instruction,signed_nursingdepartment} = info;
   let Staffname = lodashget(db,`users.${signed_nursingdepartment}.Staffname`,'');
   let MYY = '';
   let MMM = '';
@@ -31,19 +31,33 @@ const FormSign = (props) => {
 
   }
 
+  let Guidecheck;
+  if(Diseaseclassification === '难免压疮'){
+    Guidecheck = (<div className = "flex-1 center-y">
+        <span className = "check">符合难免压疮申报的条件：</span>
+        <span className = "check"><input type="checkbox" name="check[]" readOnly checked={isunavoidablepressureulcer} />是</span>
+        <span className = "check"><input type="checkbox" name="check[]" readOnly checked={isunavoidablepressureulcer} />否</span>
+      </div>);
+  }
+  else{
+    Guidecheck = (<div className = "flex-1 center-y">
+        <span className = "check">情况属实</span>
+        <span className = "check"><input type="checkbox" name="check[]" readOnly checked={isinfact} />是</span>
+        <span className = "check"><input type="checkbox" name="check[]" readOnly checked={isinfact} />否</span>
+      </div>);
+  }
   return (
     <div className = "form-sign column flex-1">
       <div className = "opinion column">
         <div>
           <div className = "flex-1 center-y">主管部门审核与指导意见：</div>
-          <div className = "flex-1 center-y">
-            <span className = "check">情况属实</span>
-            <span className = "check"><input type="checkbox" name="check[]" readOnly checked={isunavoidablepressureulcer} />是</span>
-            <span className = "check"><input type="checkbox" name="check[]" readOnly checked={isunavoidablepressureulcer} />否</span>
-          </div>
+          {Guidecheck}
         </div>
-        <div className = "flex-1">
-          <div><span className = "opinion">{instruction}</span></div>
+        <div>
+          <div className = "flex-1">指导意见：</div>
+          <div className = "flex-1">
+            <span className = "opinion">{instruction}</span>
+          </div>
         </div>
         <div>
           <div className = "flex-1">主管部门签字：{Staffname}</div>
@@ -61,25 +75,6 @@ const FormSign = (props) => {
   )
 }
 
-// 护理措施2 （临时）
-// const FormMeasuress = props => {
-//   let elements = [];
-//   lodashmap( props.listObj,( element, index ) => {
-//     if( !(index === 10 || index === 11) )
-//     elements.push(
-//       <div className = "center-y" key={ index }>
-//         <input type="checkbox" checked = { element.checked } name="check[]" readOnly/>
-//         { element.name }
-//       </div>
-//     )
-//   })
-//   return (
-//     <div className = "form-measures column">
-//       <div>护理措施：</div>
-//       { elements }
-//     </div>
-//   )
-// }
 
 // 护理措施模块
 const FormMeasures = props => {
@@ -127,10 +122,14 @@ const FormMeasures = props => {
   }
   lodashmap( retpreventivesmeasure,( element, index ) => {
     elements.push(<CRenderItem vo={element} key={index} index={index}/>);
-  })
+  });
+  let title = '护理措施:';
+  if(Diseaseclassification === '难免压疮' || Diseaseclassification === '院内压疮'){
+    title = '预防措施:';
+  }
   return (
     <div className = "form-measures column">
-      <div>护理措施：</div>
+      <div>{title}</div>
       { elements }
     </div>
   )
@@ -421,7 +420,7 @@ const FormPrehospital = (props) => {
             <div className = "flex-5 center">{lodashget(info,'signed_headnurse_instruction','')}</div>
           </div>
         </div>
-        <FormSign db={db} info={info}/>
+        <FormSign db={db} info={info} Diseaseclassification={curpaientinfo.Diseaseclassification}/>
         <div className="lapse-to">
           <div className="flex-2 center">转归情况：</div>
           <div className="flex-4 center">
@@ -563,7 +562,7 @@ const FormNosocomial = props => {
             </div>
           </div>
         </div>
-        <FormSign db={db} info={info}/>
+        <FormSign db={db} info={info} Diseaseclassification={curpaientinfo.Diseaseclassification}/>
         <div className="lapse-to">
           <div className="flex-2 center">转归情况：</div>
           <div className="flex-4 center">
@@ -684,15 +683,11 @@ const FormUnavoidable = props => {
             </div>
           </div>
           <div>
-            <div className = "flex-1 center">护士长签名</div>
+            <div className = "flex-1 center">护士长签字</div>
             <div className = "flex-5 center">{ lodashget(props.db,`users.${props.info.signed_headnurse}.Staffname`,'') }</div>
           </div>
-          <div>
-            <div className = "flex-1 center">护士长意见</div>
-            <div className = "flex-5 center">{lodashget(info,'signed_headnurse_instruction','')}</div>
-          </div>
         </div>
-        <FormSign db={db} info={info}/>
+        <FormSign db={db} info={info} Diseaseclassification={curpaientinfo.Diseaseclassification}/>
         <div className="lapse-to column">
           <div>
             <div className="flex-1">转归情况：</div>
