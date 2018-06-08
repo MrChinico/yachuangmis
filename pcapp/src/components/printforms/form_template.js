@@ -10,6 +10,7 @@ import moment     from 'moment';
 import './form_tamplate_style.styl'
 
 const FormSign = (props) => {
+  //主管部门审核与指导意见：
   const {info,db} = props;
   const {isunavoidablepressureulcer,instruction,signed_nursingdepartment} = info;
   let Staffname = lodashget(db,`users.${signed_nursingdepartment}.Staffname`,'');
@@ -138,7 +139,7 @@ const FormObservation = props => {
   )
 }
 
-// 难免情况模块
+// 难免情况模块====必备条件和选择条件
 const UnavoidableOptions = props => {
   const {conditions} = props;
   const prerequisites = lodashget(conditions,'prerequisites',[]);
@@ -174,44 +175,29 @@ const UnavoidableOptions = props => {
   )
 }
 
-// 院内情况模块
+// 院内情况模块====必备条件和选择条件
 const NosocomialOptions = props => {
   const {conditions} = props;
   const prerequisites = lodashget(conditions,'prerequisites',[]);
   const alternative = lodashget(conditions,'alternative',[]);
   let optionsLeft   =  [];    // 左el组
   let  optionsRight  = [];   // 右el组
-  let  directionNum  = 0                     // 中值变量
 
-  // 获取临时el总和 （非正式步骤）
-  let tempNum = alternative.length + prerequisites.length;
-
-    // 计算中值 （右侧初始值）
-    directionNum  = tempNum % 2 ?
-    ( tempNum + 1 ) / 2 + 1 :
-    tempNum / 2 + 1
-
-  const allarray = alternative.concat(prerequisites);
-  lodashmap(allarray, ( element, index ) => {
-    // 渲染左侧el组
-    if( index + 1 < directionNum )
-    {
-      optionsLeft.push(
-        <div className = "center-y" key = { index }>
-          <input type="checkbox" name="check[]" checked = { element.checked } readOnly/> { element.name }
-        </div>
-      )
-    }
-    // 渲染右侧el组
-    else
-    {
-      optionsRight.push(
-        <div className = "center-y" key = { index }>
-          <input type="checkbox" name="check[]" checked = { element.checked } readOnly/> { element.name }
-        </div>
-      )
-    }
+  lodashmap(prerequisites,( element, index ) => {
+    optionsLeft.push(
+      <div className = "center-y" key = { index }>
+        <input type="checkbox" name="check[]" checked = { element.checked } readOnly/> { element.name }
+      </div>
+    )
   })
+  lodashmap(alternative,( element, index ) => {
+    optionsRight.push(
+      <div className = "center-y" key = { index }>
+        <input type="checkbox" name="check[]" checked = { element.checked } readOnly/> { element.name }
+      </div>
+    )
+  })
+
 
   return (
     <div className = "form-nosocomial">
@@ -225,7 +211,7 @@ const NosocomialOptions = props => {
   );
 }
 
-// 入院情况模块
+// 入院情况模块===患者存在以下情况
 const PrehospitalOptions = props => {
   const {admissions} = props;
   let options = [];
@@ -472,12 +458,16 @@ const FormNosocomial = props => {
             <div className = "flex-1 center">发生日期</div>
             <div className = "flex-1 center"></div>
           </div>
+
           <div>
             <div className = "flex-1 center">必备条件和选择条件</div>
-            <div className = "flex-1 center"></div>
-            <div className = "flex-1 center"></div>
-            <div className = "flex-1 center"></div>
           </div>
+          <div>
+            <div className = "flex-1 center">必备条件：强迫体位需要严格限制造成强迫体位的原因</div>
+            <div className = "flex-1 center">可选择条件</div>
+          </div>
+          <NosocomialOptions conditions = { lodashget(info,'conditions',{}) } />
+
           <div>
             <div className = "flex-1 center">是否申报难免压疮</div>
             <div className = "flex-1 center"></div>
@@ -485,7 +475,7 @@ const FormNosocomial = props => {
             <div className = "flex-1 center"></div>
           </div>
           <div className = "center">患者存在以下情况</div>
-          <NosocomialOptions conditions = { lodashget(info,'conditions',{}) } />
+          <PrehospitalOptions admissions = { lodashget(info,'admissions',[]) } />
           <FormObservation listObj = { lodashget(info,'evaluateWoundsurfaces',[]) }/>
           <FormMeasuress listObj = { lodashget(info,'preventivesmeasure',[]) }/>
         </div>
