@@ -1,4 +1,5 @@
 import lodashget from 'lodash.get';
+import lodashmap from 'lodash.map';
 
 export const getbardenstring = (score)=>{
   let resultstring = '尚未评估';
@@ -154,7 +155,7 @@ export const getdefaultnursingmeasures = ()=>{
 
 }
 
-export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassification='院前压疮',cmlist=[])=>{
+const get_preventivesmeasure = (Diseaseclassification='院前压疮')=>{
   let preventivesmeasure = [
     {
       name:'1、告知患者及家属压疮的危险性并悬挂“难免压疮”警示标志，进行健康宣教，讲解相关注意事项。',
@@ -234,6 +235,57 @@ export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassificati
       value:'',
     });
   }
+  return preventivesmeasure;
+}
+
+export const getvalueof_preventivesmeasure = (preventivesmeasure,Diseaseclassification='院前压疮')=>{
+  let ret_preventivesmeasure =  get_preventivesmeasure(Diseaseclassification);
+  let targetlist = [];
+  for(let i=0 ;i < ret_preventivesmeasure.length; i++){
+    if(i < preventivesmeasure.length){
+      targetlist.push(preventivesmeasure[i]);
+    }
+  }
+  if(ret_preventivesmeasure.length > preventivesmeasure.length){
+    targetlist[targetlist.length - 1] = {
+      name:'11、伤口造口治疗师会诊处理',
+      checked:false,
+    };
+    targetlist.push({
+      name:'12、科室换药',
+      checked:false,
+    });
+    targetlist.push({
+      name:'13、其他',
+      value:'',
+    });
+  }
+  if(ret_preventivesmeasure.length < preventivesmeasure.length){
+    targetlist[targetlist.length - 1] = preventivesmeasure[preventivesmeasure.length - 1];
+    targetlist[targetlist.length - 1].name = `11、其他`;
+  }
+  // if(preventivesmeasure.length !== ret_preventivesmeasure){
+    //最后一条记录的值复制过去
+
+    // let mapvalue = {};
+    // lodashmap(preventivesmeasure,(v)=>{
+    //   mapvalue[v.name] = v.value;
+    // });
+    // for(let i = 0;i < ret_preventivesmeasure.length ; i++){
+    //   let item = ret_preventivesmeasure[i];
+    //   if(!!item.value){
+    //     item['value'] = lodashget(mapvalue,`${item.name}.value`,'');
+    //   }
+    //   if(!!item.checked){
+    //     item['checked'] = lodashget(mapvalue,`${item.name}.checked`,false);
+    //   }
+    // }
+  // }
+  return targetlist;
+}
+
+export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassification='院前压疮',cmlist=[])=>{
+  const preventivesmeasure =  get_preventivesmeasure(Diseaseclassification);
 
   let admissions = [];
   let evaluateWoundsurfaces = [];

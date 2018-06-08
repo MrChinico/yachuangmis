@@ -6,7 +6,7 @@ import React      from 'react';
 import lodashget  from 'lodash.get';
 import lodashmap  from 'lodash.map';
 import moment     from 'moment';
-
+import {getvalueof_preventivesmeasure} from '../../util/index';
 import './form_tamplate_style.styl'
 
 const FormSign = (props) => {
@@ -62,35 +62,71 @@ const FormSign = (props) => {
 }
 
 // 护理措施2 （临时）
-const FormMeasuress = props => {
-  let elements = [];
-  lodashmap( props.listObj,( element, index ) => {
-    if( !(index === 10 || index === 11) )
-    elements.push(
-      <div className = "center-y" key={ index }>
-        <input type="checkbox" checked = { element.checked } name="check[]" readOnly/>
-        { element.name }
-      </div>
-    )
-  })
-  return (
-    <div className = "form-measures column">
-      <div>护理措施：</div>
-      { elements }
-    </div>
-  )
-}
+// const FormMeasuress = props => {
+//   let elements = [];
+//   lodashmap( props.listObj,( element, index ) => {
+//     if( !(index === 10 || index === 11) )
+//     elements.push(
+//       <div className = "center-y" key={ index }>
+//         <input type="checkbox" checked = { element.checked } name="check[]" readOnly/>
+//         { element.name }
+//       </div>
+//     )
+//   })
+//   return (
+//     <div className = "form-measures column">
+//       <div>护理措施：</div>
+//       { elements }
+//     </div>
+//   )
+// }
 
 // 护理措施模块
 const FormMeasures = props => {
+  const {preventivesmeasure,Diseaseclassification} = props;
+  const retpreventivesmeasure = getvalueof_preventivesmeasure(preventivesmeasure,Diseaseclassification);
   let elements = [];
-  lodashmap( props.listObj,( element, index ) => {
-    elements.push(
+  const CRenderItem = (props)=>{
+    const {vo,index} = props;
+    if(!!vo.options && vo.options.length > 0){
+      const CRenderPreventivesmeasureItemOptionsArrayoption = (props)=>{
+        const {info:vs} = props;
+        if(vs.value !== undefined){
+          return (<span >{vs.name}
+            <input type="text" className=""  value={vs.value} readOnly/></span>);
+        }
+        return (<span>{vs.name}<input type="checkbox" name="check[]" checked={vs.checked}
+        readOnly/></span>);
+      }
+
+      const CRenderPreventivesmeasureItemOptionsArray = (props)=>{
+        const {options} = props;
+        let trsz = [];
+        for(let i = 0 ;i < options.length ;i++){
+          trsz.push(<CRenderPreventivesmeasureItemOptionsArrayoption info={options[i]} key={`pmoption${i}`}/>);
+        }
+        return trsz;
+      }
+      return (
+        <div className = "center-y" key={ index }>
+          <input type="checkbox" name="check[]" readOnly/>{vo.name}
+  				<CRenderPreventivesmeasureItemOptionsArray options={vo.options} />
+        </div>)
+    }
+    if(vo.value !== undefined){
+      return  (
       <div className = "center-y" key={ index }>
-        <input type="checkbox" checked = { element.checked } name="check[]" readOnly/>
-        { element.name }
-      </div>
-    )
+        <input type="checkbox" name="check[]" checked={vo.checked} readOnly />
+          {vo.name}<input type="text"  value={vo.value} readOnly/>
+      </div>);
+    }
+    return (<div className = "center-y" key={ index }>
+        <input type="checkbox" checked = { vo.checked } name="check[]" readOnly/>
+        { vo.name }
+      </div>);
+  }
+  lodashmap( retpreventivesmeasure,( element, index ) => {
+    elements.push(<CRenderItem vo={element} key={index} index={index}/>);
   })
   return (
     <div className = "form-measures column">
@@ -163,6 +199,17 @@ const UnavoidableOptions = props => {
     )
   })
 
+  let blankcount = alternative.length - prerequisites.length;
+  let optionsblank = blankcount > 0?optionsLeft:optionsRight;
+  if(blankcount < 0){
+    blankcount = -blankcount;
+  }
+  for(let i = 0;i < blankcount; i++){
+    optionsblank.push(<div className = "center-y" key = { `blank${i}` }>
+      &nbsp;
+      </div>);
+  }
+
   return (
     <div className = "form-unavoidable">
       <div className = "column flex-1">
@@ -198,7 +245,16 @@ const NosocomialOptions = props => {
     )
   })
 
-
+  let blankcount = alternative.length - prerequisites.length;
+  let optionsblank = blankcount > 0?optionsLeft:optionsRight;
+  if(blankcount < 0){
+    blankcount = -blankcount;
+  }
+  for(let i = 0;i < blankcount; i++){
+    optionsblank.push(<div className = "center-y" key = { `blank${i}` }>
+      &nbsp;
+      </div>);
+  }
   return (
     <div className = "form-nosocomial">
       <div className = "column flex-1">
@@ -340,7 +396,8 @@ const FormPrehospital = (props) => {
           <div className = "content center-x">入院时存在以下情况</div>
           <PrehospitalOptions admissions = { lodashget(info,'admissions',[]) } />
           <FormObservation listObj = { lodashget(info,'evaluateWoundsurfaces',[]) } />
-          <FormMeasures listObj = { lodashget(info,'preventivesmeasure',[]) } />
+          <FormMeasures preventivesmeasure = { lodashget(info,'preventivesmeasure',[]) }
+            Diseaseclassification={curpaientinfo.Diseaseclassification}/>
         </div>
         <div className = "form-sign column">
           <div>
@@ -477,7 +534,8 @@ const FormNosocomial = props => {
           <div className = "center">患者存在以下情况</div>
           <PrehospitalOptions admissions = { lodashget(info,'admissions',[]) } />
           <FormObservation listObj = { lodashget(info,'evaluateWoundsurfaces',[]) }/>
-          <FormMeasuress listObj = { lodashget(info,'preventivesmeasure',[]) }/>
+          <FormMeasures preventivesmeasure = { lodashget(info,'preventivesmeasure',[]) }
+            Diseaseclassification={curpaientinfo.Diseaseclassification}/>
         </div>
         <div className = "form-sign column">
           <div>
@@ -531,7 +589,7 @@ const FormNosocomial = props => {
 
 // 难免压疮申报表
 const FormUnavoidable = props => {
-  const {db,info} = props;
+  const {db,info,curpaientinfo} = props;
   let MYY_signed_nurse_time = '';
   let MMM_signed_nurse_time = '';
   let MDD_signed_nurse_time = '';
@@ -609,7 +667,8 @@ const FormUnavoidable = props => {
             <div className = "flex-1 center">可选择条件</div>
           </div>
           <UnavoidableOptions conditions = { lodashget(info,'conditions',{})  } />
-          <FormMeasuress listObj = { lodashget(info,'preventivesmeasure',[])  } />
+          <FormMeasures preventivesmeasure = { lodashget(info,'preventivesmeasure',[]) }
+            Diseaseclassification={curpaientinfo.Diseaseclassification}/>
         </div>
         <div className = "form-sign column">
           <div>
