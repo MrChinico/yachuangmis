@@ -53,7 +53,7 @@ const style_choose_info_tr_graytitle = {
 
 class PageForm extends React.Component {
   render() {
-    const { handleSubmit,onClickSubmit,curpaientinfo,db,app,userlogin } = this.props;
+    const { handleSubmit,onClickSubmit,curpaientinfo,db,app,userlogin,evaluatewoundsurfacelist } = this.props;
     const {Hospitalname} = app;
 
     let trlist = [];
@@ -83,6 +83,8 @@ class PageForm extends React.Component {
                                   name="evaluateWoundsurfaces"
                                   id="evaluateWoundsurfaces"
                                   component={renderEvaluateWoundsurfaces}
+                                  evaluatewoundsurfacelist={evaluatewoundsurfacelist}
+                                  db={db}
                               />
 
             </tbody>
@@ -255,22 +257,14 @@ class PageForm extends React.Component {
 
       trlist.push(<tr style={style_choose_info_tr_graytitle} key='evaluateWoundsurfaces'>
         <td colSpan="2">
-          <table style={{width:'100%'}}>
-            <tbody>
-              <tr>
-                <td style={style_choose_info_td_w25}>部位</td>
-                <td style={style_choose_info_td_w25}>分期</td>
-                <td style={style_choose_info_td_w25}>大小</td>
-                <td style={style_choose_info_td_w25}>情况</td>
-              </tr>
-              <FieldArray key="evaluateWoundsurfacesarray"
-                                  name="evaluateWoundsurfaces"
-                                  id="evaluateWoundsurfaces"
-                                  component={renderEvaluateWoundsurfaces}
-                              />
+          <FieldArray key="evaluateWoundsurfacesarray"
+                              name="evaluateWoundsurfaces"
+                              id="evaluateWoundsurfaces"
+                              component={renderEvaluateWoundsurfaces}
+                              evaluatewoundsurfacelist={evaluatewoundsurfacelist}
+                              db={db}
+                          />
 
-            </tbody>
-          </table>
         </td>
         </tr>);
       return (

@@ -38,7 +38,7 @@ class App extends React.Component {
 			}
 		}
   	render() {
-			const {curpaientinfo,db,curformreviewlapseto,isnew,app,userlogin} = this.props;
+			const {curpaientinfo,db,curformreviewlapseto,isnew,app,userlogin,evaluatewoundsurfacelist} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -76,6 +76,7 @@ class App extends React.Component {
 							curpaientinfo={curpaientinfo}
 							app={app}
 							db={db}
+							evaluatewoundsurfacelist={evaluatewoundsurfacelist}
 							userlogin={userlogin}
 							formname={formname}
 							formvalues={formvalues}/>
@@ -101,7 +102,7 @@ class App extends React.Component {
 // 		return {curpaientinfo,isnew,curformreviewlapseto,db};
 // }
 
-const mapStateToProps = ({db,app,userlogin},props) => {
+const mapStateToProps = ({db,app,userlogin,evaluatewoundsurface},props) => {
 		const {paientinfos,formreviewlapsetos} = db;
 		const id = lodashget(props,'match.params.pid');
 		const formreviewlapsetoid = lodashget(props,'match.params.id');
@@ -120,7 +121,8 @@ const mapStateToProps = ({db,app,userlogin},props) => {
 		if(isnew){
 			return {curpaientinfo,isnew,db,app,userlogin};
 		}
-		return {curpaientinfo,isnew,curformreviewlapseto,db,app,userlogin};
+		const {evaluatewoundsurfacelist} = evaluatewoundsurface;
+		return {curpaientinfo,isnew,curformreviewlapseto,db,app,userlogin,evaluatewoundsurfacelist};
 }
 
 export default connect(mapStateToProps)(App);

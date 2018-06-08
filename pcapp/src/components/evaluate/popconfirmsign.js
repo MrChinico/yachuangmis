@@ -1,11 +1,15 @@
 import React from 'react';
 // import { notification, Icon, Button } from 'antd';
-
+import { Menu, Dropdown, Button, Icon, } from 'antd';
 // import moment from 'moment';
 import { DatePicker } from 'antd';
 //https://github.com/fkhadra/react-toastify
 import { Modal } from 'antd';
+import lodashmap from 'lodash.map';
+import lodashget from 'lodash.get';
+
 const confirm = Modal.confirm;
+
 
 const popConfirmSign = (initmoment,callback)=>{
 
@@ -19,7 +23,6 @@ const popConfirmSign = (initmoment,callback)=>{
                 onChange={(date, dateString)=>{
                     initmoment = date;
                 }}
-                onPanelChange={this.handlePanelChange}
             />
         </div>,
         okText:'确认',
@@ -64,7 +67,6 @@ const popConfirmTonm = (initmoment,callback)=>{
                 onChange={(date, dateString)=>{
                     initmoment = date;
                 }}
-                onPanelChange={this.handlePanelChange}
             />
         </div>,
         okText:'确认',
@@ -98,7 +100,65 @@ const popConfirmTonmBack = (callback)=>{
 }
 
 
-export {popConfirmSign,popConfirmBack,popConfirmTonm,popConfirmTonmBack};
+let wsvalue;
+class SelectWs extends React.Component {
+
+		constructor(props) {
+				super(props);
+				this.state = {
+					title:'下拉选择创面'
+				}
+		}
+    handleMenuClick = ({ item, key, keyPath })=>{
+      const {db} = this.props;
+      const evaluateWoundsurfaces =  lodashget(db,`evaluatewoundsurfaces.${key}.evaluateWoundsurfaces`,[]);
+      const title =`${lodashget(db,`evaluatewoundsurfaces.${key}.created_at`)}-创面个数:${evaluateWoundsurfaces.length}`;
+      this.setState({title});
+      wsvalue = evaluateWoundsurfaces;
+    }
+
+    render(){
+      const {evaluatewoundsurfacelist,db} = this.props;
+      let menus = [];
+      lodashmap(evaluatewoundsurfacelist,(wid)=>{
+        const evaluateWoundsurfaces =  lodashget(db,`evaluatewoundsurfaces.${wid}.evaluateWoundsurfaces`,[]);
+        menus.push(<Menu.Item key={`${wid}`}>{lodashget(db,`evaluatewoundsurfaces.${wid}.created_at`)}-创面个数:{evaluateWoundsurfaces.length}</Menu.Item>);
+      });
+      const menu = (
+        <Menu onClick={this.handleMenuClick.bind(this)}>
+          {menus}
+        </Menu>
+      );
+      return (<Dropdown overlay={menu}>
+          <Button style={{ marginLeft: 8 }}>
+             {this.state.title}<Icon type="down" />
+          </Button>
+        </Dropdown>);
+    }
+
+}
+
+const popConfirmSelectWs = ({evaluatewoundsurfacelist,db},callback)=>{
+
+  confirm({
+      title: '确定需要重新选择创面吗?',
+      content: <div>
+        <SelectWs evaluatewoundsurfacelist={evaluatewoundsurfacelist} db={db} />
+      </div>,
+      okText:'确认',
+      cancelText:'取消',
+      okType:'Default',
+      onOk() {
+          callback(wsvalue);
+      },
+      onCancel() {
+
+      },
+  });
+}
+
+
+export {popConfirmSign,popConfirmBack,popConfirmTonm,popConfirmTonmBack,popConfirmSelectWs};
 //
 // class PopconfirmSign extends React.Component {
 // 		constructor(props) {

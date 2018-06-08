@@ -5,7 +5,8 @@ import lodashget from 'lodash.get';
 import {popConfirmSign,
   popConfirmBack,
   popConfirmTonm,
-  popConfirmTonmBack
+  popConfirmTonmBack,
+  popConfirmSelectWs
 } from './popconfirmsign';
 import moment from 'moment';
 
@@ -522,10 +523,33 @@ const renderEvaluateWoundsurfaces_Item = (props)=>{
 
 
 const renderEvaluateWoundsurfaces =  (props)=>{
-  const {fields} = props;
-  return fields.map((option,index)=>{
+  const {fields,evaluatewoundsurfacelist,db} = props;
+  const trTarget = fields.map((option,index)=>{
     return (<Field component={renderEvaluateWoundsurfaces_Item} name={option} key={`ewf${index}`} i={index}/>);
   });
+  const onConfirm = ()=>{
+    popConfirmSelectWs({evaluatewoundsurfacelist,db},(ws)=>{
+      console.log(ws);
+    });
+  }
+  return (<table style={{width:'100%'}}>
+    <tbody>
+      <tr>
+        <td style={style_choose_info_td} colSpan="4">
+          <button type="button" onClick={onConfirm} className="go-back ant-btn-edit blue">选择创面</button>
+        </td>
+      </tr>
+      <tr>
+        <td style={style_choose_info_td_w25}>部位</td>
+        <td style={style_choose_info_td_w25}>分期</td>
+        <td style={style_choose_info_td_w25}>大小</td>
+        <td style={style_choose_info_td_w25}>情况</td>
+      </tr>
+      {
+        trTarget
+      }
+    </tbody>
+  </table>);
 }
 
 
