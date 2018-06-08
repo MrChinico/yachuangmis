@@ -143,8 +143,9 @@ const UnavoidableOptions = props => {
   const {conditions} = props;
   const prerequisites = lodashget(conditions,'prerequisites',[]);
   const alternative = lodashget(conditions,'alternative',[]);
+
   let optionsLeft   =  [];    // 左el组
-  let  optionsRight  = [];   // 右el组
+  let optionsRight  = [];   // 右el组
 
   lodashmap(prerequisites,( element, index ) => {
     optionsLeft.push(
@@ -227,38 +228,23 @@ const NosocomialOptions = props => {
 // 入院情况模块
 const PrehospitalOptions = props => {
   const {admissions} = props;
+  let options = [];
 
   let optionsLeft   =  [];    // 左el组
-  let  optionsRight  = [];   // 右el组
-  let  directionNum  = 0                     // 中值变量
+  let optionsRight  = [];   // 右el组
+  for(let j = 0 ;j < admissions.length; j++){
+    const v = admissions[j];
+    options = (j<admissions.length/2)?optionsLeft:optionsRight;
+    options.push(<div className = "center-y" key = { j }>
+      <input type="checkbox" name="check[]" checked = { v.checked } readOnly/> { v.name }
+    </div>);
+  }
+
+  if(options.length % 2 === 1){
+    optionsRight.push(<div className = "center-y" key = { options.length }></div>);
+  }
 
 
-    // 计算中值 （右侧初始值）
-    directionNum  = props.listObj.length % 2 ?
-                    ( props.listObj.length + 1 ) / 2 + 1 :
-                    props.listObj.length / 2 + 1
-
-  lodashmap(admissions,( element, index ) => {
-    // 渲染左侧el组
-    if( index + 1 < directionNum )
-    {
-      optionsLeft.push(
-        <div className = "center-y" key = { index }>
-          <input type="checkbox" name="check[]" checked = { element.checked } readOnly/> { element.name }
-        </div>
-      )
-    }
-    // 渲染右侧el组
-    else
-    {
-      optionsRight.push(
-        <div className = "center-y" key = { index }>
-          <input type="checkbox" name="check[]" checked = { element.checked } readOnly/> { element.name }
-        </div>
-      )
-    }
-
-  })
   return (
     <div className = "form-prehospital">
       <div className = "column flex-1">

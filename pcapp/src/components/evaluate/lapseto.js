@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // import PageForm from './form_lapseto_barden';
 // import {getdefaultlapseto_barden} from '../../util';
 import {createformreviewlapseto_request,editformreviewlapseto_request} from '../../actions';
-import ReviewDetailInfo from './lapseto_viewinfo';
+import ReviewDetailInfo from '../printforms/lapseto_viewinfo';
 import InfoNorecords from '../patientinfo/info_norecords';
 import ReactToPrint from "react-to-print";
 import './lapseto.css';
@@ -66,7 +66,7 @@ class App extends React.Component {
 					          } className="ant-btn"> <img src="add.png" alt=""/>
 					          编辑审阅转归单</button>
 							<ReactToPrint
-								trigger={ () => 
+								trigger={ () =>
 									<span className="ant-btn"><img src="printing.png" alt="" />打印报表</span>
 								}
 								content={ () => this.componentRef }

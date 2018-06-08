@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import ViewPrintHeader from './viewprint_header';
 
-import RecordNursingMeasuresTableBody from './recordnursingmeasures_tablebody.js';
+import PrintFormNM from '../printforms/printform_recordnursingmeasures';
 import lodashget from 'lodash.get';
 import { Layout } from 'antd';
 import ViewPrintTitltToPrint from './viewprint_title_toprint';
@@ -41,36 +41,13 @@ class App extends React.Component {
 					</Header>
 					<ViewPrintTitltToPrint title="Barden评估打印" refnode={() => this.componentRef} history={this.props.history}/>
 					<form ref={el => (this.componentRef = el)}>
-					<div className = "form-page" >
-      				<div className = "column">
-								<div className = "form-header column">
-									<div className = "form-title center-x">
-										{ Hospitalname }压疮危险因素评估表
-									</div>
-									<div className = "form-abstract column">
-										<div>
-											<div className = "flex-1"><span>科室：</span><span>{ Depatname }</span></div>
-											<div className = "flex-2 in-date">
-												<span>入院日期：</span>
-												<span>{ momentin.format('YYYY') }</span>年
-												<span>{ momentin.format('MM') }</span>月
-												<span>{ momentin.format('DD') }</span>日
-												<span>{ momentin.format('HH') }</span>:
-												<span>{ momentin.format('mm') }</span>
-											</div>
-											<div className = "flex-1"><span>床号：</span><span>{Bedname}</span></div>
-										</div>
-										<div>
-											<div className = "flex-1"><span>姓名：</span><span>{ lodashget( curpaientinfo, 'Patientname', '' ) }</span></div>
-											<div className = "flex-1"><span>性别：</span><span>{ lodashget( curpaientinfo, 'SexString', '男' ) }</span></div>
-											<div className = "flex-1"><span>年龄：</span><span>{ lodashget( curpaientinfo, 'Age', '') }</span></div>
-											<div className = "flex-1"><span>住院号：</span><span>{ lodashget( curpaientinfo, 'Patientno', '') }</span></div>
-										</div>
-									</div>
-								</div>
-								<RecordNursingMeasuresTableBody db={db} evaluatenursingmeasureslist={evaluatenursingmeasureslist}/>
-							</div>
-						</div>
+					<PrintFormNM Hospitalname={Hospitalname}
+						Depatname={Depatname}
+						momentin={momentin}
+						Bedname={Bedname}
+						curpaientinfo={curpaientinfo}
+						db={db}
+						evaluatenursingmeasureslist={evaluatenursingmeasureslist} />
 					</form>
 				</Layout>
 	    );

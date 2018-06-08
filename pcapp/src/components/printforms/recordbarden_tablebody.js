@@ -5,12 +5,12 @@ import lodashget from 'lodash.get';
 import moment from 'moment';
 import {getpagelist,gettablebradengroups} from '../../util';
 
-const style_nursing_record_td = {
-  padding: '9px 10px',
-  border: '1px solid #ddd',
-  borderLeft: '0px',
-  borderBottom: '0px',
-};
+// const style_nursing_record_td = {
+//   padding: '9px 10px',
+//   border: '1px solid #ddd',
+//   borderLeft: '0px',
+//   borderBottom: '0px',
+// };
 
 // const style_nursing_record_td_white = {
 //   backgroundColor:'#fff',

@@ -261,6 +261,7 @@ const FormReviewLapsetoSchema = new Schema({
   signed_nurse_time:{ type: String},//护士签名时间
   signed_headnurse:{ type: Schema.Types.ObjectId, ref: 'user' },//护士长签名
   signed_headnurse_time:{ type: String},//护士长签名时间
+  signed_headnurse_instruction:String,//护士长意见
   signed_nursingdepartment:{ type: Schema.Types.ObjectId, ref: 'user' },//主管部门签名
   signed_nursingdepartment_time:{ type: String},//主管部门签名时间
   lapseto:{
