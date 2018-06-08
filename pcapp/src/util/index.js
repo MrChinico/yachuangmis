@@ -1,5 +1,5 @@
 import lodashget from 'lodash.get';
-import lodashmap from 'lodash.map';
+// import lodashmap from 'lodash.map';
 
 export const getbardenstring = (score)=>{
   let resultstring = '尚未评估';

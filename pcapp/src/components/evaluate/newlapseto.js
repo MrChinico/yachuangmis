@@ -8,6 +8,7 @@ import PageForm from './form_lapseto_barden';
 import {getdefaultlapseto_barden} from '../../util';
 import {createformreviewlapseto_request,editformreviewlapseto_request} from '../../actions';
 
+import {getvalueof_preventivesmeasure} from '../../util/index';
 const { Header } = Layout;
 
 class App extends React.Component {
@@ -23,6 +24,10 @@ class App extends React.Component {
 
 		onClickSubmit = (values)=>{
 			const {curpaientinfo,isnew,curformreviewlapseto} = this.props;
+			const Diseaseclassification = curpaientinfo.Diseaseclassification;
+			//
+			values.preventivesmeasure = getvalueof_preventivesmeasure(values.preventivesmeasure,Diseaseclassification);
+
 			if(isnew){
 				values.userpatientid = curpaientinfo._id;
 				this.props.dispatch(createformreviewlapseto_request(values));

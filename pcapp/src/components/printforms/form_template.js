@@ -12,7 +12,7 @@ import './form_tamplate_style.styl'
 const FormSign = (props) => {
   //主管部门审核与指导意见：
   const {info,db,Diseaseclassification} = props;
-  const {isunavoidablepressureulcer,isinfact,instruction,signed_nursingdepartment} = info;
+  const {isunavoidablepressureulcer,isinfact,instruction,signed_nursingdepartment,signed_nursingdepartment_time} = info;
   let Staffname = lodashget(db,`users.${signed_nursingdepartment}.Staffname`,'');
   let MYY = '';
   let MMM = '';
@@ -20,8 +20,9 @@ const FormSign = (props) => {
   let MHH = '';
   let Mmm = '';
 
-  const time_input_value = signed_nursingdepartment;
-  if(!!time_input_value){
+  // debugger;
+  const time_input_value = signed_nursingdepartment_time;
+  if(!!time_input_value && time_input_value!==''){
     const momenttime = moment(time_input_value);
     MYY = momenttime.format('YYYY');
     MMM = momenttime.format('MM');

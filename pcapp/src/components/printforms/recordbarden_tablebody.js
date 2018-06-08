@@ -33,9 +33,9 @@ const style_input = {
 //   backgroundColor:'#f9f9f9',
 // };
 
-const style_trdate = {
-  backgroundColor:'#e4f3f1'
-};
+// const style_trdate = {
+//   backgroundColor:'#e4f3f1'
+// };
 
 class RecordbardenTableBody extends React.Component {
 

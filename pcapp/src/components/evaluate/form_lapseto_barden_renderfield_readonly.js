@@ -345,7 +345,7 @@ const CRenderUserSignedNurse= (props)=>{
   let Mmm = '';
 
   const time_input_value = signed_nurse_time;
-  if(!!time_input_value){
+  if(!!time_input_value && time_input_value!==''){
     const momenttime = moment(time_input_value);
     MYY = momenttime.format('YYYY');
     MMM = momenttime.format('MM');
@@ -380,7 +380,7 @@ const CRenderUserSignedHeadNurse= (props)=>{
   let Mmm = '';
 
   const time_input_value = signed_headnurse_time;
-  if(!!time_input_value){
+  if(!!time_input_value && time_input_value!== ''){
     const momenttime = moment(time_input_value);
     MYY = momenttime.format('YYYY');
     MMM = momenttime.format('MM');
@@ -415,7 +415,7 @@ const CRenderUserSignedNursingDepartment= (fields)=>{
   let Mmm = '';
 
   const time_input_value = signed_nursingdepartment_time;
-  if(!!time_input_value){
+  if(!!time_input_value && time_input_value!== ''){
     const momenttime = moment(time_input_value);
     MYY = momenttime.format('YYYY');
     MMM = momenttime.format('MM');
@@ -450,7 +450,7 @@ const CRenderUserReport= (props)=>{
   let Mmm = '';
 
   const time_input_value = signed_report_time;
-  if(!!time_input_value){
+  if(!!time_input_value && time_input_value!== ''){
     const momenttime = moment(time_input_value);
     MYY = momenttime.format('YYYY');
     MMM = momenttime.format('MM');

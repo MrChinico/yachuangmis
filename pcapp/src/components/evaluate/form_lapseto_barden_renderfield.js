@@ -283,7 +283,7 @@ const renderLapseto= (props)=>{
   let Mmm = '';
 
   const time_input_value = lodashget(occuredpressuresorestime,'input.value');
-  if(!!time_input_value){
+  if(!!time_input_value && time_input_value!== ''){
     const momenttime = moment(time_input_value);
     MYY = momenttime.format('YYYY');
     MMM = momenttime.format('MM');
@@ -542,7 +542,7 @@ const renderUserSignedNurse= (fields)=>{
   let Mmm = '';
 
   const time_input_value = lodashget(signed_nurse_time,'input.value');
-  if(!!time_input_value){
+  if(!!time_input_value && time_input_value!== ''){
     const momenttime = moment(time_input_value);
     MYY = momenttime.format('YYYY');
     MMM = momenttime.format('MM');
@@ -601,7 +601,7 @@ const renderUserSignedHeadNurse= (fields)=>{
   let Mmm = '';
 
   const time_input_value = lodashget(signed_headnurse_time,'input.value');
-  if(!!time_input_value){
+  if(!!time_input_value && time_input_value!== ''){
     const momenttime = moment(time_input_value);
     MYY = momenttime.format('YYYY');
     MMM = momenttime.format('MM');
@@ -663,7 +663,7 @@ const renderUserSignedNursingDepartment= (fields)=>{
   let Mmm = '';
 
   const time_input_value = lodashget(signed_nursingdepartment_time,'input.value');
-  if(!!time_input_value){
+  if(!!time_input_value && time_input_value!==''){
     const momenttime = moment(time_input_value);
     MYY = momenttime.format('YYYY');
     MMM = momenttime.format('MM');
@@ -723,7 +723,7 @@ const renderUserReport= (fields)=>{
   let Mmm = '';
 
   const time_input_value = lodashget(signed_report_time,'input.value');
-  if(!!time_input_value){
+  if(!!time_input_value && time_input_value!== ''){
     const momenttime = moment(time_input_value);
     MYY = momenttime.format('YYYY');
     MMM = momenttime.format('MM');

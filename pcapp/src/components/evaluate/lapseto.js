@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 // import ContentTitleBar from '../patientinfo/patientinfo_content_titlebar';
 // import PageForm from './form_lapseto_barden';
 // import {getdefaultlapseto_barden} from '../../util';
-import {createformreviewlapseto_request,editformreviewlapseto_request} from '../../actions';
+// import {createformreviewlapseto_request,editformreviewlapseto_request} from '../../actions';
 import ReviewDetailInfo from '../printforms/lapseto_viewinfo';
 import InfoNorecords from '../patientinfo/info_norecords';
 import ReactToPrint from "react-to-print";
 import './lapseto.css';
 import './lapseto.styl';
+
 
 
 class App extends React.Component {
@@ -36,17 +37,22 @@ class App extends React.Component {
 		// 	this.props.history.push(`/newbarden/${curpaientinfo._id}/${record._id}`);
 		// }
 
-		onClickSubmit = (values)=>{
-			const {curpaientinfo,isnew,curformreviewlapseto} = this.props;
-			if(isnew){
-				values.userpatientid = curpaientinfo._id;
-				this.props.dispatch(createformreviewlapseto_request(values));
-			}
-			else{
-				let newcurformreviewlapseto = {...curformreviewlapseto,...values};
-				this.props.dispatch(editformreviewlapseto_request(newcurformreviewlapseto));
-			}
-		}
+		// onClickSubmit = (values)=>{
+		// 	const {curpaientinfo,isnew,curformreviewlapseto} = this.props;
+		// 	//修正护理措施
+		// 	const Diseaseclassification = curpaientinfo.Diseaseclassification;
+		// 	//
+		// 	values.preventivesmeasure = getvalueof_preventivesmeasure(values.preventivesmeasure,Diseaseclassification);
+		//
+		// 	if(isnew){
+		// 		values.userpatientid = curpaientinfo._id;
+		// 		this.props.dispatch(createformreviewlapseto_request(values));
+		// 	}
+		// 	else{
+		// 		let newcurformreviewlapseto = {...curformreviewlapseto,...values};
+		// 		this.props.dispatch(editformreviewlapseto_request(newcurformreviewlapseto));
+		// 	}
+		// }
   	render() {
 			const {curpaientinfo,curformreviewlapseto,isnew,db,Hospitalname,userlogin} = this.props;
 			if(!curpaientinfo){
