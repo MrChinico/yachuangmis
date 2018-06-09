@@ -614,7 +614,7 @@ const renderUserSignedNurse= (fields)=>{
       });
     }
   };
-  const isshowbtn = (lodashget(userlogin,'permission.name','') === '护士' || lodashget(userlogin,'permission.name','') === '护士长')
+  const isshowbtn = (lodashget(userlogin,'permission.name','') === '普通护士' || lodashget(userlogin,'permission.name','') === '护士长')
   && (lodashget(stagestatus,'input.value','') === '未审核' || lodashget(stagestatus,'input.value','') === '护士长审核中');
   const btntitle = isenabled?'签名':'回退';
 
