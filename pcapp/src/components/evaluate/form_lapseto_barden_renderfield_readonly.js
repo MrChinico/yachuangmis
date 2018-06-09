@@ -336,7 +336,6 @@ const CRenderEvaluateWoundsurfaces =  (props)=>{
 
 const CRenderUserSignedNurse= (props)=>{
   const {signed_nurse,signed_nurse_time,db} = props;
-  // let isenabled = stagestatus === '未审核';
   let Staffname = lodashget(db,`users.${signed_nurse}.Staffname`,'');
   let MYY = '';
   let MMM = '';

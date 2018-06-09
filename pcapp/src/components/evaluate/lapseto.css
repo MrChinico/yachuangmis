@@ -21,6 +21,12 @@ table{
     width: 100%;
 }
 
+.enabled{
+}
+.desabled{
+    background: #CCC !important
+}
+
 .go-back{
     width: auto;
     display: inline;
