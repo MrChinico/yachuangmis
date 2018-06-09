@@ -9,6 +9,7 @@ import {popConfirmSign,
   popConfirmSelectWs
 } from './popconfirmsign';
 import moment from 'moment';
+import './lapseto.css';
 
 const style_choose_info_tr = {
   borderTop:'1px solid #ddd',
@@ -294,13 +295,13 @@ const renderLapseto= (props)=>{
   }
   const isReadOnly = !isshowbtn;
   let trsz = [];
-  trsz.push(<tr className="blue title" key="title">
+  trsz.push(<tr className={isshowbtn?'enabled':'desabled'} className="blue title" key="title">
       <td colSpan="2">转归情况：</td>
     </tr>);
 
   if(Diseaseclassification === '难免压疮'){
     trsz.push(
-    <tr  key="title2">
+    <tr className={isshowbtn?'enabled':'desabled'}  key="title2">
       <td>
         <span>1、是否发生压疮：</span>
         <span>是<input type="checkbox" name="check[]" checked={ispressuresores===1} onClick={
@@ -327,7 +328,7 @@ const renderLapseto= (props)=>{
       </td>
     </tr>);
     trsz.push(
-    <tr  key="title3">
+    <tr className={isshowbtn?'enabled':'desabled'} key="title3">
       <td colSpan="2">
         <span>2、患者去向：</span>
         <span>出院/转院<input type="checkbox" name="check[]" checked={lapsetooptions.checkout_checked} onClick={
@@ -350,7 +351,7 @@ const renderLapseto= (props)=>{
   else if(Diseaseclassification === '院前压疮' || Diseaseclassification === '院内压疮' ){
 
     trsz.push(
-    <tr  key="title3">
+    <tr className={isshowbtn?'enabled':'desabled'} key="title3">
       <td colSpan="2">
         <span>愈合<input type="checkbox" name="check[]" checked={lapsetooptions.isok_checked === 0} onClick={
           ()=>{
@@ -393,7 +394,7 @@ const renderInstruction= (fields)=>{
 
 
   let trsz = [];
-  trsz.push(<tr className="gray title" key="title">
+  trsz.push(<tr className={isshowbtn?'enabled':'desabled'} className="gray title" key="title">
     <td colSpan="2">主管部门审核与指导意见</td>
   </tr>);
 
@@ -432,7 +433,7 @@ const renderInstruction= (fields)=>{
     const onChangeChecked = (value)=>{
         input_isinfact.onChange(value);
     }
-    trsz.push(<tr key="in">
+    trsz.push(<tr className={isshowbtn?'enabled':'desabled'} key="in">
         <td colSpan="2">
           <span>情况属实：</span>
           <span>是<input type="checkbox" name="check[]" checked={input_isinfact.value === 1}
@@ -461,7 +462,7 @@ const renderInstruction= (fields)=>{
   }
 
 
-  trsz.push(<tr key="guide">
+  trsz.push(<tr className={isshowbtn?'enabled':'desabled'} key="guide">
       <td colSpan="2">指导意见：<input type="text" {...input_instruction} readOnly={isReadOnly}/></td>
     </tr>);
 
@@ -572,8 +573,11 @@ const renderEvaluateWoundsurfaces =  (props)=>{
 
 const renderUserSignedNurse= (fields)=>{
   const {signed_nurse,signed_nurse_time,stagestatus,userlogin,db} = fields;
-  const isenabled =  (lodashget(userlogin,'permission.name','') === '护士' || lodashget(userlogin,'permission.name','') === '护士长') &&
-    lodashget(stagestatus,'input.value','') === '未审核';
+  
+  const isenabled = ( lodashget(userlogin,'permission.name','') === '普通护士' ||
+                      lodashget(userlogin,'permission.name','') === '护士长'
+                    ) && stagestatus.input.value === '未审核';
+  
   let Staffname = lodashget(db,`users.${lodashget(signed_nurse,'input.value','')}.Staffname`,'');
   let MYY = '';
   let MMM = '';
@@ -613,7 +617,9 @@ const renderUserSignedNurse= (fields)=>{
   const isshowbtn = (lodashget(userlogin,'permission.name','') === '护士' || lodashget(userlogin,'permission.name','') === '护士长')
   && (lodashget(stagestatus,'input.value','') === '未审核' || lodashget(stagestatus,'input.value','') === '护士长审核中');
   const btntitle = isenabled?'签名':'回退';
-  const Co = (<tr>
+  
+  const Co = (
+    <tr className={isenabled?'enabled':'desabled'}>
       <td>申报人签字：<input type="text" readOnly value={Staffname}/>
       {isshowbtn && <button  type="button" onClick={onConfirm} className="go-back ant-btn-edit blue">{btntitle}</button>}
       </td>
@@ -673,7 +679,7 @@ const renderUserSignedHeadNurse= (fields)=>{
   const isshowbtn = lodashget(userlogin,'permission.name','') === '护士长' &&
     (lodashget(stagestatus,'input.value','') === '护士长审核中' || lodashget(stagestatus,'input.value','') === '护理部审核中');
   const btntitle = isenabled?'签名':'回退';
-  const Co = (<tr>
+  const Co = (<tr className={isenabled?'enabled':'desabled'}>
       <td>护士长签字：<input type="text" readOnly value={Staffname}/>
       {isshowbtn && <button type="button" onClick={onConfirm} className="go-back ant-btn-edit blue">{btntitle}</button>}
       </td>
@@ -733,7 +739,7 @@ const renderUserSignedNursingDepartment= (fields)=>{
   const isshowbtn = (lodashget(userlogin,'permission.name','') === '护理部主管')
   && (lodashget(stagestatus,'input.value','') === '护理部审核中' || lodashget(stagestatus,'input.value','') === '已审核');
   const btntitle = isenabled?'签名':'回退';
-  const Co = (<tr>
+  const Co = (<tr className={isshowbtn?'enabled':'desabled'}>
       <td>主管部门签字：<input type="text" readOnly value={Staffname}/>
       {isshowbtn && <button  type="button" onClick={onConfirm} className="go-back ant-btn-edit blue">{btntitle}</button>}
       </td>
@@ -795,7 +801,7 @@ const renderUserReport= (fields)=>{
   (lodashget(stagestatus,'input.value','') === '已上报' || lodashget(stagestatus,'input.value','') === '已审核');
 
   const btntitle = isenabled?'签名':'回退';
-  const Co = (<tr>
+  const Co = (<tr className={isshowbtn?'enabled':'desabled'}>
       <td>上报人签字:<input type="text" readOnly value={Staffname}/>
       {isshowbtn && <button type="button" onClick={onConfirm} className="go-back ant-btn-edit blue">{btntitle}</button>}
       </td>

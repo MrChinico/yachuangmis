@@ -6,7 +6,7 @@ import moment from 'moment';
 import {getpagelist} from '../../util';
 
 const style_nursing_record_td = {
-  padding: '2px 10px',
+  padding: '2px 5px',
   border: '1px solid #000',
   borderLeft: '0px',
   borderBottom: '0px',
