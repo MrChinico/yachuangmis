@@ -819,12 +819,12 @@ const renderUserReport= (fields)=>{
 
 const renderDiagnosis = (props)=>{//diagnosis
   const {input:{value,onChange}} = props;
-  return (<td><input type="text" onChange={onChange} value={value}/></td>);
+  return (<span><input type="text" onChange={onChange} value={value}/></span>);
 }
 
 const renderWsffrom = (props)=>{//wsffrom
   const {input:{value,onChange}} = props;
-  return (<td><input type="text" onChange={onChange} value={value}/></td>);
+  return (<span><input type="text" onChange={onChange} value={value}/></span>);
 }
 
 const renderTonm = (props)=>{//是否申报难免压疮		申报日期	2018-05-06 18：00

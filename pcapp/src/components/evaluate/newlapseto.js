@@ -104,6 +104,7 @@ class App extends React.Component {
 
 const mapStateToProps = ({db,app,userlogin,evaluatewoundsurface},props) => {
 		const {paientinfos,formreviewlapsetos} = db;
+		const {evaluatewoundsurfacelist} = evaluatewoundsurface;
 		const id = lodashget(props,'match.params.pid');
 		const formreviewlapsetoid = lodashget(props,'match.params.id');
 		let isnew = formreviewlapsetoid === '0';
@@ -119,9 +120,8 @@ const mapStateToProps = ({db,app,userlogin,evaluatewoundsurface},props) => {
 			}
 		}
 		if(isnew){
-			return {curpaientinfo,isnew,db,app,userlogin};
+			return {curpaientinfo,isnew,db,app,userlogin,evaluatewoundsurfacelist};
 		}
-		const {evaluatewoundsurfacelist} = evaluatewoundsurface;
 		return {curpaientinfo,isnew,curformreviewlapseto,db,app,userlogin,evaluatewoundsurfacelist};
 }
 

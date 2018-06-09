@@ -21,12 +21,12 @@ import {
 }from './form_lapseto_barden_renderfield';
 
 
-const style_choose_info_td = {
-  padding:'10px 15px',
-  fontSize: '14px',
-  width:'50%',
-  borderRight:'1px solid #ddd'
-}
+// const style_choose_info_td = {
+//   padding:'10px 15px',
+//   fontSize: '14px',
+//   width:'50%',
+//   borderRight:'1px solid #ddd'
+// }
 
 // const style_choose_info_td_w25 = {
 //   ...style_choose_info_td,
@@ -98,12 +98,12 @@ class PageForm extends React.Component {
         						<table className="choose-info">
         							<tbody>
         							<tr>
-                        <td style={no_padding}>
-                          <td>诊断：</td>
+                        <td >
+                          <span>诊断：</span>
                           <Field component={renderDiagnosis} name="diagnosis"/>
                         </td>
-                        <td style={no_padding}>
-                          <td>压疮来源</td>
+                        <td>
+                          <span>压疮来源：</span>
                           <Field component={renderWsffrom} name="wsffrom"/>
                         </td>
                       </tr>

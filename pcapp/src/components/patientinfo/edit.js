@@ -34,7 +34,10 @@ class App extends React.Component {
 			const Patientname = lodashget(curpaientinfo,'Patientname','');
 			const Patientno = lodashget(curpaientinfo,'Patientno','');
 			const formname = 'NewLapsetoForm';
-			const formvalues = curpaientinfo;
+			const formvalues = {
+				_id:lodashget(curpaientinfo,'_id',''),
+				Diseaseclassification:lodashget(curpaientinfo,'Diseaseclassification','普通病人'),
+			};
 	    return (
 				<Layout>
 				<Header>
