@@ -28,10 +28,10 @@ const style_choose_info_td = {
   borderRight:'1px solid #ddd'
 }
 
-const style_choose_info_td_w25 = {
-  ...style_choose_info_td,
-  width:'25%'
-};
+// const style_choose_info_td_w25 = {
+//   ...style_choose_info_td,
+//   width:'25%'
+// };
 
 const style_choose_info_tr = {
   borderTop:'1px solid #ddd',
@@ -101,8 +101,8 @@ class PageForm extends React.Component {
                         <td style={no_padding}>
                           <td>诊断：</td>
                           <Field component={renderDiagnosis} name="diagnosis"/>
-                        </td>  
-                        <td style={no_padding}>  
+                        </td>
+                        <td style={no_padding}>
                           <td>压疮来源</td>
                           <Field component={renderWsffrom} name="wsffrom"/>
                         </td>

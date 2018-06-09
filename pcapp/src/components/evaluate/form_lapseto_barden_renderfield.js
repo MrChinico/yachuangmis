@@ -295,7 +295,7 @@ const renderLapseto= (props)=>{
   }
   const isReadOnly = !isshowbtn;
   let trsz = [];
-  trsz.push(<tr className={isshowbtn?'enabled':'desabled'} className="blue title" key="title">
+  trsz.push(<tr className={isshowbtn?'enabled blue title':'desabled blue title'} key="title">
       <td colSpan="2">转归情况：</td>
     </tr>);
 
@@ -394,7 +394,7 @@ const renderInstruction= (fields)=>{
 
 
   let trsz = [];
-  trsz.push(<tr className={isshowbtn?'enabled':'desabled'} className="gray title" key="title">
+  trsz.push(<tr className={isshowbtn?'enabled gray title':'desabled gray title'} key="title">
     <td colSpan="2">主管部门审核与指导意见</td>
   </tr>);
 
@@ -573,11 +573,11 @@ const renderEvaluateWoundsurfaces =  (props)=>{
 
 const renderUserSignedNurse= (fields)=>{
   const {signed_nurse,signed_nurse_time,stagestatus,userlogin,db} = fields;
-  
+
   const isenabled = ( lodashget(userlogin,'permission.name','') === '普通护士' ||
                       lodashget(userlogin,'permission.name','') === '护士长'
                     ) && stagestatus.input.value === '未审核';
-  
+
   let Staffname = lodashget(db,`users.${lodashget(signed_nurse,'input.value','')}.Staffname`,'');
   let MYY = '';
   let MMM = '';
@@ -617,7 +617,7 @@ const renderUserSignedNurse= (fields)=>{
   const isshowbtn = (lodashget(userlogin,'permission.name','') === '护士' || lodashget(userlogin,'permission.name','') === '护士长')
   && (lodashget(stagestatus,'input.value','') === '未审核' || lodashget(stagestatus,'input.value','') === '护士长审核中');
   const btntitle = isenabled?'签名':'回退';
-  
+
   const Co = (
     <tr className={isenabled?'enabled':'desabled'}>
       <td>申报人签字：<input type="text" readOnly value={Staffname}/>
