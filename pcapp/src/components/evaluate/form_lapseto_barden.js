@@ -66,13 +66,14 @@ class PageForm extends React.Component {
           <td>入院时存在以下情况</td>
           <td></td>
         </tr>);
-      trlist.push(<FieldArray key="admissionsarray"
-                        name="admissions"
-                        id="admissions"
-                        component={renderAdmissions}
-                    />);
-
-
+      trlist.push(
+        <FieldArray 
+          key="admissionsarray"
+          name="admissions"
+          id="admissions"
+          component={renderAdmissions}
+        />
+      );
       trlist.push(<tr style={style_choose_info_tr_graytitle} key='evaluateWoundsurfaces'>
         <td colSpan="2" style={no_padding}>
           <FieldArray
