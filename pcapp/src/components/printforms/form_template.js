@@ -71,7 +71,7 @@ const FormSign = (props) => {
   let Guidecheck;
   if(Diseaseclassification === '难免压疮'){
     Guidecheck = (<div className = "flex-1 center-y">
-        <span className = "check">符合难免压疮申报的条件：</span>
+        <span style={{width: 'auto'}} className = "check">符合难免压疮申报的条件：</span>
         <RenderCheckboxTitle checked={isunavoidablepressureulcer}  value="是" />
         <RenderCheckboxTitle checked={!isunavoidablepressureulcer}  value="否" />
       </div>);
