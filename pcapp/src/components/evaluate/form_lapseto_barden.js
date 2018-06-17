@@ -135,7 +135,7 @@ class PageForm extends React.Component {
 
 
                       <Fields names={[ 'instruction','isinfact', 'isunavoidablepressureulcer','stagestatus' ]} component={renderInstruction}
-                      db={db} userlogin={userlogin}   Diseaseclassification={curpaientinfo.Diseaseclassification}/>
+                      db={db} userlogin={userlogin}   Diseaseclassification={Diseaseclassification}/>
 
                       <Fields names={[ 'signed_nursingdepartment', 'signed_nursingdepartment_time','stagestatus' ]} component={renderUserSignedNursingDepartment}
                           db={db} userlogin={userlogin}/>
@@ -144,7 +144,7 @@ class PageForm extends React.Component {
                       <Fields
                           names={["lapseto",'stagestatus' ]}
                           id="lapseto"
-                          Diseaseclassification={curpaientinfo.Diseaseclassification}
+                          Diseaseclassification={Diseaseclassification}
                           component={renderLapseto}
                           db={db} userlogin={userlogin}
                       />
@@ -206,7 +206,7 @@ class PageForm extends React.Component {
 
 
                                   <Fields names={[ 'instruction','isinfact',  'isunavoidablepressureulcer','stagestatus' ]} component={renderInstruction}
-                                  db={db} userlogin={userlogin}   Diseaseclassification={curpaientinfo.Diseaseclassification}/>
+                                  db={db} userlogin={userlogin}   Diseaseclassification={Diseaseclassification}/>
 
                                   <Fields names={[ 'signed_nursingdepartment', 'signed_nursingdepartment_time','stagestatus' ]} component={renderUserSignedNursingDepartment}
                                       db={db} userlogin={userlogin}/>
@@ -215,7 +215,7 @@ class PageForm extends React.Component {
                                   <Fields
                                       names={["lapseto",'stagestatus' ]}
                                       id="lapseto"
-                                      Diseaseclassification={curpaientinfo.Diseaseclassification}
+                                      Diseaseclassification={Diseaseclassification}
                                       component={renderLapseto}
                                       db={db} userlogin={userlogin}
                                   />
@@ -306,7 +306,7 @@ class PageForm extends React.Component {
 
 
                     <Fields names={[ 'instruction', 'isinfact', 'isunavoidablepressureulcer','stagestatus' ]} component={renderInstruction}
-                    db={db} userlogin={userlogin}   Diseaseclassification={curpaientinfo.Diseaseclassification}/>
+                    db={db} userlogin={userlogin}   Diseaseclassification={Diseaseclassification}/>
 
                     <Fields names={[ 'signed_nursingdepartment', 'signed_nursingdepartment_time','stagestatus' ]} component={renderUserSignedNursingDepartment}
                         db={db} userlogin={userlogin}/>
@@ -315,7 +315,7 @@ class PageForm extends React.Component {
                     <Fields
                         names={["lapseto",'stagestatus' ]}
                         id="lapseto"
-                        Diseaseclassification={curpaientinfo.Diseaseclassification}
+                        Diseaseclassification={Diseaseclassification}
                         component={renderLapseto}
                         db={db} userlogin={userlogin}
                     />

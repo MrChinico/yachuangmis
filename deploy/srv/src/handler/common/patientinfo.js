@@ -144,7 +144,33 @@ exports.getpatientinfo = (actiondata,ctx,callback)=>{
             select:'username truename Staffno Staffid Staffname Depatno',
           },
         ]
-      }
+      },
+      {
+        path:'formreviewlapsetoid2', model: 'formreviewlapseto',
+        populate: [
+          {
+            path: 'usercreatorid',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_nurse',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_headnurse',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+          {
+            path: 'signed_nursingdepartment',
+            model: 'user',
+            select:'username truename Staffno Staffid Staffname Depatno',
+          },
+        ]
+      },
+
     ]).lean().exec((err, newrecord)=> {
       if(!err && !!newrecord){
         callback({
@@ -262,7 +288,33 @@ exports.page_getpatientinfolist =  (actiondata,ctx,callback)=>{
           select:'username truename Staffno Staffid Staffname Depatno',
         },
       ]
+    },
+    {
+      path:'formreviewlapsetoid2', model: 'formreviewlapseto',
+      populate: [
+        {
+          path: 'usercreatorid',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_nurse',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_headnurse',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+        {
+          path: 'signed_nursingdepartment',
+          model: 'user',
+          select:'username truename Staffno Staffid Staffname Depatno',
+        },
+      ]
     }
+
   ];
   getdepatlistids(ctx,(depatlistids)=>{
     let querypre = actiondata.query;

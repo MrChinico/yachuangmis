@@ -61,6 +61,7 @@ const paientinfo = new schema.Entity('paientinfos', {
   firstevaluatewoundsurfaceid:evaluatewoundsurface,
   firstevaluatenursingmeasuresid:evaluatenursingmeasures,
   formreviewlapsetoid:formreviewlapseto,
+  formreviewlapsetoid2:formreviewlapseto,
 },{idAttribute: '_id'});
 
 const paientinfoListSchma = {docs:[paientinfo]};
