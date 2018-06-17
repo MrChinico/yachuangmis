@@ -63,7 +63,7 @@ class PageForm extends React.Component {
     let trlist = [];
     let Diseaseclassification = curpaientinfo.Diseaseclassification;
     if(Diseaseclassification === '难免转院内'){
-      Diseaseclassification = isid2?'难免压疮':'院内压疮';
+      Diseaseclassification = isid2?'院内压疮':'难免压疮';
     }
     if(Diseaseclassification === '院前压疮'){
       trlist.push(<tr className="gray title" key='admissions'>
@@ -97,7 +97,7 @@ class PageForm extends React.Component {
               >
                 <div className="form-box">
 
-        						<h1>{Hospitalname}{curpaientinfo.Diseaseclassification}申报表</h1>
+        						<h1>{Hospitalname}{Diseaseclassification}申报表</h1>
                     <ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 
         						<table className="choose-info">
@@ -173,14 +173,14 @@ class PageForm extends React.Component {
                           >
                             <div className="form-box">
 
-                    						<h1>{Hospitalname}{curpaientinfo.Diseaseclassification}申报表</h1>
+                    						<h1>{Hospitalname}{Diseaseclassification}申报表</h1>
                                 <ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 
                     						<table className="choose-info">
                     							<tbody>
                     							<tr>
                     								<td>诊断：</td>
-                    								<Field component={renderDiagnosis} name="diagnosis"/>
+                    								<td><Field component={renderDiagnosis} name="diagnosis"/></td>
                     							</tr>
 
                     							<tr>
@@ -274,14 +274,14 @@ class PageForm extends React.Component {
             >
               <div className="form-box">
 
-      						<h1>{Hospitalname}{curpaientinfo.Diseaseclassification}申报表</h1>
+      						<h1>{Hospitalname}{Diseaseclassification}申报表</h1>
                   <ViewPrintHeader curpaientinfo={curpaientinfo} db={db} />
 
       						<table className="choose-info">
       							<tbody>
       							<tr>
       								<td>诊断：</td>
-      								<Field component={renderDiagnosis} name="diagnosis"/>
+                      <td><Field component={renderDiagnosis} name="diagnosis"/></td>
       							</tr>
       							<tr>
       								<td>压疮评分：</td>

@@ -78,7 +78,8 @@ class App extends React.Component {
 
 						{/* <TitleDetail curpaientinfo={curpaientinfo} db={db}/> */}
 
-						<PageForm onClickSubmit={this.onClickSubmit}
+						<PageForm
+							onClickSubmit={this.onClickSubmit}
 							isid2={isid2}
 							curpaientinfo={curpaientinfo}
 							app={app}
@@ -118,15 +119,27 @@ const mapStateToProps = ({db,app,userlogin,evaluatewoundsurface},props) => {
 		let isnew = formreviewlapsetoid === '0';
 		const curpaientinfo = paientinfos[id];
 		let curformreviewlapseto;
-
-		if(!!curpaientinfo){
-			if(!!curpaientinfo.formreviewlapsetoid){
-				curformreviewlapseto = formreviewlapsetos[curpaientinfo.formreviewlapsetoid];
-				if(!!curformreviewlapseto){
-					isnew = false;
+		if(isid2){
+			if(!!curpaientinfo){
+				if(!!curpaientinfo.formreviewlapsetoid2){
+					curformreviewlapseto = formreviewlapsetos[curpaientinfo.formreviewlapsetoid2];
+					if(!!curformreviewlapseto){
+						isnew = false;
+					}
 				}
 			}
 		}
+		else{
+			if(!!curpaientinfo){
+				if(!!curpaientinfo.formreviewlapsetoid){
+					curformreviewlapseto = formreviewlapsetos[curpaientinfo.formreviewlapsetoid];
+					if(!!curformreviewlapseto){
+						isnew = false;
+					}
+				}
+			}
+		}
+
 		if(isnew){
 			return {curpaientinfo,isnew,db,app,userlogin,evaluatewoundsurfacelist,isid2};
 		}

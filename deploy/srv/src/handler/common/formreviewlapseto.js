@@ -65,7 +65,7 @@ exports.createformreviewlapseto = (actiondata,ctx,callback)=>{
 
 exports.editformreviewlapseto = (actiondata,ctx,callback)=>{
   const dbModel = DBModels.FormReviewLapsetoModel;
-  dbModel.findOneAndUpdate({_id: actiondata._id},{$set:actiondata.data},{new: true}).lean().exec((err, newrecord)=> {
+  dbModel.findOneAndUpdate({_id: actiondata.data._id},{$set:actiondata.data},{new: true}).lean().exec((err, newrecord)=> {
       if(!err && !!newrecord){
         callback({
           cmd:'editformreviewlapseto_result',

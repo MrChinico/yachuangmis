@@ -31,7 +31,11 @@ const DiseaseclassificationSelector = (props)=>{
     menus.push(<Menu.Item key="难免压疮">难免压疮</Menu.Item>);
     menus.push(<Menu.Item key="难免转院内">难免转院内</Menu.Item>);
   }
-
+  else if(Diseaseclassification === '难免转院内'){
+    menus.push(<Menu.Item key="普通病人">普通病人</Menu.Item>);
+    menus.push(<Menu.Item key="难免压疮">难免压疮</Menu.Item>);
+    menus.push(<Menu.Item key="难免转院内">难免转院内</Menu.Item>);
+  }
 
   const menu = (
     <Menu onClick={handleMenuClick}>

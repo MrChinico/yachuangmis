@@ -105,14 +105,15 @@ export function* wsrecvsagabizflow() {
       }
       if(i === 6 || i === 7){//createformreviewlapseto_result/editformreviewlapseto_result
         let formreviewlapsetos = {};
-        formreviewlapsetos[payload._id] = payload.data;
+        formreviewlapsetos[payload.data._id] = payload.data;
         yield put(set_db({formreviewlapsetos}));
       }
 
       if(i === 0 ||  i === 2 || i === 4 || i === 6){
+        const userpatientid = i === 6?payload.data.userpatientid:payload.userpatientid;
         const paientinfo = yield select((state)=>{
           const {paientinfos} = state.db;
-          return paientinfos[payload.userpatientid];
+          return paientinfos[userpatientid];
         });
         if(!!paientinfo){
           if(i === 0 && !paientinfo.firstevaluatebardenid){
@@ -137,14 +138,14 @@ export function* wsrecvsagabizflow() {
             if(!paientinfo.formreviewlapsetoid && !payload.isid2){
               yield put(setpatientinfo_request({
                 _id:paientinfo._id,
-                formreviewlapsetoid:payload._id
+                formreviewlapsetoid:payload.data._id
               }));
             }
 
             if(!paientinfo.formreviewlapsetoid2 && payload.isid2){
               yield put(setpatientinfo_request({
                 _id:paientinfo._id,
-                formreviewlapsetoid2:payload._id
+                formreviewlapsetoid2:payload.data._id
               }));
             }
           }//<---------

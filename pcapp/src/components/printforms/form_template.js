@@ -331,7 +331,7 @@ const PrehospitalOptions = props => {
 // 申请表公共头部
 const FormHeader = props => {
   const
-    { curpaientinfo, db } = props,
+    { curpaientinfo, db,Diseaseclassification } = props,
     { depats, beds }      = db,
     Bedname               = lodashget( beds, `${curpaientinfo.bedid}.Bedname`, '' ),
     Depatname             = lodashget( depats, `${curpaientinfo.depatid}.Depatname` , '' ),
@@ -340,7 +340,7 @@ const FormHeader = props => {
   return (
     <div className = "form-header column">
       <div className = "form-title center-x">
-        { props.Hospitalname }{ curpaientinfo.Diseaseclassification }申报表
+        { props.Hospitalname }{ Diseaseclassification }申报表
       </div>
       <div className = "form-abstract column">
         <div>
@@ -368,7 +368,7 @@ const FormHeader = props => {
 
 // ======院前压疮申报表=======
 const FormPrehospital = (props) => {
-  const {Hospitalname,curpaientinfo,db,info} = props;
+  const {Hospitalname,curpaientinfo,db,info,Diseaseclassification} = props;
   let MYY_signed_nurse_time = '';
   let MMM_signed_nurse_time = '';
   let MDD_signed_nurse_time = '';
@@ -410,6 +410,7 @@ const FormPrehospital = (props) => {
           Hospitalname  = { Hospitalname }
           curpaientinfo = { curpaientinfo }
           db            = { db }
+          Diseaseclassification = {Diseaseclassification}
         />
         <div className = "form-body column">
           <div>
@@ -476,7 +477,7 @@ const FormPrehospital = (props) => {
 
 // ====院内压疮申报表 ====
 const FormNosocomial = props => {
-  const {Hospitalname,curpaientinfo,db,info} = props;
+  const {Hospitalname,curpaientinfo,db,info,Diseaseclassification} = props;
   let MYY_signed_nurse_time = '';
   let MMM_signed_nurse_time = '';
   let MDD_signed_nurse_time = '';
@@ -546,6 +547,7 @@ const FormNosocomial = props => {
     <div className = "form-page" >
       <div className = "column">
         <FormHeader
+          Diseaseclassification = {Diseaseclassification}
           Hospitalname  = { Hospitalname }
           curpaientinfo = { curpaientinfo }
           db            = { db }
@@ -645,7 +647,7 @@ const FormNosocomial = props => {
 
 // 难免压疮申报表
 const FormUnavoidable = props => {
-  const {db,info,curpaientinfo} = props;
+  const {db,info,curpaientinfo,Diseaseclassification} = props;
   let MYY_signed_nurse_time = '';
   let MMM_signed_nurse_time = '';
   let MDD_signed_nurse_time = '';
@@ -705,6 +707,7 @@ const FormUnavoidable = props => {
           Hospitalname  = { props.Hospitalname }
           curpaientinfo = { props.curpaientinfo }
           db            = { props.db }
+          Diseaseclassification= {Diseaseclassification}
         />
         <div className = "form-body column">
           <div>
@@ -790,26 +793,26 @@ const FormUnavoidable = props => {
   );
 }
 
-const FormBarden = props => {
-
-  return (
-    <div className = "form-page" >
-      <div className = "column">
-        <FormHeader
-          Hospitalname  = { props.Hospitalname }
-          curpaientinfo = { props.curpaientinfo }
-          db            = { props.db }
-        />
-      </div>
-    </div>
-  )
-}
-
+// const FormBarden = props => {
+//
+//   return (
+//     <div className = "form-page" >
+//       <div className = "column">
+//         <FormHeader
+//           Hospitalname  = { props.Hospitalname }
+//           curpaientinfo = { props.curpaientinfo }
+//           db            = { props.db }
+//         />
+//       </div>
+//     </div>
+//   )
+// }
+//
 
 
 export {
   FormPrehospital,
   FormNosocomial,
   FormUnavoidable,
-  FormBarden
+  // FormBarden
 }
