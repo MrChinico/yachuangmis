@@ -8,7 +8,7 @@ class PageForm extends React.Component {
     const { handleSubmit,onClickSubmit } = this.props;
     const {curpaientinfo,db} = this.props;
     const {depats,beds} = db;
-    // const Diseaseclassification = lodashget(curpaientinfo,'Diseaseclassification','普通病人');
+    const Diseaseclassification = lodashget(curpaientinfo,'Diseaseclassification','普通病人');
     return (
       <Form
           onSubmit={handleSubmit(onClickSubmit)}
@@ -18,6 +18,7 @@ class PageForm extends React.Component {
                 <li>病人分类：<span className="on">
                   <Field name="Diseaseclassification"
                           id="Diseaseclassification"
+                          Diseaseclassification={Diseaseclassification}
                           component={DiseaseclassificationSelect}
                                 />
                 </span></li>

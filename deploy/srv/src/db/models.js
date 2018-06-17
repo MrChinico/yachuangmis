@@ -41,7 +41,7 @@ const PatientinfoSchema = new Schema({
   Depatno:String,//所在科室<--depat
   Bedno:String,//床位号
 
-  Diseaseclassification:String,//病人分类:压疮高危／院前压疮／普通病人
+  Diseaseclassification:String,//病人分类:难免压疮／院前压疮／普通病人／院内压疮／难免转院内
 
   stage:String,//病人状态【
 
@@ -49,6 +49,7 @@ const PatientinfoSchema = new Schema({
   firstevaluatewoundsurfaceid:{ type: Schema.Types.ObjectId, ref: 'evaluatewoundsurface' },//首次创面评估
   firstevaluatenursingmeasuresid:{ type: Schema.Types.ObjectId, ref: 'evaluatenursingmeasures' },//首次护理措施
   formreviewlapsetoid:{ type: Schema.Types.ObjectId, ref: 'formreviewlapseto' },//转归表单
+  formreviewlapsetoid2:{ type: Schema.Types.ObjectId, ref: 'formreviewlapseto' },//难免转院内，第二张报表
 
   depatid:{ type: Schema.Types.ObjectId, ref: 'depat' },//科室id
   bedid:{ type: Schema.Types.ObjectId, ref: 'bed' },//病床id

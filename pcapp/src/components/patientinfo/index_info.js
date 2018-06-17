@@ -68,7 +68,7 @@ class App extends React.Component {
 			let btnz = [];
 
 			{
-				const btninfoz = [
+				let btninfoz = [
 					{
 						btnkey:'btnbd',
 						title:'Barden评估',
@@ -90,22 +90,44 @@ class App extends React.Component {
 						enabled:true,
 						Co:<InfoNursingmeasures curpaientinfo={curpaientinfo} permissionname={permissionname}/>
 					},
-					{
+
+
+				];
+
+				if(Diseaseclassification === '难免转院内'){
+					btninfoz.push({
+						btnkey:'btnls',
+						title:'转归与申报(难免)',
+						visible:true,
+						enabled:true,
+						Co:<InfoLapsetto curpaientinfo={curpaientinfo} db={db} history={this.props.history} Diseaseclassification="难免压疮"/>
+					});
+
+					btninfoz.push({
+						btnkey:'btnls2',
+						title:'转归与申报(院内)',
+						visible:true,
+						enabled:true,
+						Co:<InfoLapsetto curpaientinfo={curpaientinfo} db={db} history={this.props.history} Diseaseclassification="院内压疮"/>
+					});
+				}
+				else{
+					btninfoz.push({
 						btnkey:'btnls',
 						title:'转归与申报',
 						visible:true,
 						enabled:true,
-						Co:<InfoLapsetto curpaientinfo={curpaientinfo} db={db} history={this.props.history}/>
-					},
-					{
-						btnkey:'btnto',
-						title:'翻身治疗',
-						visible:true,
-						enabled:true,
-						Co:<InfoSmartdevice curpaientinfo={curpaientinfo} cursmartdevice={cursmartdevice} />
-					},
+						Co:<InfoLapsetto curpaientinfo={curpaientinfo} db={db} history={this.props.history} Diseaseclassification={Diseaseclassification}/>
+					});
+				}
 
-				];
+				btninfoz.push({
+					btnkey:'btnto',
+					title:'翻身治疗',
+					visible:true,
+					enabled:true,
+					Co:<InfoSmartdevice curpaientinfo={curpaientinfo} cursmartdevice={cursmartdevice} />
+				});
 
 				lodashmap(btninfoz,(btninfo)=>{
 						btnz.push({
@@ -128,7 +150,7 @@ class App extends React.Component {
 				})
 			}
 
-			if(Diseaseclassification === '难免压疮'){
+			if(Diseaseclassification === '难免压疮' ){
 				//不显示创面评估页面
 				btnz[1].visible = false;
 			}
@@ -146,6 +168,10 @@ class App extends React.Component {
 			if(!curpaientinfo.firstevaluatenursingmeasuresid){
 				//没有首次护理措施评估,不显示转归申报
 				btnz[3].visible = false;
+				if(Diseaseclassification === '难免转院内'){
+					btnz[4].visible = false;
+				}
+
 			}
 
 			if(!cursmartdevice || permissionname === '护理部主管'){

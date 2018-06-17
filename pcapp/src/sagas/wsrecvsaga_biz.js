@@ -105,7 +105,7 @@ export function* wsrecvsagabizflow() {
       }
       if(i === 6 || i === 7){//createformreviewlapseto_result/editformreviewlapseto_result
         let formreviewlapsetos = {};
-        formreviewlapsetos[payload._id] = payload;
+        formreviewlapsetos[payload._id] = payload.data;
         yield put(set_db({formreviewlapsetos}));
       }
 
@@ -133,12 +133,21 @@ export function* wsrecvsagabizflow() {
               firstevaluatewoundsurfaceid:payload._id
             }));
           }
-          if(i === 6 && !paientinfo.formreviewlapsetoid){
-            yield put(setpatientinfo_request({
-              _id:paientinfo._id,
-              formreviewlapsetoid:payload._id
-            }));
-          }
+          if(i === 6 ){
+            if(!paientinfo.formreviewlapsetoid && !payload.isid2){
+              yield put(setpatientinfo_request({
+                _id:paientinfo._id,
+                formreviewlapsetoid:payload._id
+              }));
+            }
+
+            if(!paientinfo.formreviewlapsetoid2 && payload.isid2){
+              yield put(setpatientinfo_request({
+                _id:paientinfo._id,
+                formreviewlapsetoid2:payload._id
+              }));
+            }
+          }//<---------
         }
       }
 

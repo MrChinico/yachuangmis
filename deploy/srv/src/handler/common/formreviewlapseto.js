@@ -36,7 +36,7 @@ const getlapsetoquery = (ctx,depatid,callbackfn)=>{
 }
 
 exports.createformreviewlapseto = (actiondata,ctx,callback)=>{
-  let entitydata = actiondata;
+  let entitydata = actiondata.data;
   entitydata.usercreatorid = ctx.userid;
   entitydata.created_at = moment().format('YYYY-MM-DD HH:mm:ss');
   entitydata.updated_at = moment().format('YYYY-MM-DD HH:mm:ss');
@@ -47,7 +47,10 @@ exports.createformreviewlapseto = (actiondata,ctx,callback)=>{
     if(!err && !!newrecord){
       callback({
         cmd:'createformreviewlapseto_result',
-        payload:newrecord
+        payload:{
+          isid2:actiondata.isid2,
+          data:newrecord
+        }
       });
     }
     else{
@@ -62,11 +65,14 @@ exports.createformreviewlapseto = (actiondata,ctx,callback)=>{
 
 exports.editformreviewlapseto = (actiondata,ctx,callback)=>{
   const dbModel = DBModels.FormReviewLapsetoModel;
-  dbModel.findOneAndUpdate({_id: actiondata._id},{$set:actiondata},{new: true}).lean().exec((err, newrecord)=> {
+  dbModel.findOneAndUpdate({_id: actiondata._id},{$set:actiondata.data},{new: true}).lean().exec((err, newrecord)=> {
       if(!err && !!newrecord){
         callback({
           cmd:'editformreviewlapseto_result',
-          payload:newrecord
+          payload:{
+            isid2:actiondata.isid2,
+            data:newrecord
+          }
         });
       }
       else{

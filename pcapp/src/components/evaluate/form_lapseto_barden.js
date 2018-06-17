@@ -57,17 +57,21 @@ const no_padding = {
 
 class PageForm extends React.Component {
   render() {
-    const { handleSubmit,onClickSubmit,curpaientinfo,db,app,userlogin,evaluatewoundsurfacelist } = this.props;
+    const { handleSubmit,onClickSubmit,curpaientinfo,db,app,userlogin,evaluatewoundsurfacelist,isid2 } = this.props;
     const {Hospitalname} = app;
 
     let trlist = [];
-    if(curpaientinfo.Diseaseclassification === '院前压疮'){
+    let Diseaseclassification = curpaientinfo.Diseaseclassification;
+    if(Diseaseclassification === '难免转院内'){
+      Diseaseclassification = isid2?'难免压疮':'院内压疮';
+    }
+    if(Diseaseclassification === '院前压疮'){
       trlist.push(<tr className="gray title" key='admissions'>
           <td>入院时存在以下情况</td>
           <td></td>
         </tr>);
       trlist.push(
-        <FieldArray 
+        <FieldArray
           key="admissionsarray"
           name="admissions"
           id="admissions"
@@ -157,7 +161,7 @@ class PageForm extends React.Component {
                 <div><button className="ant-btn-edit blue m30-0">提交数据</button></div>
           </Form>);
     }
-    else if(curpaientinfo.Diseaseclassification === '难免压疮'){
+    else if(Diseaseclassification === '难免压疮'){
       trlist.push(<Field key="conditions"
                         name="conditions"
                         id="conditions"
@@ -228,7 +232,7 @@ class PageForm extends React.Component {
                             <div><button className="ant-btn-edit blue m30-0">提交数据</button></div>
                       </Form>);
     }
-    else if(curpaientinfo.Diseaseclassification === '院内压疮'){
+    else if(Diseaseclassification === '院内压疮'){
       trlist.push(<Field key="conditions"
                         name="conditions"
                         id="conditions"

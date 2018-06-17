@@ -23,22 +23,28 @@ class App extends React.Component {
 		}
 
 		onClickSubmit = (values)=>{
-			const {curpaientinfo,isnew,curformreviewlapseto} = this.props;
+			const {curpaientinfo,isnew,curformreviewlapseto,isid2} = this.props;
 			const Diseaseclassification = curpaientinfo.Diseaseclassification;
 			//
 			values.preventivesmeasure = getvalueof_preventivesmeasure(values.preventivesmeasure,Diseaseclassification);
 
 			if(isnew){
 				values.userpatientid = curpaientinfo._id;
-				this.props.dispatch(createformreviewlapseto_request(values));
+				this.props.dispatch(createformreviewlapseto_request({
+					isid2,
+					data:values
+				}));
 			}
 			else{
 				let newcurformreviewlapseto = {...curformreviewlapseto,...values};
-				this.props.dispatch(editformreviewlapseto_request(newcurformreviewlapseto));
+				this.props.dispatch(editformreviewlapseto_request({
+					isid2,
+					data:newcurformreviewlapseto
+				}));
 			}
 		}
   	render() {
-			const {curpaientinfo,db,curformreviewlapseto,isnew,app,userlogin,evaluatewoundsurfacelist} = this.props;
+			const {curpaientinfo,db,curformreviewlapseto,isnew,app,userlogin,evaluatewoundsurfacelist,isid2} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -73,6 +79,7 @@ class App extends React.Component {
 						{/* <TitleDetail curpaientinfo={curpaientinfo} db={db}/> */}
 
 						<PageForm onClickSubmit={this.onClickSubmit}
+							isid2={isid2}
 							curpaientinfo={curpaientinfo}
 							app={app}
 							db={db}
@@ -107,6 +114,7 @@ const mapStateToProps = ({db,app,userlogin,evaluatewoundsurface},props) => {
 		const {evaluatewoundsurfacelist} = evaluatewoundsurface;
 		const id = lodashget(props,'match.params.pid');
 		const formreviewlapsetoid = lodashget(props,'match.params.id');
+		const isid2 = lodashget(props,'match.params.isid2') === '1';
 		let isnew = formreviewlapsetoid === '0';
 		const curpaientinfo = paientinfos[id];
 		let curformreviewlapseto;
@@ -120,9 +128,9 @@ const mapStateToProps = ({db,app,userlogin,evaluatewoundsurface},props) => {
 			}
 		}
 		if(isnew){
-			return {curpaientinfo,isnew,db,app,userlogin,evaluatewoundsurfacelist};
+			return {curpaientinfo,isnew,db,app,userlogin,evaluatewoundsurfacelist,isid2};
 		}
-		return {curpaientinfo,isnew,curformreviewlapseto,db,app,userlogin,evaluatewoundsurfacelist};
+		return {curpaientinfo,isnew,curformreviewlapseto,db,app,userlogin,evaluatewoundsurfacelist,isid2};
 }
 
 export default connect(mapStateToProps)(App);

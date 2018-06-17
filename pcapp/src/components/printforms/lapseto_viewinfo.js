@@ -5,27 +5,11 @@ import {
   FormNosocomial,
   FormUnavoidable
 } from './form_template.js';
-// import {
-//   CRenderConditions,
-//   CRenderPreventivesmeasure,
-//   CRenderScore,
-//   CRenderLapseto,
-//   CRenderInstruction,
-//   CRenderAdmissions,
-//   CRenderEvaluateWoundsurfaces,
-//   CRenderUserSignedNurse,
-//   CRenderUserSignedHeadNurse,
-//   CRenderUserSignedNursingDepartment,
-//   CRenderUserReport
-// } from './form_lapseto_barden_renderfield_readonly';
-
-
 // -------------------------------------------------
-
 const ReviewDetailInfo = props => {
 
   const
-    { Hospitalname, db, info } = props,
+    { Hospitalname, db, info,isformreviewlapsetoid2 } = props,
     curpaientinfo = db.paientinfos[ info.userpatientid ];
 
   switch( curpaientinfo.Diseaseclassification )
@@ -49,7 +33,6 @@ const ReviewDetailInfo = props => {
         />
       )
     case '难免压疮':
-    default:
       return (
         <FormUnavoidable
           Hospitalname  = { Hospitalname }
@@ -57,7 +40,25 @@ const ReviewDetailInfo = props => {
           db            = { db }
           info          = { info }
         />
-      )
+        )
+    case '难免转院内':
+      return isformreviewlapsetoid2 === '0'?(
+        <FormUnavoidable
+          Hospitalname  = { Hospitalname }
+          curpaientinfo = { curpaientinfo }
+          db            = { db }
+          info          = { info }
+        />
+      ):(
+        <FormNosocomial
+          Hospitalname  = { Hospitalname }
+          curpaientinfo = { curpaientinfo }
+          db            = { db }
+          info          = { info }
+        />
+      );
+    default:
+      return (<div></div>);
   }
 }
 

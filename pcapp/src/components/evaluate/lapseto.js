@@ -1,10 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import lodashget from 'lodash.get';
-// import ContentTitleBar from '../patientinfo/patientinfo_content_titlebar';
-// import PageForm from './form_lapseto_barden';
-// import {getdefaultlapseto_barden} from '../../util';
-// import {createformreviewlapseto_request,editformreviewlapseto_request} from '../../actions';
+import lodashget from 'lodash.get';
 import ReviewDetailInfo from '../printforms/lapseto_viewinfo';
 import InfoNorecords from '../patientinfo/info_norecords';
 import ReactToPrint from "react-to-print";
@@ -25,36 +21,12 @@ class App extends React.Component {
 		}
 
 		onClickNew = ()=>{
-			const {curpaientinfo} = this.props;
-			this.props.history.push(`/newlapseto/${curpaientinfo._id}/0`);
+			const {curpaientinfo,isformreviewlapsetoid2} = this.props;
+			this.props.history.push(`/newlapseto/${curpaientinfo._id}/0/${isformreviewlapsetoid2}`);
 		}
-		onClickViewPrint = ()=>{
-			// const {curpaientinfo} = this.props;
-			// this.props.history.push(`/viewprintrecordbarden/${curpaientinfo._id}`);
-		}
-		// onClickEdit =(record)=>{
-		// 	const {curpaientinfo} = this.props;
-		// 	this.props.history.push(`/newbarden/${curpaientinfo._id}/${record._id}`);
-		// }
 
-		// onClickSubmit = (values)=>{
-		// 	const {curpaientinfo,isnew,curformreviewlapseto} = this.props;
-		// 	//修正护理措施
-		// 	const Diseaseclassification = curpaientinfo.Diseaseclassification;
-		// 	//
-		// 	values.preventivesmeasure = getvalueof_preventivesmeasure(values.preventivesmeasure,Diseaseclassification);
-		//
-		// 	if(isnew){
-		// 		values.userpatientid = curpaientinfo._id;
-		// 		this.props.dispatch(createformreviewlapseto_request(values));
-		// 	}
-		// 	else{
-		// 		let newcurformreviewlapseto = {...curformreviewlapseto,...values};
-		// 		this.props.dispatch(editformreviewlapseto_request(newcurformreviewlapseto));
-		// 	}
-		// }
   	render() {
-			const {curpaientinfo,curformreviewlapseto,isnew,db,Hospitalname,userlogin} = this.props;
+			const {curpaientinfo,curformreviewlapseto,isnew,db,Hospitalname,userlogin,isformreviewlapsetoid2} = this.props;
 			if(!curpaientinfo){
 				return <div>无病人信息</div>
 			}
@@ -79,7 +51,8 @@ class App extends React.Component {
 							/>
 							</div>
 							<div className="table-frame" ref={el => (this.componentRef = el)}>
-								<ReviewDetailInfo info={curformreviewlapseto} Hospitalname={Hospitalname} db={db} userlogin={userlogin}/>
+								<ReviewDetailInfo info={curformreviewlapseto} Hospitalname={Hospitalname} db={db}
+									 userlogin={userlogin} isformreviewlapsetoid2={isformreviewlapsetoid2}/>
 							</div>
 
 
@@ -91,16 +64,31 @@ class App extends React.Component {
 
 const mapStateToProps = ({db,app,userlogin},props) => {
 		let curpaientinfo = props.curpaientinfo;
+		let Diseaseclassification = props.Diseaseclassification;
 		const {formreviewlapsetos} = db;
 		const {Hospitalname} = app;
 		let isnew = true;
+		let isformreviewlapsetoid2 = '0';
 		let curformreviewlapseto;
-		if(!!curpaientinfo.formreviewlapsetoid){
-			curformreviewlapseto = formreviewlapsetos[curpaientinfo.formreviewlapsetoid];
-			if(!!curformreviewlapseto){
-				isnew = false;
+		if(Diseaseclassification === '院内压疮' && lodashget(curpaientinfo,'Diseaseclassification') === '难免转院内'){
+			//第二张表
+			isformreviewlapsetoid2 = '1';
+			if(!!curpaientinfo.formreviewlapsetoid2){
+				curformreviewlapseto = formreviewlapsetos[curpaientinfo.formreviewlapsetoid2];
+				if(!!curformreviewlapseto){
+					isnew = false;
+				}
 			}
 		}
-		return {curpaientinfo,isnew,curformreviewlapseto,db,userlogin,Hospitalname};
+		else{
+			if(!!curpaientinfo.formreviewlapsetoid){
+				curformreviewlapseto = formreviewlapsetos[curpaientinfo.formreviewlapsetoid];
+				if(!!curformreviewlapseto){
+					isnew = false;
+				}
+			}
+		}
+
+		return {curpaientinfo,isnew,curformreviewlapseto,db,userlogin,Hospitalname,isformreviewlapsetoid2};
 }
 export default connect(mapStateToProps)(App);

@@ -34,11 +34,11 @@ import { requireAuthentication } from './requireauthentication';
 
 
 class AppRoot extends React.Component {
-  
+
   componentWillMount() {}
 
   componentWillUnmount() {}
-  
+
   render() {
     return (
       <div className="route-space">
@@ -50,7 +50,7 @@ class AppRoot extends React.Component {
           <Route exact path = "/newbarden/:pid/:id" component = { requireAuthentication( NewBarden ) } />
           <Route exact path = "/newnursingmeasures/:pid/:id" component = { requireAuthentication( NewNursingmeasures ) } />
           <Route exact path = "/newwoundsurface/:pid/:id" component = { requireAuthentication( NewWoundsurface ) } />
-          <Route exact path = "/newlapseto/:pid/:id" component = { requireAuthentication( NewLapseto ) } />
+          <Route exact path = "/newlapseto/:pid/:id/:isid2" component = { requireAuthentication( NewLapseto ) } />
 
           <Route exact path = "/viewprintrecordbarden/:pid" component = { requireAuthentication( ViewPrintRecordBarden ) } />
           <Route exact path = "/viewprintrecordnursingmeasures/:pid" component = { requireAuthentication( ViewPrintRecordNursingmeasures ) } />

@@ -32,7 +32,8 @@ const Paientinfo = (props)=>{
 							<span className={stateClassname}>{bedStatusString}</span>
 							<span>{`${depatName}${bedName}`}</span>
 							{
-								(Diseaseclassification === '院前压疮' || Diseaseclassification === '院内压疮'  || Diseaseclassification === '难免压疮' )
+								(Diseaseclassification === '院前压疮' || Diseaseclassification === '院内压疮'
+									|| Diseaseclassification === '难免压疮' || Diseaseclassification === '难免转院内')
 								 && (<button type="" className="ant-btn-assess" onClick={
 									()=>{
 										onClickEvalute(curpaientinfo._id)
