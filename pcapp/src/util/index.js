@@ -170,7 +170,7 @@ const get_preventivesmeasure = (Diseaseclassification='院前压疮')=>{
       checked:false,
       options:[
         {
-          name:'1)气垫床',
+          name:'1)翻身床垫',
           checked:false,
         },
         {
@@ -387,7 +387,7 @@ export const getdefaultlapseto_barden = (evaluatebardenscore,Diseaseclassificati
             checked:false,
           },
           {
-            name:'3、心里衰竭',
+            name:'3、心力衰竭',
             checked:false,
           },
           {
