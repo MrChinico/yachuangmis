@@ -6,7 +6,7 @@ import InfoNorecords from '../patientinfo/info_norecords';
 import ReactToPrint from "react-to-print";
 import './lapseto.css';
 import './lapseto.styl';
-
+import config from '../../env/config';
 
 
 class App extends React.Component {
@@ -43,12 +43,15 @@ class App extends React.Component {
 					            }
 					          } className="ant-btn"> <img src="add.png" alt=""/>
 					          编辑审阅转归单</button>
-							<ReactToPrint
-								trigger={ () =>
-									<span className="ant-btn"><img src="printing.png" alt="" />打印报表</span>
-								}
-								content={ () => this.componentRef }
-							/>
+							{
+								!config.isandroid() && <ReactToPrint
+									trigger={ () =>
+										<span className="ant-btn"><img src="printing.png" alt="" />打印报表</span>
+									}
+									content={ () => this.componentRef }
+								/>
+							}
+
 							</div>
 							<div className="table-frame" ref={el => (this.componentRef = el)}>
 								<ReviewDetailInfo info={curformreviewlapseto} Hospitalname={Hospitalname} db={db}

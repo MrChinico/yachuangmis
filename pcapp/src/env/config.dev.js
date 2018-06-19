@@ -12,7 +12,10 @@ let config = {
     requesttimeout:5000,
     appversion:'1.2.5',
     sendlocationinterval:20000,
-    softmode:'pcapp'
+    softmode:'pcapp',
+    isandroid:()=>{
+      return !window.xview;
+    }
 };
 
 
