@@ -1,6 +1,7 @@
 import React from 'react';
 // import { notification, Icon, Button } from 'antd';
-import { Menu, Dropdown, Button, Icon, } from 'antd';
+// import { Menu, Dropdown, Button, Icon, } from 'antd';
+import Select from 'react-select';
 // import moment from 'moment';
 import { DatePicker } from 'antd';
 //https://github.com/fkhadra/react-toastify
@@ -106,34 +107,53 @@ class SelectWs extends React.Component {
 		constructor(props) {
 				super(props);
 				this.state = {
-					title:'下拉选择创面'
+					selvalue:'0'
 				}
 		}
-    handleMenuClick = ({ item, key, keyPath })=>{
+    onChange = (newvalue)=>{
       const {db} = this.props;
-      const evaluateWoundsurfaces =  lodashget(db,`evaluatewoundsurfaces.${key}.evaluateWoundsurfaces`,[]);
-      const title =`${lodashget(db,`evaluatewoundsurfaces.${key}.created_at`)}-创面个数:${evaluateWoundsurfaces.length}`;
-      this.setState({title});
+      const evaluateWoundsurfaces =  lodashget(db,`evaluatewoundsurfaces.${newvalue}.evaluateWoundsurfaces`,[]);
+      // const title =`${lodashget(db,`evaluatewoundsurfaces.${key}.created_at`)}-创面个数:${evaluateWoundsurfaces.length}`;
+      this.setState({selvalue:newvalue});
       wsvalue = evaluateWoundsurfaces;
     }
 
     render(){
       const {evaluatewoundsurfacelist,db} = this.props;
-      let menus = [];
+
+
+      let options = [];
       lodashmap(evaluatewoundsurfacelist,(wid)=>{
         const evaluateWoundsurfaces =  lodashget(db,`evaluatewoundsurfaces.${wid}.evaluateWoundsurfaces`,[]);
-        menus.push(<Menu.Item key={`${wid}`}>{lodashget(db,`evaluatewoundsurfaces.${wid}.created_at`)}-创面个数:{evaluateWoundsurfaces.length}</Menu.Item>);
+        options.push(
+          {
+            value:`${wid}`,
+            label:lodashget(db,`evaluatewoundsurfaces.${wid}.created_at`)+`创面个数:${evaluateWoundsurfaces.length}`
+          }
+        );
       });
-      const menu = (
-        <Menu onClick={this.handleMenuClick.bind(this)}>
-          {menus}
-        </Menu>
-      );
-      return (<Dropdown overlay={menu}>
-          <Button style={{ marginLeft: 8 }}>
-             {this.state.title}<Icon type="down" />
-          </Button>
-        </Dropdown>);
+
+      return (<Select
+      					id="state-select"
+      					autoFocus
+      					options={options}
+      					simpleValue
+      					name="selected-state"
+      					value={this.state.selvalue}
+      					onChange={this.onChange.bind(this)}
+                clearable={false}
+                searchable={false}
+      				/>);
+      // const menu = (
+      //   <Menu onClick={this.handleMenuClick.bind(this)}>
+      //     {menus}
+      //   </Menu>
+      // );
+      // return (<Dropdown overlay={menu}>
+      //     <Button style={{ marginLeft: 8 }}>
+      //        {this.state.title}<Icon type="down" />
+      //     </Button>
+      //   </Dropdown>);
     }
 
 }

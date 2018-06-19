@@ -29,7 +29,7 @@ import SearchPaientinfo from './index/index_search';
 
 import Login from './login';
 import { requireAuthentication } from './requireauthentication';
-
+import 'react-select/dist/react-select.css';
 
 
 
