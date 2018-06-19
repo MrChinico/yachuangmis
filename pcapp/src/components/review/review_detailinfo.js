@@ -16,7 +16,7 @@ const ReviewDetailInfo = (props)=>{
 	// const bedStatusString = lodashget(curpaientinfo,'bedid','') === ''?'离床':'在床';
 	const depatName = curdepat.Depatname;
 	let ApprovalStatus= lodashget(info,'stagestatus','未审核');
-
+	const isid2 = curpaientinfo.formreviewlapsetoid === info._id? '0':'1';
 	// const bedName = lodashget(curpaientinfo,'bedid.Bedname','');
 	// const smartDeviceString = lodashget(curpaientinfo,'bedid.smartdeviceid.realtimedata.positionstring','') + lodashget(curpaientinfo,'bedid.smartdeviceid.realtimedata.anglestring','');
 	// const isInSmartBed = lodashget(curpaientinfo,'bedid.smartdeviceid','')===''?false:true;
@@ -32,7 +32,7 @@ const ReviewDetailInfo = (props)=>{
 			<td><div align="center">{ApprovalStatus}</div></td>
 			<td><div align="center"  onClick={
 				()=>{
-					onClickDetail(info.userpatientid,info._id);
+					onClickDetail(info.userpatientid,info._id,isid2);
 				}
 			}>查看</div></td>
 		</tr>

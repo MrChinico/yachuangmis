@@ -16,8 +16,8 @@ class App extends React.Component {
 
 		}
 
-		onClickDetail = (pid,id)=>{
-			this.props.history.push(`/newlapseto/${pid}/${id}`);
+		onClickDetail = (pid,id,isid2)=>{
+			this.props.history.push(`/newlapseto/${pid}/${id}/${isid2}`);
 		}
 
     onItemConvert(item){
