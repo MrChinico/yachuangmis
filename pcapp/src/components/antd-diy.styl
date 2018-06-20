@@ -41,7 +41,6 @@
 .ant-btn.ant-dropdown-trigger
   background: transparent
   color: inherit
-  height 100%;
   &:hover
     border-color: theme-color-A
     color: theme-color-A
@@ -77,3 +76,48 @@
     &:focus
       border-color: inherit
       color: #fff
+
+.Select
+  display: inline-flex    
+  align-items: center
+  width: 160px;
+  font-size: 16px
+  margin-left: 16px
+
+.Select >div
+  width: 150px;
+  display: inline-block;
+
+// .ant-layout-header .Select-control
+//   background: #0000
+//   position relative
+//   .Select-value
+//     position absolute
+//     color #fff
+
+.bbm-green, .bbm-green >div 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
+
+.ant-layout-header
+  display: flex
+  align-items: center
+  .Select-control
+    display: flex
+    position relative
+  .Select-value
+    bottom: -20px !important
+  .Select-value span
+    top 22px !important
+    position: absolute !important
+    overflow none !important
+    line-height: normal !important
+  .Select-option
+    display: flex
+    align-items: center
+    height 32px !important
+    position: none;
+  .Select-menu
+    display: flex
+    flex-flow: column

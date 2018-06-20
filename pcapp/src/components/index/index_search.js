@@ -103,13 +103,9 @@ class App extends React.Component {
 						<div className="index-box">
 							<div className="index-content assess">
 								<h2 className="bbm-green">
+									<div>
 									{showtext}
 									{/* 第二题修改位置 */}
-									<button className="return" onClick={
-									()=>{
-										this.props.history.goBack();
-									}
-								}><img src="return.png" alt="" /></button>
 									{
 										PermissionName === '护理部主管' && (<DepatSelect
 											onChangeDepat={this.onChangeDepat}
@@ -117,14 +113,18 @@ class App extends React.Component {
 											curdepatid={this.state.curdepatid}
 										/>)
 									}
-
+									
 									<DiseaseclassificationSelect
 										onChangeDiseaseclassification={this.onChangeDiseaseclassification}
 										curdiseaseclassification={this.state.curdiseaseclassification}
 									/>
+									</div>
 									{/* -------------- */}
-									<div className="clearfix">
-								</div>
+									<button className="return" onClick={
+									()=>{
+										this.props.history.goBack();
+									}
+								}><img src="return.png" alt="" /></button>
 								</h2>
 								<Patientinfolist
 									query={this.state.query}
